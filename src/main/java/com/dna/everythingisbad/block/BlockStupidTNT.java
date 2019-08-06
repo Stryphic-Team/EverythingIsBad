@@ -40,7 +40,7 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
 
 
     }
-
+    @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         super.onBlockAdded(worldIn, pos, state);
@@ -53,12 +53,10 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
         }
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-
-    }
+    @Override
     public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
     {
+        super.onBlockDestroyedByExplosion(worldIn,pos,explosionIn);
         if (!worldIn.isRemote)
         {
             Random random = new Random();
@@ -76,15 +74,16 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
                 worldIn.spawnEntity(entitytntprimed);
                 worldIn.playSound((EntityPlayer)null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            //explode(worldIn,pos,getDefaultState(),explosionIn.getExplosivePlacedBy());
+
         }
     }
+    @Override
     public void explode(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase igniter)
     {
 
         if (!worldIn.isRemote)
         {
-            if (state == null || ((Boolean)state.getValue(EXPLODE)).booleanValue())
+            if (((Boolean)state.getValue(EXPLODE)).booleanValue())
             {
                 Random random = new Random();
                 for(int i = 0;i<30;i++){
@@ -108,6 +107,7 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
     public void registerModels()
     {
         Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+
     }
 
 

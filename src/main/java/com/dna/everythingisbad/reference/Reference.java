@@ -6,6 +6,7 @@ public class Reference {
     public static final String VERSION = "1.12.2-0.01";
 
     public static final String CLIENT_PROXY_CLASS = "com.dna.everythingisbad.proxy.ClientProxy";
+    public static final String COMMON_PROXY_CLASS = "com.dna.everythingisbad.proxy.CommonProxy";
     public static final String SERVER_PROXY_CLASS = "com.dna.everythingisbad.proxy.ServerProxy";
 
 
