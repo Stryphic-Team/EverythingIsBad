@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -34,6 +35,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
     /**
      * Called when a Block is right-clicked with this Item
      */
+    @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack itemstack = player.getHeldItem(hand);
@@ -46,7 +48,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
         {
             EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(itemstack.getMetadata());
 
-            if (enumdyecolor == EnumDyeColor.WHITE)
+            if (enumdyecolor == EnumDyeColor.BROWN)
             {
                 if (applyBonemeal(itemstack, worldIn, pos, player, hand))
                 {
@@ -58,37 +60,6 @@ public class ItemPoop extends ItemDye implements IHasModel {
                     return EnumActionResult.SUCCESS;
                 }
             }
-            else if (enumdyecolor == EnumDyeColor.BROWN)
-            {
-                IBlockState iblockstate = worldIn.getBlockState(pos);
-                Block block = iblockstate.getBlock();
-
-                if (block == Blocks.LOG && iblockstate.getValue(BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE)
-                {
-                    if (facing == EnumFacing.DOWN || facing == EnumFacing.UP)
-                    {
-                        return EnumActionResult.FAIL;
-                    }
-
-                    pos = pos.offset(facing);
-
-                    if (worldIn.isAirBlock(pos))
-                    {
-                        IBlockState iblockstate1 = Blocks.COCOA.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
-                        worldIn.setBlockState(pos, iblockstate1, 10);
-
-                        if (!player.capabilities.isCreativeMode)
-                        {
-                            itemstack.shrink(1);
-                        }
-
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
-
-                return EnumActionResult.FAIL;
-            }
-
             return EnumActionResult.PASS;
         }
     }
@@ -129,10 +100,22 @@ public class ItemPoop extends ItemDye implements IHasModel {
 
         return false;
     }
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     */
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+    {
+        if (this.isInCreativeTab(tab))
+        {
+            items.add(new ItemStack(this, 1, 3)); // Poop is only available in brown.
+        }
+    }
+
     @Override
     public void registerModels()
     {
-        Main.proxy.registerItemRenderer(this, 0, "inventory");
+        Main.proxy.registerItemRenderer(this, 3, "inventory");
 
     }
 }
