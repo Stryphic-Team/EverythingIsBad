@@ -89,7 +89,7 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
             {
                 Random random = new Random();
                 for(int i = 0;i<count;i++){
-                    EntityStupidTNT entitytntprimed = new EntityStupidTNT(
+                    EntityStupidTNT entitystupidtnt = new EntityStupidTNT(
                             worldIn,
                             (double)pos.getX(),
                             (double)pos.getY(),
@@ -98,9 +98,9 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
                     double x_vel = (double)((random.nextFloat()*range)-(range/2));
                     double y_vel = (double)((random.nextFloat()*range)-(range/2));
                     double z_vel = (double)((random.nextFloat()*range)-(range/2));
-                    entitytntprimed.setVelocity(x_vel,y_vel,z_vel);
-                    worldIn.spawnEntity(entitytntprimed);
-                    worldIn.playSound((EntityPlayer)null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    entitystupidtnt.setVelocity(x_vel,y_vel,z_vel);
+                    worldIn.spawnEntity(entitystupidtnt);
+                    worldIn.playSound((EntityPlayer)null, entitystupidtnt.posX, entitystupidtnt.posY, entitystupidtnt.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
             }
         }

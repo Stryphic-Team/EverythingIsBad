@@ -28,6 +28,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IHasModel {
         this.motionX = x;
         this.motionY = y;
         this.motionZ = z;
+
     }
     @Override
     public void registerModels() {

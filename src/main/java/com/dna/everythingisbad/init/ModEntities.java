@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.init;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.entity.Entity;
@@ -19,6 +20,7 @@ public class ModEntities {
     public static void init(){
         for(EntityEntry e:ENTITIES){
             e.setRegistryName(e.getName());
+
         }
 
 
