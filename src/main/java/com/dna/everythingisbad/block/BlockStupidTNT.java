@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.block;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
@@ -23,7 +24,8 @@ import net.minecraft.item.Item;
 import java.util.Random;
 
 public class BlockStupidTNT extends BlockTNT implements IHasModel {
-
+    public final float range = 25f;
+    public final int count = 15;
     public BlockStupidTNT(String name, Material material){
         super();
         setRegistryName(name);
@@ -60,16 +62,16 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
         if (!worldIn.isRemote)
         {
             Random random = new Random();
-            for(int i = 0;i<30;i++){
-                EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(
+            for(int i = 0;i<count;i++){
+                EntityStupidTNT entitytntprimed = new EntityStupidTNT(
                         worldIn,
                         (double)pos.getX(),
                         (double)pos.getY(),
                         (double)pos.getZ(),
                         explosionIn.getExplosivePlacedBy());
-                double x_vel = (double)((random.nextFloat()*50f)-25f);
-                double y_vel = (double)((random.nextFloat()*50f)-25f);
-                double z_vel = (double)((random.nextFloat()*50f)-25f);
+                double x_vel = (double)((random.nextFloat()*range)-(range/2));
+                double y_vel = (double)((random.nextFloat()*range)-(range/2));
+                double z_vel = (double)((random.nextFloat()*range)-(range/2));
                 entitytntprimed.setVelocity(x_vel,y_vel,z_vel);
                 worldIn.spawnEntity(entitytntprimed);
                 worldIn.playSound((EntityPlayer)null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -86,16 +88,16 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
             if (((Boolean)state.getValue(EXPLODE)).booleanValue())
             {
                 Random random = new Random();
-                for(int i = 0;i<30;i++){
-                    EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(
+                for(int i = 0;i<count;i++){
+                    EntityStupidTNT entitytntprimed = new EntityStupidTNT(
                             worldIn,
                             (double)pos.getX(),
                             (double)pos.getY(),
                             (double)pos.getZ(),
                             igniter);
-                    double x_vel = (double)((random.nextFloat()*50f)-25f);
-                    double y_vel = (double)((random.nextFloat()*50f)-25f);
-                    double z_vel = (double)((random.nextFloat()*50f)-25f);
+                    double x_vel = (double)((random.nextFloat()*range)-(range/2));
+                    double y_vel = (double)((random.nextFloat()*range)-(range/2));
+                    double z_vel = (double)((random.nextFloat()*range)-(range/2));
                     entitytntprimed.setVelocity(x_vel,y_vel,z_vel);
                     worldIn.spawnEntity(entitytntprimed);
                     worldIn.playSound((EntityPlayer)null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -103,6 +105,8 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
             }
         }
     }
+
+
     @Override
     public void registerModels()
     {
