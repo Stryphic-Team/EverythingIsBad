@@ -1,6 +1,8 @@
 package com.dna.everythingisbad.item;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -19,7 +21,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemPoop extends ItemDye {
+public class ItemPoop extends ItemDye implements IHasModel {
     public ItemPoop(String name)
     {
         setRegistryName(name);
@@ -126,5 +128,11 @@ public class ItemPoop extends ItemDye {
         }
 
         return false;
+    }
+    @Override
+    public void registerModels()
+    {
+        Main.proxy.registerItemRenderer(this, 0, "inventory");
+
     }
 }
