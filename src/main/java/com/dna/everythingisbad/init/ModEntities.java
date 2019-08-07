@@ -1,10 +1,13 @@
 package com.dna.everythingisbad.init;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.client.RenderStupidTNT;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ public class ModEntities {
     public static void init(){
         for(EntityEntry e:ENTITIES){
             e.setRegistryName(e.getName());
+            RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT.FACTORY);
 
         }
 

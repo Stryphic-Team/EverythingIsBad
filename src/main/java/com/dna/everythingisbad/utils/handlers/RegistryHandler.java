@@ -7,6 +7,7 @@ import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -24,6 +25,7 @@ public class RegistryHandler {
     public static void onEntitiesRegistered(RegistryEvent.Register<EntityEntry> event)
     {
         ModEntities.init();
+
         event.getRegistry().registerAll(ModEntities.ENTITIES);
     }
 
