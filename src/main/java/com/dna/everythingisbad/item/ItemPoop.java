@@ -101,7 +101,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
         return false;
     }
     /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     * returns a list of items with the same ID, but different meta (eg: dye returns 1 item)
      */
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)

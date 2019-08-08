@@ -29,8 +29,9 @@ public class ClientProxy extends CommonProxy{
     }
     @Override
     public void postInit(FMLPostInitializationEvent event) {
-
+        super.postInit(event);//You need one of these oops...
         MinecraftForge.EVENT_BUS.register(new KeyHandler());
+        MinecraftForge.EVENT_BUS.register(new TestHandler());
     }
 
 }
