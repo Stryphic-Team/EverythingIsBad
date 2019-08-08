@@ -25,9 +25,8 @@ public class KeyHandler {
     }
 
     private static KeyBinding poopKey;
-    private static ArrayList<KeyBinding> keys = new ArrayList<>();
 
-    public void KeyTracker(){
+    public KeyHandler(){
         poopKey = new KeyBinding(Reference.PREFIX + "keybind.poopKey", Keyboard.KEY_P, Reference.PREFIX + "category." + Reference.MOD_ID);
         ClientRegistry.registerKeyBinding(poopKey);
     }
