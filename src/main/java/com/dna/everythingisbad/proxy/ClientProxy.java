@@ -24,4 +24,5 @@ public class ClientProxy extends CommonProxy{
         registerEntityRenderer();
 
     }
+
 }
