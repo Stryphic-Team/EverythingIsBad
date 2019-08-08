@@ -27,8 +27,6 @@ public class CommonProxy implements IProxy{
     public void postInit(FMLPostInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new TestHandler());
 
-        MinecraftForge.EVENT_BUS.register(new KeyHandler());
-
         Main.logger.info("Post Intializing");
     }
 }
