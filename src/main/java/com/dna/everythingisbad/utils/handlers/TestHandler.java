@@ -14,16 +14,17 @@ import scala.util.Random;
 
 
 public class TestHandler {
-    int tick_count = 0;
-    boolean in_server = false;
     Random random = new Random();
+    int poop_interval = 20*60*20; // How often do you poop
+    int tick_count = random.nextInt(poop_interval)-1; // Starting at a random point in the day-night cycle
+    boolean in_server = false;
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void timer(TickEvent.ClientTickEvent event){
         tick_count++;
         //20 ticks per second * 60 seconds * one minecraft day per 20 minutes
-        if(tick_count % (20 * 60 * 20) == 0 && in_server){
-            //gets a random number between 0-6
+        if(tick_count % (poop_interval) == 0 && in_server){
+            //gets a random number between 1-6
             int random_amount = random.nextInt(5)+1;
             ItemStack stack = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
             ItemPoop item = (ItemPoop)stack.getItem();
