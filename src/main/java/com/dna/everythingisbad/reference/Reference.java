@@ -10,5 +10,6 @@ public class Reference {
     public static final String SERVER_PROXY_CLASS = "com.dna.everythingisbad.proxy.ServerProxy";
 
     public static final String PREFIX = MOD_ID + ".";
+    public static final String RESOURCE_PREFIX = MOD_ID + ":";
 
 }
