@@ -9,5 +9,6 @@ public class Reference {
     public static final String COMMON_PROXY_CLASS = "com.dna.everythingisbad.proxy.CommonProxy";
     public static final String SERVER_PROXY_CLASS = "com.dna.everythingisbad.proxy.ServerProxy";
 
+    public static final String PREFIX = MOD_ID + ".";
 
 }
