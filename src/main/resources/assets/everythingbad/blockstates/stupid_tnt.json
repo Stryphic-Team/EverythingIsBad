@@ -2,15 +2,15 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "all": "eib:blocks/stupid_tnt"
+      "all": "everythingbad:blocks/stupid_tnt"
     }
   },
   "variants": {
     "normal": { "model": "cube_all" },
     "inventory": { "model": "cube_all" },
     "explode": {
-      "true":  { "model": "eib:stupid_tnt" },
-      "false": { "model": "eib:stupid_tnt" }
+      "true":  { "model": "everythingbad:stupid_tnt" },
+      "false": { "model": "everythingbad:stupid_tnt" }
     }
   }
 }

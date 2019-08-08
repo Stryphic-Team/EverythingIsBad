@@ -9,4 +9,5 @@ public class ServerProxy extends CommonProxy{
     {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
+
 }

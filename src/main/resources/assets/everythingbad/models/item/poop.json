@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "eib:items/poop"
+    "layer0": "everythingbad:items/poop"
   },
 
   "display": {

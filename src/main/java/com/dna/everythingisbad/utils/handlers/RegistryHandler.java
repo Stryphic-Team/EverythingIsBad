@@ -24,6 +24,7 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onEntitiesRegistered(RegistryEvent.Register<EntityEntry> event)
     {
+
         ModEntities.init();
 
         event.getRegistry().registerAll(ModEntities.ENTITIES);

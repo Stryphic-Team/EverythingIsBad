@@ -1,7 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "stupid_tnt": "eib:blocks/stupid_tnt"
+        "stupid_tnt": "everythingbad:blocks/stupid_tnt"
     },
     "display": {
         "gui": {

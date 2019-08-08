@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +22,17 @@ public class ModEntities {
     public static final EntityEntry[] ENTITIES = new EntityEntry[]{
             STUPID_TNT_ENTITY
     };
+
     public static void init(){
         for(EntityEntry e:ENTITIES){
             e.setRegistryName(e.getName());
-            RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT.FACTORY);
-
         }
-
-
+    }
+    @SideOnly(Side.CLIENT)
+    public static void initRenderer(){
+        for(EntityEntry e:ENTITIES){
+            RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT.FACTORY);
+        }
     }
 
 }
