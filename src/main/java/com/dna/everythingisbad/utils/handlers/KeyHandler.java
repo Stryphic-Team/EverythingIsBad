@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import static java.lang.System.out;
 
-@Mod.EventBusSubscriber
+//@Mod.EventBusSubscriber I think there can only be one of these registered
 public class KeyHandler {
 
     static final Minecraft mc = Minecraft.getMinecraft();
