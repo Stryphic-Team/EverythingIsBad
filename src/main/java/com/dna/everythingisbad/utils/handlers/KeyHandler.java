@@ -24,11 +24,11 @@ public class KeyHandler {
         Main.logger.info("Item picked up!");
     }
 
-    private static KeyBinding poopKey;
+    private static KeyBinding poopkey;
 
     public KeyHandler(){
-        poopKey = new KeyBinding(Reference.PREFIX + "keybind.poopKey", Keyboard.KEY_P, Reference.PREFIX + "category." + Reference.MOD_ID);
-        ClientRegistry.registerKeyBinding(poopKey);
+        poopkey = new KeyBinding(Reference.PREFIX + "keybind.poopkey", Keyboard.KEY_P, Reference.PREFIX + "category." + Reference.MOD_ID);
+        ClientRegistry.registerKeyBinding(poopkey);
     }
 
     @SubscribeEvent
