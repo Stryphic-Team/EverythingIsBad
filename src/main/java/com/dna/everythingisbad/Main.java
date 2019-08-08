@@ -3,6 +3,7 @@ package com.dna.everythingisbad;
 
         import com.dna.everythingisbad.proxy.IProxy;
         import com.dna.everythingisbad.reference.Reference;
+        import net.minecraft.client.settings.KeyBinding;
         import net.minecraft.init.Blocks;
         import net.minecraftforge.fml.common.Mod;
         import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -34,4 +35,5 @@ public class Main
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
+
 }

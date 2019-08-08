@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.utils.handlers.KeyHandler;
 import com.dna.everythingisbad.utils.handlers.TestHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ public class CommonProxy implements IProxy{
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new TestHandler());
+        MinecraftForge.EVENT_BUS.register(new KeyHandler());
         Main.logger.info("Post Intializing");
     }
 }
