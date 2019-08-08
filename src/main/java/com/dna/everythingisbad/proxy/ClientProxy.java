@@ -1,6 +1,8 @@
 package com.dna.everythingisbad.proxy;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModEntities;
+import com.dna.everythingisbad.utils.handlers.KeyHandler;
 import com.dna.everythingisbad.utils.handlers.TestHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -8,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
 public class ClientProxy extends CommonProxy{
     public void registerItemRenderer(Item item, int meta, String id)
@@ -23,6 +26,11 @@ public class ClientProxy extends CommonProxy{
 
         registerEntityRenderer();
 
+    }
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+
+        MinecraftForge.EVENT_BUS.register(new KeyHandler());
     }
 
 }
