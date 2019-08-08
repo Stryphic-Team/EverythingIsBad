@@ -23,12 +23,12 @@ public class Main
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
+        proxy.preInit(event);
     }
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        // some example code
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        proxy.init(event);
     }
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {

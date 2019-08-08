@@ -1,9 +1,12 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.init.ModEntities;
+import com.dna.everythingisbad.utils.handlers.TestHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 public class ClientProxy extends CommonProxy{
@@ -17,6 +20,8 @@ public class ClientProxy extends CommonProxy{
     }
     @Override
     public void init(FMLInitializationEvent event) {
+
         registerEntityRenderer();
+
     }
 }
