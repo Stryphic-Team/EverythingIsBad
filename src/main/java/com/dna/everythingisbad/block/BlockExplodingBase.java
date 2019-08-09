@@ -1,11 +1,14 @@
 package com.dna.everythingisbad.block;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
 import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 
-public class BlockExplodingBase extends BlockTNT {
+public class BlockExplodingBase extends BlockTNT implements IHasModel {
     public BlockExplodingBase() {
         //material determines sound, map color, tool?, flammability, etc
         super();
@@ -15,4 +18,8 @@ public class BlockExplodingBase extends BlockTNT {
     }
 
 
+    @Override
+    public void registerModels() {
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+    }
 }
