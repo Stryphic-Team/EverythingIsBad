@@ -1,6 +1,8 @@
 tile.everythingbad:stupid_tnt.name=Stupid TNT
 tile.everythingbad:poop_block.name=Poop Block
+
 item.everythingbad:poop.name=Poop
+item.everythingbad:poopstone_brick.name=Poopstone Brick
 
 itemGroup.everythingbad=Everything is Bad
 
