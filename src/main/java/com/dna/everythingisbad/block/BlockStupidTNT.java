@@ -25,7 +25,7 @@ import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockStupidTNT extends BlockExplodingBase implements IHasModel {
+public class BlockStupidTNT extends BlockExplodingBase {
     public final float range = 25f;
     public final int count = 15;
     public BlockStupidTNT(String name, Material material){
@@ -106,14 +106,4 @@ public class BlockStupidTNT extends BlockExplodingBase implements IHasModel {
             }
         }
     }
-
-
-    @Override
-    public void registerModels()
-    {
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-
-    }
-
-
 }

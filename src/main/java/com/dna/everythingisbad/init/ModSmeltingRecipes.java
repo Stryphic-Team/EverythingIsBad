@@ -8,6 +8,7 @@ public class ModSmeltingRecipes {
     //System for loading recipes
     public static final SmeltingRecipe POOPSTONE_BRICK_RECIPE =
             new SmeltingRecipe(ModItems.POOP_ITEM,new ItemStack(ModItems.POOP_BRICK_ITEM,1),1f);
+
     public static final SmeltingRecipe[] SMELTING_RECIPES = new SmeltingRecipe[]{
             POOPSTONE_BRICK_RECIPE
     };
