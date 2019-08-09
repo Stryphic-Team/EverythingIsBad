@@ -6,8 +6,8 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.Utils;
 
-public class ItemPoopstoneBrick extends ItemBase {
-    public ItemPoopstoneBrick(String name)
+public class ItemPoopBrick extends ItemBase {
+    public ItemPoopBrick(String name)
     {
         setRegistryName(name);
         setUnlocalizedName(Utils.createUnlocalizedName(name));

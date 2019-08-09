@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "everythingbad:items/poopstone_brick"
+    "layer0": "everythingbad:items/poop_brick"
   },
 
   "display": {
