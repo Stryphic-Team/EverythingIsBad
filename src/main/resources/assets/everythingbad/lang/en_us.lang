@@ -1,6 +1,6 @@
-tile.stupid_tnt.name=Stupid TNT
-tile.poop_block.name=Poop Block
-item.poop.brown.name=Poop
+tile.everythingbad:stupid_tnt.name=Stupid TNT
+tile.everythingbad:poop_block.name=Poop Block
+item.everythingbad:poop.name=Poop
 
 everythingbad.category.everythingbad=Everything Is Bad
 everythingbad.keybind.poopkey=Poop (Debug)

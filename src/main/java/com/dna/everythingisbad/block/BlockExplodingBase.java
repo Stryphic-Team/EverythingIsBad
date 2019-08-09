@@ -2,26 +2,18 @@ package com.dna.everythingisbad.block;
 
 import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
 import com.dna.everythingisbad.reference.Reference;
-
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
 
-public class BlockBase extends Block{
-    protected String name;
-
-    public BlockBase(Material material) {
+public class BlockExplodingBase extends BlockTNT {
+    public BlockExplodingBase() {
         //material determines sound, map color, tool?, flammability, etc
-        super(material);
+        super();
         setHardness(2);
         setResistance(30);
         this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
     }
 
-    public BlockBase(){
-        this(Material.ROCK);//we'll use rock as default
-    }
-
-    //unlocalized name here, localized name comes from lang file
     @Override
     public String getUnlocalizedName(){
         //easy storage format: blockName
@@ -31,11 +23,5 @@ public class BlockBase extends Block{
 
     protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
         return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
-    }
-
-
-
-    public String getName(){
-        return name;
     }
 }

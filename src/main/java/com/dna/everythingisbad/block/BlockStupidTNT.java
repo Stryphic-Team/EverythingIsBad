@@ -24,7 +24,7 @@ import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockStupidTNT extends BlockTNT implements IHasModel {
+public class BlockStupidTNT extends BlockExplodingBase implements IHasModel {
     public final float range = 25f;
     public final int count = 15;
     public BlockStupidTNT(String name, Material material){
@@ -36,7 +36,6 @@ public class BlockStupidTNT extends BlockTNT implements IHasModel {
         setResistance(1.0f);
         setHarvestLevel("pickaxe",1);
         setLightLevel(1f);
-        setCreativeTab(CreativeTabs.REDSTONE);
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 

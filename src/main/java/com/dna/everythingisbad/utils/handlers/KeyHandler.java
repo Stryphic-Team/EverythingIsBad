@@ -30,10 +30,7 @@ public class KeyHandler {
 
     static final Minecraft mc = Minecraft.getMinecraft();
 
-    @SubscribeEvent
-    public void pickupItem(EntityItemPickupEvent event) {
-        Main.logger.info("Item picked up!");
-    }
+
     private static KeyBinding poopkey;
 
     private static ArrayList<KeyBinding> keys = new ArrayList<KeyBinding>();

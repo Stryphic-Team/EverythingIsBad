@@ -1,7 +1,9 @@
 package com.dna.everythingisbad.item;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
@@ -25,11 +27,12 @@ import net.minecraft.world.World;
 public class ItemPoop extends ItemDye implements IHasModel {
     public ItemPoop(String name)
     {
+
         setRegistryName(name);
         setUnlocalizedName(name);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setCreativeTab(CreativeTabs.MATERIALS);
+        this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
     /**
@@ -117,5 +120,17 @@ public class ItemPoop extends ItemDye implements IHasModel {
     {
         Main.proxy.registerItemRenderer(this, 3, "inventory");
 
+    }
+    @Override
+    public String getUnlocalizedName(ItemStack stack){
+        //easy storage format: blockName
+        //convert to proper format: tile.[modID]:[blockName].name
+
+        return String.format("item.%s:%s", Reference.MOD_ID.toLowerCase(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+    }
+
+
+    protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
+        return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
     }
 }
