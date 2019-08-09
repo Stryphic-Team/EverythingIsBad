@@ -18,16 +18,6 @@ public class ItemBase extends Item implements IHasModel {
 //        this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
 //        ModItems.ITEMS.add(this);
 //    }
-    @Override
-    public String getUnlocalizedName(){
-        //easy storage format: blockName
-        //convert to proper format: tile.[modID]:[blockName].name
-        return String.format("item.%s:%s", Reference.MOD_ID.toLowerCase(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-    }
-
-    protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
-        return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
-    }
 
     @Override
     public void registerModels()

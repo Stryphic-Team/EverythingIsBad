@@ -5,6 +5,7 @@ import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
+import com.dna.everythingisbad.utils.Utils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -30,7 +31,7 @@ public class BlockStupidTNT extends BlockExplodingBase implements IHasModel {
     public BlockStupidTNT(String name, Material material){
         super();
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Utils.createUnlocalizedName(name));
         setSoundType(SoundType.PLANT);
         setHardness(1f);
         setResistance(1.0f);

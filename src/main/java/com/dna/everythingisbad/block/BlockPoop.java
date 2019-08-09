@@ -4,6 +4,7 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
+import com.dna.everythingisbad.utils.Utils;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,7 +17,7 @@ public class BlockPoop extends BlockFallingBase implements IHasModel {
         //material determines sound, map color, tool?, flammability, etc
         super(material);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Utils.createUnlocalizedName(name));
         setSoundType(SoundType.SLIME);
         setHardness(0.5f);
         setResistance(1);

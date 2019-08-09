@@ -21,17 +21,7 @@ public class BlockFallingBase extends BlockFalling {
         this(Material.ROCK);//we'll use rock as default
     }
 
-    //unlocalized name here, localized name comes from lang file
-    @Override
-    public String getUnlocalizedName(){
-        //easy storage format: blockName
-        //convert to proper format: tile.[modID]:[blockName].name
-        return String.format("tile.%s:%s", Reference.MOD_ID.toLowerCase(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-    }
 
-    protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
-        return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
-    }
 
 
 

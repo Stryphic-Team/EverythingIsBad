@@ -14,14 +14,5 @@ public class BlockExplodingBase extends BlockTNT {
         this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
     }
 
-    @Override
-    public String getUnlocalizedName(){
-        //easy storage format: blockName
-        //convert to proper format: tile.[modID]:[blockName].name
-        return String.format("tile.%s:%s", Reference.MOD_ID.toLowerCase(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-    }
 
-    protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
-        return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
-    }
 }
