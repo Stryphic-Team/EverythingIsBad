@@ -2,6 +2,7 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
+import com.dna.everythingisbad.utils.ModStates;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.management.PlayerList;
@@ -16,8 +17,8 @@ import scala.util.Random;
 public class ServerTimeHandler {
     Random random = new Random();
     //20 ticks per second * 60 seconds * one minecraft day per 20 minutes
-    //int poop_interval = 20*60*20; // How often do you poop
-    int poop_interval = 20*60*20; // How often do you poop
+
+    int poop_interval = ModStates.AUTO_POOP_INTERVAL; // How often do you poop
     int tick_count = random.nextInt(poop_interval)-1; // Starting at a random point in the day-night cycle
     boolean in_server = true;
     @SubscribeEvent(priority = EventPriority.LOWEST)

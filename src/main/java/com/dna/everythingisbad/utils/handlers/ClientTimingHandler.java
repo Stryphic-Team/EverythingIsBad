@@ -1,6 +1,8 @@
 package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
+import com.dna.everythingisbad.utils.ModStates;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -16,9 +18,10 @@ import scala.util.Random;
 public class ClientTimingHandler {
     Random random = new Random();
     //20 ticks per second * 60 seconds * one minecraft day per 20 minutes
-    int poop_interval = 20*60*20; // How often do you poop
+    int poop_interval = ModStates.AUTO_POOP_INTERVAL; // How often do you poop
     int tick_count = random.nextInt(poop_interval)-1; // Starting at a random point in the day-night cycle
     boolean in_server = false;
+
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void timer(TickEvent.ClientTickEvent event){
@@ -30,6 +33,8 @@ public class ClientTimingHandler {
             ItemStack stack = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
             ItemPoop item = (ItemPoop)stack.getItem();
             FMLClientHandler.instance().getClient().player.inventory.addItemStackToInventory(stack);
+
+
         }
     }
 
