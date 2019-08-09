@@ -115,7 +115,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
             items.add(new ItemStack(this, 1, 3)); // Poop is only available in brown.
         }
     }
-
+    //Needs this for the meta data
     @Override
     public void registerModels()
     {
