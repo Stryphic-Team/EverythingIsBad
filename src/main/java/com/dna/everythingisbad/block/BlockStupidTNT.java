@@ -1,17 +1,13 @@
 package com.dna.everythingisbad.block;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.IHasModel;
-import com.dna.everythingisbad.utils.Utils;
+import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
@@ -21,8 +17,6 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 
-import net.minecraft.item.Item;
-
 import java.util.Random;
 
 public class BlockStupidTNT extends BlockExplodingBase {
@@ -31,7 +25,7 @@ public class BlockStupidTNT extends BlockExplodingBase {
     public BlockStupidTNT(String name, Material material){
         super();
         setRegistryName(name);
-        setUnlocalizedName(Utils.createUnlocalizedName(name));
+        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setSoundType(SoundType.PLANT);
         setHardness(1f);
         setResistance(1.0f);

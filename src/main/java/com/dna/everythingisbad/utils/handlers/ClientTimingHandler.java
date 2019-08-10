@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
+import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModStates;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.server.FMLServerHandler;
 import scala.util.Random;
+import scala.xml.PrettyPrinter;
 
 import java.util.List;
 
@@ -39,18 +41,8 @@ public class ClientTimingHandler {
         if(tick_count % (poop_interval) == 0 && in_server){
             //gets a random number between 1-6
             int random_amount = random.nextInt(5)+1;
-
-            MinecraftServer server_instance = FMLCommonHandler.instance().getMinecraftServerInstance();
-            List<EntityPlayerMP> player_list = server_instance.getPlayerList().getPlayers();
-
-
-
-            for(EntityPlayerMP player:player_list){
-                World world = server_instance.getWorld(player.dimension);
-                ItemStack stack = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
-                EntityItem item = new EntityItem(world, player.posX,player.posY,player.posZ, stack);
-                world.spawnEntity(item);
-            }
+            ItemStack item = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
+            ClientUtils.SpawnItem(item);
 
 
         }

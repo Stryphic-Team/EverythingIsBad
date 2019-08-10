@@ -1,15 +1,10 @@
 package com.dna.everythingisbad.block;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.IHasModel;
-import com.dna.everythingisbad.utils.Utils;
-import net.minecraft.block.BlockSand;
+import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
 public class BlockPoop extends BlockFallingBase {
@@ -17,7 +12,7 @@ public class BlockPoop extends BlockFallingBase {
         //material determines sound, map color, tool?, flammability, etc
         super(material);
         setRegistryName(name);
-        setUnlocalizedName(Utils.createUnlocalizedName(name));
+        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setSoundType(SoundType.SLIME);
         setHardness(0.5f);
         setResistance(1);

@@ -3,19 +3,13 @@ package com.dna.everythingisbad.item;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.IHasModel;
-import com.dna.everythingisbad.utils.Utils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
+import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -30,7 +24,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
     {
 
         setRegistryName(name);
-        setUnlocalizedName(Utils.createUnlocalizedName(name));
+        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
