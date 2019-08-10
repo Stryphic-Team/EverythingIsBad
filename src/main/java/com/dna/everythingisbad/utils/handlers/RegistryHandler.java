@@ -1,8 +1,10 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -10,6 +12,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 
 @EventBusSubscriber
@@ -52,5 +55,21 @@ public class RegistryHandler {
             }
         }
 
+    }
+    @SubscribeEvent
+    public static void weedActive(TickEvent.PlayerTickEvent event){
+        boolean isActive = false;
+        float tick_count = 0f;
+        if (event.player.isPotionActive(ModPotions.POTION_EFFECT_DRUG_BASE)){
+            isActive = true;
+        }
+        if (isActive){
+            tick_count = tick_count + 1f;
+            float rotate = (float) Math.sin(tick_count);
+            event.player.rotationYaw = event.player.rotationYaw + rotate;
+            //event.player.setPosition(event.player.posX+0.1,event.player.posY,event.player.posZ);
+
+            //TODO make hunger go down
+        }
     }
 }

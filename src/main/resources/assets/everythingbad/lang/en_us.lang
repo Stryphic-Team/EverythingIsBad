@@ -5,7 +5,8 @@ tile.everythingbad:poop_bricks.name=Poop Bricks
 item.everythingbad:poop.name=Poop
 item.everythingbad:poop_brick.name=Poop Brick
 
-potion.effect.highness=Potion of Highness
+effect.highness=Highness
+potion.effect.highness=Weed
 
 itemGroup.everythingbad=Everything is Bad
 
