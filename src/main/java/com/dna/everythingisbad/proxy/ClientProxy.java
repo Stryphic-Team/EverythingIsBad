@@ -2,8 +2,8 @@ package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModEntities;
-import com.dna.everythingisbad.utils.handlers.KeyHandler;
 import com.dna.everythingisbad.utils.handlers.ClientTimingHandler;
+import com.dna.everythingisbad.utils.handlers.KeyHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -23,8 +23,8 @@ public class ClientProxy extends CommonProxy{
     }
     @Override
     public void preInit(FMLPreInitializationEvent event){
-        Main.logger.debug("Client: Pre Intializing");
         super.preInit(event);
+        Main.logger.debug("Client: Pre Intializing");
     }
     @Override
     public void init(FMLInitializationEvent event) {

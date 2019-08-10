@@ -1,19 +1,15 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.init.ModSmeltingRecipes;
+import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.utils.handlers.ServerTimeHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy implements IProxy{
     public void registerItemRenderer(Item item, int meta, String id) {}
@@ -28,6 +24,7 @@ public class CommonProxy implements IProxy{
     public void init(FMLInitializationEvent event) {
 
         Main.logger.info("Intializing");
+        PacketHandler.init();
     }
 
     @Override
@@ -36,6 +33,8 @@ public class CommonProxy implements IProxy{
         Main.logger.info("Post Intializing");
         ModSmeltingRecipes.init();
         ModPotions.registerPotions();
+        MinecraftForge.EVENT_BUS.register(new ServerTimeHandler());
+
 
 
         //MinecraftForge.EVENT_BUS.register(new KeyHandler());

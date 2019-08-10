@@ -1,20 +1,15 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.item.ItemPoop;
+import com.dna.everythingisbad.network.PacketHandler;
+import com.dna.everythingisbad.network.messagestypes.MessageDebugGivePoop;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,8 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
-
-import static java.lang.System.out;
 
 //@Mod.EventBusSubscriber I think there can only be one of these registered
 public class KeyHandler {
@@ -53,11 +46,12 @@ public class KeyHandler {
 
                 //Main.logger.info(keyBindings.getKeyDescription());
 
-                if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.poopkey") && in_server) {
-                    //Main.logger.info("Poop key pressed!");
-                    ItemStack stack = new ItemStack(ModItems.POOP_ITEM,1,3);
-                    ItemPoop item = (ItemPoop)stack.getItem();
-                    FMLClientHandler.instance().getClient().player.inventory.addItemStackToInventory(stack);
+                if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.poopkey")) {
+                    Main.logger.info("Poop key pressed!");
+//                    ItemStack stack = new ItemStack(ModItems.POOP_ITEM,1,3);
+//                    ItemPoop item = (ItemPoop)stack.getItem();
+//                    FMLClientHandler.instance().getClient().player.inventory.addItemStackToInventory(stack);
+                    PacketHandler.INSTANCE.sendToServer(new MessageDebugGivePoop(2));
                 }
             }
         }

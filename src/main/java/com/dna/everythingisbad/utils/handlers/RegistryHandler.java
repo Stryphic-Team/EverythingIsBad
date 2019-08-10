@@ -5,13 +5,11 @@ import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 
 @EventBusSubscriber
@@ -53,5 +51,6 @@ public class RegistryHandler {
                 ((IHasModel)block).registerModels();
             }
         }
+
     }
 }
