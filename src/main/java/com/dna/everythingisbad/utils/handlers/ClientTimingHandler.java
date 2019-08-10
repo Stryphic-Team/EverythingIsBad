@@ -3,8 +3,14 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModStates;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -12,7 +18,10 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.server.FMLServerHandler;
 import scala.util.Random;
+
+import java.util.List;
 
 
 public class ClientTimingHandler {
@@ -30,9 +39,18 @@ public class ClientTimingHandler {
         if(tick_count % (poop_interval) == 0 && in_server){
             //gets a random number between 1-6
             int random_amount = random.nextInt(5)+1;
-            ItemStack stack = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
-            ItemPoop item = (ItemPoop)stack.getItem();
-            FMLClientHandler.instance().getClient().player.inventory.addItemStackToInventory(stack);
+
+            MinecraftServer server_instance = FMLCommonHandler.instance().getMinecraftServerInstance();
+            List<EntityPlayerMP> player_list = server_instance.getPlayerList().getPlayers();
+
+
+
+            for(EntityPlayerMP player:player_list){
+                World world = server_instance.getWorld(player.dimension);
+                ItemStack stack = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
+                EntityItem item = new EntityItem(world, player.posX,player.posY,player.posZ, stack);
+                world.spawnEntity(item);
+            }
 
 
         }
