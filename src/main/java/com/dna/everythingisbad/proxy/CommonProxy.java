@@ -4,9 +4,7 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.init.ModSmeltingRecipes;
 import com.dna.everythingisbad.network.PacketHandler;
-import com.dna.everythingisbad.utils.handlers.ServerTimeHandler;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -33,7 +31,7 @@ public class CommonProxy implements IProxy{
         Main.logger.info("Post Intializing");
         ModSmeltingRecipes.init();
         ModPotions.registerPotions();
-        MinecraftForge.EVENT_BUS.register(new ServerTimeHandler());
+
 
 
 
