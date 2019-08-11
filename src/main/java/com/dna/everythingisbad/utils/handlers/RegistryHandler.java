@@ -67,7 +67,7 @@ public class RegistryHandler {
         int levitation_time = 20 * 60; //1m
         int nausea_time = 20 * 90; //1.5m
         int tick_count = 1; //Doesn't need to be a float
-        if (event.player.isPotionActive(ModPotions.POTION_EFFECT_DRUG_BASE)){
+        if (event.player.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion())){
             isActive = true;
         }else{
             isActive = false;
@@ -76,7 +76,7 @@ public class RegistryHandler {
         if (isActive){
 
             EntityPlayer player_instance = event.player;
-            int potion_duration = player_instance.getActivePotionEffect(ModPotions.POTION_EFFECT_DRUG_BASE).getDuration();
+            int potion_duration = player_instance.getActivePotionEffect(ModPotions.POTION_HIGHNESS.getPotion()).getDuration();
             //Mining Fatigue
             player_instance.addPotionEffect(new PotionEffect(Potion.getPotionById(4),100,4));
             //Weakness

@@ -6,7 +6,7 @@ item.everythingbad:poop.name=Poop
 item.everythingbad:poop_brick.name=Poop Brick
 
 effect.highness=Highness
-potion.effect.highness=Weed
+potion.effect.everythingbad:highness=Weed
 
 itemGroup.everythingbad=Everything is Bad
 

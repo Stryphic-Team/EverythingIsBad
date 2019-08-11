@@ -9,5 +9,6 @@ public class PotionDrugBase extends Potion {
         super(isBadPotion,color);
         setIconIndex(IconIndexX,IconIndexY);
         setRegistryName(new ResourceLocation(Reference.RESOURCE_PREFIX + name));
+
     }
 }

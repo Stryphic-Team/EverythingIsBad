@@ -1,26 +1,15 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.potion.PotionDrugBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionType;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import com.dna.everythingisbad.utils.PotionCreator;
 
 public class ModPotions {
-    public static final Potion POTION_EFFECT_DRUG_BASE = new PotionDrugBase("highness",false,0,0,0);
-
-    public static final PotionType POTION_DRUG_BASE = new PotionType("highness",new PotionEffect[] {
-            new PotionEffect(POTION_EFFECT_DRUG_BASE,2400)
-    }).setRegistryName("highness");
-
-    // long versions and other variants can go here
-
-    public static void registerPotions(){
-        registerPotion(POTION_DRUG_BASE,POTION_EFFECT_DRUG_BASE);
-    }
-
-    public static void registerPotion(PotionType defaultPotion, Potion effect){
-        ForgeRegistries.POTIONS.register(effect);
-        ForgeRegistries.POTION_TYPES.register(defaultPotion);
+    public static PotionCreator POTION_HIGHNESS = new PotionCreator("highness");
+    public static PotionCreator[] POTIONS = new PotionCreator[]{
+            POTION_HIGHNESS
+    };
+    public static void init(){
+        for(PotionCreator potion:POTIONS){
+            potion.registerPotion();
+        }
     }
 }

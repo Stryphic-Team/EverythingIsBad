@@ -30,7 +30,7 @@ public class CommonProxy implements IProxy{
 
         Main.logger.info("Post Intializing");
         ModSmeltingRecipes.init();
-        ModPotions.registerPotions();
+        ModPotions.init();
 
 
 
