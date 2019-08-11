@@ -1,8 +1,10 @@
 package com.dna.everythingisbad.utils;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ResourceLocation;
@@ -34,5 +36,16 @@ public class ModPotionUtils extends PotionUtils {
         }
 
         return itemIn;
+    }
+    public static boolean potionsActive(EntityPlayer player, Potion... potions){
+        for(Potion potion: potions){
+            try {
+                player.getActivePotionEffect(potion);
+
+            }catch (NullPointerException e) {
+                return false;
+            }
+        }
+        return true;
     }
 }

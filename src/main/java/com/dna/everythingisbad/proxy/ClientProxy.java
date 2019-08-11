@@ -40,6 +40,7 @@ public class ClientProxy extends CommonProxy{
         Main.logger.debug("Client: Pre Intializing");
         MinecraftForge.EVENT_BUS.register(new KeyHandler());
         MinecraftForge.EVENT_BUS.register(new ClientTimingHandler());
+
     }
 
 }

@@ -11,14 +11,15 @@ public class PotionCreator {
     private PotionType potionType;
     private int duration;
 
-    public PotionCreator(String name){
+    public PotionCreator(String name,int duration){
         String namespaced_name = CommonUtils.createUnlocalizedName(name);
         //creates the base of the potion
         potion = new PotionDrugBase(name,false,0,0,0);
         //assigns a new potion effect to the the new potion
         potionType = new PotionType(name,new PotionEffect[] {
-            new PotionEffect(potion,2400)
+            new PotionEffect(potion,duration)
         }).setRegistryName(namespaced_name);
+        this.duration = duration;
     }
     public void registerPotion(){
         ForgeRegistries.POTIONS.register(potion);

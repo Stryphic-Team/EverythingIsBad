@@ -3,7 +3,7 @@ package com.dna.everythingisbad.init;
 import com.dna.everythingisbad.utils.PotionCreator;
 
 public class ModPotions {
-    public static PotionCreator POTION_HIGHNESS = new PotionCreator("highness");
+    public static PotionCreator POTION_HIGHNESS = new PotionCreator("highness",24000);
     public static PotionCreator[] POTIONS = new PotionCreator[]{
             POTION_HIGHNESS
     };

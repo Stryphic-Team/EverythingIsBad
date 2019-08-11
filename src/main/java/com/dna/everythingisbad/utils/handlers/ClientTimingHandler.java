@@ -21,17 +21,15 @@ public class ClientTimingHandler {
 
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void timer(TickEvent.ClientTickEvent event){
+    public void timer(TickEvent.PlayerTickEvent event){
         tick_count++;
-
         if(tick_count % (poop_interval) == 0 && in_server){
             //gets a random number between 1-6
             int random_amount = random.nextInt(5)+1;
             ItemStack item = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
             ClientUtils.SpawnItem(item);
-
-
         }
+        PotionEffectHandler.weedActive(event);
     }
 
     @SubscribeEvent
