@@ -2,18 +2,11 @@ package com.dna.everythingisbad.entity;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.init.ModEntities;
-import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraft.client.renderer.entity.RenderTNTPrimed;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityStupidTNT extends EntityTNTPrimed implements IHasModel {
     public EntityStupidTNT(World worldIn) {

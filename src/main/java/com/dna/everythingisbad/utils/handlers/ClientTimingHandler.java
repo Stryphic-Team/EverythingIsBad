@@ -1,29 +1,15 @@
 package com.dna.everythingisbad.utils.handlers;
+
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModStates;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.server.FMLServerHandler;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import scala.util.Random;
-import scala.xml.PrettyPrinter;
-
-import java.util.List;
 
 
 public class ClientTimingHandler {
