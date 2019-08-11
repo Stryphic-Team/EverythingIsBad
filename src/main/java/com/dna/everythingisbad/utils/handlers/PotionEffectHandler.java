@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,8 +26,7 @@ public class PotionEffectHandler {
             EntityPlayer player_instance = event.player;
             //Time in ticks left
             int time_left = player_instance.getActivePotionEffect(ModPotions.POTION_HIGHNESS.getPotion()).getDuration();
-            Main.logger.info("Time left: "+time_left);
-            Main.logger.info("Duration: " + potion_duration);
+
             if(time_left == potion_duration) {
                 //Mining Fatigue
                 player_instance.addPotionEffect(new PotionEffect(Potion.getPotionById(4), potion_duration, 4));

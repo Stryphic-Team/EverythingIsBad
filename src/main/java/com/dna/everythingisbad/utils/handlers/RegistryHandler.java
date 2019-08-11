@@ -2,8 +2,8 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModEntities;
+import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
