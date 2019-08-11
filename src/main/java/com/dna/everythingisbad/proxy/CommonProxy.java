@@ -1,6 +1,9 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.fluid.FluidDevilsPee;
+import com.dna.everythingisbad.fluid.FluidDevilsPeeBlock;
+import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.init.ModSmeltingRecipes;
 import com.dna.everythingisbad.network.PacketHandler;
