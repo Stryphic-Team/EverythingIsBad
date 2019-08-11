@@ -1,13 +1,12 @@
 package com.dna.everythingisbad.item;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
+import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.IHasModel;
 import com.dna.everythingisbad.utils.CommonUtils;
+import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
@@ -27,7 +26,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
+        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
     /**
@@ -102,7 +101,7 @@ public class ItemPoop extends ItemDye implements IHasModel {
      * returns a list of items with the same ID, but different meta (eg: dye returns 1 item)
      */
     @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+    public void getSubItems(net.minecraft.creativetab.CreativeTabs tab, NonNullList<ItemStack> items)
     {
         if (this.isInCreativeTab(tab))
         {

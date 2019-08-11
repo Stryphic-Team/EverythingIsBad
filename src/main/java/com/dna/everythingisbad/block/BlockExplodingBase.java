@@ -1,11 +1,9 @@
 package com.dna.everythingisbad.block;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
-import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.BlockTNT;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
 public class BlockExplodingBase extends BlockTNT implements IHasModel {
@@ -14,7 +12,7 @@ public class BlockExplodingBase extends BlockTNT implements IHasModel {
         super();
         setHardness(2);
         setResistance(30);
-        this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
+        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
     }
 
 

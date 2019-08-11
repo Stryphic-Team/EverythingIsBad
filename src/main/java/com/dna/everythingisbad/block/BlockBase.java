@@ -1,13 +1,13 @@
 package com.dna.everythingisbad.block;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.creativetab.CreativeTabEverythingBad;
-import com.dna.everythingisbad.reference.Reference;
-
+import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+
+
 
 public class BlockBase extends Block implements IHasModel {
     protected String name;
@@ -17,7 +17,7 @@ public class BlockBase extends Block implements IHasModel {
         super(material);
         setHardness(2);
         setResistance(30);
-        this.setCreativeTab(CreativeTabEverythingBad.EVERYTHING_BAD_TAB);
+        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
     }
 
     public BlockBase(){
