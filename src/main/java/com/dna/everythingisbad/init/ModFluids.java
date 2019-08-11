@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModFluids {
-    public static BlockFluidClassic DEVILS_PEE =
-        new FluidDevilsPeeBlock(new FluidDevilsPee("devils_pee")); // Yeah
+    //public static BlockFluidClassic DEVILS_PEE =
+        //new FluidDevilsPeeBlock(new FluidDevilsPee("devils_pee")); // Yeah
 
-    public static final BlockFluidClassic[] FLUIDS=new BlockFluidClassic[]{DEVILS_PEE};
+    //public static final BlockFluidClassic[] FLUIDS=new BlockFluidClassic[]{DEVILS_PEE};
 
     public static void init(RegistryEvent.Register<Block> event){
-        for (BlockFluidClassic fluidblock:FLUIDS){
-            register(fluidblock.getFluid());
-            event.getRegistry().register(fluidblock);
-        }
+        //for (BlockFluidClassic fluidblock:FLUIDS){
+            //register(fluidblock.getFluid());
+            //event.getRegistry().register(fluidblock);
+        //}
     }
     public static void register(Fluid fluid) {
         FluidRegistry.registerFluid(fluid);
