@@ -17,7 +17,6 @@ public class BlockFluxTest extends BlockBase implements IEnergyStorage {
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
-
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
         return 500;
