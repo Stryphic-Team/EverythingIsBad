@@ -2,6 +2,8 @@ tile.everythingbad:stupid_tnt.name=Stupid TNT
 tile.everythingbad:poop_block.name=Poop Block
 tile.everythingbad:poop_bricks.name=Poop Bricks
 
+fluid.everythingbad:devils_pee=Devil's Pee
+
 item.everythingbad:poop.name=Poop
 item.everythingbad:poop_brick.name=Poop Brick
 item.everythingbad:devils_cabbage.name=Devil's Cabbage

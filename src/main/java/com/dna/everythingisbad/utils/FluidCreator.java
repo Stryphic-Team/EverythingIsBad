@@ -2,25 +2,24 @@ package com.dna.everythingisbad.utils;
 
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
-import com.dna.everythingisbad.fluid.FluidBlockCore;
-import com.dna.everythingisbad.fluid.FluidCore;
 import com.dna.everythingisbad.init.ModBlocks;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
+@Deprecated
 public class FluidCreator {
     //Fuck diddy
 
-    private FluidBlockCore blockfluidclassic; // Very original inspired name
-    private FluidCore fluid; // Very original inspired name
+    private BlockFluidClassic blockfluidclassic; // Very original inspired name
+    private Fluid fluid; // Very original inspired name
     private String name;
 
-    public FluidCreator(FluidCore fluid){
+    public FluidCreator(Fluid fluid){
         //Yeah
         this.fluid = fluid;
         this.name = fluid.getName();
         register(fluid);
-        this.blockfluidclassic = new FluidBlockCore(name,fluid);
+
         this.blockfluidclassic.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModBlocks.BLOCKS.add(blockfluidclassic);
 
@@ -36,19 +35,19 @@ public class FluidCreator {
 
 
 
-    public FluidBlockCore getBlockFluidClassic() {
+    public BlockFluidClassic getBlockFluidClassic() {
         return blockfluidclassic;
     }
 
-    public void setBlockFluidClassic(FluidBlockCore blockfluidclassic) {
+    public void setBlockFluidClassic(BlockFluidClassic blockfluidclassic) {
         this.blockfluidclassic = blockfluidclassic;
     }
 
-    public FluidCore getFluid() {
+    public Fluid getFluid() {
         return fluid;
     }
 
-    public void setFluid(FluidCore fluid) {
+    public void setFluid(Fluid fluid) {
         this.fluid = fluid;
     }
 

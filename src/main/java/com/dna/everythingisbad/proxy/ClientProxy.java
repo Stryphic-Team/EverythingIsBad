@@ -25,6 +25,8 @@ public class ClientProxy extends CommonProxy{
     public void preInit(FMLPreInitializationEvent event){
         super.preInit(event);
         Main.logger.debug("Client: Pre Intializing");
+
+
     }
     @Override
     public void init(FMLInitializationEvent event) {

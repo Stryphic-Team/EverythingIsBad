@@ -1,29 +1,25 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.creativetab.CreativeTab;
-import com.dna.everythingisbad.fluid.FluidCore;
-import com.dna.everythingisbad.utils.FluidCreator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.dna.everythingisbad.fluids.FluidLiquid;
+import com.dna.everythingisbad.reference.Reference;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class ModFluids {
-    //    public static BlockFluidClassic DEVILS_PEE =
-//        new FluidDevilsPeeBlock(new FluidDevilsPee("devils_pee")); // Yeah
 
+    public static final Fluid DEVILS_PEE = new FluidLiquid("devils_pee", new ResourceLocation(Reference.MOD_ID,"fluids/devils_pee_still"), new ResourceLocation(Reference.MOD_ID,"fluids/devils_pee_flow"));
 
-    public static ArrayList<FluidCreator> FLUIDS = new ArrayList<FluidCreator>();
-    private static HashMap<String,FluidCreator> FLUID_MAP = new HashMap<String,FluidCreator>();
-    public static void init(){
-
-        FLUIDS.add(new FluidCreator(new FluidCore("devils_pee",0x00ff00)));
-        for(FluidCreator fluidcreator:FLUIDS){
-            fluidcreator.getBlockFluidClassic().setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
-           FLUID_MAP.put(fluidcreator.getName(),fluidcreator);
-        }
+    public static void registerFluids()
+    {
+        registerFluid(DEVILS_PEE);
     }
-    public static FluidCreator getById(String id){
-        return FLUID_MAP.get(id);
+
+    public static void registerFluid(Fluid fluid)
+    {
+        FluidRegistry.registerFluid(fluid);
+        FluidRegistry.addBucketForFluid(fluid);
     }
 
 }
