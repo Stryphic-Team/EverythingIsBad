@@ -1,0 +1,11 @@
+{
+  "gasoline_babies": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "everythingbad:gasoline_babies",
+        "stream": true
+      }
+    ]
+  }
+}

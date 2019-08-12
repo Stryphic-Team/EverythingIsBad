@@ -65,7 +65,7 @@ public class ServerTimeHandler {
 
     public void setBlindness(EntityPlayer player){
         int rand = random.nextInt(ModStates.BLINDNESS_CHANCE);
-        Main.logger.info(rand);
+        //Main.logger.info(rand);
         if (rand == 1){
             player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),1000000,255));
         }

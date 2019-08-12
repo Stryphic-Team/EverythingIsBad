@@ -1,12 +1,11 @@
 package com.dna.everythingisbad.init;
 
 
-import com.dna.everythingisbad.item.ItemDevilsCabbage;
-import com.dna.everythingisbad.item.ItemPoop;
-import com.dna.everythingisbad.item.ItemPoopBrick;
-import com.dna.everythingisbad.item.ItemWeed;
+import com.dna.everythingisbad.item.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -21,6 +20,7 @@ public class ModItems {
     public static final ItemPoopBrick POOP_BRICK_ITEM = new ItemPoopBrick("poop_brick");
     public static final ItemWeed WEED_ITEM = new ItemWeed("weed");
     public static final ItemDevilsCabbage DEVILS_CABBAGE_ITEM = new ItemDevilsCabbage("devils_cabbage");
+    public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {

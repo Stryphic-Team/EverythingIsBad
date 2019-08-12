@@ -5,6 +5,7 @@ import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
+import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -56,5 +57,4 @@ public class RegistryHandler {
         }
 
     }
-
 }
