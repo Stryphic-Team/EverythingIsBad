@@ -1,11 +1,18 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModStates;
+import ibxm.Player;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -35,6 +42,7 @@ public class ClientTimingHandler {
     @SubscribeEvent
     public void joinedServer(PlayerLoggedInEvent event){
         in_server = true;
+        setBlindness(event.player);
     }
 
     @SubscribeEvent
@@ -42,4 +50,16 @@ public class ClientTimingHandler {
         in_server = false;
     }
 
+    @SubscribeEvent
+    public void respawn(PlayerEvent.PlayerRespawnEvent event){
+        setBlindness(event.player);
+    }
+
+    public void setBlindness(EntityPlayer player){
+        int rand = random.nextInt(ModStates.BLINDNESS_CHANCE);
+        Main.logger.info(rand);
+        if (rand == 1){
+            player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),1000000,255));
+        }
+    }
 }

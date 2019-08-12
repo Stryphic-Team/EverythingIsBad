@@ -4,10 +4,14 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModStates;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.server.FMLServerHandler;
 import scala.util.Random;
@@ -48,6 +52,22 @@ public class ServerTimeHandler {
             }
 
 
+        }
+    }
+    @SubscribeEvent
+    public void joinedServer(PlayerEvent.PlayerLoggedInEvent event){
+        setBlindness(event.player);
+    }
+    @SubscribeEvent
+    public void respawn(PlayerEvent.PlayerRespawnEvent event){
+        setBlindness(event.player);
+    }
+
+    public void setBlindness(EntityPlayer player){
+        int rand = random.nextInt(ModStates.BLINDNESS_CHANCE);
+        Main.logger.info(rand);
+        if (rand == 1){
+            player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),1000000,255));
         }
     }
 }
