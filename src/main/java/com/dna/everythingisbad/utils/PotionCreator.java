@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class PotionCreator {
     private Potion potion;
     private PotionType potionType;
+    private PotionEffect potionEffect;
     private int duration;
 
     public PotionCreator(String name,int duration){
@@ -16,8 +17,10 @@ public class PotionCreator {
         //creates the base of the potion
         potion = new PotionDrugBase(name,false,0,0,0);
         //assigns a new potion effect to the the new potion
+        potionEffect = new PotionEffect(potion,duration);
+
         potionType = new PotionType(name,new PotionEffect[] {
-            new PotionEffect(potion,duration)
+            potionEffect
         }).setRegistryName(namespaced_name);
         this.duration = duration;
     }
@@ -43,4 +46,5 @@ public class PotionCreator {
     public void setPotion(Potion potion) {
         this.potion = potion;
     }
+    public PotionEffect getPotionEffect() { return potionEffect; }
 }
