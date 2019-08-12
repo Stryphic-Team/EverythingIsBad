@@ -1,32 +1,29 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.fluid.FluidDevilsPee;
-import com.dna.everythingisbad.fluid.FluidDevilsPeeBlock;
+import com.dna.everythingisbad.creativetab.CreativeTab;
+import com.dna.everythingisbad.fluid.FluidCore;
 import com.dna.everythingisbad.utils.FluidCreator;
-import net.minecraft.block.Block;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class ModFluids {
-    //public static BlockFluidClassic DEVILS_PEE =
-        //new FluidDevilsPeeBlock(new FluidDevilsPee("devils_pee")); // Yeah
+    //    public static BlockFluidClassic DEVILS_PEE =
+//        new FluidDevilsPeeBlock(new FluidDevilsPee("devils_pee")); // Yeah
 
-    //public static final BlockFluidClassic[] FLUIDS=new BlockFluidClassic[]{DEVILS_PEE};
 
-    public static void init(RegistryEvent.Register<Block> event){
-        //for (BlockFluidClassic fluidblock:FLUIDS){
-            //register(fluidblock.getFluid());
-            //event.getRegistry().register(fluidblock);
-        //}
+    public static ArrayList<FluidCreator> FLUIDS = new ArrayList<FluidCreator>();
+    private static HashMap<String,FluidCreator> FLUID_MAP = new HashMap<String,FluidCreator>();
+    public static void init(){
+
+        FLUIDS.add(new FluidCreator(new FluidCore("devils_pee",0x00ff00)));
+        for(FluidCreator fluidcreator:FLUIDS){
+            fluidcreator.getBlockFluidClassic().setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
+           FLUID_MAP.put(fluidcreator.getName(),fluidcreator);
+        }
     }
-    public static void register(Fluid fluid) {
-        FluidRegistry.registerFluid(fluid);
-        FluidRegistry.addBucketForFluid(fluid);
+    public static FluidCreator getById(String id){
+        return FLUID_MAP.get(id);
     }
+
 }
