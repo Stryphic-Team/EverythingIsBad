@@ -3,9 +3,12 @@ package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModStates;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -45,6 +48,13 @@ public class ServerTimeHandler {
                 ItemStack stack = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
                 ItemPoop item = (ItemPoop)stack.getItem();
                 player.inventory.addItemStackToInventory(stack);
+                Block blockAtPlayerPos = player.getServerWorld().getBlockState(new BlockPos(player.posX,player.posY,player.posZ)).getBlock();
+
+                if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
+                    Main.logger.info("In Devils Pee");
+                    FluidEventHandler.inDevilsPee(player);
+                }
+
             }
 
 
