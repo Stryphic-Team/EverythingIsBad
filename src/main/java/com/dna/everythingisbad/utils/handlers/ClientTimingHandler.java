@@ -1,15 +1,15 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModStates;
-import ibxm.Player;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -53,6 +53,14 @@ public class ClientTimingHandler {
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event){
         setBlindness(event.player);
+    }
+    @SubscribeEvent(priority=EventPriority.LOWEST)
+    public void fluidTimer(TickEvent.PlayerTickEvent event){
+        EntityPlayer player = event.player;
+        Block blockAtPlayerPos = player.getEntityWorld().getBlockState(new BlockPos(player.posX,player.posY,player.posZ)).getBlock();
+        if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
+            FluidEventHandler.inDevilsPee(player);
+        }
     }
 
     public void setBlindness(EntityPlayer player){

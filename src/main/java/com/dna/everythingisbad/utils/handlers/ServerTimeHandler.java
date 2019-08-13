@@ -3,7 +3,6 @@ package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
-import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModStates;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -32,8 +31,6 @@ public class ServerTimeHandler {
 
         if(tick_count % (poop_interval) == 0 && in_server){
             //gets a random number between 1-6
-
-
             List<EntityPlayerMP> player_list =
                     FMLServerHandler
                     .instance()
@@ -50,10 +47,6 @@ public class ServerTimeHandler {
                 player.inventory.addItemStackToInventory(stack);
                 Block blockAtPlayerPos = player.getServerWorld().getBlockState(new BlockPos(player.posX,player.posY,player.posZ)).getBlock();
 
-                if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
-                    Main.logger.info("In Devils Pee");
-                    FluidEventHandler.inDevilsPee(player);
-                }
 
             }
 
