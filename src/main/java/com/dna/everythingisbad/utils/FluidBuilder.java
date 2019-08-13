@@ -15,6 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -47,6 +49,7 @@ public class FluidBuilder {
         this.fluid = fluid != null ? fluid : new FluidBase(this.name, this.fluidStill, this.fluidFlow);
         this.material = material != null ? material : Material.WATER;
     }
+    @SideOnly(Side.CLIENT)
     public void registerRender(){
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(blockFluidBase), new ItemMeshDefinition()
         {
