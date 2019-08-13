@@ -1,15 +1,11 @@
 package com.dna.everythingisbad.item;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModSoundEvents;
 import com.dna.everythingisbad.utils.CommonUtils;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemRecord;
-import net.minecraft.util.SoundEvent;
 
-public class ItemRecordGasolineBabies extends ItemRecord {
+public class ItemRecordGasolineBabies extends ItemRecordBase { //fixed
 
     private final String displayName;
 
@@ -21,4 +17,5 @@ public class ItemRecordGasolineBabies extends ItemRecord {
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
+
 }
