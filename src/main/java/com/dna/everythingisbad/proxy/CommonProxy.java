@@ -18,7 +18,10 @@ public class CommonProxy implements IProxy{
     public void preInit(FMLPreInitializationEvent event) {
 
         Main.logger.info("Pre Intializing");
-        ModFluids.registerFluids();
+        ModFluids.register();
+        ModFluids.registerBlocks();
+
+
         RenderHandler.registerCustomMeshesAndStates();
     }
 

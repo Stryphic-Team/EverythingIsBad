@@ -1,25 +1,29 @@
 package com.dna.everythingisbad.init;
 
 
-import com.dna.everythingisbad.fluids.FluidLiquid;
-import com.dna.everythingisbad.reference.Reference;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
+import com.dna.everythingisbad.utils.FluidBuilder;
 
 public class ModFluids {
 
-    public static final Fluid DEVILS_PEE = new FluidLiquid("devils_pee", new ResourceLocation(Reference.MOD_ID,"fluids/devils_pee_still"), new ResourceLocation(Reference.MOD_ID,"fluids/devils_pee_flow"));
-
-    public static void registerFluids()
+    public static final FluidBuilder DEVILS_PEE = new FluidBuilder("devils_pee");
+    public static FluidBuilder[] FLUIDS = new FluidBuilder[]{
+            DEVILS_PEE
+    };
+    public static void register()
     {
-        registerFluid(DEVILS_PEE);
+        for(FluidBuilder builder:FLUIDS){
+            builder.registerFluid();
+        }
     }
-
-    public static void registerFluid(Fluid fluid)
-    {
-        FluidRegistry.registerFluid(fluid);
-        FluidRegistry.addBucketForFluid(fluid);
+    public static void registerBlocks(){
+        for(FluidBuilder builder:FLUIDS){
+            builder.registerBlock();
+        }
+    }
+    public static void registerRenderers(){
+        for(FluidBuilder builder:FLUIDS){
+            builder.registerRender();
+        }
     }
 
 }

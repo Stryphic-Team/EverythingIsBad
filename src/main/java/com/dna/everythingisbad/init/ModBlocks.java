@@ -1,6 +1,9 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.block.*;
+import com.dna.everythingisbad.block.BlockFluxTest;
+import com.dna.everythingisbad.block.BlockPoop;
+import com.dna.everythingisbad.block.BlockPoopBricks;
+import com.dna.everythingisbad.block.BlockStupidTNT;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -16,5 +19,5 @@ public class ModBlocks
     public static final Block POOP_BLOCK = new BlockPoop("poop_block",Material.GROUND);
     public static final Block POOP_BRICKS_BLOCK = new BlockPoopBricks("poop_bricks",Material.ROCK);
     public static final Block FLUX_TEST = new BlockFluxTest("flux_test");
-    public static final Block DEVILS_PEE_BLOCK = new BlockFluidBase("devils_pee", ModFluids.DEVILS_PEE, Material.WATER);
+
 }
