@@ -16,7 +16,9 @@ item.everythingbad:record_gods_pee.name=Music Disc
 item.record.record_gods_pee.desc=Eczema Pizza - God's Pee
 
 effect.highness=Highness
-potion.effect.highness=Weed
+effect.common_cold=Common Cold
+
+potion.effect.highness=Potion of Highness
 
 itemGroup.everythingbad=Everything is Bad
 

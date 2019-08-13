@@ -15,7 +15,7 @@ public class PotionBuilder {
     public PotionBuilder(String name, int duration){
         String namespaced_name = CommonUtils.createUnlocalizedName(name);
         //creates the base of the potion
-        potion = new PotionDrugBase(name,false,0,0,0);
+        potion = new PotionDrugBase(name,false,2789440,0,0);
         //assigns a new potion effect to the the new potion
         potionEffect = new PotionEffect(potion,duration);
 
