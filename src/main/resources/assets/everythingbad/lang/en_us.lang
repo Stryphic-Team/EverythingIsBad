@@ -2,7 +2,7 @@ tile.everythingbad:stupid_tnt.name=Stupid TNT
 tile.everythingbad:poop_block.name=Poop Block
 tile.everythingbad:poop_bricks.name=Poop Bricks
 
-fluid.everythingbad:devils_pee=Devil's Pee
+fluid.everythingbad:devils_pee=God's Pee
 
 item.everythingbad:poop.name=Poop
 item.everythingbad:poop_brick.name=Poop Brick
@@ -10,6 +10,8 @@ item.everythingbad:devils_cabbage.name=Devil's Cabbage
 
 item.everythingbad:record_gasoline_babies.name=Music Disc
 item.record.record_gasoline_babies.desc=Eczema Pizza - Gasoline Babies
+item.everythingbad:record_gods_pee.name=Music Disc
+item.record.record_gods_pee.desc=Eczema Pizza - God's Pee
 
 effect.highness=Highness
 potion.effect.highness=Weed

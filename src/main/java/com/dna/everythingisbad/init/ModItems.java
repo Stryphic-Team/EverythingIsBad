@@ -21,6 +21,7 @@ public class ModItems {
     public static final ItemWeed WEED_ITEM = new ItemWeed("weed");
     public static final ItemDevilsCabbage DEVILS_CABBAGE_ITEM = new ItemDevilsCabbage("devils_cabbage");
     public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
+    public static final ItemRecordGodsPee RECORD_GODS_PEE = new ItemRecordGodsPee("record_gods_pee");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
