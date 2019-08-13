@@ -5,7 +5,6 @@ import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.init.ModSmeltingRecipes;
 import com.dna.everythingisbad.network.PacketHandler;
-import com.dna.everythingisbad.utils.handlers.RenderHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -22,7 +21,7 @@ public class CommonProxy implements IProxy{
         ModFluids.registerBlocks();
 
 
-        RenderHandler.registerCustomMeshesAndStates();
+
     }
 
     @Override
