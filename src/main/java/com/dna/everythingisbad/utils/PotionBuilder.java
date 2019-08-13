@@ -6,13 +6,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class PotionCreator {
+public class PotionBuilder {
     private Potion potion;
     private PotionType potionType;
     private PotionEffect potionEffect;
     private int duration;
 
-    public PotionCreator(String name,int duration){
+    public PotionBuilder(String name, int duration){
         String namespaced_name = CommonUtils.createUnlocalizedName(name);
         //creates the base of the potion
         potion = new PotionDrugBase(name,false,0,0,0);

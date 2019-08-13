@@ -1,14 +1,14 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.utils.PotionCreator;
+import com.dna.everythingisbad.utils.PotionBuilder;
 
 public class ModPotions {
-    public static PotionCreator POTION_HIGHNESS = new PotionCreator("highness",24000);
-    public static PotionCreator[] POTIONS = new PotionCreator[]{
+    public static PotionBuilder POTION_HIGHNESS = new PotionBuilder("highness",24000);
+    public static PotionBuilder[] POTIONS = new PotionBuilder[]{
             POTION_HIGHNESS
     };
     public static void init(){
-        for(PotionCreator potion:POTIONS){
+        for(PotionBuilder potion:POTIONS){
             potion.registerPotion();
         }
     }
