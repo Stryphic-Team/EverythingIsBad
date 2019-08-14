@@ -16,5 +16,32 @@
         "stream": true
       }
     ]
+  },
+  "smart_man1": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "everythingbad:smart_man1",
+        "stream": true
+      }
+    ]
+  },
+  "smart_man2": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "everythingbad:smart_man2",
+        "stream": true
+      }
+    ]
+  },
+  "smart_man3": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "everythingbad:smart_man3",
+        "stream": true
+      }
+    ]
   }
 }

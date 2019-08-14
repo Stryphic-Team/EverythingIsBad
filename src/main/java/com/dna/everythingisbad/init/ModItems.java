@@ -24,6 +24,9 @@ public class ModItems {
 
     public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
     public static final ItemRecordGodsPee RECORD_GODS_PEE = new ItemRecordGodsPee("record_gods_pee");
+    public static final ItemRecordSmartMan1 RECORD_SMART_MAN_1 = new ItemRecordSmartMan1("record_smart_man1");
+    public static final ItemRecordSmartMan2 RECORD_SMART_MAN_2 = new ItemRecordSmartMan2("record_smart_man2");
+    public static final ItemRecordSmartMan3 RECORD_SMART_MAN_3 = new ItemRecordSmartMan3("record_smart_man3");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {

@@ -4,11 +4,17 @@ import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 
+import javax.annotation.Resource;
+
 public class ModSoundEvents {
-    static ResourceLocation location = new ResourceLocation(Reference.MOD_ID, "gasoline_babies");
-    public static SoundEvent SOUND_EVENT_GASOLINE_BABIES = new SoundEvent(location);
+    public static SoundEvent SOUND_EVENT_GASOLINE_BABIES = register("gasoline_babies");
+    public static SoundEvent SOUND_EVENT_GODS_PEE = register("gods_pee");
+    public static SoundEvent SOUND_EVENT_SMART_MAN1 = register("smart_man1");
+    public static SoundEvent SOUND_EVENT_SMART_MAN2 = register("smart_man2");
+    public static SoundEvent SOUND_EVENT_SMART_MAN3 = register("smart_man3");
 
-    static ResourceLocation location2 = new ResourceLocation(Reference.MOD_ID, "gods_pee");
-    public static SoundEvent SOUND_EVENT_GODS_PEE = new SoundEvent(location2);
-
+    public static SoundEvent register(String name){
+        ResourceLocation location = new ResourceLocation(Reference.MOD_ID, name);
+        return new SoundEvent(location);
+    }
 }

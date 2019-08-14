@@ -15,6 +15,12 @@ item.everythingbad:record_gasoline_babies.name=Music Disc
 item.record.record_gasoline_babies.desc=Eczema Pizza - Gasoline Babies
 item.everythingbad:record_gods_pee.name=Music Disc
 item.record.record_gods_pee.desc=Eczema Pizza - God's Pee
+item.everythingbad:record_smart_man1.name=Music Disc
+item.record.record_smart_man1.desc=Eczema Pizza - Smart Man No. 1
+item.everythingbad:record_smart_man2.name=Music Disc
+item.record.record_smart_man2.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 1)
+item.everythingbad:record_smart_man3.name=Music Disc
+item.record.record_smart_man3.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 2)
 
 effect.highness=Highness
 effect.common_cold=Common Cold
