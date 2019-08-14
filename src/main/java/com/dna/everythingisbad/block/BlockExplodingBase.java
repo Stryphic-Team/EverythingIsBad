@@ -14,7 +14,7 @@ public class BlockExplodingBase extends BlockTNT implements IHasModel {
         setResistance(30);
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
     }
-
+    
 
     @Override
     public void registerModels() {

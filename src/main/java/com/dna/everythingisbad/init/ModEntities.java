@@ -29,6 +29,7 @@ public class ModEntities {
     @SideOnly(Side.CLIENT)
     public static void initRenderer(){
         for(EntityEntry e:ENTITIES){
+
             //RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT.FACTORY);
             //RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class,new RenderStupidTNT());
         }
