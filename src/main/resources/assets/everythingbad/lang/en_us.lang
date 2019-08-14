@@ -1,6 +1,7 @@
 tile.everythingbad:stupid_tnt.name=Stupid TNT
 tile.everythingbad:poop_block.name=Poop Block
 tile.everythingbad:poop_bricks.name=Poop Bricks
+tile.everythingbad:flux_test.name=Infinite Energy Block
 
 fluid.everythingbad:devils_pee=God's Pee
 fluid.everythingbad:diaria=Diaria
@@ -19,6 +20,13 @@ effect.highness=Highness
 effect.common_cold=Common Cold
 
 potion.effect.highness=Potion of Highness
+potion.effect.common_cold=Potion of Common Cold
+splash_potion.effect.highness=Splash Potion of Highness
+splash_potion.effect.common_cold=Splash Potion of Common Cold
+lingering_potion.effect.highness=Lingering Potion of Highness
+lingering_potion.effect.common_cold=Lingering Potion of Common Cold
+tipped_arrow.effect.highness=Arrow of Highness
+tipped_arrow.effect.common_cold=Arrow of Common Cold
 
 itemGroup.everythingbad=Everything is Bad
 

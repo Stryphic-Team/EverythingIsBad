@@ -16,7 +16,7 @@ public class PotionDrugBase extends Potion {
 
     @Override
     public boolean hasStatusIcon(){
-        ResourceLocation loc = new ResourceLocation(Reference.MOD_ID + "textures/gui/potion_effects.png");
+        ResourceLocation loc = new ResourceLocation(Reference.RESOURCE_PREFIX + "textures/gui/potion_effects.png");
         Minecraft.getMinecraft().getTextureManager().bindTexture(loc);
         return true;
     }

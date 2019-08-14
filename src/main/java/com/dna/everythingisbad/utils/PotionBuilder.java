@@ -12,10 +12,10 @@ public class PotionBuilder {
     private PotionEffect potionEffect;
     private int duration;
 
-    public PotionBuilder(String name, int duration){
+    public PotionBuilder(String name, int duration,boolean isBadPotion,int color,int IconIndexX,int IconIndexY){
         String namespaced_name = CommonUtils.createUnlocalizedName(name);
         //creates the base of the potion
-        potion = new PotionDrugBase(name,false,2789440,0,0);
+        potion = new PotionDrugBase(name,isBadPotion,color,IconIndexX,IconIndexY);
         //assigns a new potion effect to the the new potion
         potionEffect = new PotionEffect(potion,duration);
 
