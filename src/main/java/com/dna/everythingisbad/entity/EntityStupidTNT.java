@@ -1,14 +1,12 @@
 package com.dna.everythingisbad.entity;
 
-import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class EntityStupidTNT extends EntityTNTPrimed implements IHasModel {
+public class EntityStupidTNT extends EntityTNTPrimed {
+
+
     public EntityStupidTNT(World worldIn) {
         super(worldIn);
 
@@ -26,10 +24,6 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IHasModel {
         this.motionZ = z;
 
     }
-    @Override
-    public void registerModels() {
 
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(ModBlocks.STUPID_TNT_BLOCK), 0, "inventory");
-    }
 
 }

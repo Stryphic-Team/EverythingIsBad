@@ -23,7 +23,7 @@ public class ClientProxy extends CommonProxy{
 
     }
     public void registerEntityRenderer(){
-        ModEntities.initRenderer();
+
     }
     @Override
     public void preInit(FMLPreInitializationEvent event){
@@ -37,7 +37,7 @@ public class ClientProxy extends CommonProxy{
     public void init(FMLInitializationEvent event) {
         super.init(event);
         Main.logger.debug("Client: Pre Intializing");
-        registerEntityRenderer();
+        ModEntities.initRenderer();
         Minecraft mc = Minecraft.getMinecraft();
         mc.getRenderManager().entityRenderMap.put(EntityZombie.class, new RenderJesus(mc.getRenderManager()));
 

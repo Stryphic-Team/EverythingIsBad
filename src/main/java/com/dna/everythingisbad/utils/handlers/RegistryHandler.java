@@ -1,7 +1,6 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.Block;
@@ -10,7 +9,6 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
 
 @EventBusSubscriber
 public class RegistryHandler {
@@ -21,14 +19,14 @@ public class RegistryHandler {
     {
         event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
     }
-    @SubscribeEvent
-    public static void onEntitiesRegistered(RegistryEvent.Register<EntityEntry> event)
-    {
-
-        ModEntities.init();
-
-        event.getRegistry().registerAll(ModEntities.ENTITIES);
-    }
+//    @SubscribeEvent
+//    public static void onEntitiesRegistered(RegistryEvent.Register<EntityEntry> event)
+//    {
+//
+//        ModEntities.init();
+//
+//        event.getRegistry().registerAll(ModEntities.ENTITIES);
+//    }
 
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event)
