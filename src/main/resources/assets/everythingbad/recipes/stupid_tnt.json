@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BLG",
+    "LTL",
+    "RLC"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:tnt"
+    },
+    "B": {
+      "item": "minecraft:dye",
+      "data": 4
+    },
+    "C": {
+      "item": "minecraft:dye",
+      "data": 6
+    },
+    "G": {
+      "item": "minecraft:dye",
+      "data": 2
+    },
+    "R": {
+      "item": "minecraft:dye",
+      "data": 1
+    },
+    "L": {
+      "item": "minecraft:dye",
+      "data": 10
+    }
+  },
+  "result": {
+    "item": "everythingbad:stupid_tnt"
+  }
+}
