@@ -1,10 +1,7 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.init.ModFluids;
-import com.dna.everythingisbad.init.ModPotions;
-import com.dna.everythingisbad.init.ModSmeltingRecipes;
+import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -21,7 +18,7 @@ public class CommonProxy implements IProxy{
         ModFluids.register();
         ModFluids.registerBlocks();
         ModBlocks.init();
-
+        ModEntities.init();
 
 
     }

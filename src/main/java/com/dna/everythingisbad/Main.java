@@ -16,7 +16,8 @@ import org.apache.logging.log4j.Logger;
 
 public class Main
 {
-
+    @Mod.Instance
+    public static Main instance;
 
     public static Logger logger;
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)

@@ -35,6 +35,7 @@ public class BlockStupidTNT extends BlockExplodingBase {
 
 
 
+
     }
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
@@ -99,4 +100,5 @@ public class BlockStupidTNT extends BlockExplodingBase {
             }
         }
     }
+
 }
