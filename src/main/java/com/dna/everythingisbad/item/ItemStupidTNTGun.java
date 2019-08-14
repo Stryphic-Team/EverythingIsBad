@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.item;
 
+import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
@@ -18,7 +19,7 @@ public class ItemStupidTNTGun extends ItemGunBase {
     public ItemStupidTNTGun(String name){
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-
+        setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
