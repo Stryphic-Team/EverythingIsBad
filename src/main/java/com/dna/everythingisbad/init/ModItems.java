@@ -3,9 +3,7 @@ package com.dna.everythingisbad.init;
 
 import com.dna.everythingisbad.item.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -29,6 +27,7 @@ public class ModItems {
     public static final ItemRecordSmartMan3 RECORD_SMART_MAN_3 = new ItemRecordSmartMan3("record_smart_man3");
 
     public static final ItemHairDryerGun HAIR_DRYER_GUN_ITEM = new ItemHairDryerGun("hair_dryer_gun");
+    public static final ItemStupidTNTGun STUPID_TNT_GUN_ITEM = new ItemStupidTNTGun("stupid_tnt_gun");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
