@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.init.ModSmeltingRecipes;
@@ -19,6 +20,7 @@ public class CommonProxy implements IProxy{
         Main.logger.info("Pre Intializing");
         ModFluids.register();
         ModFluids.registerBlocks();
+        ModBlocks.init();
 
 
 

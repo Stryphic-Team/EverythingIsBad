@@ -31,13 +31,6 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public static void onBlockRegister(RegistryEvent.Register<Block> event)
-    {
-        event.getRegistry().registerAll(ModBlocks.BLOCKS.toArray(new Block[0]));
-
-
-    }
-    @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event)
     {
         for(Item item : ModItems.ITEMS)

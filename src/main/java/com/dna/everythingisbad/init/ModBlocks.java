@@ -6,6 +6,7 @@ import com.dna.everythingisbad.block.BlockPoopBricks;
 import com.dna.everythingisbad.block.BlockStupidTNT;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,4 +21,9 @@ public class ModBlocks
     public static final Block POOP_BRICKS_BLOCK = new BlockPoopBricks("poop_bricks",Material.ROCK);
     public static final Block FLUX_TEST = new BlockFluxTest("flux_test");
 
+    public static void init(){
+        for(Block block:BLOCKS){
+            ForgeRegistries.BLOCKS.register(block);
+        }
+    }
 }

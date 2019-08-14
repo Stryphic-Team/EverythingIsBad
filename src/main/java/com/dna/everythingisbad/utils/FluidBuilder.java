@@ -1,16 +1,11 @@
 package com.dna.everythingisbad.utils;
 
 import com.dna.everythingisbad.block.BlockFluidBase;
+import com.dna.everythingisbad.client.ModStateMapper;
 import com.dna.everythingisbad.fluids.FluidBase;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
@@ -51,23 +46,8 @@ public class FluidBuilder {
     }
     @SideOnly(Side.CLIENT)
     public void registerRender(){
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(blockFluidBase), new ItemMeshDefinition()
-        {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                return new ModelResourceLocation(CommonUtils.createUnlocalizedName(name), "fluid");
-            }
-        });
-
-        ModelLoader.setCustomStateMapper(blockFluidBase, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return new ModelResourceLocation(CommonUtils.createUnlocalizedName(name), "fluid");
-            }
-        });
+        //ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(getBlockFluidBase()),new ModItemMeshDefinition(getName()));
+        ModelLoader.setCustomStateMapper(getBlockFluidBase(), new ModStateMapper(getName()));
     }
     public void registerBlock(){
         ModBlocks.BLOCKS.add(blockFluidBase);

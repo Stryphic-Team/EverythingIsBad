@@ -5,8 +5,8 @@ import com.dna.everythingisbad.utils.FluidBuilder;
 
 public class ModFluids {
 
-    public static final FluidBuilder DEVILS_PEE = new FluidBuilder("devils_pee");
-    public static final FluidBuilder DIARIA = new FluidBuilder("diaria");
+    public static FluidBuilder DEVILS_PEE = new FluidBuilder("devils_pee");
+    public static FluidBuilder DIARIA = new FluidBuilder("diaria");
 
     public static FluidBuilder[] FLUIDS = new FluidBuilder[]{
             DEVILS_PEE,DIARIA
