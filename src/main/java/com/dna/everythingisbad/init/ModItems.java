@@ -28,6 +28,8 @@ public class ModItems {
     public static final ItemRecordSmartMan2 RECORD_SMART_MAN_2 = new ItemRecordSmartMan2("record_smart_man2");
     public static final ItemRecordSmartMan3 RECORD_SMART_MAN_3 = new ItemRecordSmartMan3("record_smart_man3");
 
+    public static final ItemHairDryerGun HAIR_DRYER_GUN_ITEM = new ItemHairDryerGun("hair_dryer_gun");
+
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
         for (Item item: ITEMS) {
