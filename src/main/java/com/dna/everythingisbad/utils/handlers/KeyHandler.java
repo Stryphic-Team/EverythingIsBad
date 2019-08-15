@@ -19,6 +19,10 @@ import org.lwjgl.input.Keyboard;
 import java.util.ArrayList;
 
 //@Mod.EventBusSubscriber I think there can only be one of these registered
+
+/**
+ * This is is where the keybinds are handled
+ */
 public class KeyHandler {
 
     static final Minecraft mc = Minecraft.getMinecraft();
@@ -28,12 +32,19 @@ public class KeyHandler {
 
     private static ArrayList<KeyBinding> keys = new ArrayList<KeyBinding>();
 
+    /**
+     * Binds the keybinds and registers the keys
+     */
     public KeyHandler(){
         poopkey = new KeyBinding(Reference.PREFIX + "keybind.poopkey", Keyboard.KEY_P, Reference.PREFIX + "category." + Reference.MOD_ID);
         ClientRegistry.registerKeyBinding(poopkey);
         addKeys();
     }
 
+    /**
+     * Checks for key inputs and triggers server events
+     * @param event
+     */
     @SubscribeEvent
     public void onKeyInput(KeyInputEvent event){
 

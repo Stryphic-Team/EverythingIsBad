@@ -10,6 +10,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * This is going to be deprecated in the future for a new system of registering items, blocks, and entities
+ */
 @EventBusSubscriber
 public class RegistryHandler {
 
@@ -19,15 +22,11 @@ public class RegistryHandler {
     {
         event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
     }
-//    @SubscribeEvent
-//    public static void onEntitiesRegistered(RegistryEvent.Register<EntityEntry> event)
-//    {
-//
-//        ModEntities.init();
-//
-//        event.getRegistry().registerAll(ModEntities.ENTITIES);
-//    }
 
+    /**
+     * Registers models for items and blocks
+     * @param event
+     */
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event)
     {

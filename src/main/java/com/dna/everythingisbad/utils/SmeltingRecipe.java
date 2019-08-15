@@ -12,27 +12,27 @@ public class SmeltingRecipe {
         this.speed = speed;
     }
 
+    /**
+     * returns the input item
+     * @return Item
+     */
     public Item getInputItem() {
         return inputItem;
     }
 
-    public void setInputItem(Item inputItem) {
-        this.inputItem = inputItem;
-    }
-
+    /**
+     * returns the output item
+     * @return ItemStack
+     */
     public ItemStack getOutputItem() {
         return outputItem;
     }
 
-    public void setOutputItem(ItemStack outputItem) {
-        this.outputItem = outputItem;
-    }
-
+    /**
+     * returns the speed
+     * @return float
+     */
     public float getSpeed() {
         return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
     }
 }

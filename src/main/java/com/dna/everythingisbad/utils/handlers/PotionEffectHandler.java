@@ -7,8 +7,15 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-
+/**
+ * This is for listening for potion events
+ */
 public class PotionEffectHandler {
+    /**
+     * Checks when the player has the highness effect active
+     * and applies side effects
+     * @param event
+     */
     public static void weedActive(TickEvent.PlayerTickEvent event){
         boolean isActive = false;
         int potion_duration = ModPotions.POTION_HIGHNESS.getDuration();

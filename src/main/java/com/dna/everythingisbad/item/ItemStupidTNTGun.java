@@ -30,7 +30,7 @@ public class ItemStupidTNTGun extends ItemGunBase {
         boolean hasAmmo = playerIn.inventory.hasItemStack(stupidTNTAmmo);
         if (!worldIn.isRemote && hasAmmo)
         {
-            worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             for(int i = 0;i<10;i++) {
                 EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn, playerIn);
                 entityStupidTNT.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5f, 2F);
@@ -42,7 +42,7 @@ public class ItemStupidTNTGun extends ItemGunBase {
 
 
         }else{
-            worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         }
 
         playerIn.addStat(StatList.getObjectUseStats(this));

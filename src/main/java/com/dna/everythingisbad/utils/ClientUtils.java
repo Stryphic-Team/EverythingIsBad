@@ -9,6 +9,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
+/**
+ * This is a helper class for the client side only
+ */
 @SideOnly(Side.CLIENT)
 public class ClientUtils {
     private static MinecraftServer SERVER_INSTANCE = FMLCommonHandler.instance().getMinecraftServerInstance();

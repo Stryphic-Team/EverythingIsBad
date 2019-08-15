@@ -14,95 +14,138 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-
+/**
+ * This helps with fluid registration
+ */
 public class FluidBuilder {
     private ResourceLocation fluidStill;
-
-
-
     private ResourceLocation fluidFlow;
     private Fluid fluid;
     private BlockFluidBase blockFluidBase;
     private String name;
     private Material material;
+
+    /**
+     * Creates a new fluid with the name provided
+     * @param name
+     */
     public FluidBuilder(String name){
         this(name,null,null,null,null);
     }
+
+    /**
+     * Creates a fluid with the name provided and applies a material and a FluidBase
+     * @param name
+     * @param material
+     * @param fluidBase
+     */
     public FluidBuilder(String name, Material material,FluidBase fluidBase){
         this(name,fluidBase,null,null,material);
     }
+
+    /**
+     * Creates a fluid with the name provided and applies a FluidBase
+     * @param name
+     * @param fluidBase
+     */
     public FluidBuilder(String name, FluidBase fluidBase){
         this(name,fluidBase,null,null,null);
     }
+
+    /**
+     * Creates a fluid with the name provided and applies Material
+     * @param name
+     * @param material
+     */
     public FluidBuilder(String name, Material material){
         this(name,null,null,null,material);
     }
+
+    /**
+     * Base function not intended to be used externally
+     * @param name
+     * @param fluid
+     * @param fluidStill
+     * @param fluidFlow
+     * @param material
+     */
     public FluidBuilder(String name, @Nullable FluidBase fluid, @Nullable ResourceLocation fluidStill, @Nullable ResourceLocation fluidFlow, @Nullable Material material){
         this.name = name;
         this.fluidStill = fluidStill != null ? fluidStill : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_still");
-        this.fluidFlow = fluidFlow != null ? fluidFlow : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_flow");;
+        this.fluidFlow = fluidFlow != null ? fluidFlow : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_flow");
         this.fluid = fluid != null ? fluid : new FluidBase(this.name, this.fluidStill, this.fluidFlow);
         this.material = material != null ? material : Material.WATER;
     }
+
+    /**
+     * Is to be run after registerBlock
+     */
     @SideOnly(Side.CLIENT)
     public void registerRender(){
         //ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(getBlockFluidBase()),new ModItemMeshDefinition(getName()));
         ModelLoader.setCustomStateMapper(getBlockFluidBase(), new ModStateMapper(getName()));
     }
+
+    /**
+     * Needs to be run after register fluid
+     */
     public void registerBlock(){
         ModBlocks.BLOCKS.add(blockFluidBase);
     }
 
+    /**
+     * needs to be run first
+     */
     public void registerFluid(){
         FluidRegistry.registerFluid(fluid);
         FluidRegistry.addBucketForFluid(fluid);
         blockFluidBase = new BlockFluidBase(name,fluid, material);
     }
+
+    /**
+     * Returns the fluidStill
+     * @return ResourceLocation
+     */
     public ResourceLocation getFluidStill() {
         return fluidStill;
     }
 
-    public void setFluidStill(ResourceLocation fluidStill) {
-        this.fluidStill = fluidStill;
-    }
-
+    /**
+     * Returns the fluidFlow
+     * @return ResourceLocation
+     */
     public ResourceLocation getFluidFlow() {
         return fluidFlow;
     }
 
-    public void setFluidFlow(ResourceLocation fluidFlow) {
-        this.fluidFlow = fluidFlow;
-    }
-
+    /**
+     * Returns the fluid
+     * @return Fluid
+     */
     public Fluid getFluid() {
         return fluid;
     }
-
-    public void setFluid(Fluid fluid) {
-        this.fluid = fluid;
-    }
-
+    /**
+     * Returns the blockFluidBase
+     * @return BlockFluidBase
+     */
     public BlockFluidBase getBlockFluidBase() {
         return blockFluidBase;
     }
 
-    public void setBlockFluidBase(BlockFluidBase blockFluidBase) {
-        this.blockFluidBase = blockFluidBase;
-    }
 
+    /**
+     * returns the name
+     * @return String
+     */
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * returns the material
+     * @return Material
+     */
     public Material getMaterial() {
         return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
     }
 }
