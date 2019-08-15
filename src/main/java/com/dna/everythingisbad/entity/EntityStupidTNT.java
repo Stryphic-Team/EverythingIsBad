@@ -138,6 +138,9 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
             this.handleWaterMovement();
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
+        if(this.collided){
+            this.explode();
+        }
     }
     @Override
     public int getFuse() {
