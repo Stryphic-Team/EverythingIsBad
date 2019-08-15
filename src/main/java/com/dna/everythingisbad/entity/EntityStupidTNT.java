@@ -9,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -101,6 +100,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     @Override
     public void onUpdate()
     {
+        this.setNoGravity(true);
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
@@ -136,10 +136,11 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         else
         {
             this.handleWaterMovement();
-            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+            //this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
         if(this.collided){
             this.explode();
+            this.setDead();
         }
     }
     @Override
