@@ -23,11 +23,9 @@ public class EntityPrototype {
     /**
      * Assigns the parameters to private variables and creates the ResourceLocation
      * @param name
-     * @param textureDir
      * @param entityClass
      */
-    public EntityPrototype(String name, String textureDir, Class<? extends Entity> entityClass){
-        this.texture = new ResourceLocation(Reference.MOD_ID,"textures/"+textureDir);
+    public EntityPrototype(String name, Class<? extends Entity> entityClass){
         this.name = name;
         this.entityClass = entityClass;
         this.id = ID_COUNT;
@@ -39,7 +37,7 @@ public class EntityPrototype {
      */
     public void register(){
         EntityRegistry.registerModEntity(
-                texture,
+                new ResourceLocation(Reference.MOD_ID,name),
                 entityClass,
                 name,
                 id,

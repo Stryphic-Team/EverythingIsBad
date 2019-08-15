@@ -14,7 +14,7 @@ public class ModEntities {
 
     public static ArrayList<EntityPrototype> ENTITIES = new ArrayList<EntityPrototype>();
 
-    public static final EntityPrototype ENTITY_STUPID_TNT = new EntityPrototype("stupid_tnt","blocks/stupid_tnt",EntityStupidTNT.class);
+    public static final EntityPrototype ENTITY_STUPID_TNT = new EntityPrototype("stupid_tnt_primed",EntityStupidTNT.class);
 
     /**
      * Registers the entities that are registered above
