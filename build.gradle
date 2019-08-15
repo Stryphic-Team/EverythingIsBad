@@ -2,6 +2,7 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
+        mavenCentral()
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
@@ -55,6 +56,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     //compile (name:'RedstoneFlux-1.12-2.1.0.6-universal', ext:'jar')
+    //deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
+    //compile group:'cofh', name:'RedstoneFlux', version:'1.12-2.1.0.7'
 
 }
 
