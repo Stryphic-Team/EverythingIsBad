@@ -2,7 +2,6 @@ package com.dna.everythingisbad.client;
 
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,14 +16,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderStupidTNT extends Render<EntityStupidTNT> {
 
-    public ResourceLocation texture = new ResourceLocation(Reference.MOD_ID,"textures/blocks/stupid_tnt.png");
-
     public RenderStupidTNT(RenderManager renderManager) {
         super(renderManager);
     }
 
 
-
+    /**
+     * method that is run when StupidTNT is rendered
+     * @param entity
+     * @param x
+     * @param y
+     * @param z
+     * @param entityYaw
+     * @param partialTicks
+     */
     public void doRender(EntityStupidTNT entity, double x, double y, double z, float entityYaw, float partialTicks){
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
         GlStateManager.pushMatrix();

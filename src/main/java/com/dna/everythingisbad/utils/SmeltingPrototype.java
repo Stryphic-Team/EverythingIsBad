@@ -2,11 +2,11 @@ package com.dna.everythingisbad.utils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class SmeltingRecipe {
+public class SmeltingPrototype {
     private Item inputItem;
     private ItemStack outputItem;
     private float speed;
-    public SmeltingRecipe(Item inputItem, ItemStack outputItem,float speed){
+    public SmeltingPrototype(Item inputItem, ItemStack outputItem, float speed){
         this.inputItem = inputItem;
         this.outputItem = outputItem;
         this.speed = speed;

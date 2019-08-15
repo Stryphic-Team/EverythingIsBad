@@ -1,31 +1,31 @@
 package com.dna.everythingisbad.init;
 
 
-import com.dna.everythingisbad.utils.FluidBuilder;
+import com.dna.everythingisbad.utils.FluidPrototype;
 
 public class ModFluids {
 
-    public static FluidBuilder DEVILS_PEE = new FluidBuilder("devils_pee");
-    public static FluidBuilder DIARIA = new FluidBuilder("diaria");
+    public static FluidPrototype DEVILS_PEE = new FluidPrototype("devils_pee");
+    public static FluidPrototype DIARIA = new FluidPrototype("diaria");
 
-    public static FluidBuilder[] FLUIDS = new FluidBuilder[]{
+    public static FluidPrototype[] FLUIDS = new FluidPrototype[]{
             DEVILS_PEE,DIARIA
     };
 
 
     public static void register()
     {
-        for(FluidBuilder builder:FLUIDS){
+        for(FluidPrototype builder:FLUIDS){
             builder.registerFluid();
         }
     }
     public static void registerBlocks(){
-        for(FluidBuilder builder:FLUIDS){
+        for(FluidPrototype builder:FLUIDS){
             builder.registerBlock();
         }
     }
     public static void registerRenderers(){
-        for(FluidBuilder builder:FLUIDS){
+        for(FluidPrototype builder:FLUIDS){
             builder.registerRender();
         }
     }

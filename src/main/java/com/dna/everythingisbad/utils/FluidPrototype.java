@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 /**
  * This helps with fluid registration
  */
-public class FluidBuilder {
+public class FluidPrototype {
     private ResourceLocation fluidStill;
     private ResourceLocation fluidFlow;
     private Fluid fluid;
@@ -29,7 +29,7 @@ public class FluidBuilder {
      * Creates a new fluid with the name provided
      * @param name
      */
-    public FluidBuilder(String name){
+    public FluidPrototype(String name){
         this(name,null,null,null,null);
     }
 
@@ -39,7 +39,7 @@ public class FluidBuilder {
      * @param material
      * @param fluidBase
      */
-    public FluidBuilder(String name, Material material,FluidBase fluidBase){
+    public FluidPrototype(String name, Material material, FluidBase fluidBase){
         this(name,fluidBase,null,null,material);
     }
 
@@ -48,7 +48,7 @@ public class FluidBuilder {
      * @param name
      * @param fluidBase
      */
-    public FluidBuilder(String name, FluidBase fluidBase){
+    public FluidPrototype(String name, FluidBase fluidBase){
         this(name,fluidBase,null,null,null);
     }
 
@@ -57,7 +57,7 @@ public class FluidBuilder {
      * @param name
      * @param material
      */
-    public FluidBuilder(String name, Material material){
+    public FluidPrototype(String name, Material material){
         this(name,null,null,null,material);
     }
 
@@ -69,7 +69,7 @@ public class FluidBuilder {
      * @param fluidFlow
      * @param material
      */
-    public FluidBuilder(String name, @Nullable FluidBase fluid, @Nullable ResourceLocation fluidStill, @Nullable ResourceLocation fluidFlow, @Nullable Material material){
+    public FluidPrototype(String name, @Nullable FluidBase fluid, @Nullable ResourceLocation fluidStill, @Nullable ResourceLocation fluidFlow, @Nullable Material material){
         this.name = name;
         this.fluidStill = fluidStill != null ? fluidStill : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_still");
         this.fluidFlow = fluidFlow != null ? fluidFlow : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_flow");

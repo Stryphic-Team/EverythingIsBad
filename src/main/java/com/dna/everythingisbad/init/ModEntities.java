@@ -1,38 +1,36 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.client.RenderStupidTNT;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
-import com.dna.everythingisbad.reference.Reference;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
+import com.dna.everythingisbad.utils.EntityPrototype;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
 
 public class ModEntities {
 
 
-    public static final EntityEntry STUPID_TNT_ENTITY = new EntityEntry(EntityStupidTNT.class, Reference.MOD_ID + ":stupid_tnt_entity");
-    public static final EntityEntry[] ENTITIES = new EntityEntry[]{
-            STUPID_TNT_ENTITY
-    };
+    public static ArrayList<EntityPrototype> ENTITIES = new ArrayList<EntityPrototype>();
 
+    public static final EntityPrototype ENTITY_STUPID_TNT = new EntityPrototype("stupid_tnt","blocks/stupid_tnt",EntityStupidTNT.class);
+
+    /**
+     * Registers the entities that are registered above
+     */
     public static void init(){
-        for(EntityEntry e:ENTITIES){
-            e.setRegistryName(e.getName());
-            //ForgeRegistries.ENTITIES.register(e);
-            int id = 1;
-            EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "textures/blocks/stupid_tnt"), EntityStupidTNT.class, "StupidTNT", id++, Main.instance, 64, 3, true);
-
+        for(EntityPrototype e:ENTITIES){
+            e.register();
         }
     }
+
+    /**
+     * For registering Renderers
+     */
     @SideOnly(Side.CLIENT)
     public static void initRenderer(){
-        for(EntityEntry e:ENTITIES){
-
-            //RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT.FACTORY);
-            //RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class,new RenderStupidTNT());
-        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT::new);
     }
 
 }

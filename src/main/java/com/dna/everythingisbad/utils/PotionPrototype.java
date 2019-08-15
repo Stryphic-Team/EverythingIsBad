@@ -6,7 +6,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class PotionBuilder {
+public class PotionPrototype {
     private Potion potion;
     private PotionType potionType;
     private PotionEffect potionEffect;
@@ -22,7 +22,7 @@ public class PotionBuilder {
      * @param IconIndexX
      * @param IconIndexY
      */
-    public PotionBuilder(String name, int duration,boolean isBadPotion,int color,int IconIndexX,int IconIndexY){
+    public PotionPrototype(String name, int duration, boolean isBadPotion, int color, int IconIndexX, int IconIndexY){
         String namespaced_name = CommonUtils.createUnlocalizedName(name);
         //creates the base of the potion
         potion = new PotionDrugBase(name,isBadPotion,color,IconIndexX,IconIndexY);
