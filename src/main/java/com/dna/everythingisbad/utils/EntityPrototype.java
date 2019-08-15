@@ -18,6 +18,7 @@ public class EntityPrototype {
     private int id;
     private static int ID_COUNT = 1;
     private String name;
+    private String modid;
 
 
     /**
@@ -26,6 +27,15 @@ public class EntityPrototype {
      * @param entityClass
      */
     public EntityPrototype(String name, Class<? extends Entity> entityClass){
+        this.modid = Reference.MOD_ID;
+        this.name = name;
+        this.entityClass = entityClass;
+        this.id = ID_COUNT;
+        ID_COUNT++;
+        ModEntities.ENTITIES.add(this);
+    }
+    public EntityPrototype(String name,String modid, Class<? extends Entity> entityClass){
+        this.modid = modid;
         this.name = name;
         this.entityClass = entityClass;
         this.id = ID_COUNT;
@@ -37,7 +47,7 @@ public class EntityPrototype {
      */
     public void register(){
         EntityRegistry.registerModEntity(
-                new ResourceLocation(Reference.MOD_ID,name),
+                new ResourceLocation(this.modid,name),
                 entityClass,
                 name,
                 id,
