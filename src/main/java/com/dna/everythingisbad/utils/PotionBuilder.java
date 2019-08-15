@@ -12,6 +12,16 @@ public class PotionBuilder {
     private PotionEffect potionEffect;
     private int duration;
 
+    /**
+     * Takes a name, duration, isBad, color, IconIndexX, IconIndexY and creates a potion
+     * and potion effect and registers the item
+     * @param name
+     * @param duration
+     * @param isBadPotion
+     * @param color
+     * @param IconIndexX
+     * @param IconIndexY
+     */
     public PotionBuilder(String name, int duration,boolean isBadPotion,int color,int IconIndexX,int IconIndexY){
         String namespaced_name = CommonUtils.createUnlocalizedName(name);
         //creates the base of the potion
@@ -24,27 +34,43 @@ public class PotionBuilder {
         }).setRegistryName(namespaced_name);
         this.duration = duration;
     }
+
+    /**
+     * Registers the potion and the potion type for the new potion
+     * NEEDS TO BE RUN AFTER INSTANTIATED
+     */
     public void registerPotion(){
         ForgeRegistries.POTIONS.register(potion);
         ForgeRegistries.POTION_TYPES.register(potionType);
     }
+
+    /**
+     * Gets the duration of the potion effects
+     * @return int
+     */
     public int getDuration() {
         return duration;
     }
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+
+    /**
+     * returns the potion type
+     * @return PotionType
+     */
     public PotionType getPotionType() {
         return potionType;
     }
-    public void setPotionType(PotionType potionType) {
-        this.potionType = potionType;
-    }
+
+    /**
+     * returns the Potion
+     * @return Potion
+     */
     public Potion getPotion() {
         return potion;
     }
-    public void setPotion(Potion potion) {
-        this.potion = potion;
-    }
+
+    /**
+     * returns the potion effect
+     * @return PotionEffect
+     */
     public PotionEffect getPotionEffect() { return potionEffect; }
 }

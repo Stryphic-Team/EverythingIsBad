@@ -3,7 +3,7 @@ package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ClientUtils;
-import com.dna.everythingisbad.utils.ModStates;
+import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,11 +18,15 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import scala.util.Random;
 
+/**
+ * This is for events that happen on the tick by tick basis
+ * on the client side only
+ */
 
 public class ClientTimingHandler {
     Random random = new Random();
     //20 ticks per second * 60 seconds * one minecraft day per 20 minutes
-    int poop_interval = ModStates.AUTO_POOP_INTERVAL; // How often do you poop
+    int poop_interval = ModConfig.AUTO_POOP_INTERVAL; // How often do you poop
     int tick_count = random.nextInt(poop_interval)-1; // Starting at a random point in the day-night cycle
     boolean in_server = false;
 
@@ -32,7 +36,7 @@ public class ClientTimingHandler {
         tick_count++;
         if(tick_count % (poop_interval) == 0 && in_server){
             //gets a random number between 1-6
-            int random_amount = random.nextInt(5)+1;
+            int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX-1)+1;
             ItemStack item = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
             ClientUtils.SpawnItem(item);
         }
@@ -64,7 +68,7 @@ public class ClientTimingHandler {
     }
 
     public void setBlindness(EntityPlayer player){
-        int rand = random.nextInt(ModStates.BLINDNESS_CHANCE);
+        int rand = random.nextInt(ModConfig.BLINDNESS_CHANCE);
         //Main.logger.info(rand);
         if (rand == 1){
             player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),1000000,255));

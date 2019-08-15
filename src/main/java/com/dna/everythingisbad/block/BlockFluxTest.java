@@ -5,10 +5,16 @@ import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.IEnergyStorage;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class BlockFluxTest extends BlockBase implements IEnergyStorage {
+
+public class BlockFluxTest extends BlockBase implements IEnergyStorage, ICapabilityProvider {
     public BlockFluxTest(String name){
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
@@ -45,5 +51,15 @@ public class BlockFluxTest extends BlockBase implements IEnergyStorage {
     @Override
     public boolean canReceive() {
         return false;
+    }
+
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        return true;
+    }
+    @Nullable
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        return null;
     }
 }

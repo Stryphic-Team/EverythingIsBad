@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
-    private static final DataParameter<Integer> FUSE = EntityDataManager.<Integer>createKey(EntityTNTPrimed.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(EntityTNTPrimed.class, DataSerializers.VARINT);
     @Nullable
     private EntityLivingBase tntPlacedBy;
 
@@ -35,9 +35,9 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         this(worldIn);
         this.setPosition(x, y, z);
         float f = (float)(Math.random() * (Math.PI * 2D));
-        this.motionX = (double)(-((float)Math.sin((double)f)) * 0.02F);
+        this.motionX = -((float)Math.sin(f)) * 0.02F;
         this.motionY = 0.20000000298023224D;
-        this.motionZ = (double)(-((float)Math.cos((double)f)) * 0.02F);
+        this.motionZ = -((float)Math.cos(f)) * 0.02F;
         this.setFuse(80);
         this.prevPosX = x;
         this.prevPosY = y;
@@ -73,7 +73,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         this.motionZ = z;
         float f1 = MathHelper.sqrt(x * x + z * z);
         this.rotationYaw = (float)(MathHelper.atan2(x, z) * (180D / Math.PI));
-        this.rotationPitch = (float)(MathHelper.atan2(y, (double)f1) * (180D / Math.PI));
+        this.rotationPitch = (float)(MathHelper.atan2(y, f1) * (180D / Math.PI));
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
         //this.ticksInGround = 0;
@@ -83,7 +83,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         float f = -MathHelper.sin(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
         float f1 = -MathHelper.sin((rotationPitchIn + pitchOffset) * 0.017453292F);
         float f2 = MathHelper.cos(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
-        this.shoot((double)f, (double)f1, (double)f2, velocity, inaccuracy);
+        this.shoot(f, f1, f2, velocity, inaccuracy);
         this.motionX += entityThrower.motionX;
         this.motionZ += entityThrower.motionZ;
 
@@ -137,6 +137,9 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         {
             this.handleWaterMovement();
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+        }
+        if(this.collided){
+            this.explode();
         }
     }
     @Override

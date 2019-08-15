@@ -8,7 +8,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.SoundCategory;
@@ -60,16 +59,16 @@ public class BlockStupidTNT extends BlockExplodingBase {
             for(int i = 0;i<count;i++){
                 EntityStupidTNT entitytntprimed = new EntityStupidTNT(
                         worldIn,
-                        (double)pos.getX(),
-                        (double)pos.getY(),
-                        (double)pos.getZ(),
+                        pos.getX(),
+                        pos.getY(),
+                        pos.getZ(),
                         explosionIn.getExplosivePlacedBy());
-                double x_vel = (double)((random.nextFloat()*range)-(range/2));
-                double y_vel = (double)((random.nextFloat()*range)-(range/2));
-                double z_vel = (double)((random.nextFloat()*range)-(range/2));
+                double x_vel = (random.nextFloat()*range)-(range/2);
+                double y_vel = (random.nextFloat()*range)-(range/2);
+                double z_vel = (random.nextFloat()*range)-(range/2);
                 entitytntprimed.setVelocity(x_vel,y_vel,z_vel);
                 worldIn.spawnEntity(entitytntprimed);
-                worldIn.playSound((EntityPlayer)null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
 
         }
@@ -80,22 +79,22 @@ public class BlockStupidTNT extends BlockExplodingBase {
 
         if (!worldIn.isRemote)
         {
-            if (((Boolean)state.getValue(EXPLODE)).booleanValue())
+            if (state.getValue(EXPLODE).booleanValue())
             {
                 Random random = new Random();
                 for(int i = 0;i<count;i++){
                     EntityStupidTNT entitystupidtnt = new EntityStupidTNT(
                             worldIn,
-                            (double)pos.getX(),
-                            (double)pos.getY(),
-                            (double)pos.getZ(),
+                            pos.getX(),
+                            pos.getY(),
+                            pos.getZ(),
                             igniter);
-                    double x_vel = (double)((random.nextFloat()*range)-(range/2));
-                    double y_vel = (double)((random.nextFloat()*range)-(range/2));
-                    double z_vel = (double)((random.nextFloat()*range)-(range/2));
+                    double x_vel = (random.nextFloat()*range)-(range/2);
+                    double y_vel = (random.nextFloat()*range)-(range/2);
+                    double z_vel = (random.nextFloat()*range)-(range/2);
                     entitystupidtnt.setVelocity(x_vel,y_vel,z_vel);
                     worldIn.spawnEntity(entitystupidtnt);
-                    worldIn.playSound((EntityPlayer)null, entitystupidtnt.posX, entitystupidtnt.posY, entitystupidtnt.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    worldIn.playSound(null, entitystupidtnt.posX, entitystupidtnt.posY, entitystupidtnt.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
             }
         }
