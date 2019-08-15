@@ -4,6 +4,8 @@ import com.dna.everythingisbad.client.RenderStupidTNT;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.utils.EntityPrototype;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -31,6 +33,7 @@ public class ModEntities {
     @SideOnly(Side.CLIENT)
     public static void initRenderer(){
         RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT::new);
+
     }
 
 }
