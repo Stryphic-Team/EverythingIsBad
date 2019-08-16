@@ -2,7 +2,6 @@ package com.dna.everythingisbad.item;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
-import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,20 +24,32 @@ public class ItemStupidTNTGun extends ItemGunBase {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        ItemStack stupidTNTAmmo = new ItemStack(ModBlocks.STUPID_TNT_BLOCK);
+        ItemStack stupidTNTAmmo = new ItemStack(ModItems.STUPID_TNT_CARTRIDGE_ITEM);
+        int ammoSlot = playerIn.inventory.getSlotFor(stupidTNTAmmo);
+        ItemStack ammoStack = playerIn.inventory.getStackInSlot(ammoSlot);
+        /**
+         * Checks the players inventory for stupid tnt cartridges
+         */
+        for(ItemStack item:playerIn.inventory.mainInventory){
+            //Main.logger.info(item.getItem().getUnlocalizedName());
+            if(item.getItem().getUnlocalizedName().equals(ModItems.STUPID_TNT_CARTRIDGE_ITEM.getUnlocalizedName())){
+                if(item.getItemDamage() != item.getMaxDamage()) ammoStack = item;
+            }
+        }
 
-        boolean hasAmmo = playerIn.inventory.hasItemStack(stupidTNTAmmo);
+
+        boolean hasAmmo = ammoStack.getItemDamage() != ammoStack.getMaxDamage();
         if (!worldIn.isRemote && hasAmmo)
         {
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            for(int i = 0;i<10;i++) {
-                EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn, playerIn);
-                entityStupidTNT.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5f, 2F);
-                worldIn.spawnEntity(entityStupidTNT);
-            }
-            int ammoSlot = playerIn.inventory.getSlotFor(stupidTNTAmmo);
-            ItemStack ammoStack = playerIn.inventory.getStackInSlot(ammoSlot);
-            ammoStack.setCount(ammoStack.getCount()-1);
+
+            EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn, playerIn);
+            entityStupidTNT.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5f, 0.5F);
+            worldIn.spawnEntity(entityStupidTNT);
+            ammoStack.setItemDamage(ammoStack.getItemDamage()+1);
+
+
+
 
 
         }else{

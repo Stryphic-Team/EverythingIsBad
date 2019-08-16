@@ -7,9 +7,10 @@ public class ModFluids {
 
     public static FluidPrototype DEVILS_PEE = new FluidPrototype("devils_pee");
     public static FluidPrototype DIARIA = new FluidPrototype("diaria");
+    public static FluidPrototype BLOOD = new FluidPrototype("blood");
 
     public static FluidPrototype[] FLUIDS = new FluidPrototype[]{
-            DEVILS_PEE,DIARIA
+            DEVILS_PEE,DIARIA,BLOOD
     };
 
 
