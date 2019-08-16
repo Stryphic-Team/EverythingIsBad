@@ -6,6 +6,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFireball;
 
 public class ItemGunBase extends Item implements IHasModel {
+    public ItemGunBase(){
+        this.maxStackSize = 1;
+    }
     @Override
     public void registerModels()
     {

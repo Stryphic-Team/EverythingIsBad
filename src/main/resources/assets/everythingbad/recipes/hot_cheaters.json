@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "everythingbad:paper_bag"
+    }
+  ],
+  "result": {
+    "item": "everythingbad:hot_cheaters"
+  }
+}

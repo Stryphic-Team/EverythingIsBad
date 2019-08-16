@@ -4,13 +4,12 @@ import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 
-public class ItemPoopBrick extends ItemBase {
-    public ItemPoopBrick(String name)
+public class ItemPaperBag extends ItemBase {
+    public ItemPaperBag(String name)
     {
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
-
 }
