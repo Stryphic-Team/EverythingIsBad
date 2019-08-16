@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.server.FMLServerHandler;
 import scala.util.Random;
@@ -53,12 +54,18 @@ public class ServerTimeHandler {
                 ItemPoop item = (ItemPoop)stack.getItem();
                 player.inventory.addItemStackToInventory(stack);
                 Block blockAtPlayerPos = player.getServerWorld().getBlockState(new BlockPos(player.posX,player.posY,player.posZ)).getBlock();
-
-
             }
-
-
         }
+    }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void playerTimer(TickEvent.PlayerTickEvent event){
+        if(event.player.isDead){
+            PlayerHandler.playerDied(event.player);
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void playerRespawn(PlayerEvent.PlayerRespawnEvent event){
+        PlayerHandler.playerRespawn(event.player);
     }
 //    @SubscribeEvent
 //    public void joinedServer(PlayerEvent.PlayerLoggedInEvent event){

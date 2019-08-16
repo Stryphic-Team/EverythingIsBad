@@ -41,6 +41,9 @@ public class ClientTimingHandler {
             ClientUtils.SpawnItem(item);
         }
         PotionEffectHandler.weedActive(event);
+        if(event.player.isDead){
+            PlayerHandler.playerDied(event.player);
+        }
     }
 
     @SubscribeEvent

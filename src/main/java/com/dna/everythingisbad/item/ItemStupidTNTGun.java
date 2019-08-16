@@ -5,6 +5,7 @@ import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -24,21 +25,25 @@ public class ItemStupidTNTGun extends ItemGunBase {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        ItemStack stupidTNTAmmo = new ItemStack(ModItems.STUPID_TNT_CARTRIDGE_ITEM);
-        int ammoSlot = playerIn.inventory.getSlotFor(stupidTNTAmmo);
-        ItemStack ammoStack = playerIn.inventory.getStackInSlot(ammoSlot);
+        ItemStack ammoStack = new ItemStack(Items.AIR);
         /**
          * Checks the players inventory for stupid tnt cartridges
          */
+        boolean hasAmmo = false;
         for(ItemStack item:playerIn.inventory.mainInventory){
             //Main.logger.info(item.getItem().getUnlocalizedName());
             if(item.getItem().getUnlocalizedName().equals(ModItems.STUPID_TNT_CARTRIDGE_ITEM.getUnlocalizedName())){
-                if(item.getItemDamage() != item.getMaxDamage()) ammoStack = item;
+                if(item.getItemDamage() != item.getMaxDamage()) {
+                    ammoStack = item;
+                    hasAmmo = ammoStack.getItemDamage() != ammoStack.getMaxDamage();
+                }
+            }else{
+
             }
         }
 
 
-        boolean hasAmmo = ammoStack.getItemDamage() != ammoStack.getMaxDamage();
+
         if (!worldIn.isRemote && hasAmmo)
         {
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -46,7 +51,10 @@ public class ItemStupidTNTGun extends ItemGunBase {
             EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn, playerIn);
             entityStupidTNT.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5f, 0.5F);
             worldIn.spawnEntity(entityStupidTNT);
-            ammoStack.setItemDamage(ammoStack.getItemDamage()+1);
+            if(!playerIn.capabilities.isCreativeMode){
+                ammoStack.setItemDamage(ammoStack.getItemDamage()+1);
+            }
+
 
 
 
