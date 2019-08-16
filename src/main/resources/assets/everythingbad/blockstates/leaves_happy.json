@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "everythingbad:blocks/leaves_happy"
+    }
+  },
+  "variants":
+  {
+    "check_decay=true,decayable=true": { "model": "cube_all" },
+    "check_decay=true,decayable=false": { "model": "cube_all" },
+    "check_decay=false,decayable=true": { "model": "cube_all" },
+    "check_decay=false,decayable=false": { "model": "cube_all" }
+  }
+}

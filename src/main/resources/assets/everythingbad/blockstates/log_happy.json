@@ -1,0 +1,9 @@
+{
+  "variants":
+  {
+    "axis=y":  { "model": "everythingbad:log_happy" },
+    "axis=z":   { "model": "everythingbad:log_happy", "x": 90 },
+    "axis=x":   { "model": "everythingbad:log_happy", "x": 90, "y": 90 },
+    "axis=none": { "model": "everythingbad:log_happy" }
+  }
+}
