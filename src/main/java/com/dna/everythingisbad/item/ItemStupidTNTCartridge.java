@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.item;
-
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
+import net.minecraft.item.ItemStack;
 
 public class ItemStupidTNTCartridge extends ItemBase {
     public ItemStupidTNTCartridge(String name){
@@ -19,4 +19,8 @@ public class ItemStupidTNTCartridge extends ItemBase {
         return true;
     }
 
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return false;
+    }
 }

@@ -22,10 +22,10 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
 
 
     /** How long the fuse is */
-    private int fuse = 80;
+    private int fuse = 60;
     public EntityStupidTNT(World worldIn) {
         super(worldIn);
-        this.fuse = 80;
+        this.fuse = 60;
 
     }
 
@@ -100,7 +100,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     @Override
     public void onUpdate()
     {
-        this.setNoGravity(true);
+        //this.setNoGravity(true);
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
@@ -138,10 +138,10 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
             this.handleWaterMovement();
             //this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
-        if(this.collided){
-            this.explode();
-            this.setDead();
-        }
+//        if(this.collided){
+//            this.explode();
+//            this.setDead();
+//        }
     }
     @Override
     public int getFuse() {

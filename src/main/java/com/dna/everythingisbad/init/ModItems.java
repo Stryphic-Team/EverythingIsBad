@@ -32,7 +32,7 @@ public class ModItems {
     public static final ItemHairDryerGun HAIR_DRYER_GUN_ITEM = new ItemHairDryerGun("hair_dryer_gun");
     public static final ItemStupidTNTGun STUPID_TNT_GUN_ITEM = new ItemStupidTNTGun("stupid_tnt_gun");
     public static final ItemStupidTNTCartridge STUPID_TNT_CARTRIDGE_ITEM = new ItemStupidTNTCartridge("stupid_tnt_cartridge");
-
+    public static final ItemStupidCore STUPID_CORE = new ItemStupidCore("stupid_core");
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
         for (Item item: ITEMS) {
