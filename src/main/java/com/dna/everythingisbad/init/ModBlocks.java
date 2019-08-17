@@ -20,6 +20,7 @@ public class ModBlocks
     public static final Block BLOOD_BLOCK = new BloodBlock("blood_block");
     public static final Block LOG_HAPPY_BLOCK = new BlockLogHappy("log_happy");
     public static final Block LEAVES_HAPPY_BLOCK = new BlockLeavesHappy("leaves_happy");
+    public static final Block SAPLING_HAPPY_BLOCK = new BlockSaplingHappy("sapling_happy");
 
     public static void init(){
         for(Block block:BLOCKS){

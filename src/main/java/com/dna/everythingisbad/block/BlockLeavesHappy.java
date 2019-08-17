@@ -11,12 +11,16 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BlockLeavesHappy extends BlockLeavesBase {
     public BlockLeavesHappy(String name)
@@ -62,4 +66,28 @@ public class BlockLeavesHappy extends BlockLeavesBase {
     public int getRenderColor() {
         return ColorizerFoliage.getFoliageColorBasic();
     }
+
+    // TODO Figure out how to make it show up green, based on biome
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public int getSaplingDropChance(IBlockState state)
+    {
+        return 2;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        if (rand.nextInt(2) == 1){
+            return Item.getItemFromBlock(ModBlocks.SAPLING_HAPPY_BLOCK);
+        }else{
+            return ModItems.DEVILS_CABBAGE_ITEM;
+        }
+    }
+
 }
