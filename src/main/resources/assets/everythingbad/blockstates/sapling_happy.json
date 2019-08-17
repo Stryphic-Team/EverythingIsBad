@@ -1,7 +1,12 @@
 {
-  "variants":
-  {
-    "stage=0": { "model": "everythingbad:sapling_happy" },
-    "stage=1": { "model": "everythingbad:sapling_happy" }
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "cross": "everythingbad:blocks/sapling_happy"
+    }
+  },
+  "variants": {
+    "stage=0,type=oak": { "model": "cross" },
+    "stage=1,type=oak": { "model": "cross" }
   }
 }

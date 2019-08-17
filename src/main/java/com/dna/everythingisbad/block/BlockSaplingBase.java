@@ -3,6 +3,7 @@ package com.dna.everythingisbad.block;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.utils.IHasModel;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.creativetab.CreativeTabs;

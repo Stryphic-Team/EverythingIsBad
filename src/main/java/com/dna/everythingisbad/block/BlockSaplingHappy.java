@@ -22,6 +22,7 @@ public class BlockSaplingHappy extends BlockSaplingBase {
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockPlanks.EnumType.OAK).withProperty(STAGE, Integer.valueOf(0)));
+        //this.setDefaultState(this.createBlockState().getBaseState());
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
