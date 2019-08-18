@@ -3,10 +3,12 @@ package com.dna.everythingisbad.proxy;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
+import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy implements IProxy{
     public void registerItemRenderer(Item item, int meta, String id) {}
@@ -19,6 +21,7 @@ public class CommonProxy implements IProxy{
         ModFluids.registerBlocks();
         ModBlocks.init();
         ModEntities.init();
+
 
 
     }
@@ -37,6 +40,7 @@ public class CommonProxy implements IProxy{
         ModSmeltingRecipes.init();
         ModPotions.init();
         //ModFluids.init();
+        GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);
 
     }
 }

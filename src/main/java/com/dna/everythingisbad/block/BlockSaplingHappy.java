@@ -4,16 +4,16 @@ import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.world.trees.WorldGenTreeHappy;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
@@ -23,6 +23,7 @@ public class BlockSaplingHappy extends BlockSaplingBase {
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockPlanks.EnumType.OAK).withProperty(STAGE, Integer.valueOf(0)));
         //this.setDefaultState(this.createBlockState().getBaseState());
+        setSoundType(SoundType.PLANT);
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
