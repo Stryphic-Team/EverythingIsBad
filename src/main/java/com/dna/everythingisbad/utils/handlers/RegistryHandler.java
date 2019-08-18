@@ -4,9 +4,11 @@ import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
+import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -61,10 +63,14 @@ public class RegistryHandler {
     }
     @SubscribeEvent
     public static void milked(LivingEvent.LivingUpdateEvent event){
-        if (event.getEntityLiving() instanceof EntityPig && !event.getEntityLiving().world.isRemote && event.getEntityLiving().ticksExisted % (15) == 0) {
+        if (event.getEntityLiving() instanceof EntityAnimal && !event.getEntityLiving().world.isRemote && event.getEntityLiving().ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
 //            EntityPig pig = (EntityPig) event.getEntityLiving();
 //            pig.setVelocity(0f,1f,0f);
             //Main.logger.info("pig updated");
+            EntityAnimal animal = (EntityAnimal) event.getEntity();
+
+            EntityItem item = new EntityItem(event.getEntity().world,animal.posX,animal.posY,animal.posZ,new ItemStack(ModItems.POOP_ITEM,1,3));
+            animal.world.spawnEntity(item);
 
         }
     }
