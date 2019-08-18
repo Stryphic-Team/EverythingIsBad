@@ -7,7 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 
 import java.util.Random;
 
@@ -18,7 +17,7 @@ public class WorldGenTreeHappy extends WorldGenAbstractTree {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        int height = 3; // Hite of the trunk
+        int height = 3 * rand.nextInt(4); // Hite of the trunk
         boolean flag = true;
 
         // Below are a list of situations where we might say "Okay you cant make tree"
