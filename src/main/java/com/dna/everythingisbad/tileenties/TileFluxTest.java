@@ -13,6 +13,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 
 public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickable {
     private int energyStored = 10000;
+    private int ticks = 0;
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -37,7 +38,7 @@ public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickabl
 
     @Override
     public int getMaxEnergyStored() {
-        return 1000000;
+        return 10000;
     }
 
 
@@ -120,29 +121,32 @@ public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickabl
     @Override
     public void update() {
 
+        ticks++;
+        if(ticks % 10 == 0) {
+            FaceData east = new FaceData(getPos().east(), EnumFacing.EAST);
+            FaceData west = new FaceData(getPos().west(), EnumFacing.WEST);
+            FaceData north = new FaceData(getPos().north(), EnumFacing.NORTH);
+            FaceData south = new FaceData(getPos().south(), EnumFacing.SOUTH);
+            FaceData up = new FaceData(getPos().up(), EnumFacing.UP);
+            FaceData down = new FaceData(getPos().down(), EnumFacing.DOWN);
 
-        FaceData east = new FaceData(getPos().east(),EnumFacing.EAST);
-        FaceData west = new FaceData(getPos().west(),EnumFacing.WEST);
-        FaceData north = new FaceData(getPos().north(),EnumFacing.NORTH);
-        FaceData south = new FaceData(getPos().south(),EnumFacing.SOUTH);
-        FaceData up = new FaceData(getPos().up(),EnumFacing.UP);
-        FaceData down = new FaceData(getPos().down(),EnumFacing.DOWN);
 
+            FaceData[] faceData = new FaceData[]{
+                    east, west, north, south, up, down
+            };
+            for (FaceData face : faceData) {
+                if (face.tileEntity != null) {
+                    net.minecraftforge.energy.IEnergyStorage cap = (net.minecraftforge.energy.IEnergyStorage) face.tileEntity.getCapability(
+                            CapabilityEnergy.ENERGY,
+                            face.facing.getOpposite()
+                    );
+                    if (cap != null) {
+                        cap.receiveEnergy(10, false);
 
-        FaceData[] faceData = new FaceData[]{
-          east,west,north,south,up,down
-        };
-        for(FaceData face:faceData){
-            if(face.tileEntity != null) {
-                net.minecraftforge.energy.IEnergyStorage cap = (net.minecraftforge.energy.IEnergyStorage) face.tileEntity.getCapability(
-                        CapabilityEnergy.ENERGY,
-                        face.facing
-                );
-                if (cap != null) {
-                    cap.receiveEnergy(1, false);
-                    extractEnergy(1,false);
+                        extractEnergy(10, false);
+                    }
+
                 }
-
             }
         }
 
