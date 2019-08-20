@@ -21,7 +21,7 @@ public class CommonProxy implements IProxy{
         ModFluids.register();
         ModFluids.registerBlocks();
         ModBlocks.init();
-        ModEntities.init();
+
 
 
 
@@ -43,6 +43,7 @@ public class CommonProxy implements IProxy{
         //ModFluids.init();
         GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);
         GameRegistry.registerWorldGenerator(WorldGenGodsPeeGenerator.INSTANCE,100);
+        ModEntities.init();
 
     }
 }
