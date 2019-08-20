@@ -1,15 +1,18 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -40,9 +43,17 @@ public class ClientTimingHandler {
             ItemStack item = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
             ClientUtils.SpawnItem(item);
         }
-        PotionEffectHandler.weedActive(event);
+        //PotionEffectHandler.weedActive(event);
         if(event.player.isDead){
             PlayerHandler.playerDied(event.player);
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void livingTimer(LivingEvent.LivingUpdateEvent event){
+        EntityLivingBase livingBase = event.getEntityLiving();
+        boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
+        if(highness_active){
+            PotionEffectHandler.livingEntityHighnessActive(livingBase);
         }
     }
 
