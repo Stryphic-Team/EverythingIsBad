@@ -1,23 +1,29 @@
 package com.dna.everythingisbad.entity;
 
+import com.dna.everythingisbad.ai.EntityAIAttackRangedGun;
 import com.dna.everythingisbad.init.ModItems;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.Calendar;
 
 public class EntityStupidSkeleton extends EntitySkeleton {
-
+    private final EntityAIAttackRangedGun<AbstractSkeleton> aiArrowAttack = new EntityAIAttackRangedGun<AbstractSkeleton>(this, 1.0D, 20, 15.0F);
     public EntityStupidSkeleton(World worldIn) {
         super(worldIn);
         this.setAIMoveSpeed(5f);
@@ -59,7 +65,8 @@ public class EntityStupidSkeleton extends EntitySkeleton {
         this.setEnchantmentBasedOnDifficulty(difficulty);
         this.setCombatTask();
         this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
-        this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND,new ItemStack(ModItems.STUPID_TNT_CARTRIDGE_ITEM,1));
+        //this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND,new ItemStack(ModItems.STUPID_TNT_CARTRIDGE_ITEM,1));
+
         if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isEmpty())
         {
             Calendar calendar = this.world.getCurrentDate();
@@ -72,5 +79,51 @@ public class EntityStupidSkeleton extends EntitySkeleton {
         }
 
         return livingdata;
+    }
+    @Override
+    public void setCombatTask()
+    {
+        if (this.world != null && !this.world.isRemote)
+        {
+
+            this.tasks.removeTask(this.aiArrowAttack);
+            ItemStack itemstack = this.getHeldItemMainhand();
+
+            if (itemstack.getItem() == ModItems.STUPID_TNT_GUN_ITEM)
+            {
+                int i = 20;
+
+                if (this.world.getDifficulty() != EnumDifficulty.HARD)
+                {
+                    i = 40;
+                }
+
+                this.aiArrowAttack.setAttackCooldown(i);
+                this.tasks.addTask(4, this.aiArrowAttack);
+
+            }
+            else
+            {
+                //this.tasks.addTask(4, this.aiAttackOnCollide);
+            }
+        }
+    }
+    /**
+     * Attack the specified entity using a ranged attack.
+     */
+    @Override
+    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
+    {
+        EntityArrow entityarrow = this.getArrow(distanceFactor);
+        double d0 = target.posX - this.posX;
+        double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - entityarrow.posY;
+        double d2 = target.posZ - this.posZ;
+        double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+        EntityStupidTNT entityStupidTNT = new EntityStupidTNT(this.getEntityWorld());
+        entityStupidTNT.setPosition(posX,posY,posZ);
+        entityStupidTNT.setVelocity(((rand.nextFloat()*2)-1),5,((rand.nextFloat()*2)-1));
+        //entityStupidTNT.setPosition(target.posX,target.posY,target.posZ);
+        //entityStupidTNT.shoot(this, this.rotationPitch, this.rotationYaw, 0.0F, 5f, 0.5F);
+        this.world.spawnEntity(entityStupidTNT);
     }
 }

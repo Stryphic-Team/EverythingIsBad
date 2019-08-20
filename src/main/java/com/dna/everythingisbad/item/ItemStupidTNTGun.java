@@ -4,6 +4,7 @@ import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -22,6 +23,7 @@ public class ItemStupidTNTGun extends ItemGunBase {
         setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
@@ -42,19 +44,30 @@ public class ItemStupidTNTGun extends ItemGunBase {
             }
         }
 
+        shootGun(playerIn,hasAmmo);
+        if(!playerIn.capabilities.isCreativeMode){
+            ammoStack.setItemDamage(ammoStack.getItemDamage()+1);
+        }
 
+
+
+
+
+        playerIn.addStat(StatList.getObjectUseStats(this));
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+    }
+    public void shootGun(EntityLiving entity,boolean hasAmmo){
+        World worldIn = entity.getEntityWorld();
 
         if (!worldIn.isRemote && hasAmmo)
         {
-            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-            EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn, playerIn);
+            EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn);
 
-            entityStupidTNT.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5f, 0.5F);
+            entityStupidTNT.shoot(entity, entity.rotationPitch, entity.rotationYaw, 0.0F, 5f, 0.5F);
             worldIn.spawnEntity(entityStupidTNT);
-            if(!playerIn.capabilities.isCreativeMode){
-                ammoStack.setItemDamage(ammoStack.getItemDamage()+1);
-            }
+
 
 
 
@@ -62,10 +75,23 @@ public class ItemStupidTNTGun extends ItemGunBase {
 
 
         }else{
-            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         }
+    }
+    public void shootGun(EntityPlayer entity,boolean hasAmmo){
+        World worldIn = entity.getEntityWorld();
 
-        playerIn.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+        if (!worldIn.isRemote && hasAmmo)
+        {
+            worldIn.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+            EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn,entity);
+
+            entityStupidTNT.shoot(entity, entity.rotationPitch, entity.rotationYaw, 0.0F, 5f, 0.5F);
+            worldIn.spawnEntity(entityStupidTNT);
+
+        }else{
+            worldIn.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        }
     }
 }
