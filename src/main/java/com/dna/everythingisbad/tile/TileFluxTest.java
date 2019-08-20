@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.tileenties;
+package com.dna.everythingisbad.tile;
 import cofh.redstoneflux.api.IEnergyStorage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
