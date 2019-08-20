@@ -7,12 +7,12 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
-repositories {
-    maven {
-        name = "CoFH Maven"
-        url = "http://maven.covers1624.net"
-    }
-}
+//repositories {
+//    maven {
+//        name = "CoFH Maven"
+//        url = "http://maven.covers1624.net"
+//    }
+//}
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -40,8 +40,9 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+
 dependencies {
-    compile "cofh:RedstoneFlux:1.12-2.1.0.6:universal"
+    //compile "cofh:RedstoneFlux:1.12-2.1.0.6:universal"
 }
 
 processResources {

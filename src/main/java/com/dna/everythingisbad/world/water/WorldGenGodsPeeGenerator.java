@@ -5,6 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
@@ -16,21 +17,10 @@ public class WorldGenGodsPeeGenerator implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         int xPos = chunkX * 16 + 8;
         int zPos = chunkZ * 16 + 8;
-
-
-
-
-
-        for(int i = 0;i<16;i++){
-            for(int j = 0;j<16;j++){
-                BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX*i,1,chunkZ*j));
-
-                if(world.getBlockState(top).getBlock().getUnlocalizedName().equals("tile.water")){
-                    world.setBlockState(top.up(1), ModFluids.DEVILS_PEE.getBlockFluidBase().getDefaultState());
-                }
-            }
+        if(random.nextFloat() < 0.05) {
+            WorldGenLakes lake = new WorldGenLakes(ModFluids.DEVILS_PEE.getBlockFluidBase());
+            lake.generate(world, random, new BlockPos(xPos, 64, zPos));
         }
-
 
     }
 }

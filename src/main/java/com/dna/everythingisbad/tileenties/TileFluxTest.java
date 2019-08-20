@@ -1,5 +1,5 @@
 package com.dna.everythingisbad.tileenties;
-import cofh.redstoneflux.api.IEnergyStorage;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
-
+import net.minecraftforge.energy.IEnergyStorage;
 
 
 public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickable {
@@ -39,6 +39,16 @@ public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickabl
     @Override
     public int getMaxEnergyStored() {
         return 10000;
+    }
+
+    @Override
+    public boolean canExtract() {
+        return true;
+    }
+
+    @Override
+    public boolean canReceive() {
+        return false;
     }
 
 
