@@ -20,8 +20,8 @@ public class WorldGenHappyTreeGenerator implements IWorldGenerator {
         WorldGenTreeHappy tree = new WorldGenTreeHappy();
         int height_max = 100;
         int height_min = 60;
-
-        tree.generate(world,random,new BlockPos(xPos,random.nextInt(height_max + height_min)-height_min,zPos));
+        BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos,1,zPos));
+        tree.generate(world,random,new BlockPos(xPos,top.getY(),zPos));
 
     }
 }

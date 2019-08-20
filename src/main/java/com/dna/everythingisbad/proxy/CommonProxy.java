@@ -4,6 +4,7 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
+import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -41,6 +42,7 @@ public class CommonProxy implements IProxy{
         ModPotions.init();
         //ModFluids.init();
         GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);
+        GameRegistry.registerWorldGenerator(WorldGenGodsPeeGenerator.INSTANCE,100);
 
     }
 }
