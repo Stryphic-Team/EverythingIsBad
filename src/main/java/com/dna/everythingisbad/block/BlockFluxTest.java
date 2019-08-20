@@ -3,7 +3,7 @@ package com.dna.everythingisbad.block;
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.tileenties.TileFluxTest;
+import com.dna.everythingisbad.tile.TileFluxTest;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;

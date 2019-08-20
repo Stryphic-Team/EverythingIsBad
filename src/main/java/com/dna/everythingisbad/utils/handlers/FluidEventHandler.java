@@ -21,7 +21,7 @@ public class FluidEventHandler {
         World worldIn = player.getEntityWorld();
         player.addPotionEffect(new PotionEffect(ModPotions.POTION_HIGHNESS.getPotion(),24000,4));
 
-        if (song_timer==0) {
+        if (song_timer<=0) {
             song_timer=3600;
             worldIn.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, ModSoundEvents.SOUND_EVENT_GODS_PEE, SoundCategory.RECORDS, 1F, 1f);
         }else{
