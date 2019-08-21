@@ -47,6 +47,7 @@ public class EntityAIAttackRangedGun<T extends EntityMob & IRangedAttackMob> ext
             double d0 = this.entity.getDistanceSq(entitylivingbase.posX, entitylivingbase.getEntityBoundingBox().minY, entitylivingbase.posZ);
             boolean flag = this.entity.getEntitySenses().canSee(entitylivingbase);
             boolean flag1 = this.seeTime > 0;
+            boolean can_shoot = false;
 
             if (flag != flag1)
             {
@@ -107,7 +108,7 @@ public class EntityAIAttackRangedGun<T extends EntityMob & IRangedAttackMob> ext
                 this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
             }
 
-            if (true)
+            if (can_shoot)
             {
                 if (!flag && this.seeTime < -60)
                 {
@@ -117,12 +118,10 @@ public class EntityAIAttackRangedGun<T extends EntityMob & IRangedAttackMob> ext
                 {
                     int i = this.entity.getItemInUseMaxCount();
 
-                    if (true)
+                    if (i >= 20)
                     {
                         this.entity.resetActiveHand();
                         ((IRangedAttackMob)this.entity).attackEntityWithRangedAttack(entitylivingbase, ItemBow.getArrowVelocity(i));
-                        //ItemStupidTNTGun gun = this.entity.getActiveItemStack();
-
                         this.attackTime = this.attackCooldown;
                     }
                 }
@@ -130,6 +129,7 @@ public class EntityAIAttackRangedGun<T extends EntityMob & IRangedAttackMob> ext
             else if (--this.attackTime <= 0 && this.seeTime >= -60)
             {
                 this.entity.setActiveHand(EnumHand.MAIN_HAND);
+                can_shoot = true;
             }
         }
     }
