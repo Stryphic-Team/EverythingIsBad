@@ -1,17 +1,18 @@
 package com.dna.everythingisbad.client;
 
-import com.dna.everythingisbad.entity.EntityJesus;
-import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.entity.EntitySatan;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderJesus extends RenderBiped<EntityJesus> {
-    private static final ResourceLocation JESUS_TEXTURE = new ResourceLocation(Reference.MOD_ID,"textures/entity/jesus.png");
+public class RenderSatan extends RenderBiped<EntitySatan> {
 
-    public RenderJesus(RenderManager renderManagerIn)
+    //TODO change the texture of satan to satan texture
+    private static final ResourceLocation SATAN_TEXTURE = new ResourceLocation("textures/entity/zombie/zombie.png");
+
+    public RenderSatan(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelZombie(), 0.5F);
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
@@ -28,9 +29,8 @@ public class RenderJesus extends RenderBiped<EntityJesus> {
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-
-    protected ResourceLocation getEntityTexture(EntityJesus entity)
+    protected ResourceLocation getEntityTexture(EntitySatan entity)
     {
-        return JESUS_TEXTURE;
+        return SATAN_TEXTURE;
     }
 }

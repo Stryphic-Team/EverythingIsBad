@@ -35,6 +35,10 @@ item.record.record_smart_man2.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 1)
 item.everythingbad:record_smart_man3.name=Music Disc
 item.record.record_smart_man3.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 2)
 
+entity.jesus.name=Jesus
+entity.satan.name=Satan
+entity.stupid_skeleton.name=Stupid Skeleton
+
 effect.highness=Highness
 effect.common_cold=Common Cold
 
