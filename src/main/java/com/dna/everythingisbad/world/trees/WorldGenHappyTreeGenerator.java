@@ -15,13 +15,12 @@ public class WorldGenHappyTreeGenerator implements IWorldGenerator {
     }
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        int xPos = chunkX * 16 + 8;
-        int zPos = chunkZ * 16 + 8;
-        WorldGenTreeHappy tree = new WorldGenTreeHappy();
-        int height_max = 100;
-        int height_min = 60;
-        BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos,1,zPos));
-        tree.generate(world,random,new BlockPos(xPos,top.getY(),zPos));
-
+        if(random.nextFloat() < 0.1) {
+            int xPos = chunkX * 16 + random.nextInt(15);
+            int zPos = chunkZ * 16 + random.nextInt(15);
+            WorldGenTreeHappy tree = new WorldGenTreeHappy();
+            BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
+            tree.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+        }
     }
 }
