@@ -1,6 +1,7 @@
-package com.dna.everythingisbad.utils;
+package com.dna.everythingisbad.utils.prototypes;
 
 import com.dna.everythingisbad.potion.PotionDrugBase;
+import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;

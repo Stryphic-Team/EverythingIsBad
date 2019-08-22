@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.init;
 
 
-import com.dna.everythingisbad.utils.FluidPrototype;
+import com.dna.everythingisbad.utils.prototypes.FluidPrototype;
 
 public class ModFluids {
 

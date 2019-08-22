@@ -3,7 +3,7 @@ package com.dna.everythingisbad.init;
 import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
-import com.dna.everythingisbad.utils.EntityPrototype;
+import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;

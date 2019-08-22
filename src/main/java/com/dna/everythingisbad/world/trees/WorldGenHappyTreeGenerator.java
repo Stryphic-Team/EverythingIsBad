@@ -10,14 +10,16 @@ import java.util.Random;
 
 public class WorldGenHappyTreeGenerator implements IWorldGenerator {
     public static WorldGenHappyTreeGenerator INSTANCE = new WorldGenHappyTreeGenerator();
+
     public WorldGenHappyTreeGenerator(){
 
     }
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if(random.nextFloat() < 0.1) {
-            int xPos = chunkX * 16 + random.nextInt(15);
-            int zPos = chunkZ * 16 + random.nextInt(15);
+            //needs to be within the chunk bounds
+            int xPos = chunkX * 16 + 8;
+            int zPos = chunkZ * 16 + 8;
             WorldGenTreeHappy tree = new WorldGenTreeHappy();
             BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
             tree.generate(world, random, new BlockPos(xPos, top.getY(), zPos));

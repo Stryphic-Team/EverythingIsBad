@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.utils;
+package com.dna.everythingisbad.utils.prototypes;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModEntities;

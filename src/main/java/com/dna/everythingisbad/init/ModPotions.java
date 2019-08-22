@@ -1,6 +1,6 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.utils.PotionPrototype;
+import com.dna.everythingisbad.utils.prototypes.PotionPrototype;
 
 public class ModPotions {
     public static PotionPrototype POTION_HIGHNESS = new PotionPrototype("highness",24000,false,4351539,0,0);

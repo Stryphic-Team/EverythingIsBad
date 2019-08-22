@@ -22,6 +22,8 @@ public class CommonProxy implements IProxy{
         ModFluids.registerBlocks();
         ModBlocks.init();
 
+        //ForgeRegistries.SOUND_EVENTS.register(ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[0]);
+
 
 
 
@@ -44,6 +46,8 @@ public class CommonProxy implements IProxy{
         //World Generation Registration
         GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);
         GameRegistry.registerWorldGenerator(WorldGenGodsPeeGenerator.INSTANCE,100);
+
+
         ModEntities.init();
 
     }

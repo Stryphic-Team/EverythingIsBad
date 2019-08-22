@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.utils;
+package com.dna.everythingisbad.utils.prototypes;
 
 import com.dna.everythingisbad.block.BlockFluidBase;
 import com.dna.everythingisbad.client.ModStateMapper;

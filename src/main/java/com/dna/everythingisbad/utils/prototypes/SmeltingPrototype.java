@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.utils;
+package com.dna.everythingisbad.utils.prototypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
