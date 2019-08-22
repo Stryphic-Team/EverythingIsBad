@@ -38,6 +38,7 @@ item.record.record_smart_man3.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 2)
 entity.jesus.name=Jesus
 entity.satan.name=Satan
 entity.stupid_skeleton.name=Stupid Skeleton
+entity.good_mob.name=Good Mob
 
 effect.highness=Highness
 effect.common_cold=Common Cold
