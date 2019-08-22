@@ -17,11 +17,14 @@ public class ModItems {
     public static final ItemPoop POOP_ITEM = new ItemPoop("poop");
     public static final ItemPoopBrick POOP_BRICK_ITEM = new ItemPoopBrick("poop_brick");
     public static final ItemWeed WEED_ITEM = new ItemWeed("weed");
-    public static final ItemDevilsCabbage DEVILS_CABBAGE_ITEM = new ItemDevilsCabbage("devils_cabbage");
-    public static final ItemChickenSoup CHICKEN_SOUP_ITEM = new ItemChickenSoup("chicken_soup");
     public static final ItemPaperBag PAPER_BAG_ITEM = new ItemPaperBag("paper_bag");
+
     public static final ItemFungOs FUNG_OS_ITEM = new ItemFungOs("fung_os");
     public static final ItemHotCheaters HOT_CHEATERS_ITEM = new ItemHotCheaters("hot_cheaters");
+    public static final ItemJesusMeatRaw JESUS_MEAT_RAW = new ItemJesusMeatRaw("jesus_meat_raw");
+    public static final ItemJesusMeatCooked JESUS_MEAT_COOKED = new ItemJesusMeatCooked("jesus_meat_cooked");
+    public static final ItemDevilsCabbage DEVILS_CABBAGE_ITEM = new ItemDevilsCabbage("devils_cabbage");
+    public static final ItemChickenSoup CHICKEN_SOUP_ITEM = new ItemChickenSoup("chicken_soup");
 
     public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
     public static final ItemRecordGodsPee RECORD_GODS_PEE = new ItemRecordGodsPee("record_gods_pee");
