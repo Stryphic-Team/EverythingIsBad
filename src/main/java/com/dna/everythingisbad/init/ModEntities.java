@@ -36,6 +36,7 @@ public class ModEntities {
         for(EntityPrototype e:ENTITIES){
             e.register();
         }
+
         /*
          * adds spawns for all biomes
          */
