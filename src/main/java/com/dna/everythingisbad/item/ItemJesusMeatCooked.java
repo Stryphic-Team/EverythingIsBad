@@ -19,7 +19,7 @@ public class ItemJesusMeatCooked extends ItemFoodBase {
 
 
     public ItemJesusMeatCooked(String name) {
-        super(6, 2, false);
+        super(6, 2, true);
         this.setRegistryName(name);
         this.setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);

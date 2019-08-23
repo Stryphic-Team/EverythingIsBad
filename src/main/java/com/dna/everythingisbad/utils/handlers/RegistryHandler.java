@@ -1,20 +1,27 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
 import com.dna.everythingisbad.utils.ModConfig;
+import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -104,5 +111,20 @@ public class RegistryHandler {
             }
         }
     }
+    @SubscribeEvent
+    public static void wolfFed(PlayerInteractEvent.EntityInteract event){
+        Entity target = event.getTarget();
 
+        String target_name = target.getName();
+
+        EntityPlayer player = event.getEntityPlayer();
+
+        ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+        if (target_name.equals("Wolf")) {
+            if (itemstack.getItem() == ModItems.JESUS_MEAT_COOKED || itemstack.getItem() == ModItems.JESUS_MEAT_RAW){
+                EntityWolf wolf = (EntityWolf)target;
+                wolf.addPotionEffect(new PotionEffect(Potion.getPotionById(25), TimeHelper.fromSeconds(30), 1));
+            }
+        }
+    }
 }
