@@ -8,6 +8,7 @@ public class ModPotions {
     public static PotionPrototype[] POTIONS = new PotionPrototype[]{
             POTION_HIGHNESS,POTION_COMMON_COLD
     };
+
     public static void init(){
         for(PotionPrototype potion:POTIONS){
             potion.registerPotion();

@@ -52,7 +52,7 @@ public class RegistryHandler {
     public static void playerInteract(PlayerInteractEvent.EntityInteract event){
         PlayerInteractionHandler.reallyMilked(event);
         PlayerInteractionHandler.wolfFed(event);
-        Main.logger.info("Player interact");
+        //Main.logger.info("Player interact");
 
     }
 }
