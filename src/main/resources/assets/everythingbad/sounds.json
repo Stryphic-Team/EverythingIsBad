@@ -43,5 +43,40 @@
         "stream": true
       }
     ]
+  },
+  "jesus_ambient_0": {
+    "sounds": [
+      {
+        "name": "everythingbad:jesus_ambient_0"
+      }
+    ]
+  },
+  "jesus_ambient_1": {
+    "sounds": [
+      {
+        "name": "everythingbad:jesus_ambient_1"
+      }
+    ]
+  },
+  "jesus_ambient_2": {
+    "sounds": [
+      {
+        "name": "everythingbad:jesus_ambient_2"
+      }
+    ]
+  },
+  "jesus_ambient_3": {
+    "sounds": [
+      {
+        "name": "everythingbad:jesus_ambient_3"
+      }
+    ]
+  },
+  "jesus_ambient_4": {
+    "sounds": [
+      {
+        "name": "everythingbad:jesus_ambient_4"
+      }
+    ]
   }
 }

@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.client;
 
 import com.dna.everythingisbad.entity.EntitySatan;
+import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -9,8 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderSatan extends RenderBiped<EntitySatan> {
 
-    //TODO change the texture of satan to satan texture
-    private static final ResourceLocation SATAN_TEXTURE = new ResourceLocation("textures/entity/zombie/zombie.png");
+    private static final ResourceLocation SATAN_TEXTURE = new ResourceLocation(Reference.MOD_ID,"textures/entity/satan.png");
 
     public RenderSatan(RenderManager renderManagerIn)
     {

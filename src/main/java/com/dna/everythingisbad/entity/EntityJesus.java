@@ -9,8 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 //TODO make the entity quote bible quotes with tts
 public class EntityJesus extends EntityZombie{
+
+    static Random random = new Random();
 
     public EntityJesus(World worldIn) {
         super(worldIn);
@@ -31,11 +35,13 @@ public class EntityJesus extends EntityZombie{
     @Override
     public SoundEvent getAmbientSound()
     {
-        return ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[0];
+        int hoo = random.nextInt(5);
+        return ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[hoo];
     }
     @Override
     public SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[0];
+        int har = random.nextInt(5);
+        return ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[har];
     }
 }

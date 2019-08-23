@@ -14,7 +14,11 @@ public class ModSoundEvents {
     public static SoundEvent SOUND_EVENT_SMART_MAN2 = register("smart_man2");
     public static SoundEvent SOUND_EVENT_SMART_MAN3 = register("smart_man3");
     public static SoundEvent[] SOUND_EVENT_JESUS_AMBIENT = new SoundEvent[]{
-            register("jesus_ambient_0")
+            register("jesus_ambient_0"),
+            register("jesus_ambient_1"),
+            register("jesus_ambient_2"),
+            register("jesus_ambient_3"),
+            register("jesus_ambient_4"),
     };
 
 
