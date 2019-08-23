@@ -5,6 +5,7 @@ import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -39,9 +40,14 @@ public class ModEntities {
          * adds spawns for all biomes
          */
         for(Biome biome:Biome.REGISTRY){
-            EntityRegistry.addSpawn(EntityStupidSkeleton.class,10,5,200, EnumCreatureType.MONSTER,biome);
-            EntityRegistry.addSpawn(EntityJesus.class,1,5,300, EnumCreatureType.MONSTER,biome);
-            EntityRegistry.addSpawn(EntitySatan.class,1,5,300, EnumCreatureType.MONSTER,biome);
+            if(biome.equals(Biomes.HELL)){
+                EntityRegistry.addSpawn(EntitySatan.class,1,5,300, EnumCreatureType.MONSTER,biome);
+            }else{
+                EntityRegistry.addSpawn(EntityStupidSkeleton.class,10,5,200, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.addSpawn(EntityJesus.class,1,5,300, EnumCreatureType.MONSTER,biome);
+            }
+
+
         }
 
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"stupid_skeleton"),0xaefc5f,0xb70101);

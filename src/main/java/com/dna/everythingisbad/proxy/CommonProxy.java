@@ -3,9 +3,11 @@ package com.dna.everythingisbad.proxy;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
+import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -22,11 +24,6 @@ public class CommonProxy implements IProxy{
         ModFluids.registerBlocks();
         ModBlocks.init();
 
-        //ForgeRegistries.SOUND_EVENTS.register(ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[0]);
-
-
-
-
     }
 
     @Override
@@ -42,12 +39,10 @@ public class CommonProxy implements IProxy{
         Main.logger.info("Post Intializing");
         ModSmeltingRecipes.init();
         ModPotions.init();
-        //ModFluids.init();
         //World Generation Registration
         GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);
         GameRegistry.registerWorldGenerator(WorldGenGodsPeeGenerator.INSTANCE,100);
-
-
+        MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
         ModEntities.init();
 
     }
