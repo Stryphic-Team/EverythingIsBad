@@ -5,6 +5,7 @@ import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.utils.handlers.ClientTimingHandler;
 import com.dna.everythingisbad.utils.handlers.KeyHandler;
+import com.dna.everythingisbad.utils.handlers.MidiHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -46,7 +47,6 @@ public class ClientProxy extends CommonProxy{
         Main.logger.debug("Client: Pre Intializing");
         MinecraftForge.EVENT_BUS.register(new KeyHandler());
         MinecraftForge.EVENT_BUS.register(new ClientTimingHandler());
-
     }
 
 }

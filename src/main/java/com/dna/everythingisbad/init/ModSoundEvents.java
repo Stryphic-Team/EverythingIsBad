@@ -27,7 +27,7 @@ public class ModSoundEvents {
         SoundEvent soundEvent = new SoundEvent(location);
         soundEvent.setRegistryName(location);
         ForgeRegistries.SOUND_EVENTS.register(soundEvent);
-        Main.logger.info(soundEvent.getRegistryName());
+        //Main.logger.info(soundEvent.getRegistryName());
         return soundEvent;
     }
 }
