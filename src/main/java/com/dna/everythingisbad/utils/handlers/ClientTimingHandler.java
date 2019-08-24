@@ -61,6 +61,7 @@ public class ClientTimingHandler {
     public void joinedServer(PlayerLoggedInEvent event){
         in_server = true;
         setBlindness(event.player);
+        PlayerHandler.playerJoined(event.player);
     }
 
     @SubscribeEvent
