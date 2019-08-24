@@ -73,12 +73,12 @@ public class MidiHandler {
 
             byte statusbyte = (byte) (data[0] & 0xFF); // Makes them unsinged
             byte notebyte = (byte) (data[1] & 0xFF);
-            Main.logger.info(statusbyte);
-            Main.logger.info(notebyte);
+            //Main.logger.info(statusbyte);
+            //Main.logger.info(notebyte);
 
             if (statusbyte == -112){
                 note = notebyte; // set the note value as an unsigned int
-                Main.logger.info("note onset detected");
+                //Main.logger.info("note onset detected");
 
                 ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
                 if (itemstack.getItem() == ModItems.BANJO_ITEM) {
@@ -90,10 +90,10 @@ public class MidiHandler {
     }
     public void PlayNote(int notenumber,EntityPlayer entityplayer){
         World worldIn = entityplayer.getEntityWorld();
-        Main.logger.info("sound played");
+        //Main.logger.info("sound played");
 
         float note_coefficient = (float)Math.pow(2,(((float)notenumber-60)/12));
-        Main.logger.info(note_coefficient);
+        //Main.logger.info(note_coefficient);
         worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, ModSoundEvents.SOUND_EVENT_BANJO, SoundCategory.PLAYERS, 1F, note_coefficient);
     }
 }
