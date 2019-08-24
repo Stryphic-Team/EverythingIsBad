@@ -22,6 +22,8 @@ public class PlayerHandler {
     }
     public static void playerJoined(EntityPlayerMP player) {
         int current = player.getEntityData().getInteger("times_pooped");
+        MidiHandler midiHandler = new MidiHandler();
+        midiHandler.init(player);
         Main.logger.info(current);
     }
     public static void playerPooped(EntityPlayerMP player, int amount) {

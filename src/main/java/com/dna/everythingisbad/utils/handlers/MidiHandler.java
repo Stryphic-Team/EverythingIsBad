@@ -6,9 +6,14 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.sound.midi.*;
@@ -64,7 +69,7 @@ public class MidiHandler {
         }
         public void send(MidiMessage msg, long timeStamp) {
             byte[] data = msg.getMessage();
-            byte note;
+            int note;
 
             byte statusbyte = (byte) (data[0] & 0xFF); // Makes them unsinged
             byte notebyte = (byte) (data[1] & 0xFF);
@@ -72,9 +77,13 @@ public class MidiHandler {
             Main.logger.info(notebyte);
 
             if (statusbyte == -112){
-                note = notebyte; // set the note value
+                note = notebyte; // set the note value as an unsigned int
                 Main.logger.info("note onset detected");
-                PlayNote(note,player);
+
+                ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+                if (itemstack.getItem() == ModItems.BANJO_ITEM) {
+                    PlayNote(note, player);
+                }
             }
         }
         public void close() {}
@@ -82,6 +91,9 @@ public class MidiHandler {
     public void PlayNote(int notenumber,EntityPlayer entityplayer){
         World worldIn = entityplayer.getEntityWorld();
         Main.logger.info("sound played");
-        worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.BLOCK_NOTE_XYLOPHONE, SoundCategory.PLAYERS, 1F, 1f);
+
+        float note_coefficient = (float)Math.pow(2,(((float)notenumber-60)/12));
+        Main.logger.info(note_coefficient);
+        worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, ModSoundEvents.SOUND_EVENT_BANJO, SoundCategory.PLAYERS, 1F, note_coefficient);
     }
 }
