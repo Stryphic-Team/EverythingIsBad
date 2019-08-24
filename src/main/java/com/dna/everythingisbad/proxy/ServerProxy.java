@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.utils.handlers.ServerTimeHandler;
+import com.dna.everythingisbad.utils.handlers.ServerEventHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -32,7 +32,7 @@ public class ServerProxy extends CommonProxy{
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
         Main.logger.debug("Server: Post Intializing");
-        MinecraftForge.EVENT_BUS.register(new ServerTimeHandler());
+        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
 
 
     }

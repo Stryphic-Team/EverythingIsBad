@@ -21,7 +21,7 @@ import java.util.List;
  * This is for registering events that need to be run on a tick by tick basis
  * on the server side only.
  */
-public class ServerTimeHandler {
+public class ServerEventHandler {
     Random random = new Random();
     //20 ticks per second * 60 seconds * one minecraft day per 20 minutes
 
@@ -54,8 +54,10 @@ public class ServerTimeHandler {
                 ItemPoop item = (ItemPoop)stack.getItem();
                 player.inventory.addItemStackToInventory(stack);
                 Block blockAtPlayerPos = player.getServerWorld().getBlockState(new BlockPos(player.posX,player.posY,player.posZ)).getBlock();
+                PlayerHandler.playerPooped(player,random_amount);
             }
         }
+
     }
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerTimer(TickEvent.PlayerTickEvent event){
@@ -67,10 +69,10 @@ public class ServerTimeHandler {
     public void playerRespawn(PlayerEvent.PlayerRespawnEvent event){
         PlayerHandler.playerRespawn(event.player);
     }
-//    @SubscribeEvent
-//    public void joinedServer(PlayerEvent.PlayerLoggedInEvent event){
-//        setBlindness(event.player);
-//    }
+    @SubscribeEvent
+    public void joinedServer(PlayerEvent.PlayerLoggedInEvent event){
+        PlayerHandler.playerJoined(event.player);
+    }
 //    @SubscribeEvent
 //    public void respawn(PlayerEvent.PlayerRespawnEvent event){
 //        setBlindness(event.player);
