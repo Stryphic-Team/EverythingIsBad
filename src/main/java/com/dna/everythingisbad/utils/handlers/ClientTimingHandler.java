@@ -9,8 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -42,6 +40,7 @@ public class ClientTimingHandler {
             int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX-1)+1;
             ItemStack item = new ItemStack(ModItems.POOP_ITEM,random_amount,3);
             ClientUtils.SpawnItem(item);
+            PlayerHandler.playerPooped(event.player,random_amount);
         }
         //PotionEffectHandler.weedActive(event);
         if(event.player.isDead){
@@ -60,7 +59,6 @@ public class ClientTimingHandler {
     @SubscribeEvent
     public void joinedServer(PlayerLoggedInEvent event){
         in_server = true;
-        setBlindness(event.player);
         PlayerHandler.playerJoined(event.player);
     }
 
@@ -71,7 +69,7 @@ public class ClientTimingHandler {
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event){
-        setBlindness(event.player);
+
     }
     @SubscribeEvent(priority=EventPriority.LOWEST)
     public void fluidTimer(TickEvent.PlayerTickEvent event){
@@ -79,14 +77,6 @@ public class ClientTimingHandler {
         Block blockAtPlayerPos = player.getEntityWorld().getBlockState(new BlockPos(player.posX,player.posY,player.posZ)).getBlock();
         if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
             FluidEventHandler.inDevilsPee(player);
-        }
-    }
-
-    public void setBlindness(EntityPlayer player){
-        int rand = random.nextInt(ModConfig.BLINDNESS_CHANCE);
-        //Main.logger.info(rand);
-        if (rand == 1){
-            player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),1000000,255));
         }
     }
 }

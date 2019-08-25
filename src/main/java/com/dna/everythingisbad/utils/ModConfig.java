@@ -5,9 +5,10 @@ package com.dna.everythingisbad.utils;
  */
 public class ModConfig {
 
-    public static boolean IS_DEBUG = true;
-    public static int AUTO_POOP_INTERVAL = IS_DEBUG ? 20 * 1 * 20 : 20 * 60 * 20;
-    public static int AUTO_POOP_MAX = 6; //
-    public static int BLINDNESS_CHANCE = IS_DEBUG ? 10 : 100; // between zero and this, exclusive
-    public static boolean BLOOD_SPAWNS_ON_DEATH = true;
+    public static boolean MOBS_MOVE_FASTER;
+    public static boolean IS_DEBUG;
+    public static int AUTO_POOP_INTERVAL;
+    public static int AUTO_POOP_MAX;
+    public static int BLINDNESS_CHANCE;
+    public static boolean BLOOD_SPAWNS_ON_DEATH;
 }

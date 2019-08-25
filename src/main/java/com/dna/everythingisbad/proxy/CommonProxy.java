@@ -3,6 +3,7 @@ package com.dna.everythingisbad.proxy;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
+import com.dna.everythingisbad.utils.ConfigLoader;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
@@ -23,7 +24,7 @@ public class CommonProxy implements IProxy{
         ModFluids.register();
         ModFluids.registerBlocks();
         ModBlocks.init();
-
+        new ConfigLoader();
     }
 
     @Override
