@@ -8,10 +8,14 @@ package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModSoundEvents;
+import net.minecraft.block.BlockNote;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleNote;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -81,7 +85,7 @@ public class MidiHandler {
                 //Main.logger.info("note onset detected");
 
                 ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
-                if (itemstack.getItem() == ModItems.BANJO_ITEM) {
+                  if (itemstack.getItem() == ModItems.BANJO_ITEM) {
                     PlayNote(note, player);
                 }
             }
@@ -95,5 +99,7 @@ public class MidiHandler {
         float note_coefficient = (float)Math.pow(2,(((float)notenumber-60)/12));
         //Main.logger.info(note_coefficient);
         worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, ModSoundEvents.SOUND_EVENT_BANJO, SoundCategory.PLAYERS, 1F, note_coefficient);
+
+        worldIn.spawnParticle(EnumParticleTypes.NOTE, entityplayer.posX, entityplayer.posY + 1.2D, entityplayer.posZ, 0.0D, 0.0D, 0.0D);
     }
 }

@@ -1,9 +1,14 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
+import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -41,7 +46,20 @@ public class PotionEffectHandler {
             //Levitation
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(25), levitation_time, 1));
         }
-
+        if(time_left == 1){
+            // Gives the player a stupid core
+            ItemStack itemstack = new ItemStack(ModItems.STUPID_CORE,1);
+            if (entity instanceof EntityPlayer){
+                EntityPlayer player = (EntityPlayer)entity;
+                if (!player.inventory.addItemStackToInventory(itemstack)) {
+                    player.dropItem(itemstack, false);
+                }else{
+                    player.inventory.addItemStackToInventory(itemstack);
+                }
+            }else{
+                entity.dropItem(ModItems.STUPID_CORE,1);
+            }
+        }
     }
     /**
      * Checks when the player has the highness effect active
