@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.network.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.network.messagestypes.MessagePlayNote;
 import com.dna.everythingisbad.utils.handlers.MidiHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,9 +12,7 @@ public class MessagePlayNoteHandler implements IMessageHandler<MessagePlayNote, 
     @Override
     public IMessage onMessage(MessagePlayNote message, MessageContext ctx) {
         EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
-        Main.logger.info(message.getNote());
         MidiHandler.PlayNote(message.getNote(),message.getInstrumentId(),serverPlayer);
-        Main.logger.info("playing note");
         return null;
     }
 }
