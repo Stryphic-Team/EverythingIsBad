@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "everythingbad:blocks/poop_bricks",
+    "top": "everythingbad:blocks/poop_bricks",
+    "side": "everythingbad:blocks/poop_bricks"
+  }
+}
