@@ -6,6 +6,7 @@ tile.everythingbad:blood_block.name=Blood Block
 tile.everythingbad:sapling_happy.name=Happy Sapling
 tile.everythingbad:log_happy.name=Happy Wood
 tile.everythingbad:leaves_happy.name=Happy Leaves
+tile.everythingbad:poop_stairs.name=Poop Brick Stairs
 
 fluid.everythingbad:devils_pee=God's Pee
 fluid.everythingbad:diaria=Diaria
