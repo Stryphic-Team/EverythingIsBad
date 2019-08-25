@@ -63,6 +63,7 @@ public class KeyHandler {
 //                    ItemPoop item = (ItemPoop)stack.getItem();
 //                    FMLClientHandler.instance().getClient().player.inventory.addItemStackToInventory(stack);
                     PacketHandler.INSTANCE.sendToServer(new MessageDebugGivePoop(2));
+
                 }
             }
         }

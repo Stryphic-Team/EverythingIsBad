@@ -5,6 +5,7 @@ import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.utils.handlers.ClientTimingHandler;
 import com.dna.everythingisbad.utils.handlers.KeyHandler;
+import com.dna.everythingisbad.utils.handlers.MidiHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -22,6 +23,7 @@ public class ClientProxy extends CommonProxy{
     public void registerEntityRenderer(){
 
     }
+    //Run before Minecraft initializes
     @Override
     public void preInit(FMLPreInitializationEvent event){
         super.preInit(event);
@@ -31,15 +33,18 @@ public class ClientProxy extends CommonProxy{
 
 
     }
+    //Run when the client connects to a server or starts a new single player world
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
         Main.logger.debug("Client: Intializing");
+        //Checks for any midi devices connected to your computer
+        new MidiHandler().init();
 
 
 
     }
-
+    //Run after Minecraft initializes
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);//You need one of these oops...

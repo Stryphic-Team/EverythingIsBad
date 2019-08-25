@@ -12,6 +12,7 @@ public class ConfigLoader {
     public ConfigLoader(){
         new File(configDir).mkdirs();
         boolean fileExists = new File(configFile).exists();
+        //Creates a new config file with the default config state
         if(!fileExists){
             try {
                 new File(configFile).createNewFile();
@@ -28,6 +29,7 @@ public class ConfigLoader {
                 e.printStackTrace();
             }
         }
+        //Reads the current state of the config file
         String fileString = readFile();
         Gson gson = new Gson();
         ConfigModel config = gson.fromJson(fileString,ConfigModel.class);
@@ -59,6 +61,7 @@ public class ConfigLoader {
         return fileString.toString();
 
     }
+    //Default Config Model
     class ConfigModel{
         int auto_poop_interval = 24000;
         boolean is_debug = false;
