@@ -36,7 +36,10 @@ public class ModItems {
     public static final ItemHairDryerGun HAIR_DRYER_GUN_ITEM = new ItemHairDryerGun("hair_dryer_gun");
     public static final ItemStupidTNTGun STUPID_TNT_GUN_ITEM = new ItemStupidTNTGun("stupid_tnt_gun");
     public static final ItemStupidTNTCartridge STUPID_TNT_CARTRIDGE_ITEM = new ItemStupidTNTCartridge("stupid_tnt_cartridge");
-    public static final ItemStupidCore STUPID_CORE = new ItemStupidCore("stupid_core");
+    public static final ItemStupidCore STUPID_CORE_ITEM = new ItemStupidCore("stupid_core");
+
+    public static  final ItemCowboyHat COWBOY_HAT_ITEM = new ItemCowboyHat("cowboy_hat");
+    public static  final ItemSantaHat SANTA_HAT_ITEM = new ItemSantaHat("santa_hat");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {

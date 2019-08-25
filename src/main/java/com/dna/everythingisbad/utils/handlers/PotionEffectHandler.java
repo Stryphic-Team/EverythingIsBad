@@ -2,12 +2,9 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
-import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -48,7 +45,7 @@ public class PotionEffectHandler {
         }
         if(time_left == 1){
             // Gives the player a stupid core
-            ItemStack itemstack = new ItemStack(ModItems.STUPID_CORE,1);
+            ItemStack itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
             if (entity instanceof EntityPlayer){
                 EntityPlayer player = (EntityPlayer)entity;
                 if (!player.inventory.addItemStackToInventory(itemstack)) {
@@ -57,7 +54,7 @@ public class PotionEffectHandler {
                     player.inventory.addItemStackToInventory(itemstack);
                 }
             }else{
-                entity.dropItem(ModItems.STUPID_CORE,1);
+                entity.dropItem(ModItems.STUPID_CORE_ITEM,1);
             }
         }
     }
