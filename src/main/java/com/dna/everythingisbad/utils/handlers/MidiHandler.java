@@ -10,11 +10,12 @@ import com.dna.everythingisbad.init.ModSoundEvents;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessagePlayNote;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import javax.sound.midi.*;
+import java.util.HashMap;
 import java.util.List;
 
 public class MidiHandler {
@@ -88,33 +89,32 @@ public class MidiHandler {
     //Is only used in the MessagePlayNoteHandler for triggering note events when the player sends a MessagePlayNote to the server
     public static void PlayNote(int notenumber, int instrumentId, EntityPlayer entityPlayer) {
         World worldIn = entityPlayer.getEntityWorld();
-        float note_coefficient = (float) Math.pow(2, (((float) notenumber - 60) / 12));
+
         //gets the name of the item in the player's main hand
         String current_hand = entityPlayer.inventory.getCurrentItem().getUnlocalizedName();
-        //stores the current enum of the instrument
-        EnumInstrument currentInstrument = EnumInstrument.NONE;
-        if (current_hand.equals("item.everythingbad:banjo")) {
-            currentInstrument = EnumInstrument.BANJO;
-        } else if (current_hand.equals("item.everythingbad:string_bass")) {
-            currentInstrument = EnumInstrument.BASS;
+        HashMap<String, SoundEvent[]> soundMap = new HashMap<String,SoundEvent[]>();
+        soundMap.put("item.everythingbad:banjo",new SoundEvent[]{
+            ModSoundEvents.SOUND_EVENT_BANJO
+        });
+        soundMap.put("item.everythingbad:string_bass",new SoundEvent[]{
+                ModSoundEvents.SOUND_EVENT_STRING_BASS
+        });
+        //Goes through each instrument sound event and goes through the different variants
+        if(soundMap.containsKey(current_hand)){
+            for(int i = 0;i<soundMap.get(current_hand).length;i++){
+                SoundEvent sound = soundMap.get(current_hand)[i];
+                float note_coefficient = (float) Math.pow(2, (((float) notenumber - 60) / 12));
+                worldIn.playSound(
+                        (EntityPlayer)null,
+                        entityPlayer.posX,
+                        entityPlayer.posY,
+                        entityPlayer.posZ,
+                        sound,
+                        SoundCategory.PLAYERS,
+                        2F,
+                        note_coefficient
+                );
+            }
         }
-        //currentInstrument = current_hand.equals("item.everythingbad:banjo") ? EnumInstrument.BANJO : EnumInstrument.NONE;
-        //this checks to see which instrument and if the player has a instrument in their hand
-        //If so it will play a note with that instrument sound
-        switch (currentInstrument){
-            case BANJO:
-                worldIn.playSound((EntityPlayer)null, entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ, ModSoundEvents.SOUND_EVENT_BANJO, SoundCategory.PLAYERS, 2F, note_coefficient);
-                worldIn.spawnParticle(EnumParticleTypes.NOTE, entityPlayer.posX, entityPlayer.posY + 2.2D, entityPlayer.posZ, 0.0D, 0.0D, 0.0D);
-                break;
-            case BASS:
-                worldIn.playSound((EntityPlayer)null, entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ, ModSoundEvents.SOUND_EVENT_STRING_BASS, SoundCategory.PLAYERS, 2F, note_coefficient);
-                worldIn.spawnParticle(EnumParticleTypes.NOTE, entityPlayer.posX, entityPlayer.posY + 2.2D, entityPlayer.posZ, 0.0D, 0.0D, 0.0D);
-                break;
-            case NONE:
-                break;
-        }
-
-
-
     }
 }
