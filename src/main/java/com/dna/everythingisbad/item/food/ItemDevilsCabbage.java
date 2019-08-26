@@ -1,18 +1,17 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.food;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModSoundEvents;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.CommonUtils;
 
-public class ItemRecordGodsPee extends ItemRecordBase {
-    private final String displayName;
-
-    public ItemRecordGodsPee(String name) {
-        super(name, ModSoundEvents.SOUND_EVENT_GODS_PEE);
+public class ItemDevilsCabbage extends ItemFoodBase {
+    public ItemDevilsCabbage(String name)
+    {
+        super(0,0,true);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        this.displayName = "item." + name + ".desc";
+        this.setPotionEffect(ModPotions.POTION_HIGHNESS.getPotionEffect(),1f);
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }

@@ -1,9 +1,8 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.weapons;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFireball;
 
 public class ItemGunBase extends Item implements IHasModel {
     public ItemGunBase(){

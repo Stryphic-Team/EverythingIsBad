@@ -1,20 +1,15 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.weapons;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemSnowball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class ItemHairDryerGun extends ItemGunBase {

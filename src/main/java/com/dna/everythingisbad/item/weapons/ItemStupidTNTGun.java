@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.weapons;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.entity.EntityStupidTNT;

@@ -2,6 +2,11 @@ package com.dna.everythingisbad.init;
 
 
 import com.dna.everythingisbad.item.*;
+import com.dna.everythingisbad.item.food.*;
+import com.dna.everythingisbad.item.records.*;
+import com.dna.everythingisbad.item.weapons.ItemHairDryerGun;
+import com.dna.everythingisbad.item.weapons.ItemStupidTNTCartridge;
+import com.dna.everythingisbad.item.weapons.ItemStupidTNTGun;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;

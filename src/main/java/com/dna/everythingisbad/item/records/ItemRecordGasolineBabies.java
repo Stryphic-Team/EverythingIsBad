@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.records;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;

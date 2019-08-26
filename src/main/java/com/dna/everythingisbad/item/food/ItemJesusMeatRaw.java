@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.food;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
@@ -15,11 +15,11 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemJesusMeatCooked extends ItemFoodBase {
+public class ItemJesusMeatRaw extends ItemFoodBase {
 
 
-    public ItemJesusMeatCooked(String name) {
-        super(6, 2, true);
+    public ItemJesusMeatRaw(String name) {
+        super(3, 1, true);
         this.setRegistryName(name);
         this.setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
@@ -37,7 +37,7 @@ public class ItemJesusMeatCooked extends ItemFoodBase {
             this.onFoodEaten(stack, worldIn, entityplayer);
             entityplayer.addStat(StatList.getObjectUseStats(this));
 
-            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),800,4));
+            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),400,4));
 
             if (entityplayer instanceof EntityPlayerMP)
             {

@@ -1,8 +1,7 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.food;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,15 +10,13 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemFungOs extends ItemFoodBase {
-    public ItemFungOs(String name){
-        super(8,3f,false);
+public class ItemHotCheaters extends ItemFoodBase {
+    public ItemHotCheaters(String name){
+        super(6,3f,false);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
 
@@ -30,7 +27,7 @@ public class ItemFungOs extends ItemFoodBase {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving){
         if (!worldIn.isRemote){
-            CureEffect(entityLiving, MobEffects.NAUSEA);
+            CureEffect(entityLiving, MobEffects.MINING_FATIGUE);
         }
 
         if (entityLiving instanceof EntityPlayerMP)

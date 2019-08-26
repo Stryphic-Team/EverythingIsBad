@@ -1,8 +1,7 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.food;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,11 +14,12 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemChickenSoup extends ItemFoodBase {
-    public ItemChickenSoup(String name) {
-        super(4, 4.5f, false);
+public class ItemFungOs extends ItemFoodBase {
+    public ItemFungOs(String name){
+        super(8,3f,false);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
+
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
     }
@@ -27,7 +27,7 @@ public class ItemChickenSoup extends ItemFoodBase {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving){
         if (!worldIn.isRemote){
-            CureEffect(entityLiving, ModPotions.POTION_COMMON_COLD.getPotion());
+            CureEffect(entityLiving, MobEffects.NAUSEA);
         }
 
         if (entityLiving instanceof EntityPlayerMP)

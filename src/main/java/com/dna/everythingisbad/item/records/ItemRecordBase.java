@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.records;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.utils.IHasModel;
