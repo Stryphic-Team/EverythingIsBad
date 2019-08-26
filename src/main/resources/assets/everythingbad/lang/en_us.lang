@@ -41,6 +41,7 @@ item.record.record_smart_man2.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 1)
 item.everythingbad:record_smart_man3.name=Music Disc
 item.record.record_smart_man3.desc=Eczema Pizza - Smart Man No. 2 (Mvmt. 2)
 item.everythingbad:banjo.name=Banjo
+item.everythingbad:string_bass.name=String Bass
 
 entity.jesus.name=Jesus
 entity.satan.name=Satan

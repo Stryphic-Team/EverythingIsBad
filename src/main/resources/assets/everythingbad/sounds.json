@@ -85,5 +85,12 @@
         "name": "everythingbad:banjo"
       }
     ]
+  },
+  "string_bass": {
+    "sounds": [
+      {
+        "name": "everythingbad:string_bass"
+      }
+    ]
   }
 }

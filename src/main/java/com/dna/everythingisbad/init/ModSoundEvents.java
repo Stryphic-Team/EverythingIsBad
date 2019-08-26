@@ -21,6 +21,7 @@ public class ModSoundEvents {
             register("jesus_ambient_4"),
     };
     public static SoundEvent SOUND_EVENT_BANJO = register("banjo");
+    public static SoundEvent SOUND_EVENT_STRING_BASS = register("string_bass");
 
 
     public static SoundEvent register(String name){
