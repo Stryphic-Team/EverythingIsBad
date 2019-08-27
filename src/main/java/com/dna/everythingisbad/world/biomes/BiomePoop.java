@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.world.biomes;
 
 import com.dna.everythingisbad.init.ModBlocks;
+import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.EntityZombieVillager;
@@ -30,8 +31,9 @@ public class BiomePoop extends BiomeDesert {
         this.decorator.cactiPerChunk = 10;
         this.spawnableCreatureList.clear();
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 4, 2, 3));
-        Iterator<SpawnListEntry> iterator = this.spawnableMonsterList.iterator();
 
+        Iterator<SpawnListEntry> iterator = this.spawnableMonsterList.iterator();
+        setRegistryName(Reference.MOD_ID,"poop_biome");
         while (iterator.hasNext())
         {
             Biome.SpawnListEntry biome$spawnlistentry = iterator.next();
@@ -46,6 +48,8 @@ public class BiomePoop extends BiomeDesert {
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombieVillager.class, 1, 1, 1));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityHusk.class, 80, 4, 4));
     }
+
+
 
     public void decorate(World worldIn, Random rand, BlockPos pos)
     {

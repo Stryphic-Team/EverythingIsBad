@@ -96,6 +96,8 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     {
         float f = 4.0F;
         this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 20.0F, true);
+        //ExplosionUtils.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 20.0F);
+        //this.world.createExplosion(this,this.posX,this.posY,this.posZ,20f,false);
     }
     @Override
     public void onUpdate()

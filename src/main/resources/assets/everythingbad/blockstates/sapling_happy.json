@@ -7,6 +7,7 @@
   },
   "variants": {
     "stage=0,type=oak": { "model": "cross" },
-    "stage=1,type=oak": { "model": "cross" }
+    "stage=1,type=oak": { "model": "cross" },       
+
   }
 }

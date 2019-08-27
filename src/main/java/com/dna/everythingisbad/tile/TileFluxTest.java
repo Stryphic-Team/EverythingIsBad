@@ -161,6 +161,6 @@ public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickabl
 
     }
     static {
-        register("flux_tes ", TileFluxTest.class);
+        register("flux_test", TileFluxTest.class);
     }
 }

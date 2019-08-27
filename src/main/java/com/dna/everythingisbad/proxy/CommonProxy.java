@@ -45,6 +45,13 @@ public class CommonProxy implements IProxy{
         GameRegistry.registerWorldGenerator(WorldGenGodsPeeGenerator.INSTANCE,100);
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
         ModEntities.init();
+//        Biome.BiomeProperties properties = new Biome.BiomeProperties("poop_biome");
+//        properties.setBaseHeight(40);
+//        properties.setBaseBiome("poop_biome");
+//        properties.setWaterColor(0xff0000);
+//
+//        ForgeRegistries.BIOMES.register(new BiomePoop(properties));
+//        BiomeManager.addSpawnBiome(new BiomePoop(properties));
 
     }
 }

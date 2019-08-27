@@ -2,7 +2,6 @@ package com.dna.everythingisbad.init;
 
 import com.dna.everythingisbad.block.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -22,6 +21,7 @@ public class ModBlocks
     public static final Block LOG_HAPPY_BLOCK = new BlockLogHappy("log_happy");
     public static final Block LEAVES_HAPPY_BLOCK = new BlockLeavesHappy("leaves_happy");
     public static final Block SAPLING_HAPPY_BLOCK = new BlockSaplingHappy("sapling_happy");
+    public static final Block STUPID_CORE_MACHINE = new BlockStupidCoreMachine("stupid_core_machine");
 
     public static final Block POOP_STAIRS = new BlockPoopStairs(POOP_BRICKS_BLOCK.getDefaultState(),"poop_stairs");
 
