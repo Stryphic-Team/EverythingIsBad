@@ -46,6 +46,7 @@ public class ModItems {
 
     public static  final ItemCowboyHat COWBOY_HAT_ITEM = new ItemCowboyHat("cowboy_hat");
     public static  final ItemSantaHat SANTA_HAT_ITEM = new ItemSantaHat("santa_hat");
+    public static final ItemCamoChestplate CAMO_CHESTPLATE_ITEM = new ItemCamoChestplate("camo_chestplate");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
