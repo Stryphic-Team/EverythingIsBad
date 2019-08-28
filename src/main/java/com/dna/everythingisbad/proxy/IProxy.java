@@ -11,6 +11,8 @@ public interface IProxy {
     void init(FMLInitializationEvent event);
 
     void postInit(FMLPostInitializationEvent event);
-
+    @Deprecated
     void registerItemRenderer(Item item, int meta, String id);
+
+    public void registerModel(Item item, int metadata);
 }

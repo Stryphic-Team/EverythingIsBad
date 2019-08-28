@@ -18,6 +18,11 @@ public class CommonProxy implements IProxy{
     public void registerItemRenderer(Item item, int meta, String id) {}
 
     @Override
+    public void registerModel(Item item, int metadata) {
+
+    }
+
+    @Override
     public void preInit(FMLPreInitializationEvent event) {
 
         Main.logger.info("Pre Intializing");

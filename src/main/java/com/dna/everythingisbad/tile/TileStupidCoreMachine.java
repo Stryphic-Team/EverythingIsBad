@@ -1,151 +1,59 @@
 package com.dna.everythingisbad.tile;
 
+
 import com.dna.everythingisbad.init.ModItems;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
 
-public class TileStupidCoreMachine extends TileEntity implements ITickable, IEnergyStorage {
-    private int energyStored = 0;
+public class TileStupidCoreMachine extends TileMachineBase {
+    private NonNullList<ItemStack> tileContents = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+    @Nonnull
     @Override
-    public void update() {
-
+    public ItemStack getStackInSlot(int slot) {
+        return tileContents.get(slot);
+    }
+    @Override
+    public void update(){
+        super.update();
+        if(getEnergyStored() > 10000 && tileContents.get(0).getCount() <= 64){
+            reduceEnergyStored(10000);
+            int current_amount = tileContents.get(0).getCount();
+            tileContents.set(0,new ItemStack(ModItems.STUPID_CORE_ITEM,current_amount + 1));
+            //tileContents.add(0,new ItemStack(ModItems.STUPID_CORE_ITEM,1));
+        }
+    }
+    @Override
+    public int getSlots() {
+        return 1;
+    }
+    @Override
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+        ItemStack stack = tileContents.get(slot);
+        stack.setCount(stack.getCount() - amount);
+        return new ItemStack(ModItems.STUPID_CORE_ITEM,amount);
     }
 
     @Override
-    public int receiveEnergy(int maxReceive, boolean simulate) {
-        return 0;
-    }
-
-    @Override
-    public int extractEnergy(int maxExtract, boolean simulate) {
-        return 0;
-    }
-
-    @Override
-    public int getEnergyStored() {
-        return 0;
-    }
-
-    @Override
-    public int getMaxEnergyStored() {
-        return 0;
-    }
-
-    @Override
-    public boolean canExtract() {
-        return false;
-    }
-
-    @Override
-    public boolean canReceive() {
-        return true;
-    }
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing from) {
-
-        return capability == CapabilityEnergy.ENERGY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+    public int getSlotLimit(int slot) {
+        return 1;
     }
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-
-        energyStored = nbt.getInteger("energyStored");
+        ItemStackHelper.loadAllItems(nbt,tileContents);
         super.readFromNBT(nbt);
-
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-
+        ItemStackHelper.saveAllItems(nbt,tileContents);
         super.writeToNBT(nbt);
-        nbt.setInteger("energyStored",energyStored);
-
         return nbt;
     }
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return CapabilityEnergy.ENERGY.cast(new net.minecraftforge.energy.IEnergyStorage() {
 
-                @Override
-                public int receiveEnergy(int maxReceive, boolean simulate) {
-
-                    return TileStupidCoreMachine.this.receiveEnergy(maxReceive, simulate);
-                }
-
-                @Override
-                public int extractEnergy(int maxExtract, boolean simulate) {
-
-                    return TileStupidCoreMachine.this.extractEnergy(maxExtract, simulate);
-                }
-
-                @Override
-                public int getEnergyStored() {
-
-                    return TileStupidCoreMachine.this.getEnergyStored();
-                }
-
-                @Override
-                public int getMaxEnergyStored() {
-
-                    return TileStupidCoreMachine.this.getMaxEnergyStored();
-                }
-
-                @Override
-                public boolean canExtract() {
-
-                    return true;
-                }
-
-                @Override
-                public boolean canReceive() {
-
-                    return false;
-                }
-            });
-        }
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new IItemHandler() {
-                @Override
-                public int getSlots() {
-                    return 1;
-                }
-
-                @Nonnull
-                @Override
-                public ItemStack getStackInSlot(int slot) {
-                    return new ItemStack(ModItems.STUPID_CORE_ITEM);
-                }
-
-                @Nonnull
-                @Override
-                public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                    return null;
-                }
-
-                @Nonnull
-                @Override
-                public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                    return new ItemStack(ModItems.STUPID_CORE_ITEM);
-                }
-
-                @Override
-                public int getSlotLimit(int slot) {
-                    return 1;
-                }
-            });
-        }
-        return super.getCapability(capability, facing);
-    }
     static {
         register("stupid_core_machine", TileStupidCoreMachine.class);
     }

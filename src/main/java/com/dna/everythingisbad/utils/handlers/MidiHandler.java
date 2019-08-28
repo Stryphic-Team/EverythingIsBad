@@ -81,11 +81,7 @@ public class MidiHandler {
         }
         public void close() {}
     }
-    enum EnumInstrument{
-        BANJO,
-        BASS,
-        NONE
-    }
+
     //Is only used in the MessagePlayNoteHandler for triggering note events when the player sends a MessagePlayNote to the server
     public static void PlayNote(int notenumber, int instrumentId, EntityPlayer entityPlayer) {
         World worldIn = entityPlayer.getEntityWorld();

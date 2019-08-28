@@ -1,8 +1,8 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-  },
   "variants": {
-    "normal": { "model": "everythingbad:block/stupid_core_machine" },
+    "facing=north": { "model": "everythingbad:stupid_core_machine" },
+    "facing=east": { "model": "everythingbad:stupid_core_machine", "y": 90 },
+    "facing=south": { "model": "everythingbad:stupid_core_machine", "y": 180 },
+    "facing=west": { "model": "everythingbad:stupid_core_machine", "y": 270 }
   }
 }
