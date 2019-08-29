@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "everythingbad:dryer_machine" },
+    "facing=east": { "model": "everythingbad:dryer_machine", "y": 90 },
+    "facing=south": { "model": "everythingbad:dryer_machine", "y": 180 },
+    "facing=west": { "model": "everythingbad:dryer_machine", "y": 270 }
+  }
+}

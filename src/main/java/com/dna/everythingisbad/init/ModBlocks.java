@@ -18,10 +18,12 @@ public class ModBlocks
     public static final Block POOP_BRICKS_BLOCK = new BlockPoopBricks("poop_bricks",Material.ROCK);
     public static final Block FLUX_TEST = new BlockFluxTest("flux_test");
     public static final Block BLOOD_BLOCK = new BloodBlock("blood_block");
+    public static final Block URINE_BLOCK = new BloodBlock("urine_block");
     public static final Block LOG_HAPPY_BLOCK = new BlockLogHappy("log_happy");
     public static final Block LEAVES_HAPPY_BLOCK = new BlockLeavesHappy("leaves_happy");
     public static final Block SAPLING_HAPPY_BLOCK = new BlockSaplingHappy("sapling_happy");
     public static final Block STUPID_CORE_MACHINE = new BlockStupidCoreMachine("stupid_core_machine");
+    public static final Block DRYER_MACHINE = new BlockStupidCoreMachine("dryer_machine");
     public static final Block QUESTION_MARK_BLOCK = new BlockQuestionMark("question_mark_block");
 
     // Woke blocks
