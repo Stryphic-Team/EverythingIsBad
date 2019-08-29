@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.tile;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -15,7 +16,7 @@ import javax.annotation.Nonnull;
 
 public class TileMachineBase  extends TileEntity implements ITickable, IEnergyStorage, IItemHandler {
     private int energyStored = 0;
-    private int energyInputRate = 100;
+    private int energyInputRate = 100000;
     private int energyMaxStorage = 1000000;
     @Override
     public void update() {
@@ -113,19 +114,19 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
     @Nonnull
     @Override
     public ItemStack getStackInSlot(int slot) {
-        return null;
+        return new ItemStack(Items.AIR);
     }
 
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        return null;
+        return stack;
     }
 
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return null;
+        return new ItemStack(Items.AIR);
     }
 
     @Override
