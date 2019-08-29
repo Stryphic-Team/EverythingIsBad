@@ -11,6 +11,7 @@ import net.minecraft.util.NonNullList;
 import javax.annotation.Nonnull;
 
 public class TileStupidCoreMachine extends TileMachineBase {
+
     private NonNullList<ItemStack> tileContents = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
     @Nonnull
     @Override
@@ -35,17 +36,18 @@ public class TileStupidCoreMachine extends TileMachineBase {
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
         ItemStack stack = tileContents.get(slot);
         int stackCount = stack.getCount();
+
         if(!simulate) {
-            if (stackCount < amount) {
+            if (stackCount <= amount) {
 
                 ItemStack output_stack = stack.copy();
                 stack.setCount(0);
                 output_stack.setCount(stackCount);
                 return output_stack;
             } else {
-                stack.setCount(stack.getCount() - amount);
+                stack.setCount(stackCount - amount);
                 ItemStack output_stack = stack.copy();
-                output_stack.grow(amount);
+                output_stack.setCount(amount);
                 return output_stack;
             }
         }else{

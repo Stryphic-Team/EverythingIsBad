@@ -23,6 +23,7 @@ public class WorldGenHappyTreeGenerator implements IWorldGenerator {
             WorldGenTreeHappy tree = new WorldGenTreeHappy();
             BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
             tree.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+
         }
     }
 }
