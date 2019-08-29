@@ -22,7 +22,9 @@ public class ModBlocks
     public static final Block LEAVES_HAPPY_BLOCK = new BlockLeavesHappy("leaves_happy");
     public static final Block SAPLING_HAPPY_BLOCK = new BlockSaplingHappy("sapling_happy");
     public static final Block STUPID_CORE_MACHINE = new BlockStupidCoreMachine("stupid_core_machine");
+    public static final Block QUESTION_MARK_BLOCK = new BlockQuestionMark("question_mark_block");
 
+    // Woke blocks
     public static final Block POOP_STAIRS = new BlockPoopStairs(POOP_BRICKS_BLOCK.getDefaultState(),"poop_stairs");
 
     public static void init(){

@@ -7,6 +7,8 @@ tile.everythingbad:sapling_happy.name=Happy Sapling
 tile.everythingbad:log_happy.name=Happy Wood
 tile.everythingbad:leaves_happy.name=Happy Leaves
 tile.everythingbad:poop_stairs.name=Poop Brick Stairs
+tile.everythingbad:stupid_core_machine.name=Stupid™ Core Machine
+tile.everythingbad:question_mark_block.name=Question Mark Block
 
 fluid.everythingbad:devils_pee=God's Pee
 fluid.everythingbad:diaria=Diaria
