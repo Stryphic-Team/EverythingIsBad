@@ -3,14 +3,20 @@ package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
+import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class PlayerHandler {
 
@@ -46,6 +52,7 @@ public class PlayerHandler {
 
     }
     public static void playerTick(EntityPlayer player){
+        Random rand = new Random();
         World worldIn = player.getEntityWorld();
 
         BlockPos player_pos = player.getPosition();
@@ -59,7 +66,27 @@ public class PlayerHandler {
         if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
             Main.logger.info("Under question mark block");
             worldIn.setBlockToAir(pos_plus_2);
-            worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState())
+            worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
+            ItemStack itemstack;
+
+            if (rand.nextInt(101) > 98){
+                itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
+                player.dropItem(itemstack, false);
+            }else if (rand.nextInt(101) > 90){
+                itemstack = new ItemStack(Items.GOLD_INGOT,1);
+                player.dropItem(itemstack, false);
+            }else if (rand.nextInt(101) > 50){
+                if (rand.nextBoolean() == true){
+                    itemstack = new ItemStack(Blocks.RED_MUSHROOM,1);
+                    player.dropItem(itemstack, false);
+                }else{
+                    itemstack = new ItemStack(Blocks.BROWN_MUSHROOM,1);
+                    player.dropItem(itemstack, false);
+                }
+            }else{
+                itemstack = new ItemStack(Items.GOLD_NUGGET,1);
+                player.dropItem(itemstack, false);
+            }
 ;        }
     }
 }

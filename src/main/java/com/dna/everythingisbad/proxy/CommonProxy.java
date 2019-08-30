@@ -5,6 +5,8 @@ import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.utils.ConfigLoader;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
+import com.dna.everythingisbad.world.WorldGenQuestionMarkBlock;
+import com.dna.everythingisbad.world.WorldGenQuestionMarkBlockGenerator;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
 import net.minecraft.item.Item;
@@ -48,6 +50,7 @@ public class CommonProxy implements IProxy{
         //World Generation Registration
         GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);
         GameRegistry.registerWorldGenerator(WorldGenGodsPeeGenerator.INSTANCE,100);
+        GameRegistry.registerWorldGenerator(WorldGenQuestionMarkBlockGenerator.INSTANCE,1);
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
         ModEntities.init();
 //        Biome.BiomeProperties properties = new Biome.BiomeProperties("poop_biome");
