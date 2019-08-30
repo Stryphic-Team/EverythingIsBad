@@ -64,6 +64,7 @@ public class ServerEventHandler {
         if(event.player.isDead){
             PlayerHandler.playerDied(event.player);
         }
+        PlayerHandler.playerTick(event.player);
     }
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerRespawn(PlayerEvent.PlayerRespawnEvent event){

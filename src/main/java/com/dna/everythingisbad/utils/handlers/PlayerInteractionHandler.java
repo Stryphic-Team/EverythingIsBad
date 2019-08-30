@@ -1,8 +1,11 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,9 +15,13 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class PlayerInteractionHandler {
 

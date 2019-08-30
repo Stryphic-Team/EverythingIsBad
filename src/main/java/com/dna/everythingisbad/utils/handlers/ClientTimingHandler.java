@@ -79,5 +79,9 @@ public class ClientTimingHandler {
             FluidEventHandler.inDevilsPee(player);
         }
     }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void playerTimer(TickEvent.PlayerTickEvent event){
+        PlayerHandler.playerTick(event.player);
+    }
 
 }
