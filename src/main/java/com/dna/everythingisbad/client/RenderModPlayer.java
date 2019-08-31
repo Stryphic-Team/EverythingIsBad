@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
+import javax.annotation.Resource;
 
 public class RenderModPlayer extends RenderLivingBase {
     public RenderModPlayer(RenderManager renderManager){
@@ -21,9 +22,9 @@ public class RenderModPlayer extends RenderLivingBase {
         this.addLayer(new LayerBipedArmor(this));
     }
 
-    @Nullable
-    @Override
-    protected ResourceLocation getEntityTexture(Entity entity) {
-        return null;
+    protected ResourceLocation getEntityTexture(Entity entity)
+    {
+        ResourceLocation resourcelocation = new ResourceLocation("everythingbad:textures/models/armor/camo_layer_1");
+        return resourcelocation;
     }
 }

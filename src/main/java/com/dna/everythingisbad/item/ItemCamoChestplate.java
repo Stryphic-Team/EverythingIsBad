@@ -12,16 +12,17 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class ItemCamoChestplate extends ItemBase implements IHasModel {
+public class ItemCamoChestplate extends ItemArmorBase {
     public ItemCamoChestplate(String name) {
+        super(ArmorMaterial.CHAIN,2,EntityEquipmentSlot.CHEST);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         setMaxStackSize(1);
         ModItems.ITEMS.add(this);
     }
-    @Override
-    public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity) {
-        return armorType == EntityEquipmentSlot.CHEST && entity instanceof EntityPlayer;
-    }
+    //@Override
+    //public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity) {
+    //    return armorType == EntityEquipmentSlot.CHEST && entity instanceof EntityPlayer;
+    //}
 }
