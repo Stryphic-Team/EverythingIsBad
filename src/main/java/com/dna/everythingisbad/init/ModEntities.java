@@ -4,7 +4,14 @@ import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -71,6 +78,8 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntitySatan.class, RenderSatan::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoodMob.class, RenderGoodMob::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThreeHeadedSheep.class, RenderThreeHeadedSheep::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
+
     }
 
 }

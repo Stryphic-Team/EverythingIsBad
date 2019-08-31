@@ -5,6 +5,7 @@ import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.IHasModel;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;

@@ -35,8 +35,6 @@ public class ClientProxy extends CommonProxy{
         Main.logger.debug("Client: Pre Intializing");
         ModFluids.registerRenderers();
         ModEntities.initRenderer();
-
-
     }
     //Run when the client connects to a server or starts a new single player world
     @Override
