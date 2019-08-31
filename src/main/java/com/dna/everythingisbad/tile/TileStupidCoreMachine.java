@@ -63,7 +63,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
 
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-        return false;
+        return true;
     }
 
     @Override
@@ -77,6 +77,11 @@ public class TileStupidCoreMachine extends TileMachineBase {
         ItemStackHelper.saveAllItems(nbt,tileContents);
         super.writeToNBT(nbt);
         return nbt;
+    }
+
+    @Override
+    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+        tileContents.set(slot,stack);
     }
 
     static {

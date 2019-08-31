@@ -55,6 +55,7 @@ public class RegistryHandler {
             }
         }
     }
+
     @SubscribeEvent
     public static void playerInteract(PlayerInteractEvent.EntityInteract event){
         PlayerInteractionHandler.reallyMilked(event);

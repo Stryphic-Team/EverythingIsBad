@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.tile;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,11 +11,11 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nonnull;
 
-public class TileMachineBase  extends TileEntity implements ITickable, IEnergyStorage, IItemHandler {
+public class TileMachineBase  extends TileEntity implements ITickable, IEnergyStorage, IItemHandlerModifiable {
     private int energyStored = 0;
     private int energyInputRate = 100000;
     private int energyMaxStorage = 1000000;
@@ -43,7 +44,10 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
             return 0;
         }
     }
-
+    public boolean canInteractWith(EntityPlayer playerIn) {
+        // If we are too far away from this tile entity you cannot use it
+        return !isInvalid() && playerIn.getDistanceSq(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
+    }
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
         return 0;
@@ -103,6 +107,7 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
         }
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this);
+            //return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this);
         }
         return super.getCapability(capability, facing);
     }
@@ -132,5 +137,10 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
     @Override
     public int getSlotLimit(int slot) {
         return 0;
+    }
+
+    @Override
+    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+
     }
 }
