@@ -57,7 +57,9 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
     public int getEnergyStored() {
         return energyStored;
     }
-
+    public void setEnergyStored(int energy){
+        this.energyStored = energy;
+    }
     @Override
     public int getMaxEnergyStored() {
         return energyMaxStorage;
@@ -142,5 +144,24 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
     @Override
     public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
 
+    }
+    public void setField(EnumTileDataType type,int data){
+        switch (type){
+            case ENERGY_STORAGE:
+                this.energyStored = data;
+                break;
+            case PROGRESS:
+                break;
+        }
+    }
+    public int getField(EnumTileDataType type){
+        switch (type){
+            case ENERGY_STORAGE:
+                return this.energyStored;
+            case PROGRESS:
+                return 0;
+            default:
+                return 0;
+        }
     }
 }
