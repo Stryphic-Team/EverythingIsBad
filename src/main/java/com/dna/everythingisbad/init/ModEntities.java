@@ -78,8 +78,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntitySatan.class, RenderSatan::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoodMob.class, RenderGoodMob::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThreeHeadedSheep.class, RenderThreeHeadedSheep::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
-
+        //RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
     }
 
 }
