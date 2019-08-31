@@ -1,11 +1,11 @@
 package com.dna.everythingisbad.proxy;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.utils.ConfigLoader;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
-import com.dna.everythingisbad.world.WorldGenQuestionMarkBlock;
 import com.dna.everythingisbad.world.WorldGenQuestionMarkBlockGenerator;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
@@ -14,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy implements IProxy{
@@ -38,6 +39,7 @@ public class CommonProxy implements IProxy{
     public void init(FMLInitializationEvent event) {
 
         Main.logger.info("Intializing");
+        NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
         PacketHandler.init();
     }
 
