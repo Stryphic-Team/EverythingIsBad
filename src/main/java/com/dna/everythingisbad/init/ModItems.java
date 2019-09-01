@@ -30,6 +30,7 @@ public class ModItems {
     public static final ItemJesusMeatCooked JESUS_MEAT_COOKED = new ItemJesusMeatCooked("jesus_meat_cooked");
     public static final ItemDevilsCabbage DEVILS_CABBAGE_ITEM = new ItemDevilsCabbage("devils_cabbage");
     public static final ItemChickenSoup CHICKEN_SOUP_ITEM = new ItemChickenSoup("chicken_soup");
+    public static final ItemAloeLeaf ALOE_LEAF_ITEM = new ItemAloeLeaf("aloe_leaf");
 
     public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
     public static final ItemRecordGodsPee RECORD_GODS_PEE = new ItemRecordGodsPee("record_gods_pee");

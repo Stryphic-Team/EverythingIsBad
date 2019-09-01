@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "cross": "everythingbad:blocks/aloe"
+    }
+  },
+  "variants": {
+    "normal": { "model": "cross" },
+    "inventory": { "model": "item/generated" }
+  }
+}

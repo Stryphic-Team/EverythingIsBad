@@ -26,6 +26,7 @@ public class ModBlocks
     public static final Block DRYER_MACHINE = new BlockDryerMachine("dryer_machine");
     public static final Block QUESTION_MARK_BLOCK = new BlockQuestionMark("question_mark_block");
     public static final Block EMPTY_BLOCK = new BlockEmpty("empty_block");
+    public static final Block ALOE_BLOCK = new BlockAloe("aloe");
 
     // Woke blocks
     public static final Block POOP_STAIRS = new BlockPoopStairs(POOP_BRICKS_BLOCK.getDefaultState(),"poop_stairs");
