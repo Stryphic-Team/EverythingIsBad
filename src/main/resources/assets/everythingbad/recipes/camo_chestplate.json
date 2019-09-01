@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "Y G",
+    "LGL",
+    "GLY"
+  ],
+  "key": {
+    "G": [
+      {
+        "item": "minecraft:dye",
+        "data": 2
+      },
+      {
+        "item": "minecraft:dye",
+        "data": 10
+      },
+      {
+        "item": "minecraft:dye",
+        "data": 14
+      }
+    ],
+    "L": [
+      {
+        "item": "minecraft:dye",
+        "data": 10
+      },
+      {
+        "item": "minecraft:dye",
+        "data": 14
+      },
+      {
+        "item": "minecraft:dye",
+        "data": 2
+      }
+    ],
+    "Y": [
+      {
+        "item": "minecraft:dye",
+        "data": 14
+      },
+      {
+        "item": "minecraft:dye",
+        "data": 2
+      },
+      {
+        "item": "minecraft:dye",
+        "data": 10
+      }
+    ]
+  },
+  "result": {
+    "item": "everythingbad:camo_chestplate"
+  }
+}
