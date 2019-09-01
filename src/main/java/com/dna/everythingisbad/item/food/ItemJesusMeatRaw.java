@@ -37,7 +37,7 @@ public class ItemJesusMeatRaw extends ItemFoodBase {
             this.onFoodEaten(stack, worldIn, entityplayer);
             entityplayer.addStat(StatList.getObjectUseStats(this));
 
-            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),400,4));
+            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),40,4));
 
             if (entityplayer instanceof EntityPlayerMP)
             {

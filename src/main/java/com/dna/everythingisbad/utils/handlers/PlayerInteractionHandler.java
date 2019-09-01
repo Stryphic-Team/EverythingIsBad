@@ -63,9 +63,12 @@ public class PlayerInteractionHandler {
 
         ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
         if (target_name.equals("Wolf")) {
-            if (itemstack.getItem() == ModItems.JESUS_MEAT_COOKED || itemstack.getItem() == ModItems.JESUS_MEAT_RAW){
+            if (itemstack.getItem() == ModItems.JESUS_MEAT_COOKED){
                 EntityWolf wolf = (EntityWolf)target;
-                wolf.addPotionEffect(new PotionEffect(Potion.getPotionById(25), TimeHelper.fromSeconds(30), 1));
+                wolf.addPotionEffect(new PotionEffect(Potion.getPotionById(25), 800, 1));
+            }else if (itemstack.getItem() == ModItems.JESUS_MEAT_RAW){
+                EntityWolf wolf = (EntityWolf)target;
+                wolf.addPotionEffect(new PotionEffect(Potion.getPotionById(25), 40, 1));
             }
         }
     }
