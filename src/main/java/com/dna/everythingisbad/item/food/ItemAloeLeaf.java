@@ -20,7 +20,7 @@ import java.util.Random;
 public class ItemAloeLeaf extends ItemFoodBase {
     public ItemAloeLeaf(String name)
     {
-        super(2,0.5f,true);
+        super(2,0f,true);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
@@ -32,7 +32,7 @@ public class ItemAloeLeaf extends ItemFoodBase {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving){
         Random rand = new Random();
         if (!worldIn.isRemote){
-            ItemStack itemstack = new ItemStack(ModItems.POOP_ITEM,3+rand.nextInt(5),3);
+            ItemStack itemstack = new ItemStack(ModItems.POOP_ITEM,1+rand.nextInt(2),3);
             if (entityLiving instanceof EntityPlayer){
                 EntityPlayer player = (EntityPlayer)entityLiving;
                 if (!player.inventory.addItemStackToInventory(itemstack)) {
