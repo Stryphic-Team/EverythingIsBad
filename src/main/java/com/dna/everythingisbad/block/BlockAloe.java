@@ -58,4 +58,9 @@ public class BlockAloe extends BlockDeadBush implements IHasModel {
             //super.harvestBlock(worldIn, player, pos, state, te, stack);
         }
     }
+    @Override
+    public java.util.List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
+    {
+        return java.util.Arrays.asList(new ItemStack(ModBlocks.ALOE_BLOCK));
+    }
 }
