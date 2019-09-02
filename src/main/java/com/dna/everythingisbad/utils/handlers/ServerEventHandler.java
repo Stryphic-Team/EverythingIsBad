@@ -5,9 +5,13 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -73,6 +77,15 @@ public class ServerEventHandler {
     @SubscribeEvent
     public void joinedServer(PlayerEvent.PlayerLoggedInEvent event){
         PlayerHandler.playerJoined(event.player);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void playerFinishUseItem(LivingEntityUseItemEvent.Finish event){
+        if (event.getItem().getItem() == Items.MILK_BUCKET) {
+            Main.logger.info("Bobob");
+            EntityLivingBase entity = event.getEntityLiving();
+            PotionEffectHandler.playerMilkDrank(entity);
+        }
     }
 //    @SubscribeEvent
 //    public void respawn(PlayerEvent.PlayerRespawnEvent event){
