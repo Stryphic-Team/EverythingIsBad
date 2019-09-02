@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.gui;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.tile.EnumTileDataType;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,6 +8,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -14,6 +16,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class StupidCoreMachineContainer extends Container {
     private TileStupidCoreMachine tileentity;
     private int energy;
+    private int progress;
 
     public StupidCoreMachineContainer(IInventory playerInventory, TileStupidCoreMachine tileentity) {
         this.tileentity = tileentity;
@@ -62,9 +65,11 @@ public class StupidCoreMachineContainer extends Container {
             IContainerListener listener = (IContainerListener)this.listeners.get(i);
 
             if(this.energy != this.tileentity.getEnergyStored()) listener.sendWindowProperty(this, 0, this.tileentity.getEnergyStored());
+            if(this.progress != this.tileentity.getProgress()) listener.sendWindowProperty(this, 1, this.tileentity.getProgress());
         }
 
         this.energy = this.tileentity.getEnergyStored();
+        this.progress = this.tileentity.getProgress();
     }
 
 
@@ -72,5 +77,11 @@ public class StupidCoreMachineContainer extends Container {
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
     }
-
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        Main.logger.info(index);
+        Slot slot = this.inventorySlots.get(index);
+        return slot != null ? slot.getStack() : ItemStack.EMPTY;
+    }
 }
