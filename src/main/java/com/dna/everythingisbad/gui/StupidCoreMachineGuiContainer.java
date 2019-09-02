@@ -34,16 +34,26 @@ public class StupidCoreMachineGuiContainer extends GuiContainer {
         mc.getTextureManager().bindTexture(background);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-        int k = this.getEnergyStoredScaled(73);
-        this.drawTexturedModalRect(this.guiLeft + 7, this.guiTop + 7, 177, 20, 12, 73 - k);
+        int energyStoredScaled = this.getEnergyStoredScaled(73);
+        this.drawTexturedModalRect(this.guiLeft + 7, this.guiTop + 7, 177, 20, 12, 73 - energyStoredScaled);
+        int progressScaled = this.getProgressScaled(24);
+        this.drawTexturedModalRect(this.guiLeft +58, this.guiTop +35, 177, 0, progressScaled, 17);
     }
     private int getEnergyStoredScaled(int pixels)
     {
         int i = this.tileEntity.getEnergyStored();
         int j = this.tileEntity.getMaxEnergyStored();
         float ratio = (float)i / (float)j;
-        //Main.logger.info(ratio);
 
         return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
     }
+    private int getProgressScaled(int pixels)
+    {
+        int i = this.tileEntity.getProgress();
+        int j = this.tileEntity.getFinishedProgress();
+        float ratio = (float)i / (float)j;
+
+        return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
+    }
+
 }
