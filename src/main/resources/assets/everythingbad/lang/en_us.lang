@@ -56,15 +56,20 @@ entity.good_mob.name=Good Mob
 
 effect.highness=Highness
 effect.common_cold=Common Cold
+effect.hepatitis=Hepatitis
 
 potion.effect.highness=Potion of Highness
 potion.effect.common_cold=Potion of Common Cold
+potion.effect.hepatitis=Potion of Hepatitis
 splash_potion.effect.highness=Splash Potion of Highness
 splash_potion.effect.common_cold=Splash Potion of Common Cold
+splash_potion.effect.hepatitis=Splash Potion of Hepatitis
 lingering_potion.effect.highness=Lingering Potion of Highness
 lingering_potion.effect.common_cold=Lingering Potion of Common Cold
+lingering_potion.effect.hepatitis=Lingering Potion of Hepatitis
 tipped_arrow.effect.highness=Arrow of Highness
 tipped_arrow.effect.common_cold=Arrow of Common Cold
+tipped_arrow.effect.hepatitis=Arrow of Hepatitis
 
 itemGroup.everythingbad=Everything is Bad
 

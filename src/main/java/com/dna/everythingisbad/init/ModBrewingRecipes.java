@@ -9,5 +9,6 @@ public class ModBrewingRecipes {
     }
     public static void init(){
         PotionHelper.addMix(PotionTypes.AWKWARD,ModItems.DEVILS_CABBAGE_ITEM,ModPotions.POTION_HIGHNESS.getPotionType());
+        PotionHelper.addMix(PotionTypes.AWKWARD,ModItems.POOP_ITEM,ModPotions.POTION_HEPATITIS.getPotionType());
     }
 }
