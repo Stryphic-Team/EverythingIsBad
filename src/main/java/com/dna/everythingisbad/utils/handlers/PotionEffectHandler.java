@@ -10,12 +10,19 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.util.HashMap;
+
 /**
  * This is for listening for potion events
  */
 public class PotionEffectHandler {
 
+    public static HashMap<EntityLivingBase,Boolean> potionEffectFirstTimes = new HashMap<EntityLivingBase,Boolean>();
+
     public static void livingEntityHighnessActive(EntityLivingBase entity){
+        if (!potionEffectFirstTimes.containsKey(entity)){
+            potionEffectFirstTimes.put(entity,false);
+        }
         int potion_duration = ModPotions.POTION_HIGHNESS.getDuration();
         int levitation_time = TimeHelper.fromMinutes(1); //1m
         int nausea_time =
@@ -26,6 +33,12 @@ public class PotionEffectHandler {
 
         //Time in ticks left
         int time_left = entity.getActivePotionEffect(ModPotions.POTION_HIGHNESS.getPotion()).getDuration();
+
+        if (!potionEffectFirstTimes.get(entity) && potion_duration>1){
+            entity.removePotionEffect(ModPotions.POTION_HIGHNESS.getPotion());
+            entity.addPotionEffect(new PotionEffect(ModPotions.POTION_HIGHNESS.getPotion(),24000));
+            potionEffectFirstTimes.put(entity,true);
+        }
 
         if(time_left == potion_duration) {
             //Mining Fatigue
@@ -56,6 +69,7 @@ public class PotionEffectHandler {
             }else{
                 entity.dropItem(ModItems.STUPID_CORE_ITEM,1);
             }
+            potionEffectFirstTimes.put(entity,false);
         }
     }
     /**
