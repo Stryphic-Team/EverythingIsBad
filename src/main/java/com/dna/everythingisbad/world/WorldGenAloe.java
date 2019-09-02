@@ -9,15 +9,14 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-public class WorldGenAloe extends WorldGenDeadBush implements IWorldGenerator {
-    public static WorldGenAloe INSTANCE = new WorldGenAloe();
+public class WorldGenAloe extends WorldGenDeadBush {
     @Override
-    public void generate(Random rand, int chunkx, int chunkz, World worldIn, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
+    public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        BlockPos position = new BlockPos(chunkx*16,255,chunkz*16);
         for (IBlockState iblockstate = worldIn.getBlockState(position); (iblockstate.getBlock().isAir(iblockstate, worldIn, position) || iblockstate.getBlock().isLeaves(iblockstate, worldIn, position)) && position.getY() > 0; iblockstate = worldIn.getBlockState(position))
         {
             position = position.down();
@@ -32,5 +31,7 @@ public class WorldGenAloe extends WorldGenDeadBush implements IWorldGenerator {
                 worldIn.setBlockState(blockpos, ModBlocks.ALOE_BLOCK.getDefaultState(), 2);
             }
         }
+
+        return true;
     }
 }
