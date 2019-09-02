@@ -24,6 +24,7 @@ public class ModBlocks
     public static final Block SAPLING_HAPPY_BLOCK = new BlockSaplingHappy("sapling_happy");
     public static final Block STUPID_CORE_MACHINE = new BlockStupidCoreMachine("stupid_core_machine");
     public static final Block DRYER_MACHINE = new BlockDryerMachine("dryer_machine");
+    public static final Block MACHINE_FRAME = new BlockMachineFrame("machine_frame");
     public static final Block QUESTION_MARK_BLOCK = new BlockQuestionMark("question_mark_block");
     public static final Block EMPTY_BLOCK = new BlockEmpty("empty_block");
     public static final Block ALOE_BLOCK = new BlockAloe("aloe");

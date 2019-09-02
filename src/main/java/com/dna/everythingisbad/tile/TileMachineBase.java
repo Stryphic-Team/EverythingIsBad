@@ -81,11 +81,12 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
     public boolean canReceive() {
         return true;
     }
-    public void reduceEnergyStored(int amount){
-        if(energyStored - amount < 0){
+    public boolean reduceEnergyStored(int amount){
+        if(energyStored - amount > 0){
             energyStored -= amount;
+            return true;
         }else{
-            energyStored = 0;
+            return false;
         }
     }
     @Override

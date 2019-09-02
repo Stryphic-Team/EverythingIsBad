@@ -1,7 +1,6 @@
 package com.dna.everythingisbad.tile;
 
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.misc.ModItemStackHadler;
 import net.minecraft.init.Items;
@@ -11,15 +10,17 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
+import scala.util.Random;
 
 import javax.annotation.Nonnull;
 
 public class TileStupidCoreMachine extends TileMachineBase {
 
     //private NonNullList<ItemStack> tileContents = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+    private Random random = new Random();;
     public ModItemStackHadler tileContents = new ModItemStackHadler(1);
     public TileStupidCoreMachine(){
-        setFinishedProgress(240);
+        setFinishedProgress(2400);
         tileContents.setExtractor(true);
     }
     @Nonnull
@@ -31,14 +32,19 @@ public class TileStupidCoreMachine extends TileMachineBase {
     public void update(){
         super.update();
         if(getEnergyStored() > 10000 && tileContents.getStackInSlot(0).getCount() < 64){
-            reduceEnergyStored(10);
+
             if(getProgress() == getFinishedProgress()){
                 int current_amount = tileContents.getStackInSlot(0).getCount();
                 tileContents.setStackInSlot(0,new ItemStack(ModItems.STUPID_CORE_ITEM,current_amount + 1));
                 setProgress(0);
             }else{
-                stepProgress();
-                Main.logger.info(getEnergyStored());
+                if(reduceEnergyStored(1000)) {
+                    stepProgress();
+                    if(getProgress() % 20 + random.nextInt(10) == 0){
+
+                        this.world.createExplosion(null,this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),0.1f,true);
+                    }
+                }
             }
 
             //tileContents.add(0,new ItemStack(ModItems.STUPID_CORE_ITEM,1));

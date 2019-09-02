@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.gui;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.tile.EnumTileDataType;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -80,8 +79,7 @@ public class StupidCoreMachineContainer extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
-        Main.logger.info(index);
         Slot slot = this.inventorySlots.get(index);
-        return slot != null ? slot.getStack() : ItemStack.EMPTY;
+        return slot != null ? tileentity.tileContents.getStackInSlot(0) : ItemStack.EMPTY;
     }
 }

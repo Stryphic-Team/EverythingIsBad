@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SMS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "everythingbad:stupid_core"
+    },
+    "M": {
+      "item": "everythingbad:machine_frame"
+    }
+  },
+  "result": {
+    "item": "everythingbad:stupid_core_machine"
+  }
+}
