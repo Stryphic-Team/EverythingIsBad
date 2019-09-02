@@ -7,6 +7,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -16,7 +17,7 @@ public class StupidCoreMachineContainer extends Container {
 
     public StupidCoreMachineContainer(IInventory playerInventory, TileStupidCoreMachine tileentity) {
         this.tileentity = tileentity;
-        IItemHandler handler = tileentity;
+        IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);;
         this.addSlotToContainer(new SlotItemHandler(handler, 0, 94, 35));
 
         for(int y = 0; y < 3; y++)

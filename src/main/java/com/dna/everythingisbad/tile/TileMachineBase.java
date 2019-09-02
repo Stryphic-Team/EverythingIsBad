@@ -18,6 +18,8 @@ import javax.annotation.Nonnull;
 public class TileMachineBase  extends TileEntity implements ITickable, IEnergyStorage, IItemHandlerModifiable {
     private int energyStored = 0;
     private int energyInputRate = 100000;
+    private int progress = 0;
+    private int finishedProgress = 0;
     private int energyMaxStorage = 1000000;
     @Override
     public void update() {
@@ -42,6 +44,11 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
             }
         }else{
             return 0;
+        }
+    }
+    public void stepProgress(){
+        if(progress < finishedProgress){
+            progress++;
         }
     }
     public boolean canInteractWith(EntityPlayer playerIn) {
@@ -108,11 +115,12 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
             return CapabilityEnergy.ENERGY.cast(this);
         }
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this);
-            //return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this);
         }
         return super.getCapability(capability, facing);
     }
+
     @Override
     public int getSlots() {
         return 0;
@@ -151,6 +159,7 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
                 this.energyStored = data;
                 break;
             case PROGRESS:
+                this.progress = data;
                 break;
         }
     }
@@ -159,9 +168,23 @@ public class TileMachineBase  extends TileEntity implements ITickable, IEnergySt
             case ENERGY_STORAGE:
                 return this.energyStored;
             case PROGRESS:
-                return 0;
+                return progress;
             default:
                 return 0;
         }
     }
+    //Gets the progress at which the machine is done
+    public int getFinishedProgress(){
+        return finishedProgress;
+    }
+    public int getProgress(){
+        return progress;
+    }
+    public void setProgress(int progress){
+        this.progress = progress;
+    }
+    public void setFinishedProgress(int finishedProgress){
+        this.finishedProgress = finishedProgress;
+    }
+
 }

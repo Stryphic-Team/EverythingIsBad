@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.gui;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -43,7 +42,7 @@ public class StupidCoreMachineGuiContainer extends GuiContainer {
         int i = this.tileEntity.getEnergyStored();
         int j = this.tileEntity.getMaxEnergyStored();
         float ratio = (float)i / (float)j;
-        Main.logger.info(ratio);
+        //Main.logger.info(ratio);
 
         return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
     }
