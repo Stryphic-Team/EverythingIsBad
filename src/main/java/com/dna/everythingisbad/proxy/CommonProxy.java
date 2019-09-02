@@ -49,6 +49,7 @@ public class CommonProxy implements IProxy{
 
         Main.logger.info("Post Intializing");
         ModSmeltingRecipes.init();
+        ModBrewingRecipes.init();
         ModPotions.init();
         //World Generation Registration
         GameRegistry.registerWorldGenerator(WorldGenHappyTreeGenerator.INSTANCE,100);

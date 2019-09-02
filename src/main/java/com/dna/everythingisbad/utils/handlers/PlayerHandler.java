@@ -27,9 +27,10 @@ public class PlayerHandler {
                     ModFluids.BLOOD.getBlockFluidBase().getDefaultState()
             );
         }
+        PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerRespawn(EntityPlayer player){
-
+        //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerJoined(EntityPlayerMP player) {
         int current = player.getEntityData().getInteger("times_pooped");
