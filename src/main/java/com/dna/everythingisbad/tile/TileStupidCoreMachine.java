@@ -31,14 +31,14 @@ public class TileStupidCoreMachine extends TileMachineBase {
     public void update(){
         super.update();
         if(getEnergyStored() > 10000 && tileContents.getStackInSlot(0).getCount() < 64){
-            reduceEnergyStored(100);
+            reduceEnergyStored(10);
             if(getProgress() == getFinishedProgress()){
                 int current_amount = tileContents.getStackInSlot(0).getCount();
                 tileContents.setStackInSlot(0,new ItemStack(ModItems.STUPID_CORE_ITEM,current_amount + 1));
-                setProgress(getFinishedProgress());
+                setProgress(0);
             }else{
                 stepProgress();
-                Main.logger.info(getProgress());
+                Main.logger.info(getEnergyStored());
             }
 
             //tileContents.add(0,new ItemStack(ModItems.STUPID_CORE_ITEM,1));
