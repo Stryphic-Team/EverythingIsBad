@@ -10,7 +10,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
 
-public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickable {
+public class TileFluxTest extends TileGeneratorBase implements IEnergyStorage, ITickable {
     private int energyStored = 10000;
     private int ticks = 0;
 
@@ -116,15 +116,6 @@ public class TileFluxTest extends TileEntity implements IEnergyStorage, ITickabl
             });
         }
         return super.getCapability(capability, from);
-    }
-    class FaceData{
-        public TileEntity tileEntity;
-        public EnumFacing facing;
-        public FaceData(BlockPos pos,EnumFacing facing){
-            World world = getWorld();
-            this.tileEntity = world.getTileEntity(pos);
-            this.facing = facing;
-        }
     }
 
     @Override

@@ -11,14 +11,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 
-public class BlockFluxTest extends BlockBase {
+public class BlockFluxTest extends BlockGeneratorBase {
     public BlockFluxTest(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        setHardness(1f);
-        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
-        ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        super(name);
     }
     @Override
     public boolean hasTileEntity(IBlockState state)

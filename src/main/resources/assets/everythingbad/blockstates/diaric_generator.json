@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "everythingbad:diaric_generator" },
+    "facing=east": { "model": "everythingbad:diaric_generator", "y": 90 },
+    "facing=south": { "model": "everythingbad:diaric_generator", "y": 180 },
+    "facing=west": { "model": "everythingbad:diaric_generator", "y": 270 }
+  }
+}
