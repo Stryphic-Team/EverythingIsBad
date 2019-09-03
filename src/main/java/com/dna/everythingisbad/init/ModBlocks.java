@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.init;
 
 import com.dna.everythingisbad.block.*;
+import com.dna.everythingisbad.block.machines.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;

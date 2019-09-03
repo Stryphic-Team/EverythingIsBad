@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.tile.TileDryerMachine;
 import net.minecraft.tileentity.TileEntity;

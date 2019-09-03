@@ -1,5 +1,6 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.machines;
 
+import com.dna.everythingisbad.block.BlockBase;
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;

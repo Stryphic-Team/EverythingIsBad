@@ -1,7 +1,8 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.tile.TileDiaricGenerator;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,14 +14,14 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockStupidCoreMachine extends BlockMachineBase {
-    public BlockStupidCoreMachine(String name){
+public class BlockDiaricGenerator extends BlockGeneratorBase {
+    public BlockDiaricGenerator(String name) {
         super(name);
     }
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileStupidCoreMachine();
+        return new TileDiaricGenerator();
     }
 
     @Override
@@ -36,7 +37,4 @@ public class BlockStupidCoreMachine extends BlockMachineBase {
         playerIn.openGui(Main.instance, Reference.GUI_STUPID_CORE_MACHINE, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
-
-
-
 }

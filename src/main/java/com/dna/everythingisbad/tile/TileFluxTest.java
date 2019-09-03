@@ -1,10 +1,8 @@
 package com.dna.everythingisbad.tile;
+
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -121,34 +119,6 @@ public class TileFluxTest extends TileGeneratorBase implements IEnergyStorage, I
     @Override
     public void update() {
 
-        ticks++;
-        if(ticks % 10 == 0) {
-            FaceData east = new FaceData(getPos().east(), EnumFacing.EAST);
-            FaceData west = new FaceData(getPos().west(), EnumFacing.WEST);
-            FaceData north = new FaceData(getPos().north(), EnumFacing.NORTH);
-            FaceData south = new FaceData(getPos().south(), EnumFacing.SOUTH);
-            FaceData up = new FaceData(getPos().up(), EnumFacing.UP);
-            FaceData down = new FaceData(getPos().down(), EnumFacing.DOWN);
-
-
-            FaceData[] faceData = new FaceData[]{
-                    east, west, north, south, up, down
-            };
-            for (FaceData face : faceData) {
-                if (face.tileEntity != null) {
-                    net.minecraftforge.energy.IEnergyStorage cap = (net.minecraftforge.energy.IEnergyStorage) face.tileEntity.getCapability(
-                            CapabilityEnergy.ENERGY,
-                            face.facing.getOpposite()
-                    );
-                    if (cap != null) {
-                        cap.receiveEnergy(10, false);
-
-                        extractEnergy(10, false);
-                    }
-
-                }
-            }
-        }
 
     }
     static {

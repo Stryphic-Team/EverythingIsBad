@@ -1,5 +1,11 @@
 package com.dna.everythingisbad.capabilities;
 
+import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.tile.FaceData;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
 public class ModEnergyCapability implements IEnergyStorage {
@@ -9,6 +15,7 @@ public class ModEnergyCapability implements IEnergyStorage {
     private int maxOutput;
     private boolean input;
     private boolean output;
+    private int ticks = 0;
     public ModEnergyCapability(int maxEnergyStorage,int maxOutput,int maxInput,boolean input,boolean output){
         this.maxEnergyStorage = maxEnergyStorage;
         this.maxOutput = maxOutput;
@@ -17,7 +24,46 @@ public class ModEnergyCapability implements IEnergyStorage {
         this.output = output;
     }
 
+    public void updateEnergyOutput(TileEntity tileEntity, World world){
+        ticks++;
+        if(ticks % 10 == 0) {
+            FaceData east = new FaceData(tileEntity.getPos().east(), EnumFacing.EAST,world);
+            FaceData west = new FaceData(tileEntity.getPos().west(), EnumFacing.WEST,world);
+            FaceData north = new FaceData(tileEntity.getPos().north(), EnumFacing.NORTH,world);
+            FaceData south = new FaceData(tileEntity.getPos().south(), EnumFacing.SOUTH,world);
+            FaceData up = new FaceData(tileEntity.getPos().up(), EnumFacing.UP,world);
+            FaceData down = new FaceData(tileEntity.getPos().down(), EnumFacing.DOWN,world);
 
+
+            FaceData[] faceData = new FaceData[]{
+                    east, west, north, south, up, down
+            };
+            for (FaceData face : faceData) {
+                if (face.tileEntity != null) {
+                    net.minecraftforge.energy.IEnergyStorage cap = (net.minecraftforge.energy.IEnergyStorage) face.tileEntity.getCapability(
+                            CapabilityEnergy.ENERGY,
+                            face.facing.getOpposite()
+                    );
+                    if (cap != null) {
+                        int energySent = cap.receiveEnergy(1000, true);
+                        int energyExtracted;
+                        if(energySent > 0){
+                            energyExtracted = this.extractEnergy(energySent,true);
+                            if(energyExtracted > 0){
+                                Main.logger.info("Energy Extracted: "+energyExtracted);
+                                Main.logger.info("Energy Sent: "+energySent);
+                                int minEnergy = Math.min(energyExtracted,energySent);
+                                this.extractEnergy(minEnergy,false);
+                                cap.receiveEnergy(minEnergy,false);
+                            }
+                        }
+                        Main.logger.info(energySent);
+                    }
+
+                }
+            }
+        }
+    }
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
         if(!input){
@@ -26,15 +72,17 @@ public class ModEnergyCapability implements IEnergyStorage {
             int possibleTransfer = maxEnergyStorage - energyStorage;
             int energyTransfer = Math.min(maxReceive,maxInput);
             energyTransfer = Math.min(energyTransfer,possibleTransfer);
-            if(energyStorage + energyTransfer <= maxEnergyStorage){
-                energyStorage += energyTransfer;
+            if(simulate) {
                 return energyTransfer;
-            }else{
-                return 0;
+            }else {
+                if (energyStorage + energyTransfer <= maxEnergyStorage) {
+                    energyStorage += energyTransfer;
+                    return energyTransfer;
+                } else {
+                    return 0;
+                }
             }
-
         }
-
     }
 
     @Override
@@ -45,16 +93,34 @@ public class ModEnergyCapability implements IEnergyStorage {
             int possibleTransfer = energyStorage;
             int energyTransfer = Math.min(maxExtract,maxOutput);
             energyTransfer = Math.min(energyTransfer,possibleTransfer);
-            if(energyStorage - energyTransfer > 0){
-                energyStorage -= energyTransfer;
+            if(simulate) {
                 return energyTransfer;
-            }else{
-                return 0;
+            }else {
+                if (energyStorage - energyTransfer >= 0) {
+                    energyStorage -= energyTransfer;
+                    return energyTransfer;
+                } else {
+                    return 0;
+                }
             }
 
         }
     }
+    public boolean addEnergy(int amount,boolean simulate){
+        int energyTransfer;
+        int possibleTransfer = maxEnergyStorage - energyStorage;
+        energyTransfer = Math.min(amount,Integer.MAX_VALUE);
+        energyTransfer = Math.min(energyTransfer,possibleTransfer);
 
+        if (energyStorage + energyTransfer <= maxEnergyStorage) {
+            if(!simulate) {
+                energyStorage += energyTransfer;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
     @Override
     public int getEnergyStored() {
         return energyStorage;

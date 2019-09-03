@@ -1,5 +1,6 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.machines;
 
+import com.dna.everythingisbad.block.BlockBase;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
@@ -23,9 +24,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockGeneratorBase extends BlockBase implements ITileEntityProvider {
+public class BlockMachineBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public BlockGeneratorBase(String name){
+    public BlockMachineBase(String name){
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
