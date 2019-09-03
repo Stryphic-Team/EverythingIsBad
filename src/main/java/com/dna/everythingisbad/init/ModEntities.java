@@ -72,6 +72,7 @@ public class ModEntities {
      */
     @SideOnly(Side.CLIENT)
     public static void initRenderer(){
+
         RenderingRegistry.registerEntityRenderingHandler(EntityStupidTNT.class, RenderStupidTNT::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityStupidSkeleton.class, RenderStupidSkeleton::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityJesus.class, RenderJesus::new);

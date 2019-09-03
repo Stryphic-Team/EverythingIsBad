@@ -4,6 +4,7 @@ import com.dna.everythingisbad.block.BlockFluidBase;
 import com.dna.everythingisbad.client.ModStateMapper;
 import com.dna.everythingisbad.fluids.FluidBase;
 import com.dna.everythingisbad.init.ModBlocks;
+import com.dna.everythingisbad.init.ModMaterials;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
@@ -74,7 +75,7 @@ public class FluidPrototype {
         this.fluidStill = fluidStill != null ? fluidStill : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_still");
         this.fluidFlow = fluidFlow != null ? fluidFlow : new ResourceLocation(Reference.MOD_ID,"fluids/"+name+"_flow");
         this.fluid = fluid != null ? fluid : new FluidBase(this.name, this.fluidStill, this.fluidFlow);
-        this.material = material != null ? material : Material.WATER;
+        this.material = material != null ? material : ModMaterials.MODLIQUID;
     }
 
     /**
