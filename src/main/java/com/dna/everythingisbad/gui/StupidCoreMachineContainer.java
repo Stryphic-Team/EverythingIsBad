@@ -76,10 +76,50 @@ public class StupidCoreMachineContainer extends Container {
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
     }
+    protected boolean performMerge(EntityPlayer player, int slotIndex, ItemStack stack) {
+
+        return performMerge(slotIndex, stack);
+    }
+    protected boolean performMerge(int slotIndex, ItemStack stack) {
+
+        int invBase = getSizeInventory();
+        int invFull = inventorySlots.size();
+
+        if (slotIndex < invBase) {
+            return mergeItemStack(stack, invBase, invFull, true);
+        }
+        return mergeItemStack(stack, 0, invBase, false);
+    }
+
+    private int getSizeInventory() {
+        return this.tileentity.tileContents.getSlots();
+    }
+
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
-    {
-        Slot slot = this.inventorySlots.get(index);
-        return slot != null ? tileentity.tileContents.getStackInSlot(0) : ItemStack.EMPTY;
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
+
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slot = inventorySlots.get(slotIndex);
+
+        if (slot != null && slot.getHasStack()) {
+            ItemStack stackInSlot = slot.getStack();
+            stack = stackInSlot.copy();
+
+            if (!performMerge(player, slotIndex, stackInSlot)) {
+                return ItemStack.EMPTY;
+            }
+            slot.onSlotChange(stackInSlot, stack);
+
+            if (stackInSlot.getCount() <= 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.putStack(stackInSlot);
+            }
+            if (stackInSlot.getCount() == stack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTake(player, stackInSlot);
+        }
+        return stack;
     }
 }

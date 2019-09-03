@@ -3,7 +3,6 @@ package com.dna.everythingisbad.tile;
 
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.misc.ModItemStackHadler;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -52,29 +51,30 @@ public class TileStupidCoreMachine extends TileMachineBase {
     }
     @Override
     public int getSlots() {
-        return 1;
+        return tileContents.getSlots();
     }
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        ItemStack stack = tileContents.getStackInSlot(slot);
-        int stackCount = stack.getCount();
-
-        if(!simulate) {
-            if (stackCount <= amount) {
-
-                ItemStack output_stack = stack.copy();
-                stack.setCount(0);
-                output_stack.setCount(stackCount);
-                return output_stack;
-            } else {
-                stack.setCount(stackCount - amount);
-                ItemStack output_stack = stack.copy();
-                output_stack.setCount(amount);
-                return output_stack;
-            }
-        }else{
-            return new ItemStack(Items.AIR);
-        }
+//        ItemStack stack = tileContents.getStackInSlot(slot);
+//        int stackCount = stack.getCount();
+//
+//        if(!simulate) {
+//            if (stackCount <= amount) {
+//
+//                ItemStack output_stack = stack.copy();
+//                stack.setCount(0);
+//                output_stack.setCount(stackCount);
+//                return output_stack;
+//            } else {
+//                stack.setCount(stackCount - amount);
+//                ItemStack output_stack = stack.copy();
+//                output_stack.setCount(amount);
+//                return output_stack;
+//            }
+//        }else{
+//            return new ItemStack(Items.AIR);
+//        }
+        return tileContents.extractItem(slot,amount,simulate);
 
     }
     @Override
@@ -90,7 +90,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
     }
     @Override
     public int getSlotLimit(int slot) {
-        return 1;
+        return tileContents.getSlotLimit(slot);
     }
 
     @Override

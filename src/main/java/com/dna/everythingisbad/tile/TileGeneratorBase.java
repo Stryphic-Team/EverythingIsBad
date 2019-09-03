@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 public class TileGeneratorBase extends TileEntity implements ITickable, IEnergyStorage, IItemHandlerModifiable, IFluidHandler {
 
-    boolean fluidAcceptor = false;
+    boolean fluidInterface = false;
     boolean energyAcceptor = false;
     boolean itemAcceptor = false;
 
@@ -133,7 +133,7 @@ public class TileGeneratorBase extends TileEntity implements ITickable, IEnergyS
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && itemAcceptor){
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this);
         }
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && fluidAcceptor){
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && fluidInterface){
             return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
         }
         return null;
