@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "everythingbad:poop_bricks"
+    }
+  },
+  "result": {
+    "item": "everythingbad:poop_stairs",
+    "count": 4
+  }
+}
