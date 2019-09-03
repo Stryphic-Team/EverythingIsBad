@@ -1,15 +1,19 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.client.RenderYellow;
+import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,6 +30,7 @@ import scala.util.Random;
 
 public class ClientTimingHandler {
     Random random = new Random();
+    RenderYellow yellow = new RenderYellow();
     //20 ticks per second * 60 seconds * one minecraft day per 20 minutes
     int poop_interval = ModConfig.AUTO_POOP_INTERVAL; // How often do you poop
     int tick_count = random.nextInt(poop_interval)-1; // Starting at a random point in the day-night cycle
@@ -84,4 +89,8 @@ public class ClientTimingHandler {
         PlayerHandler.playerTick(event.player);
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void renderGameOverlayEvent (RenderGameOverlayEvent event){
+        yellow.yelo();
+    }
 }

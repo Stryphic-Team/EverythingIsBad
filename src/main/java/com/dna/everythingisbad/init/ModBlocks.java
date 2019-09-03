@@ -35,6 +35,7 @@ public class ModBlocks
 
     // Woke blocks
     public static final Block POOP_STAIRS = new BlockPoopStairs(POOP_BRICKS_BLOCK.getDefaultState(),"poop_stairs");
+    public static final Block POOP_FENCE = new BlockPoopFence("poop_fence");
 
     public static void init(){
         for(Block block:BLOCKS){
