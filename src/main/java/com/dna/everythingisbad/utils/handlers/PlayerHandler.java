@@ -27,14 +27,17 @@ public class PlayerHandler {
                     ModFluids.BLOOD.getBlockFluidBase().getDefaultState()
             );
         }
-        PotionEffectHandler.potionEffectFirstTimes.put(player,false);
+        // sets to -1 when the player is not high
+        player.getEntityData().setInteger("highness_duration",-1);
+        player.writeEntityToNBT(player.getEntityData());
+        //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerRespawn(EntityPlayer player){
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerJoined(EntityPlayerMP player) {
         int current = player.getEntityData().getInteger("times_pooped");
-
+        //PotionEffectHandler.restoreEffects(player);
         Main.logger.info(current);
     }
     public static void playerPooped(EntityPlayerMP player, int amount) {

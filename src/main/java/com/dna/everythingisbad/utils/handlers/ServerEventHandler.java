@@ -83,8 +83,8 @@ public class ServerEventHandler {
     public void playerFinishUseItem(LivingEntityUseItemEvent.Finish event){
         if (event.getItem().getItem() == Items.MILK_BUCKET) {
             Main.logger.info("Bobob");
-            EntityLivingBase entity = event.getEntityLiving();
-            PotionEffectHandler.playerMilkDrank(entity);
+            //EntityLivingBase entity = event.getEntityLiving();
+            //PotionEffectHandler.playerMilkDrank(entity);
         }
     }
 //    @SubscribeEvent
