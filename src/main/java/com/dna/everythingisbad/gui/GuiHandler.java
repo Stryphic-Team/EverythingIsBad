@@ -20,7 +20,7 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if(ID == Reference.GUI_STUPID_CORE_MACHINE) return new StupidCoreMachineGuiContainer(player.inventory, (TileStupidCoreMachine) world.getTileEntity(new BlockPos(x,y,z)));
+        if(ID == Reference.GUI_STUPID_CORE_MACHINE) return new StupidCoreMachineContainerGui(player.inventory, (TileStupidCoreMachine) world.getTileEntity(new BlockPos(x,y,z)));
         return null;
     }
 }

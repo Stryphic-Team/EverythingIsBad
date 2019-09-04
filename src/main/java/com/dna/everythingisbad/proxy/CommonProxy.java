@@ -6,7 +6,6 @@ import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.utils.ConfigLoader;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
-import com.dna.everythingisbad.world.WorldGenAloe;
 import com.dna.everythingisbad.world.WorldGenAloeGenerator;
 import com.dna.everythingisbad.world.WorldGenQuestionMarkBlockGenerator;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
@@ -42,6 +41,7 @@ public class CommonProxy implements IProxy{
     public void init(FMLInitializationEvent event) {
 
         Main.logger.info("Intializing");
+        ModTileEntities.register();
         NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
         PacketHandler.init();
     }

@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.misc;
+package com.dna.everythingisbad.capabilities;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -6,11 +6,11 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-public class ModItemStackHadler extends ItemStackHandler {
+public class ModItemHandler extends ItemStackHandler {
 
     private boolean isInserter = false;
     private boolean isExtractor = false;
-    public ModItemStackHadler(int count){
+    public ModItemHandler(int count){
         super(count);
     }
 

@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.capabilities;
 
-import com.dna.everythingisbad.Main;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -10,12 +9,12 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ModFluidCapability implements IFluidHandler {
+public class ModFluidHandler implements IFluidHandler {
     private FluidTank fluidTank;
     private boolean isFillable;
     private boolean isDrainable;
     private ArrayList<Fluid> fluidWhitelist = new ArrayList<Fluid>();
-    public ModFluidCapability(boolean isDrainable, boolean isFillable){
+    public ModFluidHandler(boolean isDrainable, boolean isFillable){
         this.isDrainable = isDrainable;
         this.isFillable = isFillable;
         this.fluidTank = new FluidTank(16000);
@@ -27,7 +26,6 @@ public class ModFluidCapability implements IFluidHandler {
 
     @Override
     public int fill(FluidStack resource, boolean doFill) {
-        Main.logger.info(resource.getFluid().getName());
         if(fluidWhitelist.size() == 0){
             return fluidTank.fill(resource,doFill);
         }

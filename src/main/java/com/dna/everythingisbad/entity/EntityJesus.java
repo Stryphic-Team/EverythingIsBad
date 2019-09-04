@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-//TODO make the entity quote bible quotes with tts
+
 public class EntityJesus extends EntityZombie{
 
     static Random random = new Random();
