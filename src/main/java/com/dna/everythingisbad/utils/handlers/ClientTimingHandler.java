@@ -1,5 +1,7 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import ca.weblite.objc.Client;
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.client.RenderYellow;
 import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
@@ -24,6 +26,8 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.util.Random;
 
 /**
@@ -55,12 +59,14 @@ public class ClientTimingHandler {
             PlayerHandler.playerDied(event.player);
         }
     }
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
         EntityLivingBase livingBase = event.getEntityLiving();
         boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
         if(highness_active){
-            PotionEffectHandler.livingEntityHighnessActive(livingBase);
+            int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
+            Main.logger.info("Highness duration in client handler: " + highness_duration);
+            PotionEffectHandler.livingEntityHighnessActive(livingBase,highness_duration);
         }
     }
 
@@ -68,6 +74,7 @@ public class ClientTimingHandler {
     public void joinedServer(PlayerLoggedInEvent event){
         in_server = true;
         PlayerHandler.playerJoined(event.player);
+        //event.player.getEntityData().setInteger("highness_duration",);
     }
 
     @SubscribeEvent

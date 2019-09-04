@@ -34,14 +34,13 @@ public class PotionEffectHandler {
 
     //public static HashMap<EntityLivingBase,Boolean> potionEffectFirstTimes = new HashMap<EntityLivingBase,Boolean>();
 
-    public static void livingEntityHighnessActive(EntityLivingBase entity){
+    public static void livingEntityHighnessActive(EntityLivingBase entity,int highness_duration){
 
         // time_left: the amount of ticks left in the potion
         // highness_duration: the amount of ticks remaining there were on the first tick.
         // used to calculate when to give you the nausea, mining fatigue, etc.
         int time_left = entity.getActivePotionEffect(ModPotions.POTION_HIGHNESS.getPotion()).getDuration();
-        int highness_duration = entity.getEntityData().getInteger("highness_duration");
-        if (highness_duration == -1) {
+        if (highness_duration == 0) {
             entity.getEntityData().setInteger("highness_duration", time_left);
             entity.writeEntityToNBT(entity.getEntityData());
             Main.logger.info("First potion effect tick!");
@@ -56,14 +55,15 @@ public class PotionEffectHandler {
             // This happens if you get high for the first time.
             // (Because 0 is the default value. From now on it will become -1,
             // as to prevent conflicts? while the nbt tag... loads?
-        }else if(highness_duration == 0){
-            entity.getEntityData().setInteger("highness_duration", -1);
-            entity.writeEntityToNBT(entity.getEntityData());
-            Main.logger.info("First time ever getting effect!");
+        }else if(highness_duration == -1){
+            //entity.getEntityData().setInteger("highness_duration", -1);
+            //entity.writeEntityToNBT(entity.getEntityData());
+            //Main.logger.info("First time ever getting effect!");
         }
 
         // Second tick stuff?
         if(time_left == highness_duration-1) {
+            Main.logger.info("Adding side effects");
             //Mining Fatigue
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), time_left, 4));
             //Weakness
@@ -86,7 +86,7 @@ public class PotionEffectHandler {
             // the duration they underwent over the intended duration (24000 ticks).
             // So, if you only undergo 6000 ticks of highness then you only have a
             // 25% chance of getting a Stupid Core.
-            if (rand.nextFloat() > (highness_duration/24000)){
+            if (rand.nextFloat() < (highness_duration/24000)){
                 ItemStack itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
                 if (entity instanceof EntityPlayer){
                     EntityPlayer player = (EntityPlayer)entity;
@@ -101,7 +101,7 @@ public class PotionEffectHandler {
             }
 
             // Sets to -1 whenever the player is not high
-            entity.getEntityData().setInteger("highness_duration",-1);
+            entity.getEntityData().setInteger("highness_duration",0);
             entity.writeEntityToNBT(entity.getEntityData());
         }
     }

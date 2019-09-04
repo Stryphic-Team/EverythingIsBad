@@ -27,18 +27,18 @@ public class PlayerHandler {
                     ModFluids.BLOOD.getBlockFluidBase().getDefaultState()
             );
         }
-        // sets to -1 when the player is not high
-        player.getEntityData().setInteger("highness_duration",-1);
-        player.writeEntityToNBT(player.getEntityData());
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerRespawn(EntityPlayer player){
+        // sets to 0 when the player is not high
+        player.getEntityData().setInteger("highness_duration",0);
+        player.writeEntityToNBT(player.getEntityData());
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerJoined(EntityPlayerMP player) {
-        int current = player.getEntityData().getInteger("times_pooped");
+        int current = player.getEntityData().getInteger("highness_duration");
         //PotionEffectHandler.restoreEffects(player);
-        Main.logger.info(current);
+        Main.logger.info("Highness duration: " + current);
     }
     public static void playerPooped(EntityPlayerMP player, int amount) {
         int current = player.getEntityData().getInteger("times_pooped");
@@ -46,8 +46,8 @@ public class PlayerHandler {
         player.writeEntityToNBT(player.getEntityData());
     }
     public static void playerJoined(EntityPlayer player) {
-        int current = player.getEntityData().getInteger("times_pooped");
-        Main.logger.info(current);
+        int current = player.getEntityData().getInteger("highness_duration");
+        Main.logger.info("Highness duration: " + current);
     }
     public static void playerPooped(EntityPlayer player, int amount) {
         int current = player.getEntityData().getInteger("times_pooped");
@@ -91,6 +91,6 @@ public class PlayerHandler {
                 itemstack = new ItemStack(Items.GOLD_NUGGET,1);
                 player.dropItem(itemstack, false);
             }
-;        }
+;       }
     }
 }
