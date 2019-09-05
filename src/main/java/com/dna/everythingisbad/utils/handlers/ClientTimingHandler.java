@@ -1,24 +1,18 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import ca.weblite.objc.Client;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.client.RenderYellow;
-import com.dna.everythingisbad.init.ModEntities;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,8 +20,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.util.Random;
 
 /**
@@ -84,7 +76,7 @@ public class ClientTimingHandler {
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event){
-
+        PlayerHandler.playerRespawn(event.player);
     }
     @SubscribeEvent(priority=EventPriority.LOWEST)
     public void fluidTimer(TickEvent.PlayerTickEvent event){
