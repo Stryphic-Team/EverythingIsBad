@@ -6,8 +6,7 @@ import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -35,20 +34,27 @@ public class PlayerHandler {
         player.writeEntityToNBT(player.getEntityData());
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
-    public static void playerJoined(EntityPlayerMP player) {
+    public static void playerJoined(EntityPlayer entityPlayer) {
         int current = player.getEntityData().getInteger("highness_duration");
-        //PotionEffectHandler.restoreEffects(player);
-        Main.logger.info("Highness duration: " + current);
+
+        if(entityPlayer instanceof EntityPlayerMP){
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
+
+        }else if(entityPlayer instanceof EntityPlayerSP){
+            EntityPlayerSP entityPlayerSP = (EntityPlayerSP) entityPlayer;
+
+        }else{
+
+        }
+
+
     }
     public static void playerPooped(EntityPlayerMP player, int amount) {
         int current = player.getEntityData().getInteger("times_pooped");
         player.getEntityData().setInteger("times_pooped",current + amount);
         player.writeEntityToNBT(player.getEntityData());
     }
-    public static void playerJoined(EntityPlayer player) {
-        int current = player.getEntityData().getInteger("highness_duration");
-        Main.logger.info("Highness duration: " + current);
-    }
+
     public static void playerPooped(EntityPlayer player, int amount) {
         int current = player.getEntityData().getInteger("times_pooped");
         player.getEntityData().setInteger("times_pooped",current + amount);
