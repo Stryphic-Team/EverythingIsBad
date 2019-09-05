@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.capabilities;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.tile.FaceData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -8,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class ModEnergyCapability implements IEnergyStorage {
+public class ModEnergyHandler implements IEnergyStorage {
     private int energyStorage = 0;
     private int maxEnergyStorage;
     private int maxInput;
@@ -16,14 +15,14 @@ public class ModEnergyCapability implements IEnergyStorage {
     private boolean input;
     private boolean output;
     private int ticks = 0;
-    public ModEnergyCapability(int maxEnergyStorage,int maxOutput,int maxInput,boolean input,boolean output){
+    public ModEnergyHandler(int maxEnergyStorage, int maxOutput, int maxInput, boolean input, boolean output){
         this.maxEnergyStorage = maxEnergyStorage;
         this.maxOutput = maxOutput;
         this.maxInput = maxInput;
         this.input = input;
         this.output = output;
     }
-
+    //TODO Optimized energy output
     public void updateEnergyOutput(TileEntity tileEntity, World world){
         ticks++;
         if(ticks % 10 == 0) {
@@ -50,14 +49,12 @@ public class ModEnergyCapability implements IEnergyStorage {
                         if(energySent > 0){
                             energyExtracted = this.extractEnergy(energySent,true);
                             if(energyExtracted > 0){
-                                Main.logger.info("Energy Extracted: "+energyExtracted);
-                                Main.logger.info("Energy Sent: "+energySent);
                                 int minEnergy = Math.min(energyExtracted,energySent);
                                 this.extractEnergy(minEnergy,false);
                                 cap.receiveEnergy(minEnergy,false);
                             }
                         }
-                        Main.logger.info(energySent);
+
                     }
 
                 }
@@ -115,6 +112,21 @@ public class ModEnergyCapability implements IEnergyStorage {
         if (energyStorage + energyTransfer <= maxEnergyStorage) {
             if(!simulate) {
                 energyStorage += energyTransfer;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean reduceEnergy(int amount,boolean simulate){
+        int energyTransfer;
+        int possibleTransfer = energyStorage;
+        energyTransfer = Math.min(amount,Integer.MAX_VALUE);
+        energyTransfer = Math.min(energyTransfer,possibleTransfer);
+
+        if (energyStorage - energyTransfer >= 0) {
+            if(!simulate) {
+                energyStorage -= energyTransfer;
             }
             return true;
         } else {

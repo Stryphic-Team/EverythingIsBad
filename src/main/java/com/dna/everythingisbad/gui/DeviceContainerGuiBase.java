@@ -1,21 +1,20 @@
 package com.dna.everythingisbad.gui;
 
-import com.dna.everythingisbad.reference.Reference;
-import com.dna.everythingisbad.tile.TileStupidCoreMachine;
+import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class StupidCoreMachineGuiContainer extends GuiContainer {
+public class DeviceContainerGuiBase extends GuiContainer {
     public static final int WIDTH = 176;
     public static final int HEIGHT = 166;
     private final InventoryPlayer player;
-    private final TileStupidCoreMachine tileEntity;
+    private final TileDeviceBase tileEntity;
+    protected static ResourceLocation background;
 
-    private static final ResourceLocation background = new ResourceLocation(Reference.MOD_ID, "textures/gui/stupid_core_machine.png");
-    public StupidCoreMachineGuiContainer(InventoryPlayer player, TileStupidCoreMachine tileentity) {
-        super(new StupidCoreMachineContainer(player,tileentity));
-
+    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase,InventoryPlayer player, TileDeviceBase tileentity,ResourceLocation background) {
+        super(deviceContainerBase);
+        this.background = background;
         xSize = WIDTH;
         ySize = HEIGHT;
         this.player = player;
@@ -41,20 +40,18 @@ public class StupidCoreMachineGuiContainer extends GuiContainer {
         int progressScaled = this.getProgressScaled(24);
         this.drawTexturedModalRect(this.guiLeft +58, this.guiTop +35, 177, 0, progressScaled, 17);
     }
-    private int getEnergyStoredScaled(int pixels)
+    protected int getEnergyStoredScaled(int pixels)
     {
-        int i = this.tileEntity.getEnergyStored();
-        int j = this.tileEntity.getMaxEnergyStored();
+        int i = this.tileEntity.getEnergyHandler().getEnergyStored();
+        int j = this.tileEntity.getEnergyHandler().getMaxEnergyStored();
         float ratio = (float)i / (float)j;
         return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
     }
-    private int getProgressScaled(int pixels)
+    protected int getProgressScaled(int pixels)
     {
         int i = this.tileEntity.getProgress();
         int j = this.tileEntity.getFinishedProgress();
         float ratio = (float)i / (float)j;
         return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
     }
-
-
 }

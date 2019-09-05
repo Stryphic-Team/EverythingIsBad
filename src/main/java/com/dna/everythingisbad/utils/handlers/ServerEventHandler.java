@@ -2,15 +2,12 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -67,7 +64,7 @@ public class ServerEventHandler {
     }
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
-        Main.logger.info("Entity updated: " + event.getEntityLiving().getName());
+        //Main.logger.info("Entity updated: " + event.getEntityLiving().getName());
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
