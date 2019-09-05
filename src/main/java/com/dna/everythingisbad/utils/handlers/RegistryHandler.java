@@ -4,6 +4,7 @@ import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
 import com.dna.everythingisbad.utils.ModConfig;
+import ibxm.Player;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
@@ -14,6 +15,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -63,6 +65,11 @@ public class RegistryHandler {
         //Main.logger.info("Player interact");
 
     }
+    @SubscribeEvent
+    public static void attack(AttackEntityEvent event){
+        PlayerInteractionHandler.hitSomeone(event);
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void mobSpawn(EntityEvent event){
         if(ModConfig.MOBS_MOVE_FASTER) {

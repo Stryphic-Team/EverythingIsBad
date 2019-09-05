@@ -4,9 +4,12 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -17,6 +20,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -25,6 +29,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class PlayerInteractionHandler {
 
+    // When you milk a pig, you get diaria
     public static void reallyMilked(PlayerInteractEvent.EntityInteract event){
         Entity target = event.getTarget();
         String target_name = target.getName();
@@ -54,6 +59,7 @@ public class PlayerInteractionHandler {
         }
     }
 
+    // When you feed a wolf with Body of Christ, it levitates
     public static void wolfFed(PlayerInteractEvent.EntityInteract event){
         Entity target = event.getTarget();
 
@@ -70,6 +76,16 @@ public class PlayerInteractionHandler {
                 EntityWolf wolf = (EntityWolf)target;
                 wolf.addPotionEffect(new PotionEffect(Potion.getPotionById(25), 40, 1));
             }
+        }
+    }
+    // When you hit someone/something and you have the common cold, they get it too.
+    public static void hitSomeone(AttackEntityEvent event){
+        Entity target = event.getTarget();
+        EntityPlayer player = event.getEntityPlayer();
+        if (player.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion()) &&
+        target instanceof EntityLivingBase){
+            EntityLivingBase elb = (EntityLivingBase)target;
+            elb.addPotionEffect(new PotionEffect(ModPotions.POTION_COMMON_COLD.getPotion(),12000,1));
         }
     }
 }
