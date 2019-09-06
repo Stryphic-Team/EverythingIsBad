@@ -5,9 +5,9 @@ import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class StupidCoreMachineContainerGui extends DeviceContainerGuiBase {
+public class StupidCoreMachineGuiContainer extends DeviceContainerGuiBase {
 
-    public StupidCoreMachineContainerGui(InventoryPlayer player, TileStupidCoreMachine tileentity) {
+    public StupidCoreMachineGuiContainer(InventoryPlayer player, TileStupidCoreMachine tileentity) {
         super(
                 new StupidCoreMachineContainer(player, tileentity),
                 player,

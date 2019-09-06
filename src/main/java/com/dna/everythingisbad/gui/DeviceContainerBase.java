@@ -2,12 +2,16 @@ package com.dna.everythingisbad.gui;
 
 import com.dna.everythingisbad.tile.EnumTileDataType;
 import com.dna.everythingisbad.tile.TileDeviceBase;
+import com.dna.everythingisbad.utils.FluidCache;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
@@ -16,6 +20,8 @@ public class DeviceContainerBase extends Container {
     IItemHandler itemHandler;
     int energy;
     int progress;
+    int fluid_stored;
+    int fluid_type;
     public DeviceContainerBase(IInventory playerInventory,TileDeviceBase tileentity){
         this.tileentity = tileentity;
         this.itemHandler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,null);
@@ -35,20 +41,28 @@ public class DeviceContainerBase extends Container {
             this.addSlotToContainer(new Slot(playerInventory, x, 8 + x * 18, 142));
         }
     }
-
+    @SideOnly(Side.CLIENT)
     @Override
-    public void updateProgressBar(int id, int data)
-    {
+    public void updateProgressBar(int id, int data) {
         switch (id){
             case 0:
-                this.tileentity.setField(EnumTileDataType.ENERGY_STORAGE, data);
+                tileentity.setField(EnumTileDataType.PROGRESS,data);
                 break;
             case 1:
-                this.tileentity.setField(EnumTileDataType.PROGRESS,data);
+                tileentity.setField(EnumTileDataType.ENERGY_STORAGE,data);
+                break;
+            case 2:
+                tileentity.setField(EnumTileDataType.FLUID_STORED,data);
+                break;
+            case 3:
+                tileentity.setField(EnumTileDataType.FLUID_TYPE,data);
                 break;
         }
 
+
+
     }
+
     @Override
     public void detectAndSendChanges()
     {
@@ -59,12 +73,30 @@ public class DeviceContainerBase extends Container {
             IContainerListener listener = (IContainerListener)this.listeners.get(i);
             int progress = this.tileentity.getProgress();
             int energy = this.tileentity.getEnergyHandler().getEnergyStorage();
+            int fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
+            FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
+            if(fluidStack != null){
+                fluid_type = FluidCache.toInt(fluidStack.getFluid().getName());
+            }else{
+                fluid_type = -1;
+            }
             if(this.energy != energy) listener.sendWindowProperty(this, 0, energy);
             if(this.progress != progress) listener.sendWindowProperty(this, 1, progress);
+            if(this.fluid_type != fluid_type) listener.sendWindowProperty(this, 3, fluid_type);
+            if(this.fluid_stored != fluid_stored) listener.sendWindowProperty(this, 2, fluid_stored);
+
+
         }
 
         this.energy = this.tileentity.getEnergyHandler().getEnergyStored();
         this.progress = this.tileentity.getProgress();
+        this.fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
+        FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
+        if(fluidStack != null){
+            this.fluid_type = FluidCache.toInt(fluidStack.getUnlocalizedName());
+        }else{
+            this.fluid_type = -1;
+        }
     }
 
 

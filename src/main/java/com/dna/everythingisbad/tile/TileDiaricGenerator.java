@@ -15,7 +15,7 @@ public class TileDiaricGenerator extends TileGeneratorBase implements ITickable 
     @Override
     public void update() {
         super.update();
-        if(energyHandler.addEnergy(1000,true)){
+        if(energyHandler.getEnergyStored() < energyHandler.getMaxEnergyStored()){
 
 
             if(fluidHandler.getFluidTank().getFluidAmount() >= 10){
@@ -40,7 +40,4 @@ public class TileDiaricGenerator extends TileGeneratorBase implements ITickable 
         return super.writeToNBT(compound);
     }
 
-    static {
-        register("diaric_generator",TileDiaricGenerator.class);
-    }
 }

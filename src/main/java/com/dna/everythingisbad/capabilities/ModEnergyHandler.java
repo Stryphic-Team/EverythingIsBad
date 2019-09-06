@@ -73,7 +73,7 @@ public class ModEnergyHandler implements IEnergyStorage {
                 return energyTransfer;
             }else {
                 if (energyStorage + energyTransfer <= maxEnergyStorage) {
-                    energyStorage += energyTransfer;
+                    this.energyStorage += energyTransfer;
                     return energyTransfer;
                 } else {
                     return 0;

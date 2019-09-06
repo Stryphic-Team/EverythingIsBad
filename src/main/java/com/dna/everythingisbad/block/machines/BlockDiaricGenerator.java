@@ -3,7 +3,6 @@ package com.dna.everythingisbad.block.machines;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileDiaricGenerator;
-import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -30,11 +29,11 @@ public class BlockDiaricGenerator extends BlockGeneratorBase {
             return true;
         }
         TileEntity te = worldIn.getTileEntity(pos);
-        if (!(te instanceof TileStupidCoreMachine)) {
+        if (!(te instanceof TileDiaricGenerator)) {
             return false;
         }
 
-        playerIn.openGui(Main.instance, Reference.GUI_STUPID_CORE_MACHINE, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        playerIn.openGui(Main.instance, Reference.GUI_DIARIC_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 }
