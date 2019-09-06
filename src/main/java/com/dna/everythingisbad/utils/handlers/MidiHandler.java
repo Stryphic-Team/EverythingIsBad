@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MidiHandler {
-    MidiDevice device;
+    public static MidiDevice device;
     public MidiHandler() {
 
     }
