@@ -38,11 +38,11 @@ public class PlayerHandler {
         if(entityPlayer instanceof EntityPlayerMP){
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
             int current_value = entityPlayer.getEntityData().getInteger("highness_duration");
-            Main.logger.info("Current Highness Duration Value: "+current_value);
+            //Main.logger.info("Current Highness Duration Value: "+current_value);
         }else if(entityPlayer instanceof EntityPlayerSP){
             EntityPlayerSP entityPlayerSP = (EntityPlayerSP) entityPlayer;
             int current_value = entityPlayer.getEntityData().getInteger("highness_duration");
-            Main.logger.info("Current Highness Duration Value: "+current_value);
+            //Main.logger.info("Current Highness Duration Value: "+current_value);
         }
 
 

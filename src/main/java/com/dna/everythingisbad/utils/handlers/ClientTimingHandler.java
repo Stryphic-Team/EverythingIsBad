@@ -8,8 +8,11 @@ import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -56,9 +59,13 @@ public class ClientTimingHandler {
         EntityLivingBase livingBase = event.getEntityLiving();
         boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
         if(highness_active){
-            int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
-            Main.logger.info("Highness duration in client handler: " + highness_duration);
-            PotionEffectHandler.livingEntityHighnessActive(livingBase,highness_duration);
+            if (livingBase instanceof EntityPlayerSP){
+                ;
+            }else {
+                int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
+                //Main.logger.info("Highness duration in client handler: " + highness_duration);
+                PotionEffectHandler.livingEntityHighnessActive(livingBase, highness_duration);
+            }
         }
     }
 
