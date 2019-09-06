@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -32,6 +33,14 @@ public class PlayerHandler {
         // sets to 0 when the player is not high
         player.getEntityData().setInteger("highness_duration",0);
         player.writeEntityToNBT(player.getEntityData());
+
+        ItemStack soulstack = new ItemStack(ModItems.SOUL_ITEM,1,0);
+        NBTTagCompound hingydingy = new NBTTagCompound();
+        hingydingy.setString("player_name",player.getDisplayNameString());
+        soulstack.setTagCompound(hingydingy);
+        //Main.logger.info(hingydingy) ;
+        //soulstack.getTagCompound().setString("player_name",player.getDisplayNameString());
+        player.dropItem(soulstack,false);
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
         //entity player needs to be casted to its respective type when writing nbt data
@@ -75,7 +84,7 @@ public class PlayerHandler {
         Block blockabove = worldIn.getBlockState(pos_plus_2).getBlock();
 
         if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
-            Main.logger.info("Under question mark block");
+            //Main.logger.info("Under question mark block");
             worldIn.setBlockToAir(pos_plus_2);
             worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
             ItemStack itemstack;
