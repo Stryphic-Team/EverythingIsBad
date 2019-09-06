@@ -24,6 +24,8 @@ public class ModItems {
     public static final ItemWeed WEED_ITEM = new ItemWeed("weed");
     public static final ItemPaperBag PAPER_BAG_ITEM = new ItemPaperBag("paper_bag");
     public static final ItemSoul SOUL_ITEM = new ItemSoul("soul");
+    public static final ItemTobaccoLeaf TOBACCO_LEAF_ITEM = new ItemTobaccoLeaf("tobacco_leaf");
+    public static final ItemTobaccoSeeds TOBACCO_SEEDS_ITEM = new ItemTobaccoSeeds("tobacco_seeds");
 
     public static final ItemFungOs FUNG_OS_ITEM = new ItemFungOs("fung_os");
     public static final ItemHotCheaters HOT_CHEATERS_ITEM = new ItemHotCheaters("hot_cheaters");

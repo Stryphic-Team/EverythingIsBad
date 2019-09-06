@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "age=0": {
+      "model": "everythingbad:tobacco_stage0"
+    },
+    "age=1": {
+      "model": "everythingbad:tobacco_stage1"
+    },
+    "age=2": {
+      "model": "everythingbad:tobacco_stage2"
+    },
+    "age=3": {
+      "model": "everythingbad:tobacco_stage3"
+    },
+    "age=4": {
+      "model": "everythingbad:tobacco_stage4"
+    }
+  }
+}

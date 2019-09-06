@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "everythingbad:blocks/tobacco_stage_1"
+  }
+}
