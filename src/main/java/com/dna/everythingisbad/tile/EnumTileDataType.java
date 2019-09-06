@@ -3,6 +3,8 @@ package com.dna.everythingisbad.tile;
 public enum EnumTileDataType {
 
     ENERGY_STORAGE,
-    PROGRESS;
+    PROGRESS,
+    FLUID_STORED,
+    FLUID_TYPE
 
 }

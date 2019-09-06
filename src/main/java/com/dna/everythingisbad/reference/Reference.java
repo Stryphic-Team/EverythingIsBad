@@ -13,4 +13,5 @@ public class Reference {
     public static final String RESOURCE_PREFIX = MOD_ID + ":";
     private static int guiId = 0;
     public static final int GUI_STUPID_CORE_MACHINE = guiId++;
+    public static final int GUI_DIARIC_GENERATOR = guiId++;
 }

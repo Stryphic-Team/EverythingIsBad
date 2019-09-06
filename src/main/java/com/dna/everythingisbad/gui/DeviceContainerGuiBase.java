@@ -4,6 +4,8 @@ import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 public class DeviceContainerGuiBase extends GuiContainer {
     public static final int WIDTH = 176;
@@ -14,6 +16,7 @@ public class DeviceContainerGuiBase extends GuiContainer {
 
     public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase,InventoryPlayer player, TileDeviceBase tileentity,ResourceLocation background) {
         super(deviceContainerBase);
+
         this.background = background;
         xSize = WIDTH;
         ySize = HEIGHT;
@@ -38,7 +41,28 @@ public class DeviceContainerGuiBase extends GuiContainer {
     }
     public void drawProgress(){
         int progressScaled = this.getProgressScaled(24);
-        this.drawTexturedModalRect(this.guiLeft +58, this.guiTop +35, 177, 0, progressScaled, 17);
+        this.drawTexturedModalRect(this.guiLeft + 58, this.guiTop + 35, 177, 0, progressScaled, 17);
+    }
+    public void drawFluidStorage(){
+        int fluidStorageScaled = this.getFluidStorageScaled(73);
+        FluidStack fluidStack = tileEntity.getFluidHandler().getFluidTank().getInfo().fluid;
+        if(fluidStack != null){
+            if(fluidStack.amount > 0) {
+                Fluid fluid = fluidStack.getFluid();
+                if (fluid != null) {
+                    ResourceLocation fluidResource = fluidStack.getFluid().getStill();
+                    mc.getTextureManager().bindTexture(fluidResource);
+                    this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 0, 0, 16, fluidStorageScaled);
+                }
+            }
+        }
+        mc.getTextureManager().bindTexture(background);
+        this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 189, 18, 16, 73);
+
+
+
+
+
     }
     protected int getEnergyStoredScaled(int pixels)
     {
@@ -54,4 +78,11 @@ public class DeviceContainerGuiBase extends GuiContainer {
         float ratio = (float)i / (float)j;
         return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
     }
+    protected int getFluidStorageScaled(int pixels){
+        int i = this.tileEntity.getFluidHandler().getFluidTank().getFluidAmount();
+        int j = this.tileEntity.getFluidHandler().getFluidTank().getCapacity();
+        float ratio = (float)i / (float)j;
+        return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
+    }
+
 }
