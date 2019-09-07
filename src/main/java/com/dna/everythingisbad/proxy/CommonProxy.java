@@ -35,6 +35,7 @@ public class CommonProxy implements IProxy{
         ModFluids.register();
         ModFluids.registerBlocks();
         ModBlocks.init();
+        ModDimensions.registerDimensions();
         new ConfigLoader();
     }
 
