@@ -1,9 +1,14 @@
 package com.dna.everythingisbad.item.food;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
+import com.dna.everythingisbad.init.ModDimensions;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
+import com.dna.everythingisbad.utils.ModTeleporter;
+import com.dna.everythingisbad.world.dimension.HeavenProvider;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.BlockEndPortal;
+import net.minecraft.block.BlockPortal;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,7 +18,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class ItemJesusMeatCooked extends ItemFoodBase {
 
@@ -39,9 +46,18 @@ public class ItemJesusMeatCooked extends ItemFoodBase {
 
             entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),800,4));
 
+            // TODO: Get rid of this and add the real Heaven get in method.
+            // This is just a placeholder for testing.
+
             if (entityplayer instanceof EntityPlayerMP)
             {
+                EntityPlayerMP mp = (EntityPlayerMP)entityLiving;
+                WorldServer server = mp.getServerWorld();
                 CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
+                int dimension = ModDimensions.HEAVEN.getId();
+                mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,mp.posY,mp.posZ));
+                //Teleporter tellaporter = new Teleporter(server);
+                //server.getMinecraftServer().getPlayerList().transferPlayerToDimension(mp,dimension,tellaporter);
             }
         }
 

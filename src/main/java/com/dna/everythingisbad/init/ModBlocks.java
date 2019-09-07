@@ -26,6 +26,7 @@ public class ModBlocks
     public static final Block EMPTY_BLOCK = new BlockEmpty("empty_block");
     public static final Block ALOE_BLOCK = new BlockAloe("aloe");
     public static final Block TOBACCO_BLOCK = new BlockTobacco("tobacco");
+    public static final Block CLOUD_BLOCK = new BlockCloud("cloud_block");
 
     // Machines and generaters
     public static final Block FLUX_TEST = new BlockFluxTest("flux_test");
