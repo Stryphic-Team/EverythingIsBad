@@ -1,6 +1,8 @@
 {
-  "facing=north": { "model": "everythingbad:block/flux_test" },
-  "facing=east": { "model": "everythingbad:block/flux_test", "y": 90 },
-  "facing=south": { "model": "everythingbad:block/flux_test", "y": 180 },
-  "facing=west": { "model": "everythingbad:block/flux_test", "y": 270 }
+  "variants": {
+    "facing=north": { "model": "everythingbad:flux_test" },
+    "facing=east": { "model": "everythingbad:flux_test", "y": 90 },
+    "facing=south": { "model": "everythingbad:flux_test", "y": 180 },
+    "facing=west": { "model": "everythingbad:flux_test", "y": 270 }
+  }
 }

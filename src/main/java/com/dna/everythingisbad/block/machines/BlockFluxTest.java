@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 public class BlockFluxTest extends BlockGeneratorBase {
     public BlockFluxTest(String name){
         super(name);
+
     }
     @Override
     public boolean hasTileEntity(IBlockState state)

@@ -10,6 +10,7 @@ public class TileFluxTest extends TileGeneratorBase {
     private int ticks = 0;
     public TileFluxTest(){
         super("flux_test");
+        energyHandler.setMaxOutput(1);
     }
 
     @Override
