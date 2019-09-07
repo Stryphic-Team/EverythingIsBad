@@ -14,7 +14,6 @@ public class ModEnergyHandler implements IEnergyStorage {
     private int maxOutput;
     private boolean input;
     private boolean output;
-    private int ticks = 0;
     public ModEnergyHandler(int maxEnergyStorage, int maxOutput, int maxInput, boolean input, boolean output){
         this.maxEnergyStorage = maxEnergyStorage;
         this.maxOutput = maxOutput;
@@ -24,39 +23,32 @@ public class ModEnergyHandler implements IEnergyStorage {
     }
     //TODO Optimized energy output
     public void updateEnergyOutput(TileEntity tileEntity, World world){
-        ticks++;
-        if(ticks % 10 == 0) {
-            FaceData east = new FaceData(tileEntity.getPos().east(), EnumFacing.EAST,world);
-            FaceData west = new FaceData(tileEntity.getPos().west(), EnumFacing.WEST,world);
-            FaceData north = new FaceData(tileEntity.getPos().north(), EnumFacing.NORTH,world);
-            FaceData south = new FaceData(tileEntity.getPos().south(), EnumFacing.SOUTH,world);
-            FaceData up = new FaceData(tileEntity.getPos().up(), EnumFacing.UP,world);
-            FaceData down = new FaceData(tileEntity.getPos().down(), EnumFacing.DOWN,world);
-
-
-            FaceData[] faceData = new FaceData[]{
-                    east, west, north, south, up, down
-            };
-            for (FaceData face : faceData) {
-                if (face.tileEntity != null) {
-                    net.minecraftforge.energy.IEnergyStorage cap = (net.minecraftforge.energy.IEnergyStorage) face.tileEntity.getCapability(
-                            CapabilityEnergy.ENERGY,
-                            face.facing.getOpposite()
-                    );
-                    if (cap != null) {
-                        int energySent = cap.receiveEnergy(1000, true);
-                        int energyExtracted;
-                        if(energySent > 0){
-                            energyExtracted = this.extractEnergy(energySent,true);
-                            if(energyExtracted > 0){
-                                int minEnergy = Math.min(energyExtracted,energySent);
-                                this.extractEnergy(minEnergy,false);
-                                cap.receiveEnergy(minEnergy,false);
-                            }
+        FaceData east = new FaceData(tileEntity.getPos().east(), EnumFacing.EAST,world);
+        FaceData west = new FaceData(tileEntity.getPos().west(), EnumFacing.WEST,world);
+        FaceData north = new FaceData(tileEntity.getPos().north(), EnumFacing.NORTH,world);
+        FaceData south = new FaceData(tileEntity.getPos().south(), EnumFacing.SOUTH,world);
+        FaceData up = new FaceData(tileEntity.getPos().up(), EnumFacing.UP,world);
+        FaceData down = new FaceData(tileEntity.getPos().down(), EnumFacing.DOWN,world);
+        FaceData[] faceData = new FaceData[]{
+                east, west, north, south, up, down
+        };
+        for (FaceData face : faceData) {
+            if (face.tileEntity != null) {
+                net.minecraftforge.energy.IEnergyStorage cap = (net.minecraftforge.energy.IEnergyStorage) face.tileEntity.getCapability(
+                        CapabilityEnergy.ENERGY,
+                        face.facing.getOpposite()
+                );
+                if (cap != null) {
+                    int energySent = cap.receiveEnergy(maxOutput, true);
+                    int energyExtracted;
+                    if(energySent > 0){
+                        energyExtracted = this.extractEnergy(energySent,true);
+                        if(energyExtracted > 0){
+                            int minEnergy = Math.min(energyExtracted,energySent);
+                            this.extractEnergy(minEnergy,false);
+                            cap.receiveEnergy(minEnergy,false);
                         }
-
                     }
-
                 }
             }
         }

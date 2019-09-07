@@ -4,12 +4,21 @@ import com.dna.everythingisbad.capabilities.ModEnergyHandler;
 import com.dna.everythingisbad.capabilities.ModFluidHandler;
 import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.ModTileEntities;
+import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageSyncMachineGui;
 import com.dna.everythingisbad.utils.FluidCache;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
 
 
 public class TileDeviceBase extends TileEntity implements ITickable {
@@ -20,11 +29,18 @@ public class TileDeviceBase extends TileEntity implements ITickable {
     protected ModFluidHandler fluidHandler;
     protected ModEnergyHandler energyHandler;
     private MessageSyncMachineGui messageSyncMachineGui;
+    protected String displayName = "NotSet";
 
     public TileDeviceBase(String name){
         this.name = name;
         ModTileEntities.TILE_ENTITIES.add(this);
         messageSyncMachineGui = new MessageSyncMachineGui("",0,0,0);
+    }
+
+    @Nullable
+    @Override
+    public ITextComponent getDisplayName() {
+        return new TextComponentString(displayName);
     }
 
     @Override
@@ -96,7 +112,30 @@ public class TileDeviceBase extends TileEntity implements ITickable {
                 return 0;
         }
     }
+    public void sendGuiNetworkData(Container container, IContainerListener listener) {
 
+        if (listener instanceof EntityPlayer) {
+            MessageSyncMachineGui guiPacket = getGuiPacket();
+            if (guiPacket != null) {
+                PacketHandler.INSTANCE.sendTo(guiPacket,(EntityPlayerMP) listener);
+            }
+        }
+    }
+    public MessageSyncMachineGui getGuiPacket(){
+        int energyStored = energyHandler.getEnergyStored();
+        int fluidStored = fluidHandler != null ? fluidHandler.getFluidTank().getFluidAmount() : 0;
+        int progress = getProgress();
+        FluidStack fluid = fluidHandler != null ? fluidHandler.getFluidTank().getFluid() : null;
+        String fluidType = "";
+        if(fluid != null) {
+            fluidType = fluid.getFluid().getUnlocalizedName();
+        }
+        messageSyncMachineGui.setEnergyStored(energyStored);
+        messageSyncMachineGui.setProgress(progress);
+        messageSyncMachineGui.setFluidType(fluidType);
+        messageSyncMachineGui.setFluidStored(fluidStored);
+        return messageSyncMachineGui;
+    }
     //Gets the progress at which the machine is done
     public int getFinishedProgress(){
         return finishedProgress;

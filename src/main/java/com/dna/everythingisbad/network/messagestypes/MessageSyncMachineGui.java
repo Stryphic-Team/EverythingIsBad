@@ -3,6 +3,8 @@ package com.dna.everythingisbad.network.messagestypes;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
+import java.nio.charset.Charset;
+
 public class MessageSyncMachineGui implements IMessage {
     private String fluidType;
     private int fluidStored;
@@ -20,7 +22,7 @@ public class MessageSyncMachineGui implements IMessage {
     @Override
     public void fromBytes(ByteBuf buf) {
         int fluid_type_length = buf.readInt();
-        this.fluidType = buf.readBytes(fluid_type_length).toString();
+        this.fluidType = buf.readCharSequence(fluid_type_length,Charset.defaultCharset()).toString();
         this.fluidStored = buf.readInt();
         this.energyStored = buf.readInt();
         this.progress = buf.readInt();
@@ -28,8 +30,9 @@ public class MessageSyncMachineGui implements IMessage {
 
     @Override
     public void toBytes(ByteBuf buf) {
+
         buf.writeInt(fluidType.getBytes().length);
-        buf.writeBytes(fluidType.getBytes());
+        buf.writeCharSequence(fluidType.subSequence(0,fluidType.length()), Charset.defaultCharset());
         buf.writeInt(fluidStored);
         buf.writeInt(energyStored);
         buf.writeInt(progress);

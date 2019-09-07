@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.client.RenderYellow;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
@@ -9,13 +8,10 @@ import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -98,8 +94,8 @@ public class ClientTimingHandler {
         PlayerHandler.playerTick(event.player);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public void renderGameOverlayEvent (RenderGameOverlayEvent event){
-        yellow.yelo();
-    }
+//    @SubscribeEvent(priority = EventPriority.HIGH)
+//    public void renderGameOverlayEvent (RenderGameOverlayEvent event){
+//        yellow.yelo();
+//    }
 }

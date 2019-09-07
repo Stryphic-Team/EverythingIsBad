@@ -26,7 +26,8 @@ public class DeviceContainerGuiBase extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 18, this.ySize - 96 + 2, 4210752);
+        this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 4, this.ySize - 96 + 2, 4210752);
+        this.fontRenderer.drawString(tileEntity.getDisplayName().getUnformattedText(),4,4,4210752);
     }
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -51,12 +52,14 @@ public class DeviceContainerGuiBase extends GuiContainer {
                 Fluid fluid = fluidStack.getFluid();
                 if (fluid != null) {
                     ResourceLocation fluidResource = fluidStack.getFluid().getStill();
+                    fluidResource = new ResourceLocation(fluidResource.getResourceDomain(),"textures/"+fluidResource.getResourcePath()+".png");
                     mc.getTextureManager().bindTexture(fluidResource);
-                    this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 0, 0, 16, fluidStorageScaled);
+                    this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 0, 0, 10, 71);
                 }
             }
         }
         mc.getTextureManager().bindTexture(background);
+        this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 177, 18, 12, 72-fluidStorageScaled);
         this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 189, 18, 16, 73);
 
 

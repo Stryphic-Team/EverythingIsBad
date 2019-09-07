@@ -25,7 +25,7 @@ public class StupidCoreMachineGuiContainer extends DeviceContainerGuiBase {
     }
     public void drawEnergyStorage(){
         int energyStoredScaled = this.getEnergyStoredScaled(73);
-        this.drawTexturedModalRect(this.guiLeft + 7, this.guiTop + 7, 177, 18, 12, 72 - energyStoredScaled);
+        this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 177, 18, 12, 72 - energyStoredScaled);
     }
     public void drawProgress(){
         int progressScaled = this.getProgressScaled(24);

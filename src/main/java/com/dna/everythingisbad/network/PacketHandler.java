@@ -21,7 +21,7 @@ public class PacketHandler {
 
         INSTANCE.registerMessage(MessageDebugGivePoopHandler.class, MessageDebugGivePoop.class, 1, Side.SERVER);
         INSTANCE.registerMessage(MessagePlayNoteHandler.class, MessagePlayNote.class, 2, Side.SERVER);
-        INSTANCE.registerMessage(GuiSync.class, MessageSyncMachineGui.class, 3, Side.SERVER);
+        INSTANCE.registerMessage(GuiSync.class, MessageSyncMachineGui.class, 3, Side.CLIENT);
 
         if(ModConfig.IS_DEBUG) {
 

@@ -27,6 +27,6 @@ public class DiaricGeneratorGuiContainer extends DeviceContainerGuiBase {
     @Override
     public void drawEnergyStorage(){
         int energyStoredScaled = this.getEnergyStoredScaled(73);
-        this.drawTexturedModalRect(this.guiLeft + 83, this.guiTop + 7, 177, 18, 12, 72 - energyStoredScaled);
+        this.drawTexturedModalRect(this.guiLeft + 144, this.guiTop + 7, 177, 18, 12, 72 - energyStoredScaled);
     }
 }

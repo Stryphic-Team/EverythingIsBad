@@ -1,14 +1,14 @@
 package com.dna.everythingisbad.gui;
 
-import com.dna.everythingisbad.tile.EnumTileDataType;
 import com.dna.everythingisbad.tile.TileDeviceBase;
-import com.dna.everythingisbad.utils.FluidCache;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -44,20 +44,27 @@ public class DeviceContainerBase extends Container {
     @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int data) {
-        switch (id){
-            case 0:
-                tileentity.setField(EnumTileDataType.PROGRESS,data);
-                break;
-            case 1:
-                tileentity.setField(EnumTileDataType.ENERGY_STORAGE,data);
-                break;
-            case 2:
-                tileentity.setField(EnumTileDataType.FLUID_STORED,data);
-                break;
-            case 3:
-                tileentity.setField(EnumTileDataType.FLUID_TYPE,data);
-                break;
+        this.tileentity.getEnergyHandler().setEnergyStorage(GuiSync.ENERGY_STORED);
+        String fluidName = GuiSync.FLUID_TYPE.replaceAll("fluid.","");
+        Fluid fluid = FluidRegistry.getFluid(fluidName);
+        if(fluid != null) {
+            this.tileentity.getFluidHandler().getFluidTank().setFluid(new FluidStack(fluid, GuiSync.FLUID_STORED));
         }
+        this.tileentity.setProgress(GuiSync.PROGRESS);
+//        switch (id){
+//            case 0:
+//                tileentity.setField(EnumTileDataType.PROGRESS,data);
+//                break;
+//            case 1:
+//                tileentity.setField(EnumTileDataType.ENERGY_STORAGE,data);
+//                break;
+//            case 2:
+//                tileentity.setField(EnumTileDataType.FLUID_STORED,data);
+//                break;
+//            case 3:
+//                tileentity.setField(EnumTileDataType.FLUID_TYPE,data);
+//                break;
+//        }
 
 
 
@@ -67,36 +74,39 @@ public class DeviceContainerBase extends Container {
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
-
-        for(int i = 0; i < this.listeners.size(); ++i)
-        {
-            IContainerListener listener = (IContainerListener)this.listeners.get(i);
-            int progress = this.tileentity.getProgress();
-            int energy = this.tileentity.getEnergyHandler().getEnergyStorage();
-            int fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
-            FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
-            if(fluidStack != null){
-                fluid_type = FluidCache.toInt(fluidStack.getFluid().getName());
-            }else{
-                fluid_type = -1;
-            }
-            if(this.energy != energy) listener.sendWindowProperty(this, 0, energy);
-            if(this.progress != progress) listener.sendWindowProperty(this, 1, progress);
-            if(this.fluid_type != fluid_type) listener.sendWindowProperty(this, 3, fluid_type);
-            if(this.fluid_stored != fluid_stored) listener.sendWindowProperty(this, 2, fluid_stored);
-
-
+        for(IContainerListener listener:listeners){
+            listener.sendWindowProperty(this, 0, energy);
+            tileentity.sendGuiNetworkData(this,listener);
         }
-
-        this.energy = this.tileentity.getEnergyHandler().getEnergyStored();
-        this.progress = this.tileentity.getProgress();
-        this.fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
-        FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
-        if(fluidStack != null){
-            this.fluid_type = FluidCache.toInt(fluidStack.getUnlocalizedName());
-        }else{
-            this.fluid_type = -1;
-        }
+//        for(int i = 0; i < this.listeners.size(); ++i)
+//        {
+//            IContainerListener listener = (IContainerListener)this.listeners.get(i);
+//            int progress = this.tileentity.getProgress();
+//            int energy = this.tileentity.getEnergyHandler().getEnergyStorage();
+//            int fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
+//            FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
+//            if(fluidStack != null){
+//                fluid_type = FluidCache.toInt(fluidStack.getFluid().getName());
+//            }else{
+//                fluid_type = -1;
+//            }
+//            if(this.energy != energy) listener.sendWindowProperty(this, 0, energy);
+//            if(this.progress != progress) listener.sendWindowProperty(this, 1, progress);
+//            if(this.fluid_type != fluid_type) listener.sendWindowProperty(this, 3, fluid_type);
+//            if(this.fluid_stored != fluid_stored) listener.sendWindowProperty(this, 2, fluid_stored);
+//
+//
+//        }
+//
+//        this.energy = this.tileentity.getEnergyHandler().getEnergyStored();
+//        this.progress = this.tileentity.getProgress();
+//        this.fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
+//        FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
+//        if(fluidStack != null){
+//            this.fluid_type = FluidCache.toInt(fluidStack.getUnlocalizedName());
+//        }else{
+//            this.fluid_type = -1;
+//        }
     }
 
 

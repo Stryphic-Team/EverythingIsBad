@@ -10,6 +10,7 @@ public class TileDiaricGenerator extends TileGeneratorBase implements ITickable 
         super("diaric_generator");
         fluidHandler.addToWhitelist(ModFluids.DIARIA.getFluid());
         setFinishedProgress(240);
+        this.displayName = "Diaric Generator";
     }
 
     @Override
@@ -25,6 +26,7 @@ public class TileDiaricGenerator extends TileGeneratorBase implements ITickable 
             }
         }
     }
+
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
