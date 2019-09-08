@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.gui;
 
+import com.dna.everythingisbad.gui.container.DeviceContainerBase;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,7 +15,7 @@ public class DeviceContainerGuiBase extends GuiContainer {
     private final TileDeviceBase tileEntity;
     protected static ResourceLocation background;
 
-    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase,InventoryPlayer player, TileDeviceBase tileentity,ResourceLocation background) {
+    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase, InventoryPlayer player, TileDeviceBase tileentity, ResourceLocation background) {
         super(deviceContainerBase);
 
         this.background = background;
@@ -46,7 +47,7 @@ public class DeviceContainerGuiBase extends GuiContainer {
     }
     public void drawFluidStorage(){
         int fluidStorageScaled = this.getFluidStorageScaled(73);
-        FluidStack fluidStack = tileEntity.getFluidHandler().getFluidTank().getInfo().fluid;
+        FluidStack fluidStack = tileEntity.getFluidHandler().getFluidTank().getFluid();
         if(fluidStack != null){
             if(fluidStack.amount > 0) {
                 Fluid fluid = fluidStack.getFluid();

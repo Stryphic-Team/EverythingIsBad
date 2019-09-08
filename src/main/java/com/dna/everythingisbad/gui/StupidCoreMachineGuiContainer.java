@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.gui;
 
+import com.dna.everythingisbad.gui.container.StupidCoreMachineContainer;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.entity.player.InventoryPlayer;

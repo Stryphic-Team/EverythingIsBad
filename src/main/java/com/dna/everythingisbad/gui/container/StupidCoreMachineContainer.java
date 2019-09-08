@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.gui;
+package com.dna.everythingisbad.gui.container;
 
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.inventory.IInventory;

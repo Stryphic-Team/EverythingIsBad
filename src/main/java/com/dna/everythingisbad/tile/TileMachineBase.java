@@ -1,5 +1,8 @@
 package com.dna.everythingisbad.tile;
+
 import com.dna.everythingisbad.capabilities.ModEnergyHandler;
+import com.dna.everythingisbad.capabilities.ModFluidHandler;
+import com.dna.everythingisbad.capabilities.ModItemHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -13,7 +16,8 @@ public class TileMachineBase  extends TileDeviceBase {
     public TileMachineBase(String name) {
         super(name);
         energyHandler = new ModEnergyHandler(1000000,0,10000,true,false);
-
+        fluidHandler = new ModFluidHandler(false,false);
+        itemStackHadler = new ModItemHandler(0);
     }
     public void stepProgress(){
         if(progress < finishedProgress){

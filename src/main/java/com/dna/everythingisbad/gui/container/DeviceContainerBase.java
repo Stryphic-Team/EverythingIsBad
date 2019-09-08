@@ -1,5 +1,6 @@
-package com.dna.everythingisbad.gui;
+package com.dna.everythingisbad.gui.container;
 
+import com.dna.everythingisbad.gui.GuiSync;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -46,7 +47,14 @@ public class DeviceContainerBase extends Container {
     public void updateProgressBar(int id, int data) {
         this.tileentity.getEnergyHandler().setEnergyStorage(GuiSync.ENERGY_STORED);
         String fluidName = GuiSync.FLUID_TYPE.replaceAll("fluid.","");
-        Fluid fluid = FluidRegistry.getFluid(fluidName);
+        Fluid fluid = FluidRegistry.getFluid(fluidName);;
+        if(fluidName.equals("tile.water")){
+            fluid = FluidRegistry.WATER;
+        }
+        if(fluidName.equals("tile.lava")){
+            fluid = FluidRegistry.LAVA;
+        }
+
         if(fluid != null) {
             this.tileentity.getFluidHandler().getFluidTank().setFluid(new FluidStack(fluid, GuiSync.FLUID_STORED));
         }

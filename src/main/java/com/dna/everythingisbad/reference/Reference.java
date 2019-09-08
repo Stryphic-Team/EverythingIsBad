@@ -11,7 +11,9 @@ public class Reference {
 
     public static final String PREFIX = MOD_ID + ".";
     public static final String RESOURCE_PREFIX = MOD_ID + ":";
+
     private static int guiId = 0;
     public static final int GUI_STUPID_CORE_MACHINE = guiId++;
     public static final int GUI_DIARIC_GENERATOR = guiId++;
+    public static final int GUI_DRYER_MACHINE = guiId++;
 }
