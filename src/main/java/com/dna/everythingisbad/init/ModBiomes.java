@@ -17,7 +17,7 @@ public class ModBiomes {
         biome.setRegistryName(name);
         ForgeRegistries.BIOMES.register(biome);
         BiomeDictionary.addTypes(biome,types);
-        BiomeManager.addBiome(type,new BiomeManager.BiomeEntry(biome,420));
+        BiomeManager.addBiome(type,new BiomeManager.BiomeEntry(biome,0));
         BiomeManager.addSpawnBiome(biome);
         return biome;
     }

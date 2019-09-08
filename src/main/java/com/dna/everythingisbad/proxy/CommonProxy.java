@@ -36,6 +36,7 @@ public class CommonProxy implements IProxy{
         ModFluids.registerBlocks();
         ModBlocks.init();
         ModDimensions.registerDimensions();
+        ModBiomes.registerBiomes();
         new ConfigLoader();
     }
 

@@ -31,7 +31,6 @@ public class BlockTobacco extends BlockCrops implements IHasModel {
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         //this.setDefaultState(this.withAge(0));
     }
     @Override
