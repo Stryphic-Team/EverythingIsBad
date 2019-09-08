@@ -2,6 +2,7 @@ tile.everythingbad:stupid_tnt.name=Stupid™ TNT
 tile.everythingbad:poop_block.name=Poop Block
 tile.everythingbad:poop_bricks.name=Poop Bricks
 tile.everythingbad:blood_block.name=Blood Block
+tile.everythingbad:urine_block.name=Urine Block
 tile.everythingbad:sapling_happy.name=Happy Sapling
 tile.everythingbad:log_happy.name=Happy Wood
 tile.everythingbad:leaves_happy.name=Happy Leaves
@@ -22,6 +23,7 @@ tile.everythingbad:tobacco.name=Tobacco
 fluid.everythingbad:devils_pee=God's Pee
 fluid.everythingbad:diaria=Diaria
 fluid.everythingbad:blood=Blood
+fluid.everythingbad:urine=Urine
 
 item.everythingbad:poop.name=Poop
 item.everythingbad:poop_brick.name=Poop Brick

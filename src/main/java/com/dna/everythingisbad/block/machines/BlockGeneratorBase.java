@@ -34,6 +34,11 @@ public class BlockGeneratorBase extends BlockBase implements ITileEntityProvider
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(name));
     }
+    @Override
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return true;
+    }
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {

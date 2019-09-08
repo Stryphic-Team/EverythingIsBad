@@ -6,10 +6,12 @@ import com.dna.everythingisbad.init.DryerRecipes;
 import com.dna.everythingisbad.utils.prototypes.DryerRecipePrototype;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
@@ -19,7 +21,8 @@ public class TileDryerMachine extends TileMachineBase {
         this.itemStackHadler = new ModItemHandler(2);
         this.fluidHandler = new ModFluidHandler(false,true);
         setFinishedProgress(2400);
-        itemStackHadler.setExtractor(true);
+        itemStackHadler.setSlotConfig(1,true,false);
+        itemStackHadler.setSlotConfig(0,true,true);
         this.displayName = "Dryer Machine";
     }
 
@@ -39,6 +42,14 @@ public class TileDryerMachine extends TileMachineBase {
         }else{
             setProgress(0);
         }
+        FluidStack fluidInBucket = FluidUtil.getFluidContained(itemStackHadler.getStackInSlot(0));
+        if(fluidInBucket != null){
+            int fluidFilled = fluidHandler.fill(fluidInBucket,true);
+            if(fluidFilled > 0){
+                itemStackHadler.setStackInSlot(0,new ItemStack(Items.BUCKET));
+            }
+        }
+
     }
     //Checks to make sure that all conditions for the recipe are met
     public boolean hasNecessaryItems(){

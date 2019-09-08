@@ -6,13 +6,18 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 
 public class ModItemHandler extends ItemStackHandler {
 
     private boolean isInserter = false;
     private boolean isExtractor = false;
+    private HashMap<Integer, SlotConfig> slotConfigMap = new HashMap<Integer,SlotConfig>();
     public ModItemHandler(int count){
         super(count);
+        for(int i = 0;i<getSlots();i++){
+            slotConfigMap.put(i,new SlotConfig(false,false));
+        }
     }
 
     @Override
@@ -20,7 +25,7 @@ public class ModItemHandler extends ItemStackHandler {
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate)
     {
 
-        if(!isInserter){
+        if(!slotConfigMap.get(slot).isInsert()){
             return stack;
         }
         if (stack.isEmpty())
@@ -64,7 +69,7 @@ public class ModItemHandler extends ItemStackHandler {
     @Nonnull
     public ItemStack extractItem(int slot, int amount, boolean simulate)
     {
-        if(!isExtractor){
+        if(!slotConfigMap.get(slot).isExtract()){
             return ItemStack.EMPTY;
         }
 
@@ -100,18 +105,22 @@ public class ModItemHandler extends ItemStackHandler {
             return ItemHandlerHelper.copyStackWithSize(existing, toExtract);
         }
     }
+    public void setSlotConfig(int slot,boolean extract,boolean insert){
+        slotConfigMap.put(slot,new SlotConfig(extract, insert));
+    }
+    @Deprecated
     public boolean isInserter() {
         return isInserter;
     }
-
+    @Deprecated
     public void setInserter(boolean inserter) {
         isInserter = inserter;
     }
-
+    @Deprecated
     public boolean isExtractor() {
         return isExtractor;
     }
-
+    @Deprecated
     public void setExtractor(boolean extractor) {
         isExtractor = extractor;
     }
@@ -159,6 +168,22 @@ public class ModItemHandler extends ItemStackHandler {
     }
     public void setItemStackList(NonNullList<ItemStack> newStacks){
         this.stacks = newStacks;
+    }
+    private class SlotConfig {
+        private boolean extract = false;
+        private boolean insert = false;
+        public SlotConfig(boolean extract, boolean insert){
+            this.extract = extract;
+            this.insert = insert;
+        }
+
+        public boolean isExtract() {
+            return extract;
+        }
+
+        public boolean isInsert() {
+            return insert;
+        }
     }
 
 }
