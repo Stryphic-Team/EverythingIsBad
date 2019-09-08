@@ -4,7 +4,6 @@ package com.dna.everythingisbad.tile;
 import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.ModItems;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -57,20 +56,4 @@ public class TileStupidCoreMachine extends TileMachineBase {
         return super.getCapability(capability, facing);
     }
 
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        //ItemStackHelper.loadAllItems(nbt,tileContents);
-        super.readFromNBT(nbt);
-        this.itemStackHadler.deserializeNBT(nbt.getCompoundTag("Inventory"));
-
-
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setTag("Inventory", this.itemStackHadler.serializeNBT());
-        super.writeToNBT(nbt);
-        return nbt;
-    }
 }

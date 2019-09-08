@@ -25,6 +25,24 @@ public class DryerRecipes {
             100000,
             new ItemStack(Blocks.OBSIDIAN)
     );
+    public static final DryerRecipePrototype BLOOD_RECIPE = new DryerRecipePrototype(
+            120,
+            ModFluids.BLOOD.getFluid(),
+            10000,
+            new ItemStack(ModBlocks.BLOOD_BLOCK)
+    );
+    public static final DryerRecipePrototype URINE_RECIPE = new DryerRecipePrototype(
+            120,
+            ModFluids.URINE.getFluid(),
+            10000,
+            new ItemStack(ModBlocks.URINE_BLOCK)
+    );
+    public static final DryerRecipePrototype POOP_RECIPE = new DryerRecipePrototype(
+            120,
+            ModFluids.DIARIA.getFluid(),
+            10000,
+            new ItemStack(ModBlocks.POOP_BLOCK)
+    );
 
     public static void init(){
         for(DryerRecipePrototype recipe:RECIPES){

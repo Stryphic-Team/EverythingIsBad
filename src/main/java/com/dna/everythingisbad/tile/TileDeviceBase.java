@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -46,10 +47,28 @@ public class TileDeviceBase extends TileEntity implements ITickable {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+        if(fluidHandler != null){
+            fluidHandler.getFluidTank().readFromNBT(compound);
+        }
+        if(itemStackHadler != null){
+            ItemStackHelper.loadAllItems(compound,itemStackHadler.getItemStackList());
+        }
+        if(energyHandler != null){
+            energyHandler.setEnergyStorage(compound.getInteger("energyStored"));
+        }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        if(fluidHandler != null){
+            fluidHandler.getFluidTank().writeToNBT(compound);
+        }
+        if(itemStackHadler != null){
+            ItemStackHelper.saveAllItems(compound,itemStackHadler.getItemStackList());
+        }
+        if(energyHandler != null){
+            compound.setInteger("energyStored",energyHandler.getEnergyStored());
+        }
         return super.writeToNBT(compound);
     }
 

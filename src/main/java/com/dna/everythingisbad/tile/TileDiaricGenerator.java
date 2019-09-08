@@ -1,9 +1,7 @@
 package com.dna.everythingisbad.tile;
 
 import com.dna.everythingisbad.init.ModFluids;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fluids.FluidStack;
 
 public class TileDiaricGenerator extends TileGeneratorBase implements ITickable {
     public TileDiaricGenerator(){
@@ -26,20 +24,4 @@ public class TileDiaricGenerator extends TileGeneratorBase implements ITickable 
             }
         }
     }
-
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        FluidStack fluid = FluidStack.loadFluidStackFromNBT(compound);
-        fluidHandler.getFluidTank().setFluid(fluid);
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-
-        fluidHandler.getFluidTank().writeToNBT(compound);
-        return super.writeToNBT(compound);
-    }
-
 }
