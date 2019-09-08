@@ -4,7 +4,6 @@ import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.IHasModel;
 import com.dna.everythingisbad.utils.ModConfig;
-import ibxm.Player;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
@@ -79,7 +78,7 @@ public class RegistryHandler {
                 if (entity.ticksExisted < 20) {
                     EntityMob mob = (EntityMob) entity;
                     try {
-                        mob.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 500000, 5));
+                        mob.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 500000, ModConfig.MOB_SPEED_MULTIPLIER));
                     } catch (NullPointerException e) {
 
                     }
