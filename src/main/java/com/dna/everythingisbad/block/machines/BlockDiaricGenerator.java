@@ -23,32 +23,29 @@ import net.minecraftforge.fluids.FluidUtil;
 import javax.annotation.Nullable;
 
 public class BlockDiaricGenerator extends BlockGeneratorBase {
-    TileDeviceBase tileDeviceBase;
     public BlockDiaricGenerator(String name) {
         super(name);
     }
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        tileDeviceBase = new TileDiaricGenerator();
-        return tileDeviceBase;
+        return new TileDiaricGenerator();
     }
-
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
         }
-        TileEntity te = worldIn.getTileEntity(pos);
-        if (!(te instanceof TileDiaricGenerator)) {
+        TileDeviceBase tileEntity = (TileDeviceBase) worldIn.getTileEntity(pos);
+        if (!(tileEntity instanceof TileDiaricGenerator)) {
             return false;
         }
         Fluid diariaFluid = ModFluids.DIARIA.getFluid();
         ItemStack diariaBucket = FluidUtil.getFilledBucket(new FluidStack(diariaFluid,1));
         if(playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).getItem().equals(diariaBucket.getItem())){
-            FluidTank fluidTank = this.tileDeviceBase.getFluidHandler().getFluidTank();
+            FluidTank fluidTank = tileEntity.getFluidHandler().getFluidTank();
             if(fluidTank.getFluidAmount() + 1000 <= fluidTank.getCapacity()){
-                this.tileDeviceBase.getFluidHandler().fill(new FluidStack(diariaFluid,1000),true);
+                tileEntity.getFluidHandler().fill(new FluidStack(diariaFluid,1000),true);
                 ItemStack emptyBucket = new ItemStack(Items.BUCKET);
                 if(!playerIn.isCreative()) {
                     playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).shrink(1);

@@ -56,7 +56,9 @@ public class WorldGenTwinTowers extends WorldGenerator {
                 }
                 if(type.equals("chest")){
                     TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
-                    chest.setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
+                    Object[] lootTables = LootTableList.getAll().toArray();
+                    ResourceLocation randomLootTable = (ResourceLocation) lootTables[rand.nextInt(lootTables.length)];
+                    chest.setLootTable(randomLootTable, rand.nextLong());
                 }
             }
 
