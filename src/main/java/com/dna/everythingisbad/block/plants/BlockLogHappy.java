@@ -1,15 +1,13 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
 public class BlockLogHappy extends BlockLogBase {
 

@@ -1,8 +1,18 @@
 package com.dna.everythingisbad.init;
 
 
-import com.dna.everythingisbad.item.*;
+import com.dna.everythingisbad.item.ItemPoop;
+import com.dna.everythingisbad.item.ItemPoopBrick;
+import com.dna.everythingisbad.item.ItemSoul;
+import com.dna.everythingisbad.item.ItemStupidCore;
+import com.dna.everythingisbad.item.armor.ItemCamoChestplate;
+import com.dna.everythingisbad.item.armor.ItemCowboyHat;
+import com.dna.everythingisbad.item.armor.ItemSantaHat;
 import com.dna.everythingisbad.item.food.*;
+import com.dna.everythingisbad.item.instruments.ItemBanjo;
+import com.dna.everythingisbad.item.instruments.ItemStringBass;
+import com.dna.everythingisbad.item.plants.ItemTobaccoLeaf;
+import com.dna.everythingisbad.item.plants.ItemTobaccoSeeds;
 import com.dna.everythingisbad.item.records.*;
 import com.dna.everythingisbad.item.weapons.ItemHairDryerGun;
 import com.dna.everythingisbad.item.weapons.ItemStupidTNTCartridge;

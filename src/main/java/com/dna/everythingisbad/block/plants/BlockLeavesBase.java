@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;

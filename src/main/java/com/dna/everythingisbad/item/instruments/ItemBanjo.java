@@ -1,7 +1,8 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.instruments;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.item.ItemBase;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.handlers.MidiHandler;
 import net.minecraft.client.util.ITooltipFlag;
@@ -11,8 +12,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemStringBass extends ItemBase {
-    public ItemStringBass(String name)
+public class ItemBanjo extends ItemBase {
+    public ItemBanjo(String name)
     {
 
         setRegistryName(name);
@@ -21,6 +22,7 @@ public class ItemStringBass extends ItemBase {
         this.setMaxStackSize(1);
         ModItems.ITEMS.add(this);
     }
+
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (MidiHandler.device != null && MidiHandler.device.getDeviceInfo() != null){

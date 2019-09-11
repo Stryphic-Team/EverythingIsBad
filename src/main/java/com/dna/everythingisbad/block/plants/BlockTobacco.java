@@ -1,26 +1,14 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.IHasModel;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class BlockTobacco extends BlockCrops implements IHasModel {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 4);

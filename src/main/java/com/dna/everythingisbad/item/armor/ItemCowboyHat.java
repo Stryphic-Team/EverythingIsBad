@@ -1,7 +1,8 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.armor;
 
 import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.item.ItemBase;
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

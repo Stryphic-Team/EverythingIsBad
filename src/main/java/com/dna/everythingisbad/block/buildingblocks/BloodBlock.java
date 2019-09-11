@@ -1,5 +1,6 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.buildingblocks;
 
+import com.dna.everythingisbad.block.BlockFallingBase;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;

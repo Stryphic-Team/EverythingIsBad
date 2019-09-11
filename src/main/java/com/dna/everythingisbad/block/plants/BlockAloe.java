@@ -1,17 +1,14 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.IHasModel;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDeadBush;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.buildingblocks;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
@@ -6,12 +6,10 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.BlockFence;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.EnumFacing;
 
 public class BlockPoopFence extends BlockFence implements IHasModel {
     public BlockPoopFence(String name) {

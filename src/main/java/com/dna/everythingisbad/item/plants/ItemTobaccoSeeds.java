@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.item;
+package com.dna.everythingisbad.item.plants;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.creativetab.CreativeTab;
@@ -7,8 +7,6 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
