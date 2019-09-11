@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ModLootTables {
     public static ArrayList<ResourceLocation> LOOT_TABLES = new ArrayList<ResourceLocation>();
     public static ResourceLocation ENTITY_JESUS_LOOT = LootTableList.register(new ResourceLocation(Reference.MOD_ID,"entities/jesus"));
-
+    public static ResourceLocation CHEST_EVERYTHINGBAD_LOOT = LootTableList.register(new ResourceLocation(Reference.MOD_ID,"chest/everythingbad"));
 
     public static ResourceLocation register(String id,String name)
     {

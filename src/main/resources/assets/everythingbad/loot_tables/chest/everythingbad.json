@@ -1,0 +1,73 @@
+{
+  "pools": [
+    {
+      "name": "stupid_core",
+      "rolls": {
+        "min": 1,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "everythingbad:stupid_core",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 2
+              }
+            }
+          ],
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "name": "stupid_tnt",
+      "rolls": {
+        "min": 1,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "everythingbad:stupid_tnt",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "name": "stupid_tnt_gun",
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "everythingbad:stupid_tnt_gun",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 30
+        }
+      ]
+    }
+  ]
+}

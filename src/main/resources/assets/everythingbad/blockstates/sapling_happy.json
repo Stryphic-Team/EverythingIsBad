@@ -15,7 +15,9 @@
     "stage=0,type=birch": { "model": "cross" },
     "stage=1,type=birch": { "model": "cross" },
     "stage=0,type=dark_oak": { "model": "cross" },
-    "stage=1,type=dark_oak": { "model": "cross" }
+    "stage=1,type=dark_oak": { "model": "cross" },
+    "stage=0,type=spruce": { "model": "cross" },
+    "stage=1,type=spruce": { "model": "cross" }
 
   }
 }

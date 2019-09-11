@@ -7,12 +7,15 @@ import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.TileDiaricGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -40,6 +43,7 @@ public class BlockDiaricGenerator extends BlockGeneratorBase {
         if (!(tileEntity instanceof TileDiaricGenerator)) {
             return false;
         }
+
         Fluid diariaFluid = ModFluids.DIARIA.getFluid();
         ItemStack diariaBucket = FluidUtil.getFilledBucket(new FluidStack(diariaFluid,1));
         if(playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).getItem().equals(diariaBucket.getItem())){
@@ -47,12 +51,15 @@ public class BlockDiaricGenerator extends BlockGeneratorBase {
             if(fluidTank.getFluidAmount() + 1000 <= fluidTank.getCapacity()){
                 tileEntity.getFluidHandler().fill(new FluidStack(diariaFluid,1000),true);
                 ItemStack emptyBucket = new ItemStack(Items.BUCKET);
+                if(playerIn instanceof EntityPlayerMP){
+                    EntityPlayerMP playerMP = (EntityPlayerMP)playerIn;
+                    playerMP.getServerWorld().playSound(playerIn.posX,playerIn.posY,playerIn.posZ,SoundEvents.ENTITY_COW_MILK,SoundCategory.PLAYERS,1f,1f,false);
+                }
                 if(!playerIn.isCreative()) {
                     playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).shrink(1);
                     playerIn.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, emptyBucket);
                 }
             }
-
         }else{
             playerIn.openGui(Main.instance, Reference.GUI_DIARIC_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
