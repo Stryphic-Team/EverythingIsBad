@@ -43,14 +43,14 @@ public class PotionEffectHandler {
         if (highness_duration == 0) {
             entity.getEntityData().setInteger("highness_duration", time_left);
             entity.writeEntityToNBT(entity.getEntityData());
-            Main.logger.info("First potion effect tick!");
+            //Main.logger.info("First potion effect tick!");
 
             // This happens if you get highness while already currently high.
 
         }else if(time_left>highness_duration && highness_duration!=0){
             entity.getEntityData().setInteger("highness_duration",time_left);
             entity.writeEntityToNBT(entity.getEntityData());
-            Main.logger.info("New potion effect tick!");
+            //Main.logger.info("New potion effect tick!");
 
             // This happens if you get high for the first time.
             // (Because 0 is the default value. From now on it will become -1,
@@ -63,7 +63,7 @@ public class PotionEffectHandler {
 
         // Second tick stuff?
         if(time_left == highness_duration-1) {
-            Main.logger.info("Adding side effects");
+            //Main.logger.info("Adding side effects");
 
             //Mining Fatigue
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), time_left, 4));

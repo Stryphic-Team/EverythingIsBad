@@ -75,7 +75,7 @@ public class ServerEventHandler {
                 // Casting to entityplayermp
                 EntityPlayerMP mp = (EntityPlayerMP)livingBase;
                 int highness_duration = mp.getEntityData().getInteger("highness_duration");
-                Main.logger.info("Highness duration in client handler: " + highness_duration);
+                //Main.logger.info("Highness duration in client handler: " + highness_duration);
                 PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
             }else{
                 int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
@@ -103,7 +103,7 @@ public class ServerEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void playerFinishUseItem(LivingEntityUseItemEvent.Finish event){
         if (event.getItem().getItem() == Items.MILK_BUCKET) {
-            Main.logger.info("Bobob");
+            //Main.logger.info("Bobob");
             //EntityLivingBase entity = event.getEntityLiving();
             //PotionEffectHandler.playerMilkDrank(entity);
         }

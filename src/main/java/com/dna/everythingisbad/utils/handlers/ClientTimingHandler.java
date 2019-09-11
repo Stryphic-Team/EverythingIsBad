@@ -64,7 +64,7 @@ public class ClientTimingHandler {
                 // Casting to entityplayermp
                 EntityPlayerMP mp = (EntityPlayerMP)livingBase;
                 int highness_duration = mp.getEntityData().getInteger("highness_duration");
-                Main.logger.info("Highness duration in client handler: " + highness_duration);
+                //Main.logger.info("Highness duration in client handler: " + highness_duration);
                 PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
             }else{
                 int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
