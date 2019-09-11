@@ -27,11 +27,4 @@ public class ItemSoul extends ItemBase {
             return "Soul";
         }
     }
-
-    @Override
-    public void readNBTShareTag(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        NBTTagCompound nbabab = new NBTTagCompound();
-        nbabab.setString("player_name","test");
-        stack.setTagCompound(nbabab);
-    }
 }
