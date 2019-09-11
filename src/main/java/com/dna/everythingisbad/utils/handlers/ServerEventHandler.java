@@ -2,9 +2,12 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -65,6 +68,20 @@ public class ServerEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
         //Main.logger.info("Entity updated: " + event.getEntityLiving().getName());
+        EntityLivingBase livingBase = event.getEntityLiving();
+        boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
+        if(highness_active){
+            if (livingBase instanceof EntityPlayerMP) {
+                // Casting to entityplayermp
+                EntityPlayerMP mp = (EntityPlayerMP)livingBase;
+                int highness_duration = mp.getEntityData().getInteger("highness_duration");
+                Main.logger.info("Highness duration in client handler: " + highness_duration);
+                PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
+            }else{
+                int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
+                PotionEffectHandler.livingEntityHighnessActive(livingBase, highness_duration);
+            }
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
