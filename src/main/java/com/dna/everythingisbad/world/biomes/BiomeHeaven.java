@@ -15,8 +15,8 @@ public class BiomeHeaven extends Biome {
         this.jesusList.add(new Biome.SpawnListEntry(EntityJesus.class,420,1,5));
     }
 
-    //@Override
-    //public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
-    //    return this.jesusList;
-    //}
+    @Override
+    public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
+        return this.jesusList;
+    }
 }

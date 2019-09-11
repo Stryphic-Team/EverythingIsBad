@@ -3,6 +3,7 @@ package com.dna.everythingisbad.world.dimension;
 import com.dna.everythingisbad.init.ModBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -22,6 +23,7 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
         this.world = world;
         this.random = new Random();
         world.setSeaLevel(74);
+
     }
 
     @Override
@@ -30,6 +32,7 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
 
         for (int i = 68; i < 74; ++i)
         {
+
             IBlockState iblockstate = ModBlocks.CLOUD_BLOCK.getDefaultState();
 
 
@@ -40,7 +43,11 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
                 {
                     for (int k = 0; k < 16; ++k)
                     {
-                        chunkprimer.setBlockState(j, i, k, iblockstate);
+                        if(i > 70 ){
+                            chunkprimer.setBlockState(j,i,k, Blocks.AIR.getDefaultState());
+                        }else {
+                            chunkprimer.setBlockState(j, i, k, iblockstate);
+                        }
                     }
                 }
             }
@@ -61,7 +68,7 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
 
     @Override
     public void populate(int x, int z) {
-
+        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.random, x, z, false);
     }
 
     @Override

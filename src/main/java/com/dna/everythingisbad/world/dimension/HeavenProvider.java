@@ -31,7 +31,7 @@ public class HeavenProvider extends WorldProvider {
 
     @Override
     public boolean isSurfaceWorld() {
-        return true;
+        return false;
     }
 
     @Override
@@ -56,6 +56,6 @@ public class HeavenProvider extends WorldProvider {
 
     @Override
     public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
-        return new Vec3d(1.0d,0.0d,0.0d);
+        return new Vec3d(1.0d,1.0d,1.0d);
     }
 }

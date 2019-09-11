@@ -5,6 +5,7 @@ import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.*;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -54,7 +55,15 @@ public class ModEntities {
         }
         for (Biome biome:ForgeRegistries.BIOMES){
             if(biome.equals(ModBiomes.HEAVEN)){
-                EntityRegistry.addSpawn(EntityJesus.class,100,10,20, EnumCreatureType.AMBIENT,biome);
+                EntityRegistry.addSpawn(EntityJesus.class,100,10,20, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityZombie.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityWitch.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntitySkeleton.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntitySpider.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityCreeper.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityEnderman.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityZombieVillager.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityStupidSkeleton.class,EnumCreatureType.MONSTER,biome);
             }
         }
 
