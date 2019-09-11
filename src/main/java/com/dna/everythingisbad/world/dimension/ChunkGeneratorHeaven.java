@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.world.dimension;
 
-import com.dna.everythingisbad.init.ModBiomes;
 import com.dna.everythingisbad.init.ModBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -9,9 +8,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkGeneratorDebug;
-import net.minecraft.world.gen.ChunkGeneratorFlat;
-import net.minecraft.world.gen.ChunkGeneratorHell;
 import net.minecraft.world.gen.IChunkGenerator;
 
 import javax.annotation.Nullable;
@@ -19,20 +15,24 @@ import java.util.List;
 import java.util.Random;
 
 public class ChunkGeneratorHeaven implements IChunkGenerator {
+
     private final World world;
     private final Random random;
     public ChunkGeneratorHeaven(World world) {
         this.world = world;
         this.random = new Random();
+        world.setSeaLevel(74);
     }
 
     @Override
     public Chunk generateChunk(int x, int z) {
         ChunkPrimer chunkprimer = new ChunkPrimer();
 
-        for (int i = 68; i < 73; ++i)
+        for (int i = 68; i < 74; ++i)
         {
             IBlockState iblockstate = ModBlocks.CLOUD_BLOCK.getDefaultState();
+
+
 
             if (iblockstate != null)
             {
@@ -48,7 +48,7 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
 
         Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 
-        Biome[] abiome = this.world.getBiomeProvider().getBiomesForGeneration(null, x * 16, z * 16, 16, 16);
+        Biome[] abiome = this.world.getBiomeProvider().getBiomesForGeneration((Biome[])null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();
 
         for (int l = 0; l < abyte.length; ++l)

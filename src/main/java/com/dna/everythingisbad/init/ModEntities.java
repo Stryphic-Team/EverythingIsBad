@@ -4,19 +4,11 @@ import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -53,18 +45,16 @@ public class ModEntities {
         for(Biome biome:Biome.REGISTRY){
             if(biome.equals(Biomes.HELL)) {
                 EntityRegistry.addSpawn(EntitySatan.class, 1, 1, 10, EnumCreatureType.MONSTER, biome);
-            //}else if (biome == ModBiomes.HEAVEN){
-                //EntityRegistry.addSpawn(EntityJesus.class,100,5,10, EnumCreatureType.MONSTER,biome);
+//            }else if (biome == ModBiomes.HEAVEN){
+//                EntityRegistry.addSpawn(EntityJesus.class,100,5,10, EnumCreatureType.MONSTER,biome);
             }else{
                 EntityRegistry.addSpawn(EntityStupidSkeleton.class,10,1,10, EnumCreatureType.MONSTER,biome);
                 EntityRegistry.addSpawn(EntityJesus.class,5,1,10, EnumCreatureType.MONSTER,biome);
             }
-
-
         }
         for (Biome biome:ForgeRegistries.BIOMES){
             if(biome.equals(ModBiomes.HEAVEN)){
-                EntityRegistry.addSpawn(EntityJesus.class,100,1,10, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.addSpawn(EntityJesus.class,100,10,20, EnumCreatureType.AMBIENT,biome);
             }
         }
 
