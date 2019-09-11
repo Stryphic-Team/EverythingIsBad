@@ -7,6 +7,7 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
 repositories {
     maven {
         name = "CoFH Maven"
@@ -50,8 +51,7 @@ minecraft {
 
 
 dependencies {
-    //compile "cofh:RedstoneFlux:1.12-2.1.0.6:universal"
-    //deobfCompile  "cofh:CoFHCore:1.12.2-4.6.3.27:universal"
+
 }
 
 processResources {

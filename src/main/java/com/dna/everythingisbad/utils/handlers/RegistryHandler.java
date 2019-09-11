@@ -7,7 +7,6 @@ import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -19,6 +18,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 
 /**
  * This is going to be deprecated in the future for a new system of registering items, blocks, and entities
@@ -73,9 +73,8 @@ public class RegistryHandler {
     public static void mobSpawn(EntityEvent event){
         if(ModConfig.MOBS_MOVE_FASTER) {
             Entity entity = event.getEntity();
-            if (entity instanceof EntityMob && !(entity instanceof EntityPlayer)) {
-
-                if (entity.ticksExisted < 20) {
+            if (entity instanceof EntityMob) {
+                if (entity.ticksExisted == 1) {
                     EntityMob mob = (EntityMob) entity;
                     try {
                         mob.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 500000, ModConfig.MOB_SPEED_MULTIPLIER));

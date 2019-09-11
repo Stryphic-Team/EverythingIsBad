@@ -1,26 +1,25 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
 public class PlayerHandler {
-
+    private static Random random = new Random();
     public static void playerDied(EntityPlayer player){
         if(ModConfig.BLOOD_SPAWNS_ON_DEATH) {
             player.getEntityWorld().setBlockState(
@@ -34,42 +33,55 @@ public class PlayerHandler {
         // sets to 0 when the player is not high
         player.getEntityData().setInteger("highness_duration",0);
         player.writeEntityToNBT(player.getEntityData());
+        if(player instanceof EntityPlayerMP){
+            blindnessHandler((EntityPlayerMP) player,true);
+        }
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
         //entity player needs to be casted to its respective type when writing nbt data
         if(entityPlayer instanceof EntityPlayerMP){
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
-            int current_value = entityPlayer.getEntityData().getInteger("highness_duration");
-            //Main.logger.info("Current Highness Duration Value: "+current_value);
-            boolean hasSoul = entityPlayerMP.getEntityData().getBoolean("has_soul");
-            if (hasSoul == false){
-
-                // Makes a new itemstack and gives it an NBT string with the name of the player
-                ItemStack soulstack = new ItemStack(ModItems.SOUL_ITEM,1,0);
-                NBTTagCompound hingydingy = new NBTTagCompound();
-                hingydingy.setString("player_name",entityPlayerMP.getDisplayNameString());
-                soulstack.setTagCompound(hingydingy);
-
-                //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
-                //TODO: Add soulbound enchantment to itemstack (or make one)
-
-                // Give it to the player, or drop it if they cant fit it (for whatever reason)
-                if (!entityPlayerMP.inventory.addItemStackToInventory(soulstack)) {
-                    entityPlayerMP.dropItem(soulstack, false);
-                }else{
-                    entityPlayerMP.inventory.addItemStackToInventory(soulstack);
-                }
-
-                // Makes sure the player only gets one, ever!!!
-                // (Unless they use another account, lol)
-                entityPlayerMP.getEntityData().setBoolean("has_soul",true);
-                entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
-            }
-
-        }else if(entityPlayer instanceof EntityPlayerSP){
-            EntityPlayerSP entityPlayerSP = (EntityPlayerSP) entityPlayer;
+            soulHandler(entityPlayerMP);
+            blindnessHandler(entityPlayerMP,false);
         }
     }
+    public static void blindnessHandler(EntityPlayerMP player,boolean rollDice){
+        if(random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1 && rollDice) {
+            player.getEntityData().setBoolean("is_blind", true);
+        }
+        boolean isBlind = player.getEntityData().getBoolean("is_blind");
+        if(isBlind){
+            player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),100000));
+        }
+    }
+    public static void soulHandler(EntityPlayerMP player){
+
+        boolean hasSoul = player.getEntityData().getBoolean("has_soul");
+        if (!hasSoul){
+
+            // Makes a new itemstack and gives it an NBT string with the name of the player
+            ItemStack soulstack = new ItemStack(ModItems.SOUL_ITEM,1,0);
+            NBTTagCompound hingydingy = new NBTTagCompound();
+            hingydingy.setString("player_name",player.getDisplayNameString());
+            soulstack.setTagCompound(hingydingy);
+
+            //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
+            //TODO: Add soulbound enchantment to itemstack (or make one)
+
+            // Give it to the player, or drop it if they cant fit it (for whatever reason)
+            if (!player.inventory.addItemStackToInventory(soulstack)) {
+                player.dropItem(soulstack, false);
+            }else{
+                player.inventory.addItemStackToInventory(soulstack);
+            }
+
+            // Makes sure the player only gets one, ever!!!
+            // (Unless they use another account, lol)
+            player.getEntityData().setBoolean("has_soul",true);
+            player.writeEntityToNBT(player.getEntityData());
+        }
+    }
+
     public static void playerPooped(EntityPlayer entityPlayer, int amount) {
 
         if(entityPlayer instanceof EntityPlayerMP){
