@@ -49,11 +49,13 @@ public class ModEntities {
          * adds spawns for all biomes
          */
         for(Biome biome:Biome.REGISTRY){
-            if(biome.equals(Biomes.HELL)){
-                EntityRegistry.addSpawn(EntitySatan.class,1,5,300, EnumCreatureType.MONSTER,biome);
+            if(biome.equals(Biomes.HELL)) {
+                EntityRegistry.addSpawn(EntitySatan.class, 1, 1, 10, EnumCreatureType.MONSTER, biome);
+            }else if (biome.equals(ModBiomes.HEAVEN)){
+                EntityRegistry.addSpawn(EntityJesus.class,10000,5,10, EnumCreatureType.MONSTER,biome);
             }else{
-                EntityRegistry.addSpawn(EntityStupidSkeleton.class,10,5,200, EnumCreatureType.MONSTER,biome);
-                EntityRegistry.addSpawn(EntityJesus.class,1,5,300, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.addSpawn(EntityStupidSkeleton.class,10,1,10, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.addSpawn(EntityJesus.class,1,1,10, EnumCreatureType.MONSTER,biome);
             }
 
 

@@ -2,7 +2,9 @@ package com.dna.everythingisbad.world.dimension;
 
 import com.dna.everythingisbad.init.ModBiomes;
 import com.dna.everythingisbad.init.ModDimensions;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Biomes;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
@@ -37,5 +39,25 @@ public class HeavenProvider extends WorldProvider {
     @Override
     public BiomeProvider getBiomeProvider() {
         return new BiomeProviderSingle(ModBiomes.HEAVEN);
+    }
+
+    @Override
+    protected void init() {
+        this.hasSkyLight = false;
+    }
+
+    @Override
+    public boolean isDaytime() {
+        return false;
+    }
+
+    @Override
+    public float getSunBrightness(float par1) {
+        return 0.0f;
+    }
+
+    @Override
+    public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
+        return new Vec3d(1.0d,0.0d,0.0d);
     }
 }

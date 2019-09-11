@@ -45,4 +45,8 @@ public class EntityJesus extends EntityZombie{
         return ModSoundEvents.SOUND_EVENT_JESUS_AMBIENT[har];
     }
 
+    @Override
+    public boolean getCanSpawnHere() {
+        return true;
+    }
 }
