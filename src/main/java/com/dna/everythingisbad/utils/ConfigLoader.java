@@ -31,6 +31,7 @@ public class ConfigLoader {
         ModConfig.MOBS_MOVE_FASTER = config.mobs_move_faster;
         ModConfig.AUTO_POOP_MAX = config.auto_poop_max;
         ModConfig.MOB_SPEED_MULTIPLIER = config.mob_speed_multiplier;
+        ModConfig.COMMON_COLD_CHANCE = config.common_cold_chance;
 
 
     }
@@ -71,7 +72,7 @@ public class ConfigLoader {
     //Version needs to be updated when new config is updated
     //Default Config Model
     class ConfigModel{
-        String version = "v0.2";
+        String version = "v0.21";
         int auto_poop_interval = 24000;
         boolean is_debug = false;
         int auto_poop_max = 6;
@@ -79,5 +80,6 @@ public class ConfigLoader {
         boolean blood_spawns_on_death = true;
         boolean mobs_move_faster = true;
         int mob_speed_multiplier = 5;
+        int common_cold_chance = 10;
     }
 }

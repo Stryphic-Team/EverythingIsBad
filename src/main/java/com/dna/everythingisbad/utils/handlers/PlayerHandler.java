@@ -14,6 +14,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -39,20 +42,46 @@ public class PlayerHandler {
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
         //entity player needs to be casted to its respective type when writing nbt data
+
         if(entityPlayer instanceof EntityPlayerMP){
+
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
+            boolean hasBeenInitialized = entityPlayerMP.getEntityData().getBoolean("has_been_initialized");
+
             soulHandler(entityPlayerMP);
             blindnessHandler(entityPlayerMP,false);
+            if(!hasBeenInitialized){
+                commonColdInitlizer(entityPlayerMP,true);
+
+                //needs to be run at the end
+                entityPlayerMP.getEntityData().setBoolean("has_been_initialized",true);
+                entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
+            }
+
         }
     }
     public static void blindnessHandler(EntityPlayerMP player,boolean rollDice){
         if(random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1 && rollDice) {
             player.getEntityData().setBoolean("is_blind", true);
+
+            player.writeEntityToNBT(player.getEntityData());
+        }else{
+            player.getEntityData().setBoolean("is_blind", false);
+            player.writeEntityToNBT(player.getEntityData());
         }
         boolean isBlind = player.getEntityData().getBoolean("is_blind");
         if(isBlind){
+            player.addSuffix(new TextComponentString(" [Blind]").setStyle(new Style().setColor(TextFormatting.DARK_RED)));
             player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),100000));
         }
+    }
+    public static void commonColdInitlizer(EntityPlayerMP player, boolean rollDice){
+        if(random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1){
+            player.getEntityData().setBoolean("common_cold_immunity",false);
+        }else{
+            player.getEntityData().setBoolean("common_cold_immunity",true);
+        }
+        player.writeEntityToNBT(player.getEntityData());
     }
     public static void soulHandler(EntityPlayerMP player){
 

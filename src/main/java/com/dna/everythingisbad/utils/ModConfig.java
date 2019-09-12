@@ -12,4 +12,5 @@ public class ModConfig {
     public static int BLINDNESS_CHANCE;
     public static boolean BLOOD_SPAWNS_ON_DEATH;
     public static int MOB_SPEED_MULTIPLIER;
+    public static int COMMON_COLD_CHANCE;
 }
