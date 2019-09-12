@@ -2,13 +2,13 @@
 {
   "modid": "everythingbad",
   "name": "Everything is Bad",
-  "description": "Everything Is Bad",
+  "description": "Everything Is Bad is a mod that adds features to the game that nobody asked for.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/Stryphic-Team/EverythingIsBad",
   "updateUrl": "",
-  "authorList": ["DeaSTL","admr"],
-  "credits": "God and Jesus",
+  "authorList": ["DeaSTL","anakrusis"],
+  "credits": "King Lemon and Forge Discord",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
