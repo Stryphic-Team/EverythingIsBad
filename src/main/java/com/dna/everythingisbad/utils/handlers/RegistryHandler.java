@@ -12,7 +12,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -69,18 +69,16 @@ public class RegistryHandler {
         PlayerInteractionHandler.hitSomeone(event);
     }
 
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void mobSpawn(EntityEvent event){
+    public static void mobSpawn(EntityJoinWorldEvent event){
         if(ModConfig.MOBS_MOVE_FASTER) {
             Entity entity = event.getEntity();
             if (entity instanceof EntityMob) {
-                if (entity.ticksExisted == 1) {
-                    EntityMob mob = (EntityMob) entity;
-                    try {
-                        mob.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 500000, ModConfig.MOB_SPEED_MULTIPLIER));
-                    } catch (NullPointerException e) {
-
-                    }
+                EntityMob mob = (EntityMob) entity;
+                try {
+                    mob.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 500000, ModConfig.MOB_SPEED_MULTIPLIER));
+                } catch (NullPointerException e) {
 
                 }
             }

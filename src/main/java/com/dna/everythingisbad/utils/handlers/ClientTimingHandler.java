@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.client.RenderYellow;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
@@ -9,7 +8,6 @@ import com.dna.everythingisbad.utils.ClientUtils;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -53,7 +51,7 @@ public class ClientTimingHandler {
             PlayerHandler.playerDied(event.player);
         }
     }
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
         EntityLivingBase livingBase = event.getEntityLiving();
         boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());

@@ -6,7 +6,6 @@ import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -34,7 +33,9 @@ public class ServerEventHandler {
     int poop_interval = ModConfig.AUTO_POOP_INTERVAL; // How often do you poop
     int tick_count = random.nextInt(poop_interval)-1; // Starting at a random point in the day-night cycle
     boolean in_server = true;
-
+    /**
+     * NEVER EVER EVER EVER EVER EVER EVER EVER SET TIMER EVENTS TO HIGH PRIORITY
+     */
     /**
      * Ticks every tick and triggers sub events
      * @param event
@@ -65,7 +66,7 @@ public class ServerEventHandler {
         }
 
     }
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
         //Main.logger.info("Entity updated: " + event.getEntityLiving().getName());
         EntityLivingBase livingBase = event.getEntityLiving();
