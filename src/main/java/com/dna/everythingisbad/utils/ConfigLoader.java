@@ -72,14 +72,14 @@ public class ConfigLoader {
     //Version needs to be updated when new config is updated
     //Default Config Model
     class ConfigModel{
-        String version = "v0.21";
+        String version = "v0.22";
         int auto_poop_interval = 24000;
         boolean is_debug = false;
         int auto_poop_max = 6;
         int blindness_chance = 100;
         boolean blood_spawns_on_death = true;
         boolean mobs_move_faster = true;
-        int mob_speed_multiplier = 5;
+        int mob_speed_multiplier = 1;
         int common_cold_chance = 10;
     }
 }

@@ -18,7 +18,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
         super("stupid_core_machine");
         this.itemStackHadler = new ModItemHandler(1);
         setFinishedProgress(24000);
-        itemStackHadler.setExtractor(true);
+        itemStackHadler.setSlotConfig(0,true,false);
         this.displayName = "Stupid tm Core Machine";
     }
 
