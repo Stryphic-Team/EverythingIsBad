@@ -1,6 +1,13 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "everythingbad:blocks/question_mark_block"
+    "particle": "everythingbad:blocks/question_mark_block",
+    "up": "everythingbad:blocks/question_mark_block_top",
+    "down": "everythingbad:blocks/question_mark_block_top",
+    "north": "everythingbad:blocks/question_mark_block",
+    "east": "everythingbad:blocks/question_mark_block",
+    "south": "everythingbad:blocks/question_mark_block",
+    "west": "everythingbad:blocks/question_mark_block"
   }
+
 }

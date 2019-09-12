@@ -50,12 +50,12 @@ public class ModEntities {
 //                EntityRegistry.addSpawn(EntityJesus.class,100,5,10, EnumCreatureType.MONSTER,biome);
             }else{
                 EntityRegistry.addSpawn(EntityStupidSkeleton.class,10,1,10, EnumCreatureType.MONSTER,biome);
-                EntityRegistry.addSpawn(EntityJesus.class,5,1,10, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.addSpawn(EntityJesus.class,5,1,5, EnumCreatureType.MONSTER,biome);
             }
         }
         for (Biome biome:ForgeRegistries.BIOMES){
             if(biome.equals(ModBiomes.HEAVEN)){
-                EntityRegistry.addSpawn(EntityJesus.class,100,10,20, EnumCreatureType.MONSTER,biome);
+                EntityRegistry.addSpawn(EntityJesus.class,1,1,1, EnumCreatureType.MONSTER,biome);
                 EntityRegistry.removeSpawn(EntityZombie.class,EnumCreatureType.MONSTER,biome);
                 EntityRegistry.removeSpawn(EntityWitch.class,EnumCreatureType.MONSTER,biome);
                 EntityRegistry.removeSpawn(EntitySkeleton.class,EnumCreatureType.MONSTER,biome);

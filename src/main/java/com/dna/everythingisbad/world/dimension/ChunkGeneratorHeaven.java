@@ -9,13 +9,19 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.ChunkGeneratorFlat;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.structure.MapGenStructure;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class ChunkGeneratorHeaven implements IChunkGenerator {
+
+    private final Map<String, MapGenStructure> structureGenerators = new HashMap<String, MapGenStructure>();
 
     private final World world;
     private final Random random;
@@ -62,7 +68,7 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
         {
             abyte[l] = (byte)Biome.getIdForBiome(abiome[l]);
         }
-        chunk.resetRelightChecks();
+        chunk.generateSkylightMap();
         return chunk;
     }
 
@@ -90,7 +96,10 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
 
     @Override
     public void recreateStructures(Chunk chunkIn, int x, int z) {
-
+        for (MapGenStructure mapgenstructure : this.structureGenerators.values())
+        {
+            mapgenstructure.generate(this.world, x, z, (ChunkPrimer)null);
+        }
     }
 
     @Override
