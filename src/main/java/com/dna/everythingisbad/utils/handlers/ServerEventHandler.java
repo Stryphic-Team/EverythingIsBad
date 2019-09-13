@@ -2,11 +2,9 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.item.ItemPoop;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -69,27 +67,28 @@ public class ServerEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
         //Main.logger.info("Entity updated: " + event.getEntityLiving().getName());
-        EntityLivingBase livingBase = event.getEntityLiving();
-        boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
-        if(highness_active){
-            if (livingBase instanceof EntityPlayerMP) {
-                // Casting to entityplayermp
-                EntityPlayerMP mp = (EntityPlayerMP)livingBase;
-                int highness_duration = mp.getEntityData().getInteger("highness_duration");
-                //Main.logger.info("Highness duration in client handler: " + highness_duration);
-                PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
-            }else{
-                int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
-                PotionEffectHandler.livingEntityHighnessActive(livingBase, highness_duration);
-            }
-        }
+        PlayerHandler.livingTick(event.getEntityLiving());
+//        EntityLivingBase livingBase = event.getEntityLiving();
+//        boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
+//        if(highness_active){
+//            if (livingBase instanceof EntityPlayerMP) {
+//                // Casting to entityplayermp
+//                EntityPlayerMP mp = (EntityPlayerMP)livingBase;
+//                int highness_duration = mp.getEntityData().getInteger("highness_duration");
+//                //Main.logger.info("Highness duration in client handler: " + highness_duration);
+//                PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
+//            }else{
+//                int highness_duration = livingBase.getEntityData().getInteger("highness_duration");
+//                PotionEffectHandler.livingEntityHighnessActive(livingBase, highness_duration);
+//            }
+//        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerTimer(TickEvent.PlayerTickEvent event){
-        if(event.player.isDead){
-            PlayerHandler.playerDied(event.player);
-        }
+//        if(event.player.isDead){
+//            PlayerHandler.playerDied(event.player);
+//        }
         PlayerHandler.playerTick(event.player);
     }
     @SubscribeEvent(priority = EventPriority.LOW)
@@ -104,21 +103,8 @@ public class ServerEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void playerFinishUseItem(LivingEntityUseItemEvent.Finish event){
         if (event.getItem().getItem() == Items.MILK_BUCKET) {
-            //Main.logger.info("Bobob");
-            //EntityLivingBase entity = event.getEntityLiving();
-            //PotionEffectHandler.playerMilkDrank(entity);
+
         }
     }
-//    @SubscribeEvent
-//    public void respawn(PlayerEvent.PlayerRespawnEvent event){
-//        setBlindness(event.player);
-//    }
-//
-//    public void setBlindness(EntityPlayerMP player){
-//        int rand = random.nextInt(ModStates.BLINDNESS_CHANCE);
-//        //Main.logger.info(rand);
-//        if (rand == 1){
-//            player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),1000000,255));
-//        }
-//    }
+
 }

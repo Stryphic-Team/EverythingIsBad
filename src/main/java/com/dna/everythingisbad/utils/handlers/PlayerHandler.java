@@ -3,8 +3,13 @@ package com.dna.everythingisbad.utils.handlers;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -34,8 +39,8 @@ public class PlayerHandler {
     }
     public static void playerRespawn(EntityPlayer player){
         // sets to 0 when the player is not high
-        player.getEntityData().setInteger("highness_duration",0);
-        player.writeEntityToNBT(player.getEntityData());
+//        player.getEntityData().setInteger("highness_duration",0);
+//        player.writeEntityToNBT(player.getEntityData());
         if(player instanceof EntityPlayerMP){
             blindnessHandler((EntityPlayerMP) player,true);
         }
@@ -51,7 +56,7 @@ public class PlayerHandler {
             soulHandler(entityPlayerMP);
             blindnessHandler(entityPlayerMP,false);
             if(!hasBeenInitialized){
-                commonColdInitlizer(entityPlayerMP,true);
+                commonColdInitializer(entityPlayerMP,true);
 
                 //needs to be run at the end
                 entityPlayerMP.getEntityData().setBoolean("has_been_initialized",true);
@@ -75,7 +80,7 @@ public class PlayerHandler {
             player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),100000));
         }
     }
-    public static void commonColdInitlizer(EntityPlayerMP player, boolean rollDice){
+    public static void commonColdInitializer(EntityPlayerMP player, boolean rollDice){
         if(random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1){
             player.getEntityData().setBoolean("common_cold_immunity",false);
         }else{
@@ -127,6 +132,15 @@ public class PlayerHandler {
 
     }
     public static void playerTick(EntityPlayer player){
+        questionMarkBlockHandler(player);
+        playerDeathHandler(player);
+        fluidHandler(player);
+    }
+    public static void livingTick(EntityLivingBase entityLivingBase){
+        poopHandler(entityLivingBase);
+        highnessHandler(entityLivingBase);
+    }
+    public static void questionMarkBlockHandler(EntityPlayer player){
         Random rand = new Random();
         World worldIn = player.getEntityWorld();
 
@@ -140,10 +154,10 @@ public class PlayerHandler {
 
         if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
             //Main.logger.info("Under question mark block");
+            //TODO: This should be a fucking loot table
             worldIn.setBlockToAir(pos_plus_2);
             worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
             ItemStack itemstack;
-
             if (rand.nextInt(101) > 98){
                 itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
                 player.dropItem(itemstack, false);
@@ -162,6 +176,64 @@ public class PlayerHandler {
                 itemstack = new ItemStack(Items.GOLD_NUGGET,1);
                 player.dropItem(itemstack, false);
             }
-;       }
+        }
+    }
+    public static void highnessHandler(EntityLivingBase entity){
+        boolean highness_active = entity.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
+        if(highness_active){
+            if (entity instanceof EntityPlayerMP) {
+                // Casting to entityplayermp
+                EntityPlayerMP mp = (EntityPlayerMP)entity;
+                int highness_duration = mp.getEntityData().getInteger("highness_duration");
+                //Main.logger.info("Highness duration in client handler: " + highness_duration);
+                PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
+            }else{
+                int highness_duration = entity.getEntityData().getInteger("highness_duration");
+                PotionEffectHandler.livingEntityHighnessActive(entity, highness_duration);
+            }
+        }
+    }
+    public static void poopHandler(EntityLivingBase entity){
+        if(entity instanceof EntityPlayerMP) {
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entity;
+            if (entityPlayerMP.ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
+
+                int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX - 1) + 1;
+                ItemStack item = new ItemStack(ModItems.POOP_ITEM, random_amount, 3);
+                entityPlayerMP.inventory.addItemStackToInventory(item);
+                PlayerHandler.playerPooped(entityPlayerMP, random_amount);
+            }
+        }else if(entity instanceof EntityCreature){
+            EntityCreature entityAmbientCreature = (EntityCreature)entity;
+            if (entityAmbientCreature.ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
+
+                int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX - 1) + 1;
+                ItemStack item = new ItemStack(ModItems.POOP_ITEM, random_amount, 3);
+                EntityItem entityItem = new EntityItem(entityAmbientCreature.getEntityWorld());
+                entityItem.setPosition(entityAmbientCreature.posX,entityAmbientCreature.posY,entityAmbientCreature.posZ);
+                entityItem.setItem(item);
+                entityAmbientCreature.getEntityWorld().spawnEntity(entityItem);
+            }
+        }
+    }
+    public static void playerDeathHandler(EntityPlayer player){
+        if (player.isDead) {
+            PlayerHandler.playerDied(player);
+        }
+    }
+
+    public static void playerLeft(EntityPlayer player) {
+
+    }
+    public static void fluidHandler(EntityPlayer player){
+        if(player instanceof EntityPlayerMP){
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP)player;
+            BlockPos playerPos = entityPlayerMP.getPosition();
+            Block blockAtPlayerPos = entityPlayerMP.getEntityWorld().getBlockState(playerPos).getBlock();
+            if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
+                FluidEventHandler.inDevilsPee(entityPlayerMP);
+            }
+        }
+
     }
 }
