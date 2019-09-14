@@ -1,13 +1,8 @@
 {
-  "parent": "block/cube",
+  "parent": "block/cube_bottom_top",
   "textures": {
-    "particle": "everythingbad:blocks/question_mark_block",
-    "up": "everythingbad:blocks/question_mark_block_top",
-    "down": "everythingbad:blocks/question_mark_block_top",
-    "north": "everythingbad:blocks/question_mark_block",
-    "east": "everythingbad:blocks/question_mark_block",
-    "south": "everythingbad:blocks/question_mark_block",
-    "west": "everythingbad:blocks/question_mark_block"
+    "bottom": "everythingbad:blocks/question_mark_block_top",
+    "top": "everythingbad:blocks/question_mark_block_top",
+    "side": "everythingbad:blocks/question_mark_block"
   }
-
 }
