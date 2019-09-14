@@ -6,7 +6,7 @@
     }
   },
   "variants": {
-    "normal": { "model": "cube_all" },
-    "inventory": { "model": "cube_all" }
+    "normal": { "model": "everythingbad:question_mark_block" },
+    "inventory": { "model": "everythingbad:question_mark_block" }
   }
 }
