@@ -21,3 +21,4 @@
   * Jesus now spawns less profusely in the heaven dimension
   * You have immunity to common cold if you make your bed in a cold biome
   * Jesus now drops jesus meat and has a 1/10 chance to drop healing potions
+  * Question mark blocks now only spawn in the overworld
