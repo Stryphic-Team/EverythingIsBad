@@ -1,21 +1,15 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -31,8 +25,6 @@ public class PotionEffectHandler {
                     TimeHelper.toMinutes(
                             potion_duration
                     )/2); //Half time
-
-    //public static HashMap<EntityLivingBase,Boolean> potionEffectFirstTimes = new HashMap<EntityLivingBase,Boolean>();
 
     public static void livingEntityHighnessActive(EntityLivingBase entity,int highness_duration){
 

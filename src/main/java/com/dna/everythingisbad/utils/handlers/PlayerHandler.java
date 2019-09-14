@@ -1,12 +1,11 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
 import com.dna.everythingisbad.utils.ModTeleporter;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -60,13 +59,20 @@ public class PlayerHandler {
             blindnessHandler(entityPlayerMP,false);
             if(!hasBeenInitialized){
                 commonColdInitializer(entityPlayerMP,true);
-
                 //needs to be run at the end
                 entityPlayerMP.getEntityData().setBoolean("has_been_initialized",true);
                 entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
             }
 
         }
+    }
+    public static void commonColdInitializer(EntityPlayerMP player, boolean rollDice){
+        if(random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1){
+            player.getEntityData().setBoolean("common_cold_immunity",false);
+        }else{
+            player.getEntityData().setBoolean("common_cold_immunity",true);
+        }
+        player.writeEntityToNBT(player.getEntityData());
     }
     public static void blindnessHandler(EntityPlayerMP player,boolean rollDice){
         if(random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1 && rollDice) {
@@ -83,14 +89,7 @@ public class PlayerHandler {
             player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),100000));
         }
     }
-    public static void commonColdInitializer(EntityPlayerMP player, boolean rollDice){
-        if(random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1){
-            player.getEntityData().setBoolean("common_cold_immunity",false);
-        }else{
-            player.getEntityData().setBoolean("common_cold_immunity",true);
-        }
-        player.writeEntityToNBT(player.getEntityData());
-    }
+
     public static void soulHandler(EntityPlayerMP player){
 
         boolean hasSoul = player.getEntityData().getBoolean("has_soul");
@@ -139,50 +138,23 @@ public class PlayerHandler {
         playerDeathHandler(player);
         fluidHandler(player);
         heavenHandler(player);
+        commonColdHandler(player);
     }
     public static void livingTick(EntityLivingBase entityLivingBase){
         poopHandler(entityLivingBase);
-        highnessHandler(entityLivingBase);
+        potionEffectHandler(entityLivingBase);
+        jesusBloodDropHandler(entityLivingBase);
     }
-    public static void questionMarkBlockHandler(EntityPlayer player){
-        Random rand = new Random();
-        World worldIn = player.getEntityWorld();
-
-        BlockPos player_pos = player.getPosition();
-        int player_x = player_pos.getX();
-        int player_y = player_pos.getY();
-        int player_z = player_pos.getZ();
-
-        BlockPos pos_plus_2 = new BlockPos(player_x,player_y+2,player_z);
-        Block blockabove = worldIn.getBlockState(pos_plus_2).getBlock();
-
-        if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
-            //Main.logger.info("Under question mark block");
-            //TODO: This should be a fucking loot table
-            worldIn.setBlockToAir(pos_plus_2);
-            worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
-            ItemStack itemstack;
-            if (rand.nextInt(101) > 98){
-                itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
-                player.dropItem(itemstack, false);
-            }else if (rand.nextInt(101) > 90){
-                itemstack = new ItemStack(Items.GOLD_INGOT,1);
-                player.dropItem(itemstack, false);
-            }else if (rand.nextInt(101) > 50){
-                if (rand.nextBoolean() == true){
-                    itemstack = new ItemStack(Blocks.RED_MUSHROOM,1);
-                    player.dropItem(itemstack, false);
-                }else{
-                    itemstack = new ItemStack(Blocks.BROWN_MUSHROOM,1);
-                    player.dropItem(itemstack, false);
-                }
-            }else{
-                itemstack = new ItemStack(Items.GOLD_NUGGET,1);
-                player.dropItem(itemstack, false);
+    public static void jesusBloodDropHandler(EntityLivingBase entity){
+        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH){
+            if(entity.getHealth() == 0){
+                World world = entity.getEntityWorld();
+                world.setBlockState(entity.getPosition(),ModFluids.BLOOD.getBlockFluidBase().getDefaultState());
             }
         }
     }
-    public static void highnessHandler(EntityLivingBase entity){
+    //Detects which effect is active and routes it to the PotionEffectHandler
+    public static void potionEffectHandler(EntityLivingBase entity){
         boolean highness_active = entity.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
         if(highness_active){
             if (entity instanceof EntityPlayerMP) {
@@ -197,6 +169,7 @@ public class PlayerHandler {
             }
         }
     }
+
     public static void poopHandler(EntityLivingBase entity){
         if(entity instanceof EntityPlayerMP) {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entity;
@@ -240,6 +213,18 @@ public class PlayerHandler {
         }
 
     }
+    public static void commonColdHandler(EntityPlayer player){
+        if(player instanceof EntityPlayerMP){
+            EntityPlayerMP playerMP = (EntityPlayerMP)player;
+            World world = playerMP.getEntityWorld();
+            boolean Immune = playerMP.getEntityData().getBoolean("common_cold_immunity");
+            if(world.getBiome(playerMP.getPosition()).getTempCategory() == Biome.TempCategory.COLD && !Immune){
+                if(playerMP.ticksExisted + 1 % 100 == 0){
+                    playerMP.addPotionEffect(new PotionEffect(ModPotions.POTION_COMMON_COLD.getPotion(),24000));
+                }
+            }
+        }
+    }
     public static void heavenHandler(EntityPlayer player){
         if (player instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)player;
@@ -252,6 +237,45 @@ public class PlayerHandler {
             if (biyom.equals(ModBiomes.HEAVEN) && mp.posY <= 0){
                 int dimension = DimensionType.OVERWORLD.getId();
                 mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,300,mp.posZ));
+            }
+        }
+    }
+    public static void questionMarkBlockHandler(EntityPlayer player){
+        Random rand = new Random();
+        World worldIn = player.getEntityWorld();
+
+        BlockPos player_pos = player.getPosition();
+        int player_x = player_pos.getX();
+        int player_y = player_pos.getY();
+        int player_z = player_pos.getZ();
+
+        BlockPos pos_plus_2 = new BlockPos(player_x,player_y+2,player_z);
+        Block blockabove = worldIn.getBlockState(pos_plus_2).getBlock();
+
+        if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
+            //Main.logger.info("Under question mark block");
+            //TODO: This should be a fucking loot table
+            //TODO: PLEASE
+            worldIn.setBlockToAir(pos_plus_2);
+            worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
+            ItemStack itemstack;
+            if (rand.nextInt(101) > 98){
+                itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
+                player.dropItem(itemstack, false);
+            }else if (rand.nextInt(101) > 90){
+                itemstack = new ItemStack(Items.GOLD_INGOT,1);
+                player.dropItem(itemstack, false);
+            }else if (rand.nextInt(101) > 50){
+                if (rand.nextBoolean() == true){
+                    itemstack = new ItemStack(Blocks.RED_MUSHROOM,1);
+                    player.dropItem(itemstack, false);
+                }else{
+                    itemstack = new ItemStack(Blocks.BROWN_MUSHROOM,1);
+                    player.dropItem(itemstack, false);
+                }
+            }else{
+                itemstack = new ItemStack(Items.GOLD_NUGGET,1);
+                player.dropItem(itemstack, false);
             }
         }
     }
