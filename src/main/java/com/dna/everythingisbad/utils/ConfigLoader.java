@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
+import java.lang.reflect.Field;
 
 public class ConfigLoader {
     private String configDir = "config/everythingisbad/";
     private String configFile = configDir + "config.json";
+
     public ConfigLoader(){
         new File(configDir).mkdirs();
         boolean fileExists = new File(configFile).exists();
@@ -18,10 +20,12 @@ public class ConfigLoader {
         //Reads the current state of the config file
         String fileString = readFile();
         Gson gson = new Gson();
+
         ConfigModel config = gson.fromJson(fileString,ConfigModel.class);
         //Creates a new config file for outdated config files
-        if( config.version == null || !new ConfigModel().version.equals(config.version)){
+        if(!verifyConfig(config)){
             createNewConfigFile();
+            config = new ConfigModel();
         }
         //Needs to define variables in ModConfig for the config to take affect
         ModConfig.IS_DEBUG = config.is_debug;
@@ -81,5 +85,24 @@ public class ConfigLoader {
         boolean mobs_move_faster = true;
         int mob_speed_multiplier = 1;
         int common_cold_chance = 10;
+    }
+    //Checks the config for null values and returns false if it detects any
+    public boolean verifyConfig(ConfigModel configModel) {
+
+        Field[] fields = configModel.getClass().getDeclaredFields();
+        for (Field f : fields) {
+            Class t = f.getType();
+            try {
+                Object v = f.get(configModel);
+                if (v == null && !(f.getName().equals("this$0"))) {
+                    return false;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+        return true;
     }
 }
