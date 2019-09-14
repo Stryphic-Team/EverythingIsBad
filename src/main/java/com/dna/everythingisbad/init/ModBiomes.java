@@ -10,7 +10,7 @@ public class ModBiomes {
     public static final Biome HEAVEN = new BiomeHeaven();
 
     public static void registerBiomes(){
-        initBiome(HEAVEN,"Heaven", BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SPARSE);
+        initBiome(HEAVEN,"Heaven", BiomeManager.BiomeType.COOL, BiomeDictionary.Type.SPARSE);
     }
 
     public static Biome initBiome(Biome biome, String name, BiomeManager.BiomeType type, BiomeDictionary.Type... types){
