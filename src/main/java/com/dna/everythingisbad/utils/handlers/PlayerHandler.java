@@ -218,8 +218,9 @@ public class PlayerHandler {
             EntityPlayerMP playerMP = (EntityPlayerMP)player;
             World world = playerMP.getEntityWorld();
             boolean Immune = playerMP.getEntityData().getBoolean("common_cold_immunity");
+            Immune = Immune || world.getBiome(playerMP.getBedLocation()).getTempCategory() == Biome.TempCategory.COLD;
             if(world.getBiome(playerMP.getPosition()).getTempCategory() == Biome.TempCategory.COLD && !Immune){
-                if(playerMP.ticksExisted + 1 % 100 == 0){
+                if(playerMP.ticksExisted + 1 % (ModConfig.IS_DEBUG ? 100 : 10000) == 0){
                     playerMP.addPotionEffect(new PotionEffect(ModPotions.POTION_COMMON_COLD.getPotion(),24000));
                 }
             }

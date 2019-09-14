@@ -9,3 +9,15 @@
   * Fixed crash on first join
   
 ### 0.0.23-pre-alpha `9/?/2019`
+  * Jesus now drops blood on death
+  * You now teleport to the overworld when you 
+  fall into the void while in heaven
+  * Fixed crashes when the config is updated
+  * Blizzes don't spawn in heaven now
+  * You can now catch the common cold if you stand in the cold 
+  biome for too long if you don't have the immunity
+  * Improved question mark block texture
+  * You now get high when you jump into gods pee lakes(the green puddles in the world)
+  * Jesus now spawns less profusely in the heaven dimension
+  * You have immunity to common cold if you make your bed in a cold biome
+  * Jesus now drops jesus meat and has a 1/10 chance to drop healing potions
