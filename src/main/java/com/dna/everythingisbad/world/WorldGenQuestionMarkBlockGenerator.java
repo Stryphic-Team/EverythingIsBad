@@ -1,8 +1,6 @@
 package com.dna.everythingisbad.world;
 
 import com.dna.everythingisbad.init.ModBiomes;
-import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
-import com.dna.everythingisbad.world.trees.WorldGenTreeHappy;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,6 +13,12 @@ import java.util.Random;
 
 public class WorldGenQuestionMarkBlockGenerator implements IWorldGenerator {
     public static WorldGenQuestionMarkBlockGenerator INSTANCE = new WorldGenQuestionMarkBlockGenerator();
+    public static Biome[] EXCLUDED_BIOMES = new Biome[]{
+            Biomes.HELL,
+            Biomes.VOID,
+            ModBiomes.HEAVEN,
+            Biomes.SKY
+    };
     public WorldGenQuestionMarkBlockGenerator(){
 
     }
@@ -23,12 +27,21 @@ public class WorldGenQuestionMarkBlockGenerator implements IWorldGenerator {
         if (random.nextFloat() < 0.1) {
             int xPos = chunkX * 16 + 8;
             int zPos = chunkZ * 16 + 8;
-            Biome bingly = world.getBiomeProvider().getBiome(new BlockPos(xPos,1,zPos));
-            if (bingly != Biomes.HELL && bingly != ModBiomes.HEAVEN && bingly != Biomes.VOID){
-                WorldGenQuestionMarkBlock blok = new WorldGenQuestionMarkBlock();
+            Biome biome = world.getBiomeProvider().getBiome(new BlockPos(xPos,1,zPos));
+            if(!biomeExcluded(biome)){
+                WorldGenQuestionMarkBlock block = new WorldGenQuestionMarkBlock();
                 BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
-                blok.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+                block.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+            }
+
+        }
+    }
+    public boolean biomeExcluded(Biome biome){
+        for(Biome excludedBiome : EXCLUDED_BIOMES){
+            if(excludedBiome == biome){
+                return true;
             }
         }
+        return false;
     }
 }
