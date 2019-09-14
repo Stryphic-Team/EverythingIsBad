@@ -1,12 +1,12 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.init.ModFluids;
-import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.init.ModPotions;
+import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
+import com.dna.everythingisbad.utils.ModTeleporter;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -22,7 +22,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Random;
 
@@ -135,6 +138,7 @@ public class PlayerHandler {
         questionMarkBlockHandler(player);
         playerDeathHandler(player);
         fluidHandler(player);
+        heavenHandler(player);
     }
     public static void livingTick(EntityLivingBase entityLivingBase){
         poopHandler(entityLivingBase);
@@ -235,5 +239,20 @@ public class PlayerHandler {
             }
         }
 
+    }
+    public static void heavenHandler(EntityPlayer player){
+        if (player instanceof EntityPlayerMP){
+            EntityPlayerMP mp = (EntityPlayerMP)player;
+            WorldServer server = mp.getServerWorld();
+
+            // Get the biome the player is in
+            BlockPos playerPos = mp.getPosition();
+            Biome biyom = mp.getServerWorld().getBiome(playerPos);
+
+            if (biyom.equals(ModBiomes.HEAVEN) && mp.posY <= 0){
+                int dimension = DimensionType.OVERWORLD.getId();
+                mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,300,mp.posZ));
+            }
+        }
     }
 }

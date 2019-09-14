@@ -24,6 +24,7 @@ public class FluidEventHandler {
         if (song_timer<=0) {
             song_timer=3600;
             worldIn.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, ModSoundEvents.SOUND_EVENT_GODS_PEE, SoundCategory.RECORDS, 1F, 1f);
+            //player.playSound(ModSoundEvents.SOUND_EVENT_GODS_PEE,1f,1f);
         }else{
             song_timer--;
         }
