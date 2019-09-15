@@ -54,7 +54,6 @@ public class BlockDiaricGenerator extends BlockGeneratorBase {
                 if(playerIn instanceof EntityPlayerMP){
                     EntityPlayerMP playerMP = (EntityPlayerMP)playerIn;
                     playerMP.getEntityWorld().playSound((EntityPlayer)null, playerIn.posX,playerIn.posY,playerIn.posZ,SoundEvents.ITEM_BOTTLE_EMPTY,SoundCategory.PLAYERS,1f,1f);
-
                 }
                 if(!playerIn.isCreative()) {
                     playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).shrink(1);
