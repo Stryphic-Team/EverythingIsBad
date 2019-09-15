@@ -9,10 +9,9 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -182,16 +181,18 @@ public class PlayerHandler {
                 entityPlayerMP.inventory.addItemStackToInventory(item);
                 PlayerHandler.playerPooped(entityPlayerMP, random_amount);
             }
-        }else if(entity instanceof EntityCreature){
-            EntityCreature entityAmbientCreature = (EntityCreature)entity;
-            if (entityAmbientCreature.ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
-
-                int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX - 1) + 1;
-                ItemStack item = new ItemStack(ModItems.POOP_ITEM, random_amount, 3);
-                EntityItem entityItem = new EntityItem(entityAmbientCreature.getEntityWorld());
-                entityItem.setPosition(entityAmbientCreature.posX,entityAmbientCreature.posY,entityAmbientCreature.posZ);
-                entityItem.setItem(item);
-                entityAmbientCreature.getEntityWorld().spawnEntity(entityItem);
+        }else if(entity instanceof EntityAnimal){
+            EntityAnimal entityAnimal = (EntityAnimal)entity;
+            if (entityAnimal.ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
+                if(entityAnimal.getServer() != null) {
+                    WorldServer worldServer = (WorldServer) entityAnimal.getServer().getEntityWorld();
+                    int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX - 1) + 1;
+                    ItemStack item = new ItemStack(ModItems.POOP_ITEM, random_amount, 3);
+                    EntityItem entityItem = new EntityItem(worldServer);
+                    entityItem.setPosition(entityAnimal.posX, entityAnimal.posY, entityAnimal.posZ);
+                    entityItem.setItem(item);
+                    worldServer.spawnEntity(entityItem);
+                }
             }
         }
     }

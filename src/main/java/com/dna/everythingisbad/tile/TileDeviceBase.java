@@ -24,8 +24,8 @@ import javax.annotation.Nullable;
 
 public class TileDeviceBase extends TileEntity implements ITickable {
     private String name;
-    private int progress;
-    private int finishedProgress;
+    protected int progress = 0;
+    protected int finishedProgress = 0;
     protected ModItemHandler itemStackHadler;
     protected ModFluidHandler fluidHandler;
     protected ModEnergyHandler energyHandler;
@@ -56,6 +56,7 @@ public class TileDeviceBase extends TileEntity implements ITickable {
         if(energyHandler != null){
             energyHandler.setEnergyStorage(compound.getInteger("energyStored"));
         }
+        progress = compound.getInteger("progress");
     }
 
     @Override
@@ -69,6 +70,7 @@ public class TileDeviceBase extends TileEntity implements ITickable {
         if(energyHandler != null){
             compound.setInteger("energyStored",energyHandler.getEnergyStored());
         }
+        compound.setInteger("progress",progress);
         return super.writeToNBT(compound);
     }
 
