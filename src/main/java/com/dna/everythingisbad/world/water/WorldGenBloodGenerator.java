@@ -41,8 +41,10 @@ public class WorldGenBloodGenerator implements IWorldGenerator {
             // get the solid block directly below that air block.
             hite--;
             // and make a blood lake here
-            WorldGenLakes lake = new WorldGenLakes(ModFluids.BLOOD.getBlockFluidBase());
-            lake.generate(world, random, new BlockPos(xPos, hite, zPos));
+            if (hite<=123){
+                WorldGenLakes lake = new WorldGenLakes(ModFluids.BLOOD.getBlockFluidBase());
+                lake.generate(world, random, new BlockPos(xPos, hite, zPos));
+            }
         }
 
     }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "everythingbad:poop",
+      "data": 3
+    }
+  ],
+  "result": {
+    "type": "minecraft:item_nbt",
+    "item": "forge:bucketfilled",
+    "nbt":{
+      "FluidName": "everythingbad:diaria",
+      "Amount": 1000
+    }
+  }
+}

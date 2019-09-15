@@ -1,33 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BLG",
-    "LTL",
-    "RLC"
+    "GSG",
+    "SCS",
+    "GSG"
   ],
   "key": {
-    "T": {
-      "item": "minecraft:tnt"
+    "G": {
+      "item": "minecraft:gunpowder"
     },
-    "B": {
-      "item": "minecraft:dye",
-      "data": 4
+    "S": {
+      "item": "minecraft:sand",
+      "data": 0
     },
     "C": {
-      "item": "minecraft:dye",
-      "data": 6
-    },
-    "G": {
-      "item": "minecraft:dye",
-      "data": 2
-    },
-    "R": {
-      "item": "minecraft:dye",
-      "data": 1
-    },
-    "L": {
-      "item": "minecraft:dye",
-      "data": 10
+      "item": "everythingbad:stupid_core"
     }
   },
   "result": {
