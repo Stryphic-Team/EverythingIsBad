@@ -163,7 +163,7 @@ public class PlayerHandler {
                 int highness_duration = mp.getEntityData().getInteger("highness_duration");
                 //Main.logger.info("Highness duration in client handler: " + highness_duration);
                 PotionEffectHandler.livingEntityHighnessActive(mp, highness_duration);
-            }else{
+            }else if (entity instanceof EntityCreature){
                 int highness_duration = entity.getEntityData().getInteger("highness_duration");
                 PotionEffectHandler.livingEntityHighnessActive(entity, highness_duration);
             }
