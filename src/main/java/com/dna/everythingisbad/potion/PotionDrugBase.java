@@ -19,12 +19,4 @@ public class PotionDrugBase extends Potion {
         Minecraft.getMinecraft().getTextureManager().bindTexture(loc);
         return true;
     }
-
-    @Override
-    public java.util.List<net.minecraft.item.ItemStack> getCurativeItems()
-    {
-        // Return an empty array list of items
-        java.util.ArrayList<net.minecraft.item.ItemStack> ret = new java.util.ArrayList<net.minecraft.item.ItemStack>();
-        return ret;
-    }
 }
