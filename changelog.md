@@ -22,3 +22,6 @@
   * You have immunity to common cold if you make your bed in a cold biome
   * Jesus now drops jesus meat and has a 1/10 chance to drop healing potions
   * Question mark blocks now only spawn in the overworld
+  * Question mark blocks are less common now
+  * Random cubes of wool are less common now
+  * Machines now make sounds when you fill them

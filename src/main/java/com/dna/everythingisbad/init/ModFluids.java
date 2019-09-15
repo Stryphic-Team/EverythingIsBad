@@ -2,14 +2,13 @@ package com.dna.everythingisbad.init;
 
 
 import com.dna.everythingisbad.utils.prototypes.FluidPrototype;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraft.block.material.Material;
 
 public class ModFluids {
 
     public static FluidPrototype DEVILS_PEE = new FluidPrototype("devils_pee");
     public static FluidPrototype DIARIA = new FluidPrototype("diaria");
-    public static FluidPrototype BLOOD = new FluidPrototype("blood");
+    public static FluidPrototype BLOOD = new FluidPrototype("blood", Material.WATER);
     public static FluidPrototype URINE = new FluidPrototype("urine");
 
     public static FluidPrototype[] FLUIDS = new FluidPrototype[]{

@@ -24,7 +24,7 @@ public class StructureGenerator implements IWorldGenerator {
                 twinTowers.generate(world,random,world.getTopSolidOrLiquidBlock(position).down(20));
             }
         }
-        if(random.nextFloat() < 0.001f){
+        if(random.nextFloat() < 0.0005f){
             WorldGenWoolBlock worldGenWoolBlock = new WorldGenWoolBlock();
             BlockPos position = new BlockPos(xPos,150,zPos);
             worldGenWoolBlock.generate(world,random,position);

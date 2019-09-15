@@ -24,7 +24,7 @@ public class WorldGenQuestionMarkBlockGenerator implements IWorldGenerator {
     }
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (random.nextFloat() < 0.1) {
+        if (random.nextFloat() < 0.005) {
             int xPos = chunkX * 16 + 8;
             int zPos = chunkZ * 16 + 8;
             Biome biome = world.getBiomeProvider().getBiome(new BlockPos(xPos,1,zPos));
