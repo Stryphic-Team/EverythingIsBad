@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.world;
 
 import com.dna.everythingisbad.init.ModBiomes;
+import com.dna.everythingisbad.world.structures.WorldGenQuestionMarkStructure;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,14 +30,21 @@ public class WorldGenQuestionMarkBlockGenerator implements IWorldGenerator {
             int zPos = chunkZ * 16 + 8;
             Biome biome = world.getBiomeProvider().getBiome(new BlockPos(xPos,1,zPos));
             if(!biomeExcluded(biome)){
-                WorldGenQuestionMarkBlock block = new WorldGenQuestionMarkBlock();
-                BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
-                block.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+                int decision = random.nextInt(2);
+                if(decision == 1) {
+                    WorldGenQuestionMarkBlock block = new WorldGenQuestionMarkBlock();
+                    BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
+                    block.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+                }else{
+                    WorldGenQuestionMarkStructure worldGenQuestionMarkStructure = new WorldGenQuestionMarkStructure();
+                    BlockPos position = world.getTopSolidOrLiquidBlock(new BlockPos(xPos,0,zPos));
+                    worldGenQuestionMarkStructure.generate(world,random,position.up(3));
+                }
             }
 
         }
     }
-    public boolean biomeExcluded(Biome biome){
+    public static boolean biomeExcluded(Biome biome){
         for(Biome excludedBiome : EXCLUDED_BIOMES){
             if(excludedBiome == biome){
                 return true;

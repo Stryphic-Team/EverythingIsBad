@@ -25,3 +25,4 @@
   * Question mark blocks are less common now
   * Random cubes of wool are less common now
   * Machines now make sounds when you fill them
+  * Added question mark structures

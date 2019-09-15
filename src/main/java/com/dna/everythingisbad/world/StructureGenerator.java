@@ -1,6 +1,5 @@
 package com.dna.everythingisbad.world;
 
-import com.dna.everythingisbad.world.structures.WorldGenQuestionMarkStructure;
 import com.dna.everythingisbad.world.structures.WorldGenTwinTowers;
 import com.dna.everythingisbad.world.structures.WorldGenWoolBlock;
 import net.minecraft.init.Biomes;
@@ -33,10 +32,7 @@ public class StructureGenerator implements IWorldGenerator {
             worldGenWoolBlock.generate(world,random,position);
         }
         if(random.nextFloat() < 0.005f){
-            WorldGenQuestionMarkStructure worldGenQuestionMarkStructure = new WorldGenQuestionMarkStructure();
-            BlockPos position = world.getTopSolidOrLiquidBlock(new BlockPos(xPos,0,zPos));
 
-            worldGenQuestionMarkStructure.generate(world,random,position.up(3));
         }
 
     }
