@@ -10,6 +10,7 @@ public class ModLootTables {
     public static ArrayList<ResourceLocation> LOOT_TABLES = new ArrayList<ResourceLocation>();
     public static ResourceLocation ENTITY_JESUS_LOOT = LootTableList.register(new ResourceLocation(Reference.MOD_ID,"entities/jesus"));
     public static ResourceLocation CHEST_EVERYTHINGBAD_LOOT = LootTableList.register(new ResourceLocation(Reference.MOD_ID,"chest/everythingbad"));
+    public static ResourceLocation QUESTION_MARK_BLOCK_LOOT = LootTableList.register(new ResourceLocation(Reference.MOD_ID,"question_mark_block"));
 
     public static ResourceLocation register(String id,String name)
     {

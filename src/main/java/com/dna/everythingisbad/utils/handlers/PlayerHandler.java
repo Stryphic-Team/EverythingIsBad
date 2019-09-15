@@ -25,6 +25,8 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootTable;
 
 import java.util.Random;
 
@@ -242,41 +244,29 @@ public class PlayerHandler {
         }
     }
     public static void questionMarkBlockHandler(EntityPlayer player){
-        Random rand = new Random();
-        World worldIn = player.getEntityWorld();
+        if (player instanceof EntityPlayerMP){
+            Random rand = new Random();
+            World worldIn = player.getEntityWorld();
 
-        BlockPos player_pos = player.getPosition();
-        int player_x = player_pos.getX();
-        int player_y = player_pos.getY();
-        int player_z = player_pos.getZ();
+            BlockPos player_pos = player.getPosition();
+            int player_x = player_pos.getX();
+            int player_y = player_pos.getY();
+            int player_z = player_pos.getZ();
 
-        BlockPos pos_plus_2 = new BlockPos(player_x,player_y+2,player_z);
-        Block blockabove = worldIn.getBlockState(pos_plus_2).getBlock();
+            BlockPos pos_plus_2 = new BlockPos(player_x,player_y+2,player_z);
+            Block blockabove = worldIn.getBlockState(pos_plus_2).getBlock();
 
-        if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
-            //Main.logger.info("Under question mark block");
-            //TODO: This should be a fucking loot table
-            //TODO: PLEASE
-            worldIn.setBlockToAir(pos_plus_2);
-            worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
-            ItemStack itemstack;
-            if (rand.nextInt(101) > 98){
-                itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
-                player.dropItem(itemstack, false);
-            }else if (rand.nextInt(101) > 90){
-                itemstack = new ItemStack(Items.GOLD_INGOT,1);
-                player.dropItem(itemstack, false);
-            }else if (rand.nextInt(101) > 50){
-                if (rand.nextBoolean() == true){
-                    itemstack = new ItemStack(Blocks.RED_MUSHROOM,1);
-                    player.dropItem(itemstack, false);
-                }else{
-                    itemstack = new ItemStack(Blocks.BROWN_MUSHROOM,1);
-                    player.dropItem(itemstack, false);
+            if (blockabove == ModBlocks.QUESTION_MARK_BLOCK && player.motionY > 0){
+                // Sets it to the empty block
+                worldIn.setBlockToAir(pos_plus_2);
+                worldIn.setBlockState(pos_plus_2,ModBlocks.EMPTY_BLOCK.getBlockState().getBaseState());
+
+                // Gives you the item(s) and shit
+                LootTable loottable = worldIn.getLootTableManager().getLootTableFromLocation(ModLootTables.QUESTION_MARK_BLOCK_LOOT);
+                LootContext.Builder lootcontext$builder = (new LootContext.Builder((WorldServer)worldIn));
+                for (ItemStack lutestack : loottable.generateLootForPools(rand,lootcontext$builder.build())){
+                    player.dropItem(lutestack,false);
                 }
-            }else{
-                itemstack = new ItemStack(Items.GOLD_NUGGET,1);
-                player.dropItem(itemstack, false);
             }
         }
     }
