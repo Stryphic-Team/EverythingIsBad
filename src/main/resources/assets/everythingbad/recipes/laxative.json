@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "everythingbad:aloe_leaf"
+    },
+    {
+      "item": "everythingbad:medicine_bottle"
+    }
+  ],
+  "result": {
+    "item": "everythingbad:laxative"
+  }
+}
