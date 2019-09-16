@@ -17,6 +17,8 @@ public class BlockPoopFence extends BlockFence implements IHasModel {
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(SHAPE, BlockStairs.EnumShape.STRAIGHT));
+        setHardness(2f);
+        setResistance(15);
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }

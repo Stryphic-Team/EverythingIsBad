@@ -23,7 +23,8 @@ public class ModBlocks
     public static final Block POOP_BLOCK = new BlockPoop("poop_block",Material.GROUND);
     public static final Block POOP_BRICKS_BLOCK = new BlockPoopBricks("poop_bricks",Material.ROCK);
     public static final Block BLOOD_BLOCK = new BloodBlock("blood_block");
-    public static final Block URINE_BLOCK = new BloodBlock("urine_block");
+    public static final Block URINE_BLOCK = new BlockUrine("urine_block");
+    public static final Block URINE_BRICKS_BLOCK = new BlockUrineBricks("urine_bricks");
     public static final Block LOG_HAPPY_BLOCK = new BlockLogHappy("log_happy");
     public static final Block LEAVES_HAPPY_BLOCK = new BlockLeavesHappy("leaves_happy");
     public static final Block SAPLING_HAPPY_BLOCK = new BlockSaplingHappy("sapling_happy");

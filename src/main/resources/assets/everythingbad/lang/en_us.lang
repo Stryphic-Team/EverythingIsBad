@@ -2,11 +2,12 @@ tile.everythingbad:stupid_tnt.name=Stupid™ TNT
 tile.everythingbad:poop_block.name=Poop Block
 tile.everythingbad:poop_bricks.name=Poop Bricks
 tile.everythingbad:blood_block.name=Blood Block
-tile.everythingbad:urine_block.name=Urine Block
+tile.everythingbad:urine_block.name=Urine Crystal Block
 tile.everythingbad:sapling_happy.name=Happy Sapling
 tile.everythingbad:log_happy.name=Happy Wood
 tile.everythingbad:leaves_happy.name=Happy Leaves
 tile.everythingbad:poop_stairs.name=Poop Brick Stairs
+tile.everythingbad:urine_bricks.name=Urine Bricks
 
 tile.everythingbad:stupid_core_machine.name=Stupid™ Core Machine
 tile.everythingbad:diaric_generator.name=Diaric Generator
@@ -39,6 +40,8 @@ item.everythingbad:aloe_leaf.name=Aloe Vera
 item.everythingbad:fried_dragon_egg.name=Fried Dragon Egg
 item.everythingbad:tobacco_leaf.name=Tobacco Leaf
 item.everythingbad:tobacco_seeds.name=Tobacco Seeds
+item.everythingbad:urine_crystal.name=Urine Crystal
+item.everythingbad:urine_brick.name=Urine Brick
 
 item.everythingbad:hair_dryer_gun.name=Hair Dryer Gun
 item.everythingbad:stupid_tnt_gun.name=Stupid™ TNT Gun

@@ -43,6 +43,12 @@ public class DryerRecipes {
             10000,
             new ItemStack(ModBlocks.POOP_BLOCK)
     );
+    public static final DryerRecipePrototype DEVILS_PEE_RECIPE = new DryerRecipePrototype(
+            120,
+            ModFluids.DEVILS_PEE.getFluid(),
+            10000,
+            new ItemStack(ModBlocks.URINE_BLOCK)
+    );
 
     public static void init(){
         for(DryerRecipePrototype recipe:RECIPES){

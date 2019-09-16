@@ -1,10 +1,7 @@
 package com.dna.everythingisbad.init;
 
 
-import com.dna.everythingisbad.item.ItemPoop;
-import com.dna.everythingisbad.item.ItemPoopBrick;
-import com.dna.everythingisbad.item.ItemSoul;
-import com.dna.everythingisbad.item.ItemStupidCore;
+import com.dna.everythingisbad.item.*;
 import com.dna.everythingisbad.item.armor.ItemCamoChestplate;
 import com.dna.everythingisbad.item.armor.ItemCowboyHat;
 import com.dna.everythingisbad.item.armor.ItemSantaHat;
@@ -36,6 +33,8 @@ public class ModItems {
     public static final ItemSoul SOUL_ITEM = new ItemSoul("soul");
     public static final ItemTobaccoLeaf TOBACCO_LEAF_ITEM = new ItemTobaccoLeaf("tobacco_leaf");
     public static final ItemTobaccoSeeds TOBACCO_SEEDS_ITEM = new ItemTobaccoSeeds("tobacco_seeds");
+    public static final ItemUrineBrick URINE_BRICK_ITEM = new ItemUrineBrick("urine_brick");
+    public static final ItemUrineCrystal URINE_CRYSTAL_ITEM = new ItemUrineCrystal("urine_crystal");
 
     public static final ItemFungOs FUNG_OS_ITEM = new ItemFungOs("fung_os");
     public static final ItemHotCheaters HOT_CHEATERS_ITEM = new ItemHotCheaters("hot_cheaters");

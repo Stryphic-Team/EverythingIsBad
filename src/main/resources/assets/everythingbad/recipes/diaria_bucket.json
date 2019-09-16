@@ -1,14 +1,21 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:water_bucket"
-    },
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DED",
+    "DWD"
+  ],
+  "key": {
+    "D": {
       "item": "everythingbad:poop",
       "data": 3
+    },
+    "E": {
+      "item": "minecraft:bucket"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
     }
-  ],
+  },
   "result": {
     "type": "minecraft:item_nbt",
     "item": "forge:bucketfilled",
