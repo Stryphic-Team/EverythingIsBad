@@ -3,6 +3,7 @@ package com.dna.everythingisbad.world;
 import com.dna.everythingisbad.init.ModBiomes;
 import com.dna.everythingisbad.world.structures.WorldGenQuestionMarkStructure;
 import net.minecraft.init.Biomes;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -29,15 +30,14 @@ public class WorldGenQuestionMarkBlockGenerator implements IWorldGenerator {
             int xPos = chunkX * 16 + 8;
             int zPos = chunkZ * 16 + 8;
             Biome biome = world.getBiomeProvider().getBiome(new BlockPos(xPos,1,zPos));
-            if(!biomeExcluded(biome)){
+            BlockPos position = world.getTopSolidOrLiquidBlock(new BlockPos(xPos,0,zPos));
+            if(!biomeExcluded(biome)  && world.getBlockState(position).getBlock() != Blocks.WATER){
                 int decision = random.nextInt(2);
                 if(decision == 1) {
                     WorldGenQuestionMarkBlock block = new WorldGenQuestionMarkBlock();
-                    BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
-                    block.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+                    block.generate(world, random, new BlockPos(xPos, position.getY(), zPos));
                 }else{
                     WorldGenQuestionMarkStructure worldGenQuestionMarkStructure = new WorldGenQuestionMarkStructure();
-                    BlockPos position = world.getTopSolidOrLiquidBlock(new BlockPos(xPos,0,zPos));
                     worldGenQuestionMarkStructure.generate(world,random,position.up(3));
                 }
             }

@@ -15,12 +15,8 @@ public class WorldGenQuestionMarkBlock extends WorldGenerator {
 
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         int x = position.getX();int y = position.getY();int z = position.getZ();
-        if (worldIn.getBlockState(position).getBlock() != Blocks.WATER) {
-            BlockPos blockpos = new BlockPos(x,y+3,z);
-            this.setBlockAndNotifyAdequately(worldIn, blockpos, ModBlocks.QUESTION_MARK_BLOCK.getDefaultState());
-            return true;
-        }else{
-            return false;
-        }
+        BlockPos blockpos = new BlockPos(x,y+3,z);
+        this.setBlockAndNotifyAdequately(worldIn, blockpos, ModBlocks.QUESTION_MARK_BLOCK.getDefaultState());
+        return true;
     }
 }
