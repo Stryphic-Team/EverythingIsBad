@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GBG",
+    "GBG",
+    "GBG"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:dye",
+      "data": 3
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "everythingbad:medicine_bottle"
+  }
+}

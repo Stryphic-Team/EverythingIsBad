@@ -11,7 +11,6 @@
 ### 0.0.23-pre-alpha `9/16/2019`
   * Fixes
     * Fixed crashes when the config is updated
-    * Fixed mobs dropping phantom poop items
     * Fixed machines not storing progress
     * Jesus now spawns less profusely in the heaven dimension
     * Re-fixed potion side-effect re-add on rejoin glitch
@@ -34,5 +33,6 @@
     * Added question mark block structures
     * You can craft diaria from water and poop
     * Improved Stupid™ TNT recipe
-    * Urine Stone Bricks Added
-    * Urine Bricks Added
+    * Added urine crystals, urine bricks, urine brick block
+    * Mobs now poop
+  

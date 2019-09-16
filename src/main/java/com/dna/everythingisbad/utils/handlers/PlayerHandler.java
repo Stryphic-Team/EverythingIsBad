@@ -174,7 +174,8 @@ public class PlayerHandler {
     public static void poopHandler(EntityLivingBase entity){
         if(entity instanceof EntityPlayerMP) {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entity;
-            if (entityPlayerMP.ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
+            int intervalAlter = random.nextInt(500);
+            if (entityPlayerMP.ticksExisted % Math.abs(ModConfig.AUTO_POOP_INTERVAL + intervalAlter) == 0) {
 
                 int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX - 1) + 1;
                 ItemStack item = new ItemStack(ModItems.POOP_ITEM, random_amount, 3);
@@ -183,7 +184,8 @@ public class PlayerHandler {
             }
         }else if(entity instanceof EntityAnimal){
             EntityAnimal entityAnimal = (EntityAnimal)entity;
-            if (entityAnimal.ticksExisted % (ModConfig.AUTO_POOP_INTERVAL) == 0) {
+            int intervalAlter = random.nextInt(500);
+            if (entityAnimal.ticksExisted % Math.abs(ModConfig.AUTO_POOP_INTERVAL + intervalAlter) == 0) {
                 if(entityAnimal.getServer() != null) {
                     WorldServer worldServer = (WorldServer) entityAnimal.getServer().getEntityWorld();
                     int random_amount = random.nextInt(ModConfig.AUTO_POOP_MAX - 1) + 1;
