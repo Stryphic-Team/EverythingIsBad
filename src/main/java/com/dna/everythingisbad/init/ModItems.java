@@ -44,6 +44,8 @@ public class ModItems {
     public static final ItemChickenSoup CHICKEN_SOUP_ITEM = new ItemChickenSoup("chicken_soup");
     public static final ItemAloeLeaf ALOE_LEAF_ITEM = new ItemAloeLeaf("aloe_leaf");
     public static final ItemFriedDragonEgg FRIED_DRAGON_EGG_ITEM = new ItemFriedDragonEgg("fried_dragon_egg");
+    public static final ItemMedicineBottle MEDICINE_BOTTLE_ITEM = new ItemMedicineBottle("medicine_bottle");
+    public static final ItemLaxative LAXATIVE_ITEM = new ItemLaxative("laxative");
 
     public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
     public static final ItemRecordGodsPee RECORD_GODS_PEE = new ItemRecordGodsPee("record_gods_pee");

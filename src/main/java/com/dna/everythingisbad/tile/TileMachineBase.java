@@ -3,15 +3,12 @@ package com.dna.everythingisbad.tile;
 import com.dna.everythingisbad.capabilities.ModEnergyHandler;
 import com.dna.everythingisbad.capabilities.ModFluidHandler;
 import com.dna.everythingisbad.capabilities.ModItemHandler;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileMachineBase  extends TileDeviceBase {
-    private int progress = 0;
-    private int finishedProgress = 0;
 
     public TileMachineBase(String name) {
         super(name);
@@ -29,22 +26,7 @@ public class TileMachineBase  extends TileDeviceBase {
 
         return capability == CapabilityEnergy.ENERGY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
     }
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
 
-        energyHandler.setEnergyStorage(nbt.getInteger("energyStored"));
-        super.readFromNBT(nbt);
-
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-
-        super.writeToNBT(nbt);
-        nbt.setInteger("energyStored",energyHandler.getEnergyStored());
-
-        return nbt;
-    }
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY) {
