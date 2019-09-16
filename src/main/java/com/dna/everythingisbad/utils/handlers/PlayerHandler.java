@@ -41,9 +41,6 @@ public class PlayerHandler {
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerRespawn(EntityPlayer player){
-        // sets to 0 when the player is not high
-//        player.getEntityData().setInteger("highness_duration",0);
-//        player.writeEntityToNBT(player.getEntityData());
         if(player instanceof EntityPlayerMP){
             blindnessHandler((EntityPlayerMP) player,true);
         }
@@ -75,14 +72,15 @@ public class PlayerHandler {
         }
         player.writeEntityToNBT(player.getEntityData());
     }
-    public static void blindnessHandler(EntityPlayerMP player,boolean rollDice){
-        if(random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1 && rollDice) {
-            player.getEntityData().setBoolean("is_blind", true);
-
-            player.writeEntityToNBT(player.getEntityData());
-        }else{
-            player.getEntityData().setBoolean("is_blind", false);
-            player.writeEntityToNBT(player.getEntityData());
+    public static void blindnessHandler(EntityPlayerMP player,boolean rollDice) {
+        if (rollDice){
+            if (random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1) {
+                player.getEntityData().setBoolean("is_blind", true);
+                player.writeEntityToNBT(player.getEntityData());
+            } else {
+                player.getEntityData().setBoolean("is_blind", false);
+                player.writeEntityToNBT(player.getEntityData());
+            }
         }
         boolean isBlind = player.getEntityData().getBoolean("is_blind");
         if(isBlind){
@@ -97,19 +95,19 @@ public class PlayerHandler {
         if (!hasSoul){
 
             // Makes a new itemstack and gives it an NBT string with the name of the player
-            ItemStack soulstack = new ItemStack(ModItems.SOUL_ITEM,1,0);
-            NBTTagCompound hingydingy = new NBTTagCompound();
-            hingydingy.setString("player_name",player.getDisplayNameString());
-            soulstack.setTagCompound(hingydingy);
+            ItemStack soulStack = new ItemStack(ModItems.SOUL_ITEM,1,0);
+            NBTTagCompound soulCompound = new NBTTagCompound();
+            soulCompound.setString("player_name",player.getDisplayNameString());
+            soulStack.setTagCompound(soulCompound);
 
             //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
             //TODO: Add soulbound enchantment to itemstack (or make one)
 
             // Give it to the player, or drop it if they cant fit it (for whatever reason)
-            if (!player.inventory.addItemStackToInventory(soulstack)) {
-                player.dropItem(soulstack, false);
+            if (!player.inventory.addItemStackToInventory(soulStack)) {
+                player.dropItem(soulStack, false);
             }else{
-                player.inventory.addItemStackToInventory(soulstack);
+                player.inventory.addItemStackToInventory(soulStack);
             }
 
             // Makes sure the player only gets one, ever!!!
