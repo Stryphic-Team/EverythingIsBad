@@ -11,6 +11,6 @@
   "credits": "King Lemon and Forge Discord",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["cofhcore"]
 }
 ]

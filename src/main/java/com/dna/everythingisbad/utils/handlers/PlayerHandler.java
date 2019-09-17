@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import cofh.core.init.CoreEnchantments;
 import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
@@ -99,6 +100,7 @@ public class PlayerHandler {
             NBTTagCompound soulCompound = new NBTTagCompound();
             soulCompound.setString("player_name",player.getDisplayNameString());
             soulStack.setTagCompound(soulCompound);
+            soulStack.addEnchantment(CoreEnchantments.soulbound,1);
 
             //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
             //TODO: Add soulbound enchantment to itemstack (or make one)

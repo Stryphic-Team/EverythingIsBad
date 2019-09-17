@@ -27,8 +27,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "0.0.23-pre-alpha"
-group = "com.dna.everythingisbad" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "0.1.0-alpha"
+group = "com.dna" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "everythingisbad"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -51,7 +51,7 @@ minecraft {
 
 
 dependencies {
-
+    compile "cofh:CoFHCore:1.12.2-4.6.0.+:deobf"
 }
 
 processResources {
