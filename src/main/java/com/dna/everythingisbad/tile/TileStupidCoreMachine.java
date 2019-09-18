@@ -45,6 +45,26 @@ public class TileStupidCoreMachine extends TileMachineBase {
     }
 
     @Override
+    public boolean hasNecessaryItems() {
+        return false;
+    }
+
+    @Override
+    public void insertOutput() {
+
+    }
+
+    @Override
+    public void reduceInput() {
+
+    }
+
+    @Override
+    public void reduceEnergy() {
+
+    }
+
+    @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY) {
             return CapabilityEnergy.ENERGY.cast(energyHandler);

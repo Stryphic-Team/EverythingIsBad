@@ -69,13 +69,7 @@ public class CommonProxy implements IProxy{
         ModEntities.init();
         FluidCache.init();
         DryerRecipes.init();
-//        Biome.BiomeProperties properties = new Biome.BiomeProperties("poop_biome");
-//        properties.setBaseHeight(40);
-//        properties.setBaseBiome("poop_biome");
-//        properties.setWaterColor(0xff0000);
-//
-//        ForgeRegistries.BIOMES.register(new BiomePoop(properties));
-//        BiomeManager.addSpawnBiome(new BiomePoop(properties));
+        LiquifierRecipes.init();
 
     }
 }

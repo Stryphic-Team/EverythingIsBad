@@ -24,24 +24,12 @@ public class TileDryerMachine extends TileMachineBase {
         itemStackHadler.setSlotConfig(1,true,false);
         itemStackHadler.setSlotConfig(0,true,true);
         this.displayName = "Dryer Machine";
+        outputSlot = 1;
     }
 
     @Override
     public void update() {
         super.update();
-        if(hasNecessaryItems()){
-            if(itemStackHadler.getStackInSlot(1).getCount() < itemStackHadler.getSlotLimit(1)){
-                stepProgress();
-                reduceEnergy();
-                if(getProgress() >= getFinishedProgress()){
-                    insertOutput();
-                    reduceInput();
-                    setProgress(0);
-                }
-            }
-        }else{
-            setProgress(0);
-        }
         FluidStack fluidInBucket = FluidUtil.getFluidContained(itemStackHadler.getStackInSlot(0));
         if(fluidInBucket != null){
             int fluidFilled = fluidHandler.fill(fluidInBucket,true);
@@ -54,32 +42,25 @@ public class TileDryerMachine extends TileMachineBase {
     //Checks to make sure that all conditions for the recipe are met
     public boolean hasNecessaryItems(){
         FluidStack fluidStack = fluidHandler.getFluidTank().getFluid();
-        if(fluidStack != null) {
-            DryerRecipePrototype recipe = DryerRecipes.getRecipe(fluidStack.getFluid());
-            if(recipe != null) {
-                setFinishedProgress(recipe.getDuration());
-                //Has a bucket of the fluid required for the recipe
-                if (fluidStack.amount >= 1000) {
-                    //Has enough energy for one tick of the recipe
-                    if(energyHandler.getEnergyStored() >= recipe.getEnergyConsumed() / recipe.getDuration()){
-                        Item itemInOutput = itemStackHadler.getStackInSlot(1).getItem();
-                        if(itemInOutput == Items.AIR || itemInOutput == recipe.getOutput().getItem()) {
-                            return true;
-                        }else{
-                            return false;
+        if(itemStackHadler.getStackInSlot(outputSlot).getCount() < itemStackHadler.getSlotLimit(outputSlot)) {
+            if (fluidStack != null) {
+                DryerRecipePrototype recipe = DryerRecipes.getRecipe(fluidStack.getFluid());
+                if (recipe != null) {
+                    setFinishedProgress(recipe.getDuration());
+                    //Has a bucket of the fluid required for the recipe
+                    if (fluidStack.amount >= 1000) {
+                        //Has enough energy for one tick of the recipe
+                        if (energyHandler.getEnergyStored() >= recipe.getEnergyConsumed() / recipe.getDuration()) {
+                            Item itemInOutput = itemStackHadler.getStackInSlot(1).getItem();
+                            if (itemInOutput == Items.AIR || itemInOutput == recipe.getOutput().getItem()) {
+                                return true;
+                            }
                         }
-                    }else{
-                        return false;
                     }
-                }else{
-                   return false;
                 }
-            }else{
-                return false;
             }
-        }else{
-            return false;
         }
+        return false;
     }
 
     public void insertOutput(){

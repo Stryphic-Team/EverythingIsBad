@@ -8,8 +8,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileMachineBase  extends TileDeviceBase {
-
+public abstract class TileMachineBase  extends TileDeviceBase {
+    protected int outputSlot = 0;
     public TileMachineBase(String name) {
         super(name);
         energyHandler = new ModEnergyHandler(1000000,0,10000,true,false);
@@ -58,6 +58,27 @@ public class TileMachineBase  extends TileDeviceBase {
                 return 0;
         }
     }
+
+    @Override
+    public void update() {
+        super.update();
+        if(hasNecessaryItems()){
+            stepProgress();
+            reduceEnergy();
+            if(getProgress() >= getFinishedProgress()){
+                insertOutput();
+                reduceInput();
+                setProgress(0);
+            }
+        }else{
+            setProgress(0);
+        }
+    }
+
+    public abstract boolean hasNecessaryItems();
+    public abstract void insertOutput();
+    public abstract void reduceInput();
+    public abstract void reduceEnergy();
     //Gets the progress at which the machine is done
     public int getFinishedProgress(){
         return finishedProgress;

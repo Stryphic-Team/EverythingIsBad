@@ -11,6 +11,7 @@ public class ModTileEntities {
     public static final TileDiaricGenerator DIARIC_GENERATOR = new TileDiaricGenerator();
     public static final TileFluxTest FLUX_TEST = new TileFluxTest();
     public static final TileDryerMachine DRYER_MACHINE = new TileDryerMachine();
+    public static final TileLiquifierMachine LIQUIFIER_MACHINE = new TileLiquifierMachine();
 
     public static void register(){
         for(TileDeviceBase device: TILE_ENTITIES){

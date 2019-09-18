@@ -26,6 +26,9 @@ public class ModFluidHandler implements IFluidHandler {
 
     @Override
     public int fill(FluidStack resource, boolean doFill) {
+        if(!isFillable){
+            return 0;
+        }
         if(fluidWhitelist.size() == 0){
             return fluidTank.fill(resource,doFill);
         }
@@ -47,7 +50,8 @@ public class ModFluidHandler implements IFluidHandler {
     @Nullable
     @Override
     public FluidStack drain(int maxDrain, boolean doDrain) {
-        return fluidTank.drain(maxDrain,doDrain);
+
+        return fluidTank.drain(maxDrain,doDrain && isDrainable);
     }
     public void addToWhitelist(Fluid fluid){
         fluidWhitelist.add(fluid);
@@ -63,6 +67,12 @@ public class ModFluidHandler implements IFluidHandler {
         }else{
             return false;
         }
+
+    }
+    public boolean addFluid(FluidStack fluidStack,boolean simulate){
+        int fluidTransferred = fluidTank.fill(fluidStack,!simulate);
+
+        return fluidTransferred > 0;
 
     }
     public FluidTank getFluidTank(){

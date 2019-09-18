@@ -39,6 +39,7 @@ public class ModBlocks
     public static final Block STUPID_CORE_MACHINE = new BlockStupidCoreMachine("stupid_core_machine");
     public static final Block DRYER_MACHINE = new BlockDryerMachine("dryer_machine");
     public static final Block DIARIC_GENERATOR = new BlockDiaricGenerator("diaric_generator");
+    public static final Block LIQUIFIER_MACHINE = new BlockLiquifier("liquifier_machine");
     public static final Block MACHINE_FRAME = new BlockMachineFrame("machine_frame");
 
     // Woke blocks

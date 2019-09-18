@@ -116,7 +116,7 @@ public class ModEnergyHandler implements IEnergyStorage {
         energyTransfer = Math.min(amount,Integer.MAX_VALUE);
         energyTransfer = Math.min(energyTransfer,possibleTransfer);
 
-        if (energyStorage - energyTransfer >= 0) {
+        if (energyStorage - energyTransfer > 0) {
             if(!simulate) {
                 energyStorage -= energyTransfer;
             }
