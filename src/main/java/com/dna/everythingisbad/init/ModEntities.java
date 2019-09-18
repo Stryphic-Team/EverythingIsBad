@@ -28,6 +28,7 @@ public class ModEntities {
     public static final EntityPrototype ENTITY_SATAN = new EntityPrototype("satan", EntitySatan.class);
     public static final EntityPrototype ENTITY_GOOD_MOB = new EntityPrototype("good_mob", EntityGoodMob.class);
     public static final EntityPrototype ENTITY_THREE_HEADED_SHEEP = new EntityPrototype("three_headed_sheep", EntityThreeHeadedSheep.class);
+    public static final EntityPrototype ENTITY_POLICE_OFFICER = new EntityPrototype("police_officer", EntityPoliceOfficer.class);
 
     /**
      * Registers the entities that are registered above
@@ -69,12 +70,12 @@ public class ModEntities {
             }
         }
 
-        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"stupid_skeleton"),0xaefc5f,0xb70101);
-        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"jesus"),0xf4ec50,0xf45050);
-        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"satan"),0x212020,0xf43a29);
+        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"stupid_skeleton"),0xabf95e,0x020085);
+        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"jesus"),0xead797,0xb73025);
+        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"satan"),0xdc2500,0x3b0a03);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"good_mob"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"three_headed_sheep"),0xffffff,0x000000);
-
+        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"police_officer"),0xc6b87f,0x6a5439);
     }
 
     /**
@@ -90,6 +91,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityGoodMob.class, RenderGoodMob::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThreeHeadedSheep.class, RenderThreeHeadedSheep::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityPoliceOfficer.class, RenderPoliceOfficer::new);
     }
 
 }

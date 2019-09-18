@@ -71,6 +71,7 @@ entity.jesus.name=Jesus
 entity.satan.name=Satan
 entity.stupid_skeleton.name=Stupid Skeleton
 entity.good_mob.name=Good Mob
+entity.police_officer.name=Police Officer
 
 effect.highness=Highness
 effect.common_cold=Common Cold
