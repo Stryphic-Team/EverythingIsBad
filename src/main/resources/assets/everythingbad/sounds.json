@@ -92,5 +92,40 @@
         "name": "everythingbad:string_bass"
       }
     ]
+  },
+  "police_ambient_1": {
+    "sounds": [
+      {
+        "name": "everythingbad:police_ambient_1"
+      }
+    ]
+  },
+  "police_ambient_2": {
+    "sounds": [
+      {
+        "name": "everythingbad:police_ambient_2"
+      }
+    ]
+  },
+  "police_ambient_3": {
+    "sounds": [
+      {
+        "name": "everythingbad:police_ambient_3"
+      }
+    ]
+  },
+  "police_ambient_4": {
+    "sounds": [
+      {
+        "name": "everythingbad:police_ambient_4"
+      }
+    ]
+  },
+  "police_ambient_5": {
+    "sounds": [
+      {
+        "name": "everythingbad:police_ambient_5"
+      }
+    ]
   }
 }

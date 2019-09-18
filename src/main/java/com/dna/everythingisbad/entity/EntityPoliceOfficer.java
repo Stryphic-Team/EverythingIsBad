@@ -1,16 +1,21 @@
 package com.dna.everythingisbad.entity;
 
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModSoundEvents;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class EntityPoliceOfficer extends EntityZombie {
+    static Random random = new Random();
     public EntityPoliceOfficer(World worldIn) {
         super(worldIn);
     }
@@ -19,6 +24,19 @@ public class EntityPoliceOfficer extends EntityZombie {
     public boolean shouldBurnInDay()
     {
         return false;
+    }
+
+    @Override
+    public SoundEvent getAmbientSound()
+    {
+        int hoo = random.nextInt(5);
+        return ModSoundEvents.SOUND_EVENT_POLICE_AMBIENT[hoo];
+    }
+    @Override
+    public SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        int har = random.nextInt(5);
+        return ModSoundEvents.SOUND_EVENT_POLICE_AMBIENT[har];
     }
 
     @Nullable

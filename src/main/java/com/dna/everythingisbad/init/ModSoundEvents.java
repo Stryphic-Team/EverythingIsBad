@@ -22,7 +22,13 @@ public class ModSoundEvents {
     };
     public static SoundEvent SOUND_EVENT_BANJO = register("banjo");
     public static SoundEvent SOUND_EVENT_STRING_BASS = register("string_bass");
-
+    public static SoundEvent[] SOUND_EVENT_POLICE_AMBIENT = new SoundEvent[]{
+            register("police_ambient_1"),
+            register("police_ambient_2"),
+            register("police_ambient_3"),
+            register("police_ambient_4"),
+            register("police_ambient_5"),
+    };
 
     public static SoundEvent register(String name){
         ResourceLocation location = new ResourceLocation(Reference.MOD_ID, name);
