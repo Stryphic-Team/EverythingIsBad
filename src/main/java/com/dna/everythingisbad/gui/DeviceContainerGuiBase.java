@@ -1,29 +1,37 @@
 package com.dna.everythingisbad.gui;
 
 import com.dna.everythingisbad.gui.container.DeviceContainerBase;
+import com.dna.everythingisbad.gui.elements.ElementBase;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
+import org.lwjgl.opengl.GL11;
 
-public class DeviceContainerGuiBase extends GuiContainer {
+import java.util.ArrayList;
+
+public abstract class DeviceContainerGuiBase extends GuiContainer {
     public static final int WIDTH = 176;
     public static final int HEIGHT = 166;
     private final InventoryPlayer player;
     private final TileDeviceBase tileEntity;
-    protected static ResourceLocation background;
+    protected static ResourceLocation background = new ResourceLocation(Reference.MOD_ID,"textures/gui/elements/container_base.png");
+    protected ArrayList<ElementBase> guiElements;
 
-    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase, InventoryPlayer player, TileDeviceBase tileentity, ResourceLocation background) {
+    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase, InventoryPlayer player, TileDeviceBase tileentity) {
         super(deviceContainerBase);
-
-        this.background = background;
         xSize = WIDTH;
         ySize = HEIGHT;
         this.player = player;
         this.tileEntity = tileentity;
+        guiElements = new ArrayList<ElementBase>();
+        init();
     }
+    public abstract void init();
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
@@ -32,61 +40,38 @@ public class DeviceContainerGuiBase extends GuiContainer {
     }
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        mc.getTextureManager().bindTexture(background);
+        bindTexture(background);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-        drawEnergyStorage();
-        drawProgress();
-    }
-    public void drawEnergyStorage(){
-        int energyStoredScaled = this.getEnergyStoredScaled(73);
-        this.drawTexturedModalRect(this.guiLeft + 7, this.guiTop + 7, 177, 18, 12, 72 - energyStoredScaled);
-    }
-    public void drawProgress(){
-        int progressScaled = this.getProgressScaled(24);
-        this.drawTexturedModalRect(this.guiLeft + 58, this.guiTop + 35, 177, 0, progressScaled, 17);
-    }
-    public void drawFluidStorage(){
-        int fluidStorageScaled = this.getFluidStorageScaled(73);
-        FluidStack fluidStack = tileEntity.getFluidHandler().getFluidTank().getFluid();
-        if(fluidStack != null){
-            if(fluidStack.amount > 0) {
-                Fluid fluid = fluidStack.getFluid();
-                if (fluid != null) {
-                    ResourceLocation fluidResource = fluidStack.getFluid().getStill();
-                    fluidResource = new ResourceLocation(fluidResource.getResourceDomain(),"textures/"+fluidResource.getResourcePath()+".png");
-                    mc.getTextureManager().bindTexture(fluidResource);
-                    this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 0, 0, 10, 71);
-                }
-            }
+        for(ElementBase element:guiElements){
+            element.drawElement();
         }
-        mc.getTextureManager().bindTexture(background);
-        this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 177, 18, 12, 72-fluidStorageScaled);
-        this.drawTexturedModalRect(this.guiLeft + 158, this.guiTop + 7, 189, 18, 16, 73);
-
-
-
-
-
     }
-    protected int getEnergyStoredScaled(int pixels)
-    {
-        int i = this.tileEntity.getEnergyHandler().getEnergyStored();
-        int j = this.tileEntity.getEnergyHandler().getMaxEnergyStored();
-        float ratio = (float)i / (float)j;
-        return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
+
+
+    public InventoryPlayer getPlayer() {
+        return player;
     }
-    protected int getProgressScaled(int pixels)
-    {
-        int i = this.tileEntity.getProgress();
-        int j = this.tileEntity.getFinishedProgress();
-        float ratio = (float)i / (float)j;
-        return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
+
+    public TileDeviceBase getTileEntity() {
+        return tileEntity;
     }
-    protected int getFluidStorageScaled(int pixels){
-        int i = this.tileEntity.getFluidHandler().getFluidTank().getFluidAmount();
-        int j = this.tileEntity.getFluidHandler().getFluidTank().getCapacity();
-        float ratio = (float)i / (float)j;
-        return i != 0 && j != 0 ? (int)(ratio * (float)pixels): 0;
+    //credit to COFH Team
+    //I don't have any idea how this works but I like it
+    public void drawSizedTexturedModalRect(int x, int y, int u, int v, int width, int height, float texW, float texH) {
+
+        float texU = 1 / texW;
+        float texV = 1 / texH;
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(x, y + height, this.zLevel).tex((u) * texU, (v + height) * texV).endVertex();
+        buffer.pos(x + width, y + height, this.zLevel).tex((u + width) * texU, (v + height) * texV).endVertex();
+        buffer.pos(x + width, y, this.zLevel).tex((u + width) * texU, (v) * texV).endVertex();
+        buffer.pos(x, y, this.zLevel).tex((u) * texU, (v) * texV).endVertex();
+        Tessellator.getInstance().draw();
+    }
+    public void bindTexture(ResourceLocation texture) {
+
+        mc.renderEngine.bindTexture(texture);
     }
 
 }

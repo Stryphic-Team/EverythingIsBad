@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.init.ModFluids;
-import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.TileDiaricGenerator;
 import net.minecraft.block.state.IBlockState;
@@ -61,7 +61,7 @@ public class BlockDiaricGenerator extends BlockGeneratorBase {
                 }
             }
         }else{
-            playerIn.openGui(Main.instance, Reference.GUI_DIARIC_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.openGui(Main.instance, GuiHandler.GUI_DIARIC_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }

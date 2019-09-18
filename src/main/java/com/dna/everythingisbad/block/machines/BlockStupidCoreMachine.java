@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +33,7 @@ public class BlockStupidCoreMachine extends BlockMachineBase {
             return false;
         }
 
-        playerIn.openGui(Main.instance, Reference.GUI_STUPID_CORE_MACHINE, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        playerIn.openGui(Main.instance, GuiHandler.GUI_STUPID_CORE_MACHINE, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 

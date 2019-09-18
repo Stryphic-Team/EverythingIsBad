@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.Main;
-import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.TileDryerMachine;
 import net.minecraft.block.state.IBlockState;
@@ -60,7 +60,7 @@ public class BlockDryerMachine extends BlockMachineBase {
             }
 
         }else{
-            playerIn.openGui(Main.instance, Reference.GUI_DRYER_MACHINE, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.openGui(Main.instance, GuiHandler.GUI_DRYER_MACHINE, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
 
 
