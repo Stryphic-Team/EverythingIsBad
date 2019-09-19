@@ -32,7 +32,7 @@ public class ItemPoliceGun extends ItemGunBase {
         if (!worldIn.isRemote)
         {
             EntityBullet bulet = new EntityBullet(worldIn,playerIn);
-            bulet.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5F, 0F);
+            bulet.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 0F);
             worldIn.spawnEntity(bulet);
         }
 

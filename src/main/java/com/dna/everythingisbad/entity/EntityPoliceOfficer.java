@@ -43,8 +43,12 @@ public class EntityPoliceOfficer extends EntityZombie {
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata =  super.onInitialSpawn(difficulty, livingdata);
+        // Gives the police their gear
         this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(ModItems.COWBOY_HAT_ITEM));
         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.POLICE_GUN_ITEM));
+
+        // Prevents the police from dropping their gun upon death
+        this.inventoryHandsDropChances[EntityEquipmentSlot.MAINHAND.getIndex()] = 0;
         return livingdata;
     }
 
