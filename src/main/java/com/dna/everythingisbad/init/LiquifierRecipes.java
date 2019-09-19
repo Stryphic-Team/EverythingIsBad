@@ -30,7 +30,7 @@ public class LiquifierRecipes {
             250);
     public static final LiquifierRecipePrototype URINE_BLOCK_TO_URINE = new LiquifierRecipePrototype(
             400,
-            new ItemStack(ModItems.URINE_CRYSTAL_ITEM),
+            new ItemStack(ModBlocks.URINE_BLOCK),
             4000,ModFluids.URINE.getFluid(),
             1000);
     public static final LiquifierRecipePrototype COBBLESTONE_TO_LAVA = new LiquifierRecipePrototype(
