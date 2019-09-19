@@ -30,6 +30,7 @@ public class ModEntities {
     public static final EntityPrototype ENTITY_THREE_HEADED_SHEEP = new EntityPrototype("three_headed_sheep", EntityThreeHeadedSheep.class);
     public static final EntityPrototype ENTITY_POLICE_OFFICER = new EntityPrototype("police_officer", EntityPoliceOfficer.class);
 
+    public static final EntityPrototype ENTITY_BULLET = new EntityPrototype("bullet", EntityBullet.class);
     /**
      * Registers the entities that are registered above
      */
@@ -76,6 +77,7 @@ public class ModEntities {
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"good_mob"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"three_headed_sheep"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"police_officer"),0xc6b87f,0x6a5439);
+        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"bullet"),0,0);
     }
 
     /**
