@@ -125,6 +125,11 @@ public class ModEnergyHandler implements IEnergyStorage {
             return false;
         }
     }
+    public int getEnergyStoredPercentage(){
+        float energyNow = (float)(energyStorage);
+        float energyMax = (float)(maxEnergyStorage);
+        return (int)((energyNow / energyMax)*100);
+    }
     @Override
     public int getEnergyStored() {
         return energyStorage;
@@ -144,21 +149,12 @@ public class ModEnergyHandler implements IEnergyStorage {
     public boolean canReceive() {
         return input;
     }
-    public int getEnergyStorage() {
-        return energyStorage;
-    }
+
 
     public void setEnergyStorage(int energyStorage) {
         this.energyStorage = energyStorage;
     }
 
-    public int getMaxEnergyStorage() {
-        return maxEnergyStorage;
-    }
-
-    public void setMaxEnergyStorage(int maxEnergyStorage) {
-        this.maxEnergyStorage = maxEnergyStorage;
-    }
 
     public int getMaxInput() {
         return maxInput;

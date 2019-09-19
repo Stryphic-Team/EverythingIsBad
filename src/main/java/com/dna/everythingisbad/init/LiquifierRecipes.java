@@ -13,6 +13,8 @@ import java.util.HashMap;
 public class LiquifierRecipes {
     public static ArrayList<LiquifierRecipePrototype> RECIPES = new ArrayList<LiquifierRecipePrototype>();
     private static HashMap<Item,LiquifierRecipePrototype> RECIPES_MAP = new HashMap<Item,LiquifierRecipePrototype>();
+    //adjust the diminishing return can be adjusted V with this number
+    public static float diminishingPercent = 1 - 0.02f;
     public static final LiquifierRecipePrototype POOP_TO_DIARIA = new LiquifierRecipePrototype(
             100,
             new ItemStack(ModItems.POOP_ITEM),

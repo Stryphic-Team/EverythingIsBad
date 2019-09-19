@@ -36,6 +36,7 @@ public class TileLiquifierMachine extends TileMachineBase {
         ItemStack itemInput = itemStackHadler.getStackInSlot(0);
         LiquifierRecipePrototype recipe = LiquifierRecipes.getRecipe(itemInput.getItem());
         if(recipe != null){
+            energyUsedPerTick = recipe.getEnergyConsumed() / recipe.getDuration();
             setFinishedProgress(recipe.getDuration());
             if(fluidHandler.addFluid(new FluidStack(recipe.getOutput(),recipe.getOutputAmount()),true)){
                 if(energyHandler.reduceEnergy(recipe.getEnergyConsumed() / recipe.getDuration(),true)){
@@ -56,13 +57,6 @@ public class TileLiquifierMachine extends TileMachineBase {
     @Override
     public void reduceInput() {
         itemStackHadler.getStackInSlot(0).shrink(1);
-    }
-
-    @Override
-    public void reduceEnergy() {
-        ItemStack itemInput = itemStackHadler.getStackInSlot(0);
-        LiquifierRecipePrototype recipe = LiquifierRecipes.getRecipe(itemInput.getItem());
-        energyHandler.reduceEnergy(recipe.getEnergyConsumed() / recipe.getDuration(),false);
     }
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing from) {

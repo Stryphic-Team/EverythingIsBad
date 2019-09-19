@@ -22,36 +22,48 @@ public class TileStupidCoreMachine extends TileMachineBase {
         this.displayName = "Stupid tm Core Machine";
     }
 
+//    @Override
+//    public void update(){
+//        super.update();
+//        if(energyHandler.getEnergyStored() > 10000 && itemStackHadler.getStackInSlot(0).getCount() < 64){
+//
+//            if(getProgress() == getFinishedProgress()){
+//                int current_amount = itemStackHadler.getStackInSlot(0).getCount();
+//                itemStackHadler.setStackInSlot(0,,current_amount + 1));
+//                setProgress(0);
+//            }else{
+//                if(energyHandler.reduceEnergy(1000,true)) {
+//                    stepProgress();
+//                    energyHandler.reduceEnergy(1000,false);
+//                    if(getProgress() % 20 + random.nextInt(10) == 0){
+//
+//                        this.world.createExplosion(null,this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),0.1f,true);
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+
     @Override
-    public void update(){
+    public void update() {
         super.update();
-        if(energyHandler.getEnergyStored() > 10000 && itemStackHadler.getStackInSlot(0).getCount() < 64){
-
-            if(getProgress() == getFinishedProgress()){
-                int current_amount = itemStackHadler.getStackInSlot(0).getCount();
-                itemStackHadler.setStackInSlot(0,new ItemStack(ModItems.STUPID_CORE_ITEM,current_amount + 1));
-                setProgress(0);
-            }else{
-                if(energyHandler.reduceEnergy(1000,true)) {
-                    stepProgress();
-                    energyHandler.reduceEnergy(1000,false);
-                    if(getProgress() % 20 + random.nextInt(10) == 0){
-
-                        this.world.createExplosion(null,this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),0.1f,true);
-                    }
-                }
-            }
+        if(getProgress() % 20 + random.nextInt(10) == 0){
+            this.world.createExplosion(null,this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),0.1f,true);
         }
     }
 
     @Override
     public boolean hasNecessaryItems() {
+        if(energyHandler.getEnergyStored() > 10000 && itemStackHadler.getStackInSlot(0).getCount() < 64){
+            return true;
+        }
         return false;
     }
 
     @Override
     public void insertOutput() {
-
+        itemStackHadler.addItem(0,new ItemStack(ModItems.STUPID_CORE_ITEM,1),false);
     }
 
     @Override
@@ -61,7 +73,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
 
     @Override
     public void reduceEnergy() {
-
+        energyHandler.reduceEnergy(1000,false);
     }
 
     @Override

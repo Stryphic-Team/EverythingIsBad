@@ -16,7 +16,7 @@ public class LiquifierRecipePrototype {
         this.input = input;
         this.energyConsumed = energyConsumed;
         this.output = output;
-        this.outputAmount = outputAmount;
+        this.outputAmount = (int)((float)outputAmount * LiquifierRecipes.diminishingPercent);
         LiquifierRecipes.RECIPES.add(this);
     }
 

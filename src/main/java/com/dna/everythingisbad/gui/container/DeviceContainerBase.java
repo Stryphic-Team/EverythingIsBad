@@ -26,8 +26,8 @@ public class DeviceContainerBase extends Container {
     public DeviceContainerBase(IInventory playerInventory,TileDeviceBase tileentity){
         this.tileentity = tileentity;
         this.itemHandler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,null);
-
         addPlayerSlots(playerInventory);
+        detectAndSendChanges();
     }
     protected void addPlayerSlots(IInventory playerInventory){
         for(int y = 0; y < 3; y++)
