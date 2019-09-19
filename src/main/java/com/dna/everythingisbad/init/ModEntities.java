@@ -4,6 +4,9 @@ import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
 import net.minecraft.init.Biomes;
@@ -94,6 +97,8 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityThreeHeadedSheep.class, RenderThreeHeadedSheep::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPoliceOfficer.class, RenderPoliceOfficer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderSnowball(Minecraft.getMinecraft().getRenderManager(),ModItems.POOP_ITEM,Minecraft.getMinecraft().getRenderItem()));
     }
 
 }
