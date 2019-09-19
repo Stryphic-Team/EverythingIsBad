@@ -14,10 +14,15 @@ import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 
@@ -156,6 +161,35 @@ public class TileDeviceBase extends TileEntity implements ITickable {
         messageSyncMachineGui.setFluidType(fluidType);
         messageSyncMachineGui.setFluidStored(fluidStored);
         return messageSyncMachineGui;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY && energyHandler != null) {
+            return true;
+        }
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && itemStackHadler != null){
+            return true;
+        }
+        if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && fluidHandler != null){
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY && energyHandler != null) {
+            return CapabilityEnergy.ENERGY.cast(energyHandler);
+        }
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && itemStackHadler != null){
+
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHadler);
+        }
+        if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && fluidHandler != null){
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(fluidHandler);
+        }
+        return super.getCapability(capability, facing);
     }
     //Gets the progress at which the machine is done
     public int getFinishedProgress(){

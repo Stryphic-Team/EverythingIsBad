@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "everythingbad:blocks/copper_ore"
+    }
+  },
+  "variants": {
+    "normal": { "model": "cube_all" },
+    "inventory": { "model": "cube_all" }
+  }
+}
