@@ -44,6 +44,7 @@ public class EntityPoliceOfficer extends EntityZombie {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata =  super.onInitialSpawn(difficulty, livingdata);
         this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(ModItems.COWBOY_HAT_ITEM));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.POLICE_GUN_ITEM));
         return livingdata;
     }
 
