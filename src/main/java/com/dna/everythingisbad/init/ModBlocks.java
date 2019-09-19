@@ -6,6 +6,7 @@ import com.dna.everythingisbad.block.BlockQuestionMark;
 import com.dna.everythingisbad.block.BlockStupidTNT;
 import com.dna.everythingisbad.block.buildingblocks.*;
 import com.dna.everythingisbad.block.machines.*;
+import com.dna.everythingisbad.block.ore.BlockCopperOre;
 import com.dna.everythingisbad.block.plants.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -33,6 +34,7 @@ public class ModBlocks
     public static final Block ALOE_BLOCK = new BlockAloe("aloe");
     public static final Block TOBACCO_BLOCK = new BlockTobacco("tobacco");
     public static final Block CLOUD_BLOCK = new BlockCloud("cloud_block");
+    public static final Block COPPER_ORE_BLOCK = new BlockCopperOre("copper_ore");
 
     // Machines and generaters
     public static final Block FLUX_TEST = new BlockFluxTest("flux_test");

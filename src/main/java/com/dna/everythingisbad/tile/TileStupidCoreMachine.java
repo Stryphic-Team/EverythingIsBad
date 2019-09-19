@@ -21,30 +21,6 @@ public class TileStupidCoreMachine extends TileMachineBase {
         itemStackHadler.setSlotConfig(0,true,false);
         this.displayName = "Stupid tm Core Machine";
     }
-
-//    @Override
-//    public void update(){
-//        super.update();
-//        if(energyHandler.getEnergyStored() > 10000 && itemStackHadler.getStackInSlot(0).getCount() < 64){
-//
-//            if(getProgress() == getFinishedProgress()){
-//                int current_amount = itemStackHadler.getStackInSlot(0).getCount();
-//                itemStackHadler.setStackInSlot(0,,current_amount + 1));
-//                setProgress(0);
-//            }else{
-//                if(energyHandler.reduceEnergy(1000,true)) {
-//                    stepProgress();
-//                    energyHandler.reduceEnergy(1000,false);
-//                    if(getProgress() % 20 + random.nextInt(10) == 0){
-//
-//                        this.world.createExplosion(null,this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),0.1f,true);
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
     @Override
     public void update() {
         super.update();

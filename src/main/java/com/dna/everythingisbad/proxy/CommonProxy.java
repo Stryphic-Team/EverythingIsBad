@@ -9,6 +9,7 @@ import com.dna.everythingisbad.utils.FluidCache;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
 import com.dna.everythingisbad.world.StructureGenerator;
 import com.dna.everythingisbad.world.WorldGenAloeGenerator;
+import com.dna.everythingisbad.world.WorldGenModOres;
 import com.dna.everythingisbad.world.WorldGenQuestionMarkBlockGenerator;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import com.dna.everythingisbad.world.water.WorldGenBloodGenerator;
@@ -65,6 +66,7 @@ public class CommonProxy implements IProxy{
         GameRegistry.registerWorldGenerator(WorldGenAloeGenerator.INSTANCE,1);
         GameRegistry.registerWorldGenerator(WorldGenBloodGenerator.INSTANCE,30);
         GameRegistry.registerWorldGenerator(StructureGenerator.INSTANCE,30);
+        GameRegistry.registerWorldGenerator(WorldGenModOres.INSTANCE,1);
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
         ModEntities.init();
         FluidCache.init();
