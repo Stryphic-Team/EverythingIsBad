@@ -4,6 +4,9 @@ import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
 import net.minecraft.init.Biomes;
@@ -30,6 +33,7 @@ public class ModEntities {
     public static final EntityPrototype ENTITY_THREE_HEADED_SHEEP = new EntityPrototype("three_headed_sheep", EntityThreeHeadedSheep.class);
     public static final EntityPrototype ENTITY_POLICE_OFFICER = new EntityPrototype("police_officer", EntityPoliceOfficer.class);
 
+    public static final EntityPrototype ENTITY_BULLET = new EntityPrototype("bullet", EntityBullet.class);
     /**
      * Registers the entities that are registered above
      */
@@ -76,6 +80,7 @@ public class ModEntities {
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"good_mob"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"three_headed_sheep"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"police_officer"),0xc6b87f,0x6a5439);
+        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"bullet"),0,0);
     }
 
     /**
@@ -92,6 +97,8 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityThreeHeadedSheep.class, RenderThreeHeadedSheep::new);
         //RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPoliceOfficer.class, RenderPoliceOfficer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderSnowball(Minecraft.getMinecraft().getRenderManager(),ModItems.POOP_ITEM,Minecraft.getMinecraft().getRenderItem()));
     }
 
 }
