@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 public class ElementOutputSlot extends ElementBase{
     public ElementOutputSlot(DeviceContainerGuiBase gui, int startX, int startY) {
         super(gui, startX, startY);
-        resourceLocation = new ResourceLocation(Reference.MOD_ID,"textures/gui/elements/input_slot.png");
+        resourceLocation = new ResourceLocation(Reference.MOD_ID,"textures/gui/elements/output_slot.png");
         textureWidth = 26;
         textureHeight = 26;
     }
