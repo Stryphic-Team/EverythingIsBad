@@ -98,7 +98,7 @@ public class ModEntities {
         //RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, RenderModPlayer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPoliceOfficer.class, RenderPoliceOfficer::new);
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderSnowball(Minecraft.getMinecraft().getRenderManager(),ModItems.POOP_ITEM,Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class,RenderBullet::new);
     }
 
 }

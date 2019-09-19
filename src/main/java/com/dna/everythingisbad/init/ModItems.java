@@ -11,9 +11,7 @@ import com.dna.everythingisbad.item.instruments.ItemStringBass;
 import com.dna.everythingisbad.item.plants.ItemTobaccoLeaf;
 import com.dna.everythingisbad.item.plants.ItemTobaccoSeeds;
 import com.dna.everythingisbad.item.records.*;
-import com.dna.everythingisbad.item.weapons.ItemHairDryerGun;
-import com.dna.everythingisbad.item.weapons.ItemStupidTNTCartridge;
-import com.dna.everythingisbad.item.weapons.ItemStupidTNTGun;
+import com.dna.everythingisbad.item.weapons.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -59,6 +57,8 @@ public class ModItems {
     public static final ItemStupidTNTGun STUPID_TNT_GUN_ITEM = new ItemStupidTNTGun("stupid_tnt_gun");
     public static final ItemStupidTNTCartridge STUPID_TNT_CARTRIDGE_ITEM = new ItemStupidTNTCartridge("stupid_tnt_cartridge");
     public static final ItemStupidCore STUPID_CORE_ITEM = new ItemStupidCore("stupid_core");
+    public static final ItemPoliceGun POLICE_GUN_ITEM = new ItemPoliceGun("police_gun");
+    public static final ItemBullet BULLET_ITEM = new ItemBullet("bullet");
 
     public static  final ItemCowboyHat COWBOY_HAT_ITEM = new ItemCowboyHat("cowboy_hat");
     public static  final ItemSantaHat SANTA_HAT_ITEM = new ItemSantaHat("santa_hat");
