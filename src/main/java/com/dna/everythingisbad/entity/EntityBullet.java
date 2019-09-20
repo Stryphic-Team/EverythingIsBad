@@ -25,7 +25,7 @@ public class EntityBullet extends EntityThrowable {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        if (result.entityHit != null)
+        if (result.entityHit != null && result.entityHit != this.getThrower())
         {
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 12f);
         }
