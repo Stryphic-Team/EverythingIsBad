@@ -1,4 +1,5 @@
 package com.dna.everythingisbad.utils.prototypes;
+import com.dna.everythingisbad.init.ModSmeltingRecipes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -10,7 +11,9 @@ public class SmeltingPrototype {
         this.inputItem = inputItem;
         this.outputItem = outputItem;
         this.speed = speed;
+        ModSmeltingRecipes.RECIPES.add(this);
     }
+
 
     /**
      * returns the input item

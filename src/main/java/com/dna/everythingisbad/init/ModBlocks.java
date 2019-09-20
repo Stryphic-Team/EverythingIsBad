@@ -11,6 +11,7 @@ import com.dna.everythingisbad.block.plants.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +53,8 @@ public class ModBlocks
         for(Block block:BLOCKS){
             ForgeRegistries.BLOCKS.register(block);
         }
+    }
+    public static void initOreDictionary(){
+        OreDictionary.registerOre("oreCopper",COPPER_ORE_BLOCK);
     }
 }

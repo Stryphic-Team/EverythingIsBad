@@ -17,6 +17,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class ModItems {
     public static final ItemTobaccoSeeds TOBACCO_SEEDS_ITEM = new ItemTobaccoSeeds("tobacco_seeds");
     public static final ItemUrineBrick URINE_BRICK_ITEM = new ItemUrineBrick("urine_brick");
     public static final ItemUrineCrystal URINE_CRYSTAL_ITEM = new ItemUrineCrystal("urine_crystal");
+    public static final ItemCopperIngot COPPER_INGOT_ITEM = new ItemCopperIngot("copper_ingot");
 
     public static final ItemFungOs FUNG_OS_ITEM = new ItemFungOs("fung_os");
     public static final ItemHotCheaters HOT_CHEATERS_ITEM = new ItemHotCheaters("hot_cheaters");
@@ -69,6 +72,14 @@ public class ModItems {
         for (Item item: ITEMS) {
             registerRender(item);
         }
+    }
+    public static void init(){
+        for(Item item:ITEMS){
+            ForgeRegistries.ITEMS.register(item);
+        }
+    }
+    public static void initOreDictionary(){
+        OreDictionary.registerOre("ingotCopper",COPPER_INGOT_ITEM);
     }
 
     private static void registerRender(Item item) {

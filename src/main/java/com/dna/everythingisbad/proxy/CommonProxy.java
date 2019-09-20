@@ -36,7 +36,11 @@ public class CommonProxy implements IProxy{
         Main.logger.info("Pre Intializing");
         ModFluids.register();
         ModFluids.registerBlocks();
+        ModItems.init();
         ModBlocks.init();
+        ModBlocks.initOreDictionary();
+        ModItems.initOreDictionary();
+
         ModDimensions.registerDimensions();
         ModBiomes.registerBiomes();
         new ConfigLoader();
@@ -66,7 +70,7 @@ public class CommonProxy implements IProxy{
         GameRegistry.registerWorldGenerator(WorldGenAloeGenerator.INSTANCE,1);
         GameRegistry.registerWorldGenerator(WorldGenBloodGenerator.INSTANCE,30);
         GameRegistry.registerWorldGenerator(StructureGenerator.INSTANCE,30);
-        GameRegistry.registerWorldGenerator(WorldGenModOres.INSTANCE,1);
+        GameRegistry.registerWorldGenerator(WorldGenModOres.INSTANCE,101);
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
         ModEntities.init();
         FluidCache.init();

@@ -30,7 +30,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onItemRegister(RegistryEvent.Register<Item> event)
     {
-        event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
+        //event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
+    }
+    @SubscribeEvent
+    public static void onRegisterBlock(RegistryEvent.Register<Block> event){
+
     }
 
     /**
@@ -64,6 +68,7 @@ public class RegistryHandler {
         //Main.logger.info("Player interact");
 
     }
+
     @SubscribeEvent
     public static void attack(AttackEntityEvent event){
         PlayerInteractionHandler.hitSomeone(event);
