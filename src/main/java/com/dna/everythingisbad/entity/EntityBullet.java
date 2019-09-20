@@ -1,17 +1,20 @@
 package com.dna.everythingisbad.entity;
 
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.*;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityBullet extends EntityThrowable {
 
-    public EntityBullet(World worldIn) {
-        super(worldIn);
+    public EntityBullet(World worldin){
+        super (worldin);
         this.setNoGravity(true);
     }
 

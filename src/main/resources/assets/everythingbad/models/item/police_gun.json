@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "everythingbad:items/police_gun",
-		"particle": "everything:items/police_gun"
+		"particle": "everythingbad:items/police_gun"
 	},
 	"elements": [
 		{

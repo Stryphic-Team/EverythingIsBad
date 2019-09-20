@@ -80,7 +80,7 @@ public class ModEntities {
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"good_mob"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"three_headed_sheep"),0xffffff,0x000000);
         EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"police_officer"),0xc6b87f,0x6a5439);
-        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"bullet"),0,0);
+        //EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID,"bullet"),0,0);
     }
 
     /**
