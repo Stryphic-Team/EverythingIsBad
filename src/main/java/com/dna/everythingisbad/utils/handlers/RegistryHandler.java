@@ -2,6 +2,7 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.IHasModel;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.Block;
@@ -11,10 +12,13 @@ import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -36,7 +40,13 @@ public class RegistryHandler {
     public static void onRegisterBlock(RegistryEvent.Register<Block> event){
 
     }
+    @SubscribeEvent
+    public static void onConfigChanged(OnConfigChangedEvent event){
+        if(event.getModID().equals(Reference.MOD_ID)){
+            ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
+        }
 
+    }
     /**
      * Registers models for items and blocks
      * @param event

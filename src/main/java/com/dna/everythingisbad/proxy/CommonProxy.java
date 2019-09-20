@@ -4,7 +4,7 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
-import com.dna.everythingisbad.utils.ConfigLoader;
+import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.FluidCache;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
 import com.dna.everythingisbad.world.StructureGenerator;
@@ -16,6 +16,8 @@ import com.dna.everythingisbad.world.water.WorldGenBloodGenerator;
 import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -32,7 +34,7 @@ public class CommonProxy implements IProxy{
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-
+        ConfigManager.load(Reference.MOD_ID, Config.Type.INSTANCE);
         Main.logger.info("Pre Intializing");
         ModFluids.register();
         ModFluids.registerBlocks();
@@ -43,13 +45,15 @@ public class CommonProxy implements IProxy{
 
         ModDimensions.registerDimensions();
         ModBiomes.registerBiomes();
-        new ConfigLoader();
+        //new ConfigLoader();
+
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
 
         Main.logger.info("Intializing");
+        ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
         ModTileEntities.register();
         NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
         PacketHandler.init();

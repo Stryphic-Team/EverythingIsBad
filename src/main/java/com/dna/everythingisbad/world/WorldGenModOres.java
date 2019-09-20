@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.world;
 
 import com.dna.everythingisbad.init.ModBlocks;
+import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +26,9 @@ public class WorldGenModOres implements IWorldGenerator {
         int zPos = chunkZ * 16;
         if(world.provider.getDimension() == 0){
             for(int i = 0;i<random.nextInt(64);i++) {
-                copperOreGen.generate(world, random, new BlockPos(xPos, random.nextInt(64), zPos));
+                if(ModConfig.COPPER_ORE_SPAWN) {
+                    copperOreGen.generate(world, random, new BlockPos(xPos, random.nextInt(64), zPos));
+                }
             }
         }
     }

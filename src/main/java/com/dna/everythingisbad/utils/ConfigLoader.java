@@ -5,12 +5,13 @@ import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.lang.reflect.Field;
-
+@Deprecated
 public class ConfigLoader {
     private String configDir = "config/everythingisbad/";
     private String configFile = configDir + "config.json";
 
     public ConfigLoader(){
+        File fileConfig  = new File(configFile);
         new File(configDir).mkdirs();
         boolean fileExists = new File(configFile).exists();
         //Creates a new config file with the default config state
@@ -41,7 +42,9 @@ public class ConfigLoader {
     }
     private String readFile(){
         StringBuilder fileString = new StringBuilder();
-        try (FileReader fileReader = new FileReader(configFile)) {
+        FileReader fileReader;
+        try {
+            fileReader = new FileReader(configFile);
             int current;
             fileString = new StringBuilder();
             while((current = fileReader.read()) != -1){
@@ -49,17 +52,24 @@ public class ConfigLoader {
                 fileString.append(character);
 
             }
+            fileReader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         return fileString.toString();
 
     }
     private void createNewConfigFile(){
         try {
-            new File(configFile).createNewFile();
+            File fileConfig = new File(configFile);
+            if(fileConfig.exists()) {
+                fileConfig.delete();
+            }
+            fileConfig.createNewFile();
             FileWriter fileWriter = new FileWriter(configFile);
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setPrettyPrinting();
@@ -76,7 +86,6 @@ public class ConfigLoader {
     //Version needs to be updated when new config is updated
     //Default Config Model
     class ConfigModel{
-        String version = "v0.22";
         int auto_poop_interval = 24000;
         boolean is_debug = false;
         int auto_poop_max = 6;
@@ -85,6 +94,7 @@ public class ConfigLoader {
         boolean mobs_move_faster = true;
         int mob_speed_multiplier = 1;
         int common_cold_chance = 10;
+        boolean copper_ore_spawn = true;
     }
     //Checks the config for null values and returns false if it detects any
     public boolean verifyConfig(ConfigModel configModel) {
