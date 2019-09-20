@@ -1,19 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IRI",
-    "RGR",
-    "IRI"
+    "ICI",
+    "CRC",
+    "ICI"
   ],
   "key": {
     "R": {
-      "item": "minecraft:redstone"
+      "item": "minecraft:redstone_block"
+    },
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "wireCopper"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
+      "type": "forge:ore_dict",
+      "ore": "rodIron"
     }
   },
   "result": {

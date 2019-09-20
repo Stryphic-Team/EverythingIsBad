@@ -1,9 +1,6 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.block.BlockCloud;
-import com.dna.everythingisbad.block.BlockEmpty;
-import com.dna.everythingisbad.block.BlockQuestionMark;
-import com.dna.everythingisbad.block.BlockStupidTNT;
+import com.dna.everythingisbad.block.*;
 import com.dna.everythingisbad.block.buildingblocks.*;
 import com.dna.everythingisbad.block.machines.*;
 import com.dna.everythingisbad.block.ore.BlockCopperOre;
@@ -11,7 +8,6 @@ import com.dna.everythingisbad.block.plants.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +51,10 @@ public class ModBlocks
         }
     }
     public static void initOreDictionary(){
-        OreDictionary.registerOre("oreCopper",COPPER_ORE_BLOCK);
+        for(Block block:BLOCKS){
+            if(block instanceof IOreDictBlock){
+                ((IOreDictBlock)block).initOreDict();
+            }
+        }
     }
 }
