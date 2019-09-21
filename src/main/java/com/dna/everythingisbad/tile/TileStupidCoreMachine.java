@@ -24,8 +24,10 @@ public class TileStupidCoreMachine extends TileMachineBase {
     @Override
     public void update() {
         super.update();
-        if(getProgress() % 20 + random.nextInt(10) == 0){
-            this.world.createExplosion(null,this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),0.1f,true);
+        if(hasNecessaryItems()) {
+            if (getProgress() % 20 + random.nextInt(10) == 0) {
+                this.world.createExplosion(null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0.1f, true);
+            }
         }
     }
 
