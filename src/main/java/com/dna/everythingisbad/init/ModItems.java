@@ -39,6 +39,7 @@ public class ModItems {
     public static final ItemTobaccoSeeds TOBACCO_SEEDS_ITEM = new ItemTobaccoSeeds("tobacco_seeds");
     public static final ItemUrineBrick URINE_BRICK_ITEM = new ItemUrineBrick("urine_brick");
     public static final ItemUrineCrystal URINE_CRYSTAL_ITEM = new ItemUrineCrystal("urine_crystal");
+    public static final ItemBaby BABY_ITEM = new ItemBaby("baby");
 
     /**
      * Machine parts
@@ -61,7 +62,7 @@ public class ModItems {
     public static final ItemFriedDragonEgg FRIED_DRAGON_EGG_ITEM = new ItemFriedDragonEgg("fried_dragon_egg");
     public static final ItemMedicineBottle MEDICINE_BOTTLE_ITEM = new ItemMedicineBottle("medicine_bottle");
     public static final ItemLaxative LAXATIVE_ITEM = new ItemLaxative("laxative");
-
+    public static final ItemCookedBaby COOKED_BABY_ITEM = new ItemCookedBaby("cooked_baby");
     /**
      * Records
      */
