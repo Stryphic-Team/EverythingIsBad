@@ -13,6 +13,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -140,6 +141,7 @@ public class PlayerHandler {
         fluidHandler(player);
         heavenHandler(player);
         commonColdHandler(player);
+        babyHandler(player);
     }
     public static void livingTick(EntityLivingBase entityLivingBase){
         poopHandler(entityLivingBase);
@@ -168,6 +170,13 @@ public class PlayerHandler {
                 int highness_duration = entity.getEntityData().getInteger("highness_duration");
                 PotionEffectHandler.livingEntityHighnessActive(entity, highness_duration);
             }
+        }
+    }
+
+    public static void babyHandler(EntityLivingBase entity){
+        if (entity instanceof EntityPlayerMP){
+            EntityPlayerMP mp = (EntityPlayerMP)entity;
+            InventoryPlayer deeta = mp.inventory;
         }
     }
 

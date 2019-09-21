@@ -20,6 +20,8 @@ public class ModSmeltingRecipes {
             new SmeltingPrototype(ModItems.URINE_CRYSTAL_ITEM, new ItemStack(ModItems.URINE_BRICK_ITEM,1),1f);
     public static final SmeltingPrototype COPPER_ORE_RECIPE =
             new SmeltingPrototype(new ItemStack(ModBlocks.COPPER_ORE_BLOCK).getItem(), new ItemStack(ModItems.COPPER_INGOT_ITEM,1),1f);
+    public static final SmeltingPrototype BABY_COOKIN_SHIT =
+            new SmeltingPrototype(new ItemStack(ModItems.BABY_ITEM).getItem(),new ItemStack(ModItems.COOKED_BABY_ITEM,1),1);
 
     public static void init(){
         for(SmeltingPrototype recipe:RECIPES){

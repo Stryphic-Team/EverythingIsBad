@@ -11,5 +11,6 @@ public class ItemBaby extends ItemBase {
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
+        this.maxStackSize = 1;
     }
 }
