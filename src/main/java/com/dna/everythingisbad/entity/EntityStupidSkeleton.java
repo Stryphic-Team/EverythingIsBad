@@ -1,11 +1,10 @@
 package com.dna.everythingisbad.entity;
 
-import com.dna.everythingisbad.ai.EntityAIAttackRangedGun;
+import com.dna.everythingisbad.ai.EntityAIStupidSkeletonShootGun;
 import com.dna.everythingisbad.init.ModItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityWolf;
@@ -16,14 +15,12 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.Calendar;
 
 public class EntityStupidSkeleton extends EntitySkeleton {
-    private final EntityAIAttackRangedGun<AbstractSkeleton> aiArrowAttack = new EntityAIAttackRangedGun<AbstractSkeleton>(this, 1.0D, 20, 15.0F);
     public EntityStupidSkeleton(World worldIn) {
         super(worldIn);
         this.setAIMoveSpeed(5f);
@@ -83,30 +80,9 @@ public class EntityStupidSkeleton extends EntitySkeleton {
     @Override
     public void setCombatTask()
     {
-        if (this.world != null && !this.world.isRemote)
-        {
-
-            this.tasks.removeTask(this.aiArrowAttack);
-            ItemStack itemstack = this.getHeldItemMainhand();
-
-            if (itemstack.getItem() == ModItems.STUPID_TNT_GUN_ITEM)
-            {
-                int i = 20;
-
-                if (this.world.getDifficulty() != EnumDifficulty.HARD)
-                {
-                    i = 40;
-                }
-
-                this.aiArrowAttack.setAttackCooldown(i);
-                this.tasks.addTask(4, this.aiArrowAttack);
-
-            }
-            else
-            {
-                //this.tasks.addTask(4, this.aiAttackOnCollide);
-            }
-        }
+        super.setCombatTask();
+        EntityAIStupidSkeletonShootGun aiStupidSkeletonShootGun = new EntityAIStupidSkeletonShootGun(this, 1.0D, 20, 15.0F);
+        this.tasks.addTask(4,aiStupidSkeletonShootGun);
     }
     /**
      * Attack the specified entity using a ranged attack.
@@ -119,11 +95,12 @@ public class EntityStupidSkeleton extends EntitySkeleton {
         double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - entityarrow.posY;
         double d2 = target.posZ - this.posZ;
         double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
-        EntityStupidTNT entityStupidTNT = new EntityStupidTNT(this.getEntityWorld());
-        entityStupidTNT.setPosition(posX,posY,posZ);
-        entityStupidTNT.setVelocity(((rand.nextFloat()*2)-1),5,((rand.nextFloat()*2)-1));
+        EntityStupidTNT entityStupidTNT = new EntityStupidTNT(this.world,this.posX,this.posY,this.posZ,this,0.75f);
+        //entityStupidTNT.setPosition(posX,posY,posZ);
+        //entityStupidTNT.setVelocity(((rand.nextFloat()*2)-1),5,((rand.nextFloat()*2)-1));
         //entityStupidTNT.setPosition(target.posX,target.posY,target.posZ);
-        //entityStupidTNT.shoot(this, this.rotationPitch, this.rotationYaw, 0.0F, 5f, 0.5F);
+        entityStupidTNT.setFuse(20);
+        entityStupidTNT.shoot(this, this.rotationPitch, this.rotationYaw, 0.0F, 5f, 0.5F);
         this.world.spawnEntity(entityStupidTNT);
     }
 }

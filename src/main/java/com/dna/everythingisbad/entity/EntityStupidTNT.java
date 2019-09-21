@@ -18,18 +18,18 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(EntityTNTPrimed.class, DataSerializers.VARINT);
     @Nullable
     private EntityLivingBase tntPlacedBy;
+    private float power = 0.5f;
+    private int fuse = 240;
 
-
-
-    /** How long the fuse is */
-    private int fuse = 60;
     public EntityStupidTNT(World worldIn) {
         super(worldIn);
-        this.fuse = 60;
-
+        setFuse(240);
     }
 
-
+    public EntityStupidTNT(World worldin,double x, double y, double z, EntityLivingBase igniter,float power){
+        this(worldin,x,y,z,igniter);
+        this.power = power;
+    }
     public EntityStupidTNT(World worldIn, double x, double y, double z, EntityLivingBase igniter) {
         this(worldIn);
         this.setPosition(x, y, z);
@@ -37,11 +37,12 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         this.motionX = -((float)Math.sin(f)) * 0.02F;
         this.motionY = 0.20000000298023224D;
         this.motionZ = -((float)Math.cos(f)) * 0.02F;
-        this.setFuse(80);
+        this.setFuse(240);
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
         this.tntPlacedBy = igniter;
+        this.power = 20f;
 
     }
     public EntityStupidTNT(World worldin, EntityPlayer player){
@@ -95,7 +96,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     private void explode()
     {
         float f = 4.0F;
-        this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 20.0F, true);
+        this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, power, true);
         //ExplosionUtils.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 20.0F);
         //this.world.createExplosion(this,this.posX,this.posY,this.posZ,20f,false);
     }
@@ -154,6 +155,4 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     public void setFuse(int fuse) {
         this.fuse = fuse;
     }
-
-
 }
