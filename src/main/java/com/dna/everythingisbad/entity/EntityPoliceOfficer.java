@@ -38,6 +38,7 @@ public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttack
 
     public EntityPoliceOfficer(World worldIn) {
         super(worldIn);
+        this.setCombatTask();
     }
 
     @Override
