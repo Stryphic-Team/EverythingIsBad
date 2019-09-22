@@ -15,6 +15,18 @@
     },
     "age=4": {
       "model": "everythingbad:tobacco_stage4"
+    },
+    "age=5": {
+      "model": "everythingbad:tobacco_stage4"
+    },
+    "age=6": {
+      "model": "everythingbad:tobacco_stage4"
+    },
+    "age=7": {
+      "model": "everythingbad:tobacco_stage4"
+    },
+    "inventory":{
+      "model": "everythingbad:tobacco_stage4"
     }
   }
 }
