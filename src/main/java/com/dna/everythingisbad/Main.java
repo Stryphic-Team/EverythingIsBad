@@ -1,6 +1,7 @@
 package com.dna.everythingisbad;
 
 
+import com.dna.everythingisbad.init.ModCommands;
 import com.dna.everythingisbad.proxy.IProxy;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -10,6 +11,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 
 
@@ -42,6 +44,10 @@ public class Main
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
+    }
+    @EventHandler
+    public static void fmlServerStarting(FMLServerStartingEvent event){
+        ModCommands.init(event);
     }
 
 }
