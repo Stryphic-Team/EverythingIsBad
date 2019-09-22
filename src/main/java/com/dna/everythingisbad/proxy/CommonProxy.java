@@ -75,6 +75,8 @@ public class CommonProxy implements IProxy{
         GameRegistry.registerWorldGenerator(WorldGenBloodGenerator.INSTANCE,30);
         GameRegistry.registerWorldGenerator(StructureGenerator.INSTANCE,30);
         GameRegistry.registerWorldGenerator(WorldGenModOres.INSTANCE,101);
+        //VillagerRegistry.instance().registerVillageCreationHandler(new VillageCasino.VillageManager());
+        //MapGenStructureIO.registerStructureComponent(VillageCasino.class, Reference.MOD_ID+":villageCasino");
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
         ModEntities.init();
         FluidCache.init();
