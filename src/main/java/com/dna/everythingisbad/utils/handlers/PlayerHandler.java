@@ -7,7 +7,9 @@ import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
 import com.dna.everythingisbad.utils.ModTeleporter;
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -138,7 +140,7 @@ public class PlayerHandler {
     public static void playerTick(EntityPlayer player){
         questionMarkBlockHandler(player);
         playerDeathHandler(player);
-        fluidHandler(player);
+        //fluidHandler(player);
         heavenHandler(player);
         commonColdHandler(player);
         babyHandler(player);
@@ -147,6 +149,7 @@ public class PlayerHandler {
         poopHandler(entityLivingBase);
         potionEffectHandler(entityLivingBase);
         jesusBloodDropHandler(entityLivingBase);
+        fluidHandler(entityLivingBase);
     }
     public static void jesusBloodDropHandler(EntityLivingBase entity){
         if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH){
@@ -216,13 +219,12 @@ public class PlayerHandler {
     public static void playerLeft(EntityPlayer player) {
 
     }
-    public static void fluidHandler(EntityPlayer player){
-        if(player instanceof EntityPlayerMP){
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP)player;
-            BlockPos playerPos = entityPlayerMP.getPosition();
-            Block blockAtPlayerPos = entityPlayerMP.getEntityWorld().getBlockState(playerPos).getBlock();
+    public static void fluidHandler(EntityLivingBase elb){
+        if(!(elb instanceof EntityPlayerSP)){
+            BlockPos playerPos = elb.getPosition();
+            Block blockAtPlayerPos = elb.getEntityWorld().getBlockState(playerPos).getBlock();
             if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
-                FluidEventHandler.inDevilsPee(entityPlayerMP);
+                FluidEventHandler.inDevilsPee(elb);
             }
         }
 

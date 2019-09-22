@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DWD",
+    "DED"
+  ],
+  "key": {
+    "D": {
+      "item": "everythingbad:poop",
+      "data": 3
+    },
+    "E": {
+      "item": "minecraft:bucket"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "type": "minecraft:item_nbt",
+    "item": "forge:bucketfilled",
+    "nbt":{
+      "FluidName": "everythingbad:diaria",
+      "Amount": 1000
+    }
+  }
+}
