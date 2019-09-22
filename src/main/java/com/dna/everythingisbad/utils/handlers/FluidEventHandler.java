@@ -2,6 +2,7 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.init.ModSoundEvents;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
@@ -17,7 +18,7 @@ public class FluidEventHandler {
      * this detects when a player is in DevilsPee
      * @param player
      */
-    public static void inDevilsPee(EntityPlayer player){
+    public static void inDevilsPee(EntityLivingBase player){
         World worldIn = player.getEntityWorld();
         player.addPotionEffect(new PotionEffect(ModPotions.POTION_HIGHNESS.getPotion(),24000,4));
 
