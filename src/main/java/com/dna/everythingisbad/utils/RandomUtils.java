@@ -14,7 +14,11 @@ public class RandomUtils {
      * @return random integer
      */
     public static int fromRangeI(int min,int max){
-        return random.nextInt(max+(Math.abs(min)))+min;
+        if(min <= 0) {
+            return random.nextInt(max + (Math.abs(min))) + min;
+        }else {
+            return random.nextInt(max - (Math.abs(min))) + min;
+        }
     }
 
     /**
@@ -24,7 +28,11 @@ public class RandomUtils {
      * @return random float
      */
     public static float fromRangeF(float min, float max){
-        return nextFloat(max+(Math.abs(min)))+min;
+        if(min <= 0) {
+            return nextFloat(max + (Math.abs(min))) + min;
+        }else{
+            return nextFloat(max - (Math.abs(min))) + min;
+        }
     }
 
     /**
