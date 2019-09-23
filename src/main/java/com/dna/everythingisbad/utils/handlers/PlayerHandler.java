@@ -166,6 +166,7 @@ public class PlayerHandler {
     //Detects which effect is active and routes it to the PotionEffectHandler
     public static void potionEffectHandler(EntityLivingBase entity){
         boolean highness_active = entity.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
+        boolean common_cold_active = entity.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion());
         if(highness_active){
             if (entity instanceof EntityPlayerMP) {
                 // Casting to entityplayermp
@@ -177,6 +178,11 @@ public class PlayerHandler {
                 int highness_duration = entity.getEntityData().getInteger("highness_duration");
                 PotionEffectHandler.livingEntityHighnessActive(entity, highness_duration);
             }
+        }
+
+        if (common_cold_active && !(entity instanceof EntityPlayerSP)){
+            int common_cold_duration = entity.getEntityData().getInteger("common_cold_duration");
+            PotionEffectHandler.livingEntityCommonColdActive(entity,common_cold_duration);
         }
     }
 

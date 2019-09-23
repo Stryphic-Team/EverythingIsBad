@@ -7,11 +7,14 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -81,10 +84,15 @@ public class PlayerInteractionHandler {
     // When you hit someone/something and you have the common cold, they get it too.
     public static void hitSomeone(AttackEntityEvent event){
         Entity target = event.getTarget();
-        EntityPlayer player = event.getEntityPlayer();
-        if (player.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion()) &&
-        target instanceof EntityLivingBase){
-            EntityLivingBase elb = (EntityLivingBase)target;
+        //EntityPlayer player = event.getEntityPlayer();
+        EntityLivingBase doer = event.getEntityLiving();
+        //Main.logger.info("Doer: " + doer.getName());
+        //Main.logger.info("Target: " + target.getName());
+        //Main.logger.info(doer.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion()));
+
+        if (doer.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion()) &&
+                target instanceof EntityLivingBase){
+            EntityLivingBase elb = (EntityLiving)target;
             elb.addPotionEffect(new PotionEffect(ModPotions.POTION_COMMON_COLD.getPotion(),12000,1));
         }
     }
