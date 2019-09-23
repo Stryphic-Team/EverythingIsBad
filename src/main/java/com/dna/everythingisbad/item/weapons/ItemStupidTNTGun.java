@@ -63,9 +63,10 @@ public class ItemStupidTNTGun extends ItemGunBase {
         {
             worldIn.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-            EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn);
+            EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn,15f);
 
             entityStupidTNT.shoot(entity, entity.rotationPitch, entity.rotationYaw, 0.0F, 5f, 0.5F);
+
             worldIn.spawnEntity(entityStupidTNT);
 
 
@@ -86,6 +87,8 @@ public class ItemStupidTNTGun extends ItemGunBase {
             worldIn.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             EntityStupidTNT entityStupidTNT = new EntityStupidTNT(worldIn,entity);
+            entityStupidTNT.setPower(15f);
+            entityStupidTNT.setFuse(30);
 
             entityStupidTNT.shoot(entity, entity.rotationPitch, entity.rotationYaw, 0.0F, 5f, 0.5F);
             worldIn.spawnEntity(entityStupidTNT);

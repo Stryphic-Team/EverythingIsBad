@@ -25,6 +25,11 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         super(worldIn);
         setFuse(240);
     }
+    public EntityStupidTNT(World world,float power){
+        super(world);
+        setPower(power);
+        setFuse(50);
+    }
 
     public EntityStupidTNT(World worldin,double x, double y, double z, EntityLivingBase igniter,float power){
         this(worldin,x,y,z,igniter);
@@ -154,5 +159,8 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     @Override
     public void setFuse(int fuse) {
         this.fuse = fuse;
+    }
+    public void setPower(float power){
+        this.power = power;
     }
 }

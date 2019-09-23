@@ -15,6 +15,7 @@ public class ExplosionUtils {
     public static Explosion newExplosion(Entity entityIn, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking)
     {
         Explosion explosion = new Explosion(entityIn.world, entityIn, x, y, z, strength, isFlaming, isSmoking);
+
         if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(entityIn.world, explosion)) return explosion;
         explosion.doExplosionA();
         explosion.doExplosionB(false);
