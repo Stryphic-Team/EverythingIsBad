@@ -107,4 +107,9 @@ public class ServerEventHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void smeltItem(PlayerEvent.ItemSmeltedEvent event){
+        PlayerHandler.playerSmelted(event, event.player);
+    }
+
 }

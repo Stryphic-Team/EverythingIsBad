@@ -1,11 +1,14 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import cofh.core.init.CoreEnchantments;
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.entity.EntityJesus;
+import com.dna.everythingisbad.entity.EntityPoliceOfficer;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
 import com.dna.everythingisbad.utils.ModTeleporter;
+import com.dna.everythingisbad.utils.SpawnUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityCreature;
@@ -30,6 +33,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.Random;
 
@@ -172,6 +176,18 @@ public class PlayerHandler {
             }else if (entity instanceof EntityCreature){
                 int highness_duration = entity.getEntityData().getInteger("highness_duration");
                 PotionEffectHandler.livingEntityHighnessActive(entity, highness_duration);
+            }
+        }
+    }
+
+    public static void playerSmelted(PlayerEvent.ItemSmeltedEvent event, EntityPlayer player){
+        if (player instanceof EntityPlayerMP){
+            EntityPlayerMP mp = (EntityPlayerMP)player;
+            if (event.smelting.getItem() == ModItems.COOKED_BABY_ITEM){
+                int randomamount = random.nextInt(3)+1;
+                for (int i=0;i<randomamount;i++){
+                    SpawnUtils.spawnMobInRadius(mp.getServerWorld(),mp,new EntityPoliceOfficer(mp.getServerWorld()),5,10);
+                }
             }
         }
     }

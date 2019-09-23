@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.client.RenderYellow;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -46,6 +47,11 @@ public class ClientEventHandler {
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerTimer(TickEvent.PlayerTickEvent event){
         PlayerHandler.playerTick(event.player);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void smeltItem(PlayerEvent.ItemSmeltedEvent event){
+        PlayerHandler.playerSmelted(event, event.player);
     }
 
 //    @SubscribeEvent(priority = EventPriority.HIGH)
