@@ -84,6 +84,6 @@ public class RandomUtils {
         float y = (float)Math.sin(angle);
         float radius = fromRangeF(minDistance,maxDistance);
         Vector2f position = new Vector2f(x*radius,y*radius);
-        return  position;
+        return  position.translate(point.x,point.y);
     }
 }
