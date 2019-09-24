@@ -8,7 +8,7 @@ public class BlockCopperOre extends BlockBase implements IOreDictBlock {
     public BlockCopperOre(String name){
         super(name);
         setHardness(10);
-        setHarvestLevel("Stone",1);
+        setHarvestLevel("pickaxe",1);
     }
 
     @Override

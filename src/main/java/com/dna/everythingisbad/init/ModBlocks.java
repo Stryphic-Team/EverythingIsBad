@@ -6,7 +6,6 @@ import com.dna.everythingisbad.block.machines.*;
 import com.dna.everythingisbad.block.ore.BlockCopperOre;
 import com.dna.everythingisbad.block.plants.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -17,9 +16,9 @@ public class ModBlocks
     public static final List<Block> BLOCKS = new ArrayList<Block>();
 
     //Blocks
-    public static final Block STUPID_TNT_BLOCK = new BlockStupidTNT("stupid_tnt", Material.IRON);
-    public static final Block POOP_BLOCK = new BlockPoop("poop_block",Material.GROUND);
-    public static final Block POOP_BRICKS_BLOCK = new BlockPoopBricks("poop_bricks",Material.ROCK);
+    public static final Block STUPID_TNT_BLOCK = new BlockStupidTNT("stupid_tnt");
+    public static final Block POOP_BLOCK = new BlockPoop("poop_block");
+    public static final Block POOP_BRICKS_BLOCK = new BlockPoopBricks("poop_bricks");
     public static final Block BLOOD_BLOCK = new BloodBlock("blood_block");
     public static final Block URINE_BLOCK = new BlockUrine("urine_block");
     public static final Block URINE_BRICKS_BLOCK = new BlockUrineBricks("urine_bricks");
@@ -40,9 +39,10 @@ public class ModBlocks
     public static final Block DIARIC_GENERATOR = new BlockDiaricGenerator("diaric_generator");
     public static final Block LIQUIFIER_MACHINE = new BlockLiquifier("liquifier_machine");
     public static final Block MACHINE_FRAME = new BlockMachineFrame("machine_frame");
+    public static final Block URINE_BATTERY = new BlockUrineBattery("urine_battery");
 
     // Woke blocks
-    public static final Block POOP_STAIRS = new BlockPoopStairs(POOP_BRICKS_BLOCK.getDefaultState(),"poop_stairs");
+    public static final Block POOP_STAIRS = new BlockPoopStairs("poop_stairs");
     public static final Block POOP_FENCE = new BlockPoopFence("poop_fence");
 
     public static void init(){

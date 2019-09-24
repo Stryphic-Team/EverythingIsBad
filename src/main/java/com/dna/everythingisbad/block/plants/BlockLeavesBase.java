@@ -1,36 +1,44 @@
 package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.block.IModBlockBase;
+import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.utils.IHasModel;
+import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.item.ItemBlock;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
+public abstract class BlockLeavesBase extends BlockLeaves implements IModBlockBase {
 
-public class BlockLeavesBase extends BlockLeaves implements IHasModel {
+    protected String name;
+
+    /**
+     * Can be used in the case that you would like to base a material through
+     * @param name
+     */
+    public BlockLeavesBase(String name){
+
+        this.name = name;
+        setRegistryName(name);
+        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
+        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
+        addItemToRegistry();
+        addBlockToRegistry();
+    }
+    @Override
+    public void addItemToRegistry() {
+        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.name));
+    }
+
+    @Override
+    public void addBlockToRegistry() {
+        ModBlocks.BLOCKS.add(this);
+    }
 
     @Override
     public void registerModels() {
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-    }
-
-    @Override
-    public BlockPlanks.EnumType getWoodType(int meta) {
-        return null;
-    }
-
-    @Nonnull
-    @Override
-    public List<ItemStack> onSheared(@Nonnull ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-        List<ItemStack> list = new ArrayList<ItemStack>();
-        list.add(new ItemStack(ModBlocks.LEAVES_HAPPY_BLOCK));
-        return list;
+        Main.proxy.registerModel(Item.getItemFromBlock(this),0);
     }
 }

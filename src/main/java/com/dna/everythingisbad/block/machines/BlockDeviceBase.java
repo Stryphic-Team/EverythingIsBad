@@ -3,20 +3,16 @@ package com.dna.everythingisbad.block.machines;
 import com.dna.everythingisbad.block.BlockBase;
 import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.TileStupidCoreMachine;
-import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -30,12 +26,8 @@ import javax.annotation.Nullable;
 public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public BlockDeviceBase(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
+        super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setSoundType(SoundType.STONE);
-        ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(name));
     }
     @Override
     public boolean hasTileEntity(IBlockState state)

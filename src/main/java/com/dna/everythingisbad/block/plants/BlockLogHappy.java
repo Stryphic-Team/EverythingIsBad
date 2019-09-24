@@ -1,26 +1,17 @@
 package com.dna.everythingisbad.block.plants;
 
-import com.dna.everythingisbad.init.ModBlocks;
-import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemBlock;
 
 public class BlockLogHappy extends BlockLogBase {
 
     //public static final PropertyEnum<EnumAxis> LOG_HAPPY_AXIS = PropertyEnum.<BlockLog.EnumAxis>create("axis", BlockLogHappy.EnumAxis.class);
 
     public BlockLogHappy(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-
+        super(name);
         setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
-
-        ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
     @Override
     public IBlockState getStateFromMeta(int meta)

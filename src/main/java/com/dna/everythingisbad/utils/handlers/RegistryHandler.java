@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.block.IModBlockBase;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.reference.Reference;
@@ -64,9 +65,9 @@ public class RegistryHandler {
 
         for(Block block : ModBlocks.BLOCKS)
         {
-            if(block instanceof IHasModel)
+            if(block instanceof IModBlockBase)
             {
-                ((IHasModel)block).registerModels();
+                ((IModBlockBase)block).registerModels();
             }
         }
     }

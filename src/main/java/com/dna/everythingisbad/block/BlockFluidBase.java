@@ -8,7 +8,6 @@ import net.minecraftforge.fluids.Fluid;
 public class BlockFluidBase extends BlockFluidClassic {
     public BlockFluidBase(String name, Fluid fluid, Material material)
     {
-
         super(fluid, material);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setRegistryName(name);

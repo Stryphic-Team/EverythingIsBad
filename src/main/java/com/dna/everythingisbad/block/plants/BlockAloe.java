@@ -1,10 +1,10 @@
 package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.block.IModBlockBase;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
-import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.block.BlockDeadBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -21,19 +21,30 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockAloe extends BlockDeadBush implements IHasModel {
+public class BlockAloe extends BlockDeadBush implements IModBlockBase {
     public BlockAloe(String name){
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setSoundType(SoundType.PLANT);
-        ModBlocks.BLOCKS.add(this);
+        addBlockToRegistry();
+        addItemToRegistry();
+
+    }
+
+    @Override
+    public void addItemToRegistry() {
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
+
+    @Override
+    public void addBlockToRegistry() {
+        ModBlocks.BLOCKS.add(this);
+    }
+
     @Override
     public void registerModels()
     {
         Main.proxy.registerModel(Item.getItemFromBlock(this),0);
-
     }
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)

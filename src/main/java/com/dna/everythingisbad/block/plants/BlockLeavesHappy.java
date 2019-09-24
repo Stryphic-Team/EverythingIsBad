@@ -1,37 +1,37 @@
 package com.dna.everythingisbad.block.plants;
 
-import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.CommonUtils;
+import com.dna.everythingisbad.utils.RandomUtils;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Random;
 
 public class BlockLeavesHappy extends BlockLeavesBase {
     public BlockLeavesHappy(String name)
     {
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
+        super(name);
         setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
 
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
+
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
-
-        ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
     @Override
     public int getMetaFromState(IBlockState state)
@@ -51,6 +51,11 @@ public class BlockLeavesHappy extends BlockLeavesBase {
     public BlockRenderLayer getBlockLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @Override
+    public BlockPlanks.EnumType getWoodType(int meta) {
+        return BlockPlanks.EnumType.OAK;
     }
 
     @SideOnly(Side.CLIENT)
@@ -78,11 +83,16 @@ public class BlockLeavesHappy extends BlockLeavesBase {
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        if (rand.nextInt(2) == 1){
+        if (RandomUtils.percentChance(50)){
             return Item.getItemFromBlock(ModBlocks.SAPLING_HAPPY_BLOCK);
         }else{
             return ModItems.DEVILS_CABBAGE_ITEM;
         }
     }
 
+    @Nonnull
+    @Override
+    public List<ItemStack> onSheared(@Nonnull ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
+        return null;
+    }
 }

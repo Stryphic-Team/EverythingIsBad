@@ -1,28 +1,20 @@
 package com.dna.everythingisbad.block.buildingblocks;
 
 import com.dna.everythingisbad.block.BlockBase;
-import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.CommonUtils;
-import net.minecraft.block.BlockGlowstone;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Random;
 
 public class BlockUrine extends BlockBase {
     public BlockUrine(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
+        super(name);
         setSoundType(SoundType.GLASS);
         setHardness(1.2f);
         setResistance(10f);
-        ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override
