@@ -1,9 +1,7 @@
 package com.dna.everythingisbad.item.weapons;
 
-import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -18,10 +16,7 @@ import net.minecraft.world.World;
 
 public class ItemStupidTNTGun extends ItemGunBase {
     public ItemStupidTNTGun(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
-        ModItems.ITEMS.add(this);
+        super(name);
     }
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

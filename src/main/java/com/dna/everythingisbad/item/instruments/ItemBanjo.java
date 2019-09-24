@@ -1,9 +1,6 @@
 package com.dna.everythingisbad.item.instruments;
 
-import com.dna.everythingisbad.creativetab.CreativeTab;
-import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.item.ItemBase;
-import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.handlers.MidiHandler;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -15,12 +12,8 @@ import java.util.List;
 public class ItemBanjo extends ItemBase {
     public ItemBanjo(String name)
     {
-
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
+        super(name);
         this.setMaxStackSize(1);
-        ModItems.ITEMS.add(this);
     }
 
     @Override

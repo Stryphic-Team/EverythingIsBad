@@ -5,7 +5,7 @@ import com.dna.everythingisbad.utils.IHasModel;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.util.SoundEvent;
 
-public class ItemRecordBase extends ItemRecord implements IHasModel {
+public abstract class ItemRecordBase extends ItemRecord implements IHasModel {
 
     protected ItemRecordBase(String name, SoundEvent soundIn) {
         super(name, soundIn);
@@ -14,7 +14,7 @@ public class ItemRecordBase extends ItemRecord implements IHasModel {
     @Override
     public void registerModels()
     {
-        Main.proxy.registerItemRenderer(this,0, "inventory");
+        Main.proxy.registerModel(this,0);
 
     }
 }

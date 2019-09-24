@@ -1,8 +1,5 @@
 package com.dna.everythingisbad.item.weapons;
 
-import com.dna.everythingisbad.creativetab.CreativeTab;
-import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.item.ItemStack;
@@ -14,10 +11,8 @@ import net.minecraft.world.World;
 
 public class ItemHairDryerGun extends ItemGunBase {
     public ItemHairDryerGun(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
-        ModItems.ITEMS.add(this);
+        super(name);
+
     }
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
