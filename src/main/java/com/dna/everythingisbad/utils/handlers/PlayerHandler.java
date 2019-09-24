@@ -51,6 +51,7 @@ public class PlayerHandler {
     public static void playerRespawn(EntityPlayer player){
         if(player instanceof EntityPlayerMP){
             blindnessHandler((EntityPlayerMP) player,true);
+            religionHandler((EntityPlayerMP)player);
         }
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
@@ -59,6 +60,10 @@ public class PlayerHandler {
         if(entityPlayer instanceof EntityPlayerMP){
 
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
+            if (!entityPlayerMP.getEntityData().hasKey("has_been_initialized")) {
+                entityPlayerMP.getEntityData().setBoolean("has_been_initialized",false);
+                entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
+            }
             boolean hasBeenInitialized = entityPlayerMP.getEntityData().getBoolean("has_been_initialized");
 
             religionHandler(entityPlayerMP);
@@ -70,7 +75,6 @@ public class PlayerHandler {
                 entityPlayerMP.getEntityData().setBoolean("has_been_initialized",true);
                 entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
             }
-
         }
     }
     public static void commonColdInitializer(EntityPlayerMP player, boolean rollDice){
@@ -128,10 +132,10 @@ public class PlayerHandler {
     }
 
     public static void religionHandler(EntityPlayerMP player){
-        boolean hasSoul = player.getEntityData().getBoolean("has_soul");
+        boolean playerInitialized = player.getEntityData().getBoolean("has_been_initialized");
 
-        // On first join, at the same time you get a soul, you get a religion
-        if (!hasSoul){
+        // On first join, you get a religion assigned
+        if (!playerInitialized){
             int rnadomnum = random.nextInt(6);
             player.getEntityData().setInteger("religion",rnadomnum);
             player.writeEntityToNBT(player.getEntityData());
