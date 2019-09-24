@@ -1,17 +1,12 @@
 package com.dna.everythingisbad.item.weapons;
-import com.dna.everythingisbad.creativetab.CreativeTab;
-import com.dna.everythingisbad.init.ModItems;
+
 import com.dna.everythingisbad.item.ItemBase;
-import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.item.ItemStack;
 
 public class ItemStupidTNTCartridge extends ItemBase {
     public ItemStupidTNTCartridge(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
+        super(name);
         this.setMaxDamage(8);
-        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
-        ModItems.ITEMS.add(this);
         this.setMaxStackSize(1);
     }
     @Override

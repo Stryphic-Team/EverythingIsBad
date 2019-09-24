@@ -1,11 +1,7 @@
 package com.dna.everythingisbad.item.weapons;
 
-import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.entity.EntityBullet;
-import com.dna.everythingisbad.init.ModItems;
-import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -17,9 +13,7 @@ import net.minecraft.world.World;
 
 public class ItemPoliceGun extends ItemGunBase {
     public ItemPoliceGun(String name){
-        setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        ModItems.ITEMS.add(this);
+        super(name);
     }
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
