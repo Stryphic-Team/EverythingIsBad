@@ -13,7 +13,8 @@ public class ModCommands {
             new CommandGetBalance("getbal"),
             new CommandGetBalance("bal"),
             new CommandGetBalance("balance"),
-            new CommandGetBalance("getbalance")
+            new CommandGetBalance("getbalance"),
+            new CommandGetBalance("discoverthecurrentquantityofcurrencywhichiscontainedwithinthisplayer")
     };
     public static final ModCommandBase[] COMMAND_GIVE_MONEY = new ModCommandBase[]{
             new CommandGiveMoney("givemoney")

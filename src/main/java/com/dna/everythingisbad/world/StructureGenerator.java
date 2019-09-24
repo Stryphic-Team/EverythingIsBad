@@ -1,6 +1,8 @@
 package com.dna.everythingisbad.world;
 
 import com.dna.everythingisbad.init.ModBiomes;
+import com.dna.everythingisbad.utils.RandomUtils;
+import com.dna.everythingisbad.world.structures.WorldGenLandMine;
 import com.dna.everythingisbad.world.structures.WorldGenTwinTowers;
 import com.dna.everythingisbad.world.structures.WorldGenVillageCasino;
 import com.dna.everythingisbad.world.structures.WorldGenWoolBlock;
@@ -48,6 +50,12 @@ public class StructureGenerator implements IWorldGenerator {
 
                 worldGenVillageCasino.generate(world, random, world.getTopSolidOrLiquidBlock(position));
 
+            }
+            if(RandomUtils.withinChance(200)){
+                WorldGenLandMine worldGenLandMine = new WorldGenLandMine();
+                BlockPos position = new BlockPos(xPos,1,zPos);
+
+                worldGenLandMine.generate(world,random,position);
             }
 
         }
