@@ -61,6 +61,7 @@ public class PlayerHandler {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
             boolean hasBeenInitialized = entityPlayerMP.getEntityData().getBoolean("has_been_initialized");
 
+            religionHandler(entityPlayerMP);
             soulHandler(entityPlayerMP);
             blindnessHandler(entityPlayerMP,false);
             if(!hasBeenInitialized){
@@ -123,6 +124,27 @@ public class PlayerHandler {
             // (Unless they use another account, lol)
             player.getEntityData().setBoolean("has_soul",true);
             player.writeEntityToNBT(player.getEntityData());
+        }
+    }
+
+    public static void religionHandler(EntityPlayerMP player){
+        boolean hasSoul = player.getEntityData().getBoolean("has_soul");
+
+        // On first join, at the same time you get a soul, you get a religion
+        if (!hasSoul){
+            int rnadomnum = random.nextInt(6);
+            player.getEntityData().setInteger("religion",rnadomnum);
+            player.writeEntityToNBT(player.getEntityData());
+        }
+        // This part is run on every join
+        int playerReligion = player.getEntityData().getInteger("religion");
+
+        Religion rel[] = Religion.values();
+        for (Religion religion : rel){
+            if (religion.ordinal() == playerReligion){
+                player.addSuffix(new TextComponentString(" [" +
+                        religion.name() + "]"));
+            }
         }
     }
 
