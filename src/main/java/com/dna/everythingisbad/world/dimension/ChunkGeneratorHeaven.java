@@ -129,7 +129,13 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
                                 int l2 = j2 + j1 * 4;
                                 int i3 = i2 + l1 * 8;
                                 int j3 = k2 + k1 * 4;
-                                chunkprimer.setBlockState(l2, i3, j3, iblockstate);
+
+                                // Just taking a little slice of nether gen, from [68 to 72)
+
+                                if (i3 >= 68 && i3 < 72){
+                                    chunkprimer.setBlockState(l2, i3, j3, iblockstate);
+                                }
+
                                 d15 += d16;
                             }
 

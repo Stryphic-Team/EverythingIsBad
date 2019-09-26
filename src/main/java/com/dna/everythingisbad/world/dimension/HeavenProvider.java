@@ -41,21 +41,16 @@ public class HeavenProvider extends WorldProvider {
 
     @Override
     protected void init() {
-        this.hasSkyLight = false;
+        this.hasSkyLight = true;
     }
 
     @Override
     public boolean isDaytime() {
-        return false;
+        return true;
     }
 
     @Override
     public float getSunBrightness(float par1) {
-        return 0.0f;
-    }
-
-    @Override
-    public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
-        return new Vec3d(1.0d,1.0d,1.0d);
+        return 1.0f;
     }
 }
