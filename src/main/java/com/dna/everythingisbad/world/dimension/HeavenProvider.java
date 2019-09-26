@@ -53,4 +53,9 @@ public class HeavenProvider extends WorldProvider {
     public float getSunBrightness(float par1) {
         return 1.0f;
     }
+
+    @Override
+    public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
+        return new Vec3d(1,2.5,2.5);
+    }
 }

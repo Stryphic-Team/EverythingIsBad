@@ -2,6 +2,7 @@ package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.block.IModBlockBase;
+import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
@@ -29,6 +30,8 @@ public class BlockAloe extends BlockDeadBush implements IModBlockBase {
         addBlockToRegistry();
         addItemToRegistry();
 
+        // This isn't redundant!!! It doesn't extend BlockBase >:C
+        this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
     }
 
     @Override
