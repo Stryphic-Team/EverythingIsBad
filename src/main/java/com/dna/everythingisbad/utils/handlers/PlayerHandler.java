@@ -174,7 +174,7 @@ public class PlayerHandler {
             for (Religion religion : rel) {
                 if (religion.ordinal() == playerReligion) {
                     player.addSuffix(new TextComponentString(" [" +
-                            religion.getDisplayName() + "]"));
+                            religion.getDisplayName() + "]").setStyle(new Style().setColor(religion.getTextFormatting())));
                 }
             }
         }
