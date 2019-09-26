@@ -296,7 +296,7 @@ public class PlayerHandler {
 
     }
     public static void fluidHandler(EntityLivingBase elb){
-        if(!(elb instanceof EntityPlayer)){
+        if(elb instanceof EntityPlayerMP || elb instanceof EntityCreature){
             BlockPos playerPos = elb.getPosition();
             Block blockAtPlayerPos = elb.getEntityWorld().getBlockState(playerPos).getBlock();
             if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){

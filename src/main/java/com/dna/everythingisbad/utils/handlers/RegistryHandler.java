@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -104,7 +105,12 @@ public class RegistryHandler {
     }
     @SubscribeEvent
     public static void onAttachCapabilitiesEvent(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof EntityPlayer) {
+        if (event.getObject() instanceof EntityPlayerMP) {
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) event.getObject();
+            if (!entityPlayerMP.hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
+                event.addCapability(new ResourceLocation(Reference.MOD_ID, "player_data"), new CapabilityProvider());
+            }
+        }else if(event.getObject() instanceof  EntityPlayer){
             if (!event.getObject().hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
                 event.addCapability(new ResourceLocation(Reference.MOD_ID, "player_data"), new CapabilityProvider());
             }
