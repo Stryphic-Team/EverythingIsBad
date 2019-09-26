@@ -174,7 +174,7 @@ public class PlayerHandler {
             for (Religion religion : rel) {
                 if (religion.ordinal() == playerReligion) {
                     player.addSuffix(new TextComponentString(" [" +
-                            religion.name() + "]"));
+                            religion.getDisplayName() + "]"));
                 }
             }
         }
@@ -296,7 +296,7 @@ public class PlayerHandler {
 
     }
     public static void fluidHandler(EntityLivingBase elb){
-        if(!(elb instanceof EntityPlayerSP)){
+        if(!(elb instanceof EntityPlayer)){
             BlockPos playerPos = elb.getPosition();
             Block blockAtPlayerPos = elb.getEntityWorld().getBlockState(playerPos).getBlock();
             if(blockAtPlayerPos.getUnlocalizedName().equals("tile."+ Reference.MOD_ID+":devils_pee")){
