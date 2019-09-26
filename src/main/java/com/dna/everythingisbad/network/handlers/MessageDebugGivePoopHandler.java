@@ -2,6 +2,7 @@ package com.dna.everythingisbad.network.handlers;
 
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.network.messagestypes.MessageDebugGivePoop;
+import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -14,7 +15,9 @@ public class MessageDebugGivePoopHandler implements IMessageHandler<MessageDebug
     public IMessage onMessage(MessageDebugGivePoop message, MessageContext ctx) {
         EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
         serverPlayer.getServerWorld().addScheduledTask(() -> {
-            serverPlayer.inventory.addItemStackToInventory(new ItemStack(ModItems.POOP_ITEM, 1,3));
+            if (ModConfig.IS_DEBUG){
+                serverPlayer.inventory.addItemStackToInventory(new ItemStack(ModItems.POOP_ITEM, 1,3));
+            }
         });
         return null;
     }
