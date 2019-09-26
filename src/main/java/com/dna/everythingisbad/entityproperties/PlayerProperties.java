@@ -9,6 +9,7 @@ public class PlayerProperties {
     private boolean isBlind = false;
     private int religion = 0;
     private int timesPooped = 0;
+    private int balance = 0;
     public PlayerProperties(){
 
     }
@@ -20,7 +21,7 @@ public class PlayerProperties {
         this.hasBeenInitialized = hasBeenInitialized;
     }
 
-    public boolean isHasSoul() {
+    public boolean hasSoul() {
         return hasSoul;
     }
 
@@ -60,13 +61,22 @@ public class PlayerProperties {
         this.timesPooped = timesPooped;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
     public void copyFrom(PlayerProperties oldPlayerProperties){
         this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
-        this.hasSoul = oldPlayerProperties.isHasSoul();
+        this.hasSoul = oldPlayerProperties.hasSoul();
         this.hasCommonColdImmunity = oldPlayerProperties.hasCommonColdImmunity();
         this.isBlind = oldPlayerProperties.isBlind();
         this.religion = oldPlayerProperties.getReligion();
         this.timesPooped = oldPlayerProperties.getTimesPooped();
+        this.balance = oldPlayerProperties.getBalance();
 
     }
 
@@ -77,6 +87,7 @@ public class PlayerProperties {
         compound.setBoolean("isBlind",isBlind);
         compound.setInteger("religion",religion);
         compound.setInteger("timesPooped",timesPooped);
+        compound.setInteger("balance",balance);
     }
 
     public void loadNBTData(NBTTagCompound compound){
@@ -85,6 +96,7 @@ public class PlayerProperties {
         this.isBlind = compound.getBoolean("isBlind");
         this.religion = compound.getInteger("religion");
         this.timesPooped = compound.getInteger("timesPooped");
+        this.balance = compound.getInteger("balance");
     }
 
 }

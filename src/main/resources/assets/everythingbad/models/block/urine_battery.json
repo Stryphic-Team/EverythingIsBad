@@ -1,0 +1,13 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"particle": "everythingbad:blocks/urine_battery_sides",
+		"up": "everythingbad:blocks/urine_battery_top",
+		"down": "everythingbad:blocks/urine_battery_bottom",
+		"north": "everythingbad:blocks/urine_battery_sides",
+		"east": "everythingbad:blocks/urine_battery_sides",
+		"south": "everythingbad:blocks/urine_battery_sides",
+		"west": "everythingbad:blocks/urine_battery_sides"
+	}
+
+}

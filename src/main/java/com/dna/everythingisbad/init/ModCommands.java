@@ -9,16 +9,8 @@ import java.util.ArrayList;
 
 public class ModCommands {
     public static ArrayList<ModCommandBase> COMMANDS = new ArrayList<ModCommandBase>();
-    public static final ModCommandBase[] COMMAND_GET_BALANCE = new ModCommandBase[]{
-            new CommandGetBalance("getbal"),
-            new CommandGetBalance("bal"),
-            new CommandGetBalance("balance"),
-            new CommandGetBalance("getbalance"),
-            new CommandGetBalance("discoverthecurrentquantityofcurrencywhichiscontainedwithinthisplayer")
-    };
-    public static final ModCommandBase[] COMMAND_GIVE_MONEY = new ModCommandBase[]{
-            new CommandGiveMoney("givemoney")
-    };
+    public static final ModCommandBase COMMAND_GET_BALANCE = new CommandGetBalance("getbalance");
+    public static final ModCommandBase COMMAND_GIVE_MONEY = new CommandGiveMoney("givemoney");
     public static void init(FMLServerStartingEvent event){
         for(ModCommandBase commandBase:COMMANDS){
            event.registerServerCommand(commandBase);

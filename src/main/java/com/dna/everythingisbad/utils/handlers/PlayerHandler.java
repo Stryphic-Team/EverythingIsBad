@@ -116,7 +116,7 @@ public class PlayerHandler {
     public static void soulHandler(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
-            boolean hasSoul = playerProperties.isHasSoul();
+            boolean hasSoul = playerProperties.hasSoul();
             if (!hasSoul) {
 
                 // Makes a new itemstack and gives it an NBT string with the name of the player

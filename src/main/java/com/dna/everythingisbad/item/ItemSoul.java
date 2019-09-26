@@ -4,10 +4,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemSoul extends ItemBase {
     public ItemSoul(String name) {
-
         super(name);
         this.setMaxStackSize(1);
-
     }
 
     @Override
