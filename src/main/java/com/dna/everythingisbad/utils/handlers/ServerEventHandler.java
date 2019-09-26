@@ -67,7 +67,7 @@ public class ServerEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
         //Main.logger.info("Entity updated: " + event.getEntityLiving().getName());
-        PlayerHandler.livingTick(event.getEntityLiving());
+        //PlayerHandler.livingTick(event.getEntityLiving());
 //        EntityLivingBase livingBase = event.getEntityLiving();
 //        boolean highness_active = livingBase.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
 //        if(highness_active){
@@ -89,7 +89,7 @@ public class ServerEventHandler {
 //        if(event.player.isDead){
 //            PlayerHandler.playerDied(event.player);
 //        }
-        PlayerHandler.playerTick(event.player);
+        //PlayerHandler.playerTick(event.player);
     }
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerRespawn(PlayerEvent.PlayerRespawnEvent event){
@@ -97,7 +97,7 @@ public class ServerEventHandler {
     }
     @SubscribeEvent
     public void joinedServer(PlayerEvent.PlayerLoggedInEvent event){
-        PlayerHandler.playerJoined(event.player);
+        //PlayerHandler.playerJoined(event.player);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

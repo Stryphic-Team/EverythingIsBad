@@ -31,10 +31,11 @@ public class StructureGenerator implements IWorldGenerator {
         int zPos = chunkZ * 16;
         if (!biomeExcluded(world.getBiome(new BlockPos(xPos, 64, zPos))) && !isWaterChunk(world, chunkX, chunkZ)) {
             if (world.getBiome(new BlockPos(xPos, 64, zPos)) == Biomes.PLAINS || world.getBiome(new BlockPos(xPos, 64, zPos)) == Biomes.ICE_PLAINS) {
+                //NOTE: Should have tested to see it spawns before changing conditions for spawn
                 if (random.nextFloat() < 0.0001f) {
                     WorldGenTwinTowers twinTowers = new WorldGenTwinTowers();
-                    BlockPos position = new BlockPos(xPos, 1, zPos);
-                    if (position.getY() > 30) {
+                    BlockPos position = new BlockPos(xPos,1, zPos);
+                    if (world.getTopSolidOrLiquidBlock(position).getY() > 30) {
                         twinTowers.generate(world, random, world.getTopSolidOrLiquidBlock(position).down(20));
                     }
                 }

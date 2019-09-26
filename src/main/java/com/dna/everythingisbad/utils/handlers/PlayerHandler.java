@@ -1,9 +1,10 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import cofh.core.init.CoreEnchantments;
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.entity.EntityPoliceOfficer;
+import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerProperties;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
@@ -12,7 +13,6 @@ import com.dna.everythingisbad.utils.SpawnUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -49,131 +49,144 @@ public class PlayerHandler {
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     public static void playerRespawn(EntityPlayer player){
-        if(player instanceof EntityPlayerMP){
-            blindnessHandler((EntityPlayerMP) player,true);
-            religionHandler((EntityPlayerMP)player);
-        }
+
+            blindnessHandler(player,true);
+            religionHandler(player);
+
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
         //entity player needs to be casted to its respective type when writing nbt data
 
-        if(entityPlayer instanceof EntityPlayerMP){
+        //EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
+        PlayerProperties playerProperties = entityPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
-            if (!entityPlayerMP.getEntityData().hasKey("has_been_initialized")) {
-                entityPlayerMP.getEntityData().setBoolean("has_been_initialized",false);
-                entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
+        if(playerProperties != null) {
+            boolean hasBeenInitialized = playerProperties.hasBeenInitialized();
+            ///////////////////////////////////////////////////////
+            //// All initializers need to be run in this block ////
+            ///////////////////////////////////////////////////////
+            religionHandler(entityPlayer);
+            soulHandler(entityPlayer);
+            blindnessHandler(entityPlayer, false);
+            ///////////////////////////////////////////////////////
+            //// End of Initializer Block /////////////////////////
+            ///////////////////////////////////////////////////////
+            if (!hasBeenInitialized) {
+                commonColdInitializer(entityPlayer, true);
+                playerProperties.setHasBeenInitialized(true);
             }
-            boolean hasBeenInitialized = entityPlayerMP.getEntityData().getBoolean("has_been_initialized");
 
-            religionHandler(entityPlayerMP);
-            soulHandler(entityPlayerMP);
-            blindnessHandler(entityPlayerMP,false);
-            if(!hasBeenInitialized){
-                commonColdInitializer(entityPlayerMP,true);
-                //needs to be run at the end
-                entityPlayerMP.getEntityData().setBoolean("has_been_initialized",true);
-                entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
-            }
+            playerProperties.saveNBTData(entityPlayer.getEntityData());
         }
+
     }
-    public static void commonColdInitializer(EntityPlayerMP player, boolean rollDice){
-        if(random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1){
-            player.getEntityData().setBoolean("common_cold_immunity",false);
-        }else{
-            player.getEntityData().setBoolean("common_cold_immunity",true);
-        }
-        player.writeEntityToNBT(player.getEntityData());
-    }
-    public static void blindnessHandler(EntityPlayerMP player,boolean rollDice) {
-        if (rollDice){
-            if (random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1) {
-                player.getEntityData().setBoolean("is_blind", true);
-                player.writeEntityToNBT(player.getEntityData());
+    public static void commonColdInitializer(EntityPlayer player, boolean rollDice){
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            if (random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1) {
+                playerProperties.setHasCommonColdImmunity(false);
             } else {
-                player.getEntityData().setBoolean("is_blind", false);
-                player.writeEntityToNBT(player.getEntityData());
+                playerProperties.setHasCommonColdImmunity(true);
             }
+            playerProperties.saveNBTData(player.getEntityData());
         }
-        boolean isBlind = player.getEntityData().getBoolean("is_blind");
-        if(isBlind){
-            player.addSuffix(new TextComponentString(" [Blind]").setStyle(new Style().setColor(TextFormatting.DARK_RED)));
-            player.addPotionEffect(new PotionEffect(Potion.getPotionById(15),100000));
+    }
+    public static void blindnessHandler(EntityPlayer player,boolean rollDice) {
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            if (rollDice) {
+                if (random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1) {
+                    playerProperties.setBlind(true);
+
+                } else {
+                    playerProperties.setBlind(false);
+                }
+                playerProperties.saveNBTData(player.getEntityData());
+            }
+            boolean isBlind = playerProperties.isBlind();
+            if (isBlind) {
+                player.addSuffix(new TextComponentString(" [Blind]").setStyle(new Style().setColor(TextFormatting.DARK_RED)));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 100000));
+            }
         }
     }
 
-    public static void soulHandler(EntityPlayerMP player){
+    public static void soulHandler(EntityPlayer player){
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            boolean hasSoul = playerProperties.isHasSoul();
+            if (!hasSoul) {
 
-        boolean hasSoul = player.getEntityData().getBoolean("has_soul");
-        if (!hasSoul){
+                // Makes a new itemstack and gives it an NBT string with the name of the player
+                ItemStack soulStack = new ItemStack(ModItems.SOUL_ITEM, 1, 0);
+                NBTTagCompound soulCompound = new NBTTagCompound();
+                soulCompound.setString("player_name", player.getDisplayNameString());
+                soulStack.setTagCompound(soulCompound);
+                soulStack.addEnchantment(CoreEnchantments.soulbound, 1);
 
-            // Makes a new itemstack and gives it an NBT string with the name of the player
-            ItemStack soulStack = new ItemStack(ModItems.SOUL_ITEM,1,0);
-            NBTTagCompound soulCompound = new NBTTagCompound();
-            soulCompound.setString("player_name",player.getDisplayNameString());
-            soulStack.setTagCompound(soulCompound);
-            soulStack.addEnchantment(CoreEnchantments.soulbound,1);
+                //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
+                //TODO: Add soulbound enchantment to itemstack (or make one)
 
-            //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
-            //TODO: Add soulbound enchantment to itemstack (or make one)
+                // Give it to the player, or drop it if they cant fit it (for whatever reason)
+                if (!player.inventory.addItemStackToInventory(soulStack)) {
+                    player.dropItem(soulStack, false);
+                } else {
+                    player.inventory.addItemStackToInventory(soulStack);
+                }
 
-            // Give it to the player, or drop it if they cant fit it (for whatever reason)
-            if (!player.inventory.addItemStackToInventory(soulStack)) {
-                player.dropItem(soulStack, false);
-            }else{
-                player.inventory.addItemStackToInventory(soulStack);
+                // Makes sure the player only gets one, ever!!!
+                // (Unless they use another account, lol)
+                playerProperties.setHasSoul(true);
+                playerProperties.saveNBTData(player.getEntityData());
             }
-
-            // Makes sure the player only gets one, ever!!!
-            // (Unless they use another account, lol)
-            player.getEntityData().setBoolean("has_soul",true);
-            player.writeEntityToNBT(player.getEntityData());
         }
     }
 
-    public static void religionHandler(EntityPlayerMP player){
-        boolean playerInitialized = player.getEntityData().getBoolean("has_been_initialized");
+    public static void religionHandler(EntityPlayer player){
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            boolean playerInitialized = playerProperties.hasBeenInitialized();
 
-        // On first join, you get a religion assigned
-        if (!playerInitialized){
-            int rnadomnum = random.nextInt(6);
-            player.getEntityData().setInteger("religion",rnadomnum);
-            player.writeEntityToNBT(player.getEntityData());
-        }
-        // This part is run on every join
-        int playerReligion = player.getEntityData().getInteger("religion");
+            // On first join, you get a religion assigned
+            if (!playerInitialized) {
+                int rnadomnum = random.nextInt(6);
+                playerProperties.setReligion(rnadomnum);
+                playerProperties.saveNBTData(player.getEntityData());
+            }
+            // This part is run on every join
+            int playerReligion = playerProperties.getReligion();
 
-        Religion rel[] = Religion.values();
-        for (Religion religion : rel){
-            if (religion.ordinal() == playerReligion){
-                player.addSuffix(new TextComponentString(" [" +
-                        religion.name() + "]"));
+            Religion rel[] = Religion.values();
+            for (Religion religion : rel) {
+                if (religion.ordinal() == playerReligion) {
+                    player.addSuffix(new TextComponentString(" [" +
+                            religion.name() + "]"));
+                }
             }
         }
     }
 
     public static void playerPooped(EntityPlayer entityPlayer, int amount) {
 
-        if(entityPlayer instanceof EntityPlayerMP){
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
-            int current = entityPlayerMP.getEntityData().getInteger("times_pooped");
-            entityPlayerMP.getEntityData().setInteger("times_pooped",current + amount);
-            entityPlayerMP.writeEntityToNBT(entityPlayerMP.getEntityData());
-        }else{
-            int current = entityPlayer.getEntityData().getInteger("times_pooped");
-            entityPlayer.getEntityData().setInteger("times_pooped",current + amount);
-            entityPlayer.writeEntityToNBT(entityPlayer.getEntityData());
 
+
+        PlayerProperties playerProperties = entityPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            int current = playerProperties.getTimesPooped();
+            playerProperties.setTimesPooped(current+amount);
+            playerProperties.saveNBTData(entityPlayer.getEntityData());
         }
 
     }
     public static void playerTick(EntityPlayer player){
+
         questionMarkBlockHandler(player);
         playerDeathHandler(player);
         //fluidHandler(player);
         heavenHandler(player);
         commonColdHandler(player);
         babyHandler(player);
+
     }
     public static void livingTick(EntityLivingBase entityLivingBase){
         poopHandler(entityLivingBase);
@@ -228,12 +241,13 @@ public class PlayerHandler {
         if (entity instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)entity;
             InventoryPlayer deeta = mp.inventory;
+            //TODO Finish this
         }
     }
 
     public static void poopHandler(EntityLivingBase entity){
-        if(entity instanceof EntityPlayerMP) {
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entity;
+        if(entity instanceof EntityPlayer) {
+            EntityPlayer entityPlayerMP = (EntityPlayer) entity;
             int intervalAlter = random.nextInt(500);
             if (entityPlayerMP.ticksExisted % Math.abs(ModConfig.AUTO_POOP_INTERVAL + intervalAlter) == 0) {
 
@@ -278,18 +292,21 @@ public class PlayerHandler {
 
     }
     public static void commonColdHandler(EntityPlayer player){
-        if(player instanceof EntityPlayerMP){
-            EntityPlayerMP playerMP = (EntityPlayerMP)player;
-            World world = playerMP.getEntityWorld();
-            boolean Immune = playerMP.getEntityData().getBoolean("common_cold_immunity");
-            Biome bedBiome = world.getBiome(playerMP.getPosition());
+
+
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            World world = player.getEntityWorld();
+            boolean Immune = playerProperties.hasCommonColdImmunity();
+            Biome bedBiome = world.getBiome(player.getPosition());
             Immune = Immune || bedBiome.getTempCategory() == Biome.TempCategory.COLD;
-            if(world.getBiome(playerMP.getPosition()).getTempCategory() == Biome.TempCategory.COLD && !Immune){
-                if(playerMP.ticksExisted + 1 % (ModConfig.IS_DEBUG ? 100 : 10000) == 0){
-                    playerMP.addPotionEffect(new PotionEffect(ModPotions.POTION_COMMON_COLD.getPotion(),24000));
+            if (world.getBiome(player.getPosition()).getTempCategory() == Biome.TempCategory.COLD && !Immune) {
+                if (player.ticksExisted + 1 % (ModConfig.IS_DEBUG ? 100 : 10000) == 0) {
+                    player.addPotionEffect(new PotionEffect(ModPotions.POTION_COMMON_COLD.getPotion(), 24000));
                 }
             }
         }
+
     }
     public static void heavenHandler(EntityPlayer player){
         if (player instanceof EntityPlayerMP){

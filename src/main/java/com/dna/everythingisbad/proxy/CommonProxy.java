@@ -6,6 +6,7 @@ import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.FluidCache;
+import com.dna.everythingisbad.utils.handlers.CommonEventHandler;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
 import com.dna.everythingisbad.world.StructureGenerator;
 import com.dna.everythingisbad.world.WorldGenAloeGenerator;
@@ -36,6 +37,7 @@ public class CommonProxy implements IProxy{
     public void preInit(FMLPreInitializationEvent event) {
         ConfigManager.load(Reference.MOD_ID, Config.Type.INSTANCE);
         Main.logger.info("Pre Intializing");
+        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
         ModFluids.register();
         ModFluids.registerBlocks();
         ModItems.init();
@@ -78,6 +80,7 @@ public class CommonProxy implements IProxy{
         //VillagerRegistry.instance().registerVillageCreationHandler(new VillageCasino.VillageManager());
         //MapGenStructureIO.registerStructureComponent(VillageCasino.class, Reference.MOD_ID+":villageCasino");
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
+
         ModEntities.init();
         FluidCache.init();
         DryerRecipes.init();
