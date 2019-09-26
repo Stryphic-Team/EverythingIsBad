@@ -58,7 +58,7 @@ public class KeyHandler {
                 //Main.logger.info(keyBindings.getKeyDescription());
 
                 if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.poopkey")) {
-                    Main.logger.info("Poop key pressed!");
+                    //Main.logger.info("Poop key pressed!");
 //                    ItemStack stack = new ItemStack(ModItems.POOP_ITEM,1,3);
 //                    ItemPoop item = (ItemPoop)stack.getItem();
 //                    FMLClientHandler.instance().getClient().player.inventory.addItemStackToInventory(stack);
