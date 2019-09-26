@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
@@ -52,6 +53,7 @@ public class PlayerHandler {
 
             blindnessHandler(player,true);
             religionHandler(player);
+            soulHandler(player);
 
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
@@ -138,6 +140,18 @@ public class PlayerHandler {
                 // (Unless they use another account, lol)
                 playerProperties.setHasSoul(true);
                 playerProperties.saveNBTData(player.getEntityData());
+            }else{
+                int inventorySize = player.inventory.getSizeInventory();
+                for(int i = 0;i<inventorySize;i++){
+                    ItemStack itemStack = player.inventory.getStackInSlot(i);
+                    if(itemStack.getItem() == ModItems.SOUL_ITEM){
+                        NBTTagList enchantments = itemStack.getEnchantmentTagList();
+                        if(enchantments.tagCount() == 0){
+                            itemStack.addEnchantment(CoreEnchantments.soulbound,1);
+                        }
+
+                    }
+                }
             }
         }
     }
