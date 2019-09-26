@@ -10,16 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class CommonEventHandler {
-    @SubscribeEvent
-    public void onPlayerCloned(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            if (event.getOriginal().hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
-                PlayerProperties oldStore = event.getOriginal().getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
-                PlayerProperties newStore = InitializedPlayerProperties.getPlayerProperties(event.getEntityPlayer());
-                newStore.copyFrom(oldStore);
-            }
-        }
-    }
+
 
     @SubscribeEvent
     public void playerTimer(TickEvent.PlayerTickEvent event){
@@ -39,5 +30,15 @@ public class CommonEventHandler {
     @SubscribeEvent
     public void joinedServer(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event){
         PlayerHandler.playerJoined(event.player);
+    }
+    @SubscribeEvent
+    public void onPlayerCloned(PlayerEvent.Clone event) {
+        if (event.isWasDeath()) {
+            if (event.getOriginal().hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
+                PlayerProperties oldStore = event.getOriginal().getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
+                PlayerProperties newStore = InitializedPlayerProperties.getPlayerProperties(event.getEntityPlayer());
+                newStore.copyFrom(oldStore);
+            }
+        }
     }
 }

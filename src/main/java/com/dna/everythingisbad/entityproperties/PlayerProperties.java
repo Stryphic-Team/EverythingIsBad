@@ -61,7 +61,13 @@ public class PlayerProperties {
     }
 
     public void copyFrom(PlayerProperties oldPlayerProperties){
-        this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized;
+        this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
+        this.hasSoul = oldPlayerProperties.isHasSoul();
+        this.hasCommonColdImmunity = oldPlayerProperties.hasCommonColdImmunity();
+        this.isBlind = oldPlayerProperties.isBlind();
+        this.religion = oldPlayerProperties.getReligion();
+        this.timesPooped = oldPlayerProperties.getTimesPooped();
+
     }
 
     public void saveNBTData(NBTTagCompound compound){
