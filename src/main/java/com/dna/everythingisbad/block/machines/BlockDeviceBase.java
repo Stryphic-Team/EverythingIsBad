@@ -22,12 +22,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-
+//TODO: Implement IDismantlable
 public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public BlockDeviceBase(String name){
         super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setHardness(25);
     }
     @Override
     public boolean hasTileEntity(IBlockState state)
@@ -155,4 +156,6 @@ public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
 
         super.onBlockDestroyedByPlayer(worldIn, pos, state);
     }
+
+
 }
