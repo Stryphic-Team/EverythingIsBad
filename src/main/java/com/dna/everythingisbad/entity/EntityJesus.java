@@ -1,10 +1,22 @@
 package com.dna.everythingisbad.entity;
 
 
+import com.dna.everythingisbad.ai.EntityAINearestNonChristian;
 import com.dna.everythingisbad.init.ModLootTables;
 import com.dna.everythingisbad.init.ModSoundEvents;
+import com.dna.everythingisbad.init.Religion;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -61,5 +73,18 @@ public class EntityJesus extends EntityZombie{
         }else{
             return false;
         }
+    }
+    @Override
+    protected void applyEntityAI() {
+        this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
+        //this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] {EntitySatan.class}));
+        this.targetTasks.addTask(2, new EntityAINearestNonChristian(this, EntityPlayer.class, true, Religion.CHRISTIAN));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntitySatan.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        //this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 }
