@@ -3,6 +3,7 @@ package com.dna.everythingisbad.block.buildingblocks;
 import com.dna.everythingisbad.block.BlockBase;
 import com.dna.everythingisbad.init.ModItems;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
@@ -11,10 +12,10 @@ import java.util.Random;
 
 public class BlockUrine extends BlockBase {
     public BlockUrine(String name){
-        super(name);
+        super(name, Material.GLASS);
         setSoundType(SoundType.GLASS);
-        setHardness(1.2f);
-        setResistance(10f);
+        setHardness(0.3f);
+        setResistance(1.5f);
     }
 
     @Override

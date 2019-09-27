@@ -47,36 +47,33 @@ public class ItemJesusMeatCooked extends ItemFoodBase {
             this.onFoodEaten(stack, worldIn, entityplayer);
             entityplayer.addStat(StatList.getObjectUseStats(this));
 
-            //entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),800,4));
+            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(25),1330,4));
 
-            // TODO: Get rid of this and add the real Heaven get in method.
-            // This is just a placeholder for testing.
+            // DON'T DELETE THIS- It will go in the Cooked Baby item so you can go to Hell when you eat it
 
-            if (entityplayer instanceof EntityPlayerMP)
-            {
-                EntityPlayerMP mp = (EntityPlayerMP)entityLiving;
-                WorldServer server = mp.getServerWorld();
-                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
-                int dimension = ModDimensions.HEAVEN.getId();
-                mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,mp.posY,mp.posZ));
-
-                // Puts you on the top block of your layer
-                //BlockPos top = mp.getServerWorld().getTopSolidOrLiquidBlock(mp.getPosition());
-                IBlockState bloq;
-                BlockPos pos = new BlockPos(mp.posX,256,mp.posZ);
-                for (int y=256;y<0;y--){
-                    bloq = mp.getServerWorld().getBlockState(pos);
-                    if (bloq.getBlock() == ModBlocks.CLOUD_BLOCK){
-                        break;
-                    }
-                    pos.down();
-                }
-                if (pos.getY() > mp.posY){
-                    mp.attemptTeleport(pos.getX(),pos.getY(),pos.getZ());
-                }
-                //Teleporter tellaporter = new Teleporter(server);
-                //server.getMinecraftServer().getPlayerList().transferPlayerToDimension(mp,dimension,tellaporter);
-            }
+//            if (entityplayer instanceof EntityPlayerMP)
+//            {
+//                EntityPlayerMP mp = (EntityPlayerMP)entityLiving;
+//                WorldServer server = mp.getServerWorld();
+//                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
+//                int dimension = ModDimensions.HEAVEN.getId();
+//                mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,mp.posY,mp.posZ));
+//
+//                // Puts you on the top block of your layer
+//                //BlockPos top = mp.getServerWorld().getTopSolidOrLiquidBlock(mp.getPosition());
+//                IBlockState bloq;
+//                BlockPos pos = new BlockPos(mp.posX,256,mp.posZ);
+//                for (int y=256;y<0;y--){
+//                    bloq = mp.getServerWorld().getBlockState(pos);
+//                    if (bloq.getBlock() == ModBlocks.CLOUD_BLOCK){
+//                        break;
+//                    }
+//                    pos.down();
+//                }
+//                if (pos.getY() > mp.posY){
+//                    mp.attemptTeleport(pos.getX(),pos.getY(),pos.getZ());
+//                }
+//            }
         }
 
         stack.shrink(1);

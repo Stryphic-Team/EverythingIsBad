@@ -19,6 +19,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -333,6 +334,10 @@ public class PlayerHandler {
             if (biyom.equals(ModBiomes.HEAVEN) && mp.posY <= 0){
                 int dimension = DimensionType.OVERWORLD.getId();
                 mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,300,mp.posZ));
+            }else if (!(biyom.equals(ModBiomes.HEAVEN) && !(biyom.equals(Biomes.SKY))) && mp.posY > 320 &&
+            mp.isPotionActive(Potion.getPotionById(25))){
+                int dimension = ModDimensions.HEAVEN.getId();
+                mp.changeDimension(dimension,new ModTeleporter(server,mp.posX,35,mp.posZ));
             }
         }
     }

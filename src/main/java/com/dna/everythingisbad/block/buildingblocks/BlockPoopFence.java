@@ -15,7 +15,7 @@ import net.minecraft.item.ItemBlock;
 
 public class BlockPoopFence extends BlockFence implements IModBlockBase {
     public BlockPoopFence(String name) {
-        super(Material.GROUND,MapColor.BROWN);
+        super(Material.ROCK,MapColor.BROWN);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(SHAPE, BlockStairs.EnumShape.STRAIGHT));

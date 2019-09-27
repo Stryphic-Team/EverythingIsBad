@@ -9,6 +9,5 @@ public class BloodBlock extends BlockFallingBase {
         setSoundType(SoundType.STONE);
         setHardness(5f);
         setResistance(30f);
-        setHarvestLevel("pickaxe",1);
     }
 }
