@@ -2,6 +2,7 @@ package com.dna.everythingisbad.entity;
 
 import com.dna.everythingisbad.init.ModItems;
 import net.minecraft.entity.IMerchant;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -166,5 +167,10 @@ public class EntitySatan extends EntityPigZombie implements IMerchant {
     @Override
     public BlockPos getPos() {
         return this.getPosition();
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
     }
 }
