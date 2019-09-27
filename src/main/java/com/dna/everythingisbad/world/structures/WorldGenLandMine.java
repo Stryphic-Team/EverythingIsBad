@@ -9,7 +9,7 @@ import java.util.Random;
 public class WorldGenLandMine extends WorldGenStructureBase {
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        BlockPos topBlock = worldIn.getTopSolidOrLiquidBlock(position).down();
+        BlockPos topBlock = worldIn.getTopSolidOrLiquidBlock(position.add(7,0,7)).down();
         for(int i = 0;i<5;i++) {
             worldIn.setBlockState(topBlock.down(i+1), Blocks.TNT.getDefaultState());
         }

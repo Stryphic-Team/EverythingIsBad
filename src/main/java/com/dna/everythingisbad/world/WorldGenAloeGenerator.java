@@ -18,6 +18,7 @@ public class WorldGenAloeGenerator implements IWorldGenerator {
             WorldGenAloe alo = new WorldGenAloe();
             BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 1, zPos));
             alo.generate(world, random, new BlockPos(xPos, top.getY(), zPos));
+
         }
     }
 }

@@ -51,9 +51,9 @@ public class BlockStupidTNT extends BlockExplodingBase {
                         pos.getY(),
                         pos.getZ(),
                         explosionIn.getExplosivePlacedBy());
-                double x_vel = RandomUtils.fromRangeF(-2,2);
-                double y_vel = RandomUtils.fromRangeF(1,2);
-                double z_vel = RandomUtils.fromRangeF(-2,2);
+                double x_vel = RandomUtils.fromRangeF(-1,1);
+                double y_vel = RandomUtils.fromRangeF(1,5);
+                double z_vel = RandomUtils.fromRangeF(-1,1);
                 entitytntprimed.setVelocity(x_vel,y_vel,z_vel);
                 worldIn.spawnEntity(entitytntprimed);
                 worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -77,9 +77,9 @@ public class BlockStupidTNT extends BlockExplodingBase {
                             pos.getY(),
                             pos.getZ(),
                             igniter);
-                    double x_vel = RandomUtils.fromRangeF(-2,2);
-                    double y_vel = RandomUtils.fromRangeF(1,2);
-                    double z_vel = RandomUtils.fromRangeF(-2,2);
+                    double x_vel = RandomUtils.fromRangeF(-1,1);
+                    double y_vel = RandomUtils.fromRangeF(1,5);
+                    double z_vel = RandomUtils.fromRangeF(-1,1);
                     entitystupidtnt.setVelocity(x_vel,y_vel,z_vel);
                     worldIn.spawnEntity(entitystupidtnt);
                     worldIn.playSound(null, entitystupidtnt.posX, entitystupidtnt.posY, entitystupidtnt.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
