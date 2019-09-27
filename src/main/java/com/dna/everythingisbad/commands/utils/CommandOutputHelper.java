@@ -12,7 +12,7 @@ public class CommandOutputHelper {
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
         int currentBalance = playerProperties.getBalance();
-        player.sendMessage(new TextComponentString("Your Balance: $"+String.valueOf(currentBalance)));
+        player.sendMessage(new TextComponentString("Balance: $"+String.valueOf(currentBalance)));
     }
     public static void sendPlayerReligion(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
@@ -22,7 +22,7 @@ public class CommandOutputHelper {
         TextComponentString religionTextComponent = new TextComponentString(currentReligion.getDisplayName());
         religionTextComponent.setStyle(religionStyle);
         player.sendMessage(
-                new TextComponentString("Current Religion: ").appendSibling(religionTextComponent)
+                new TextComponentString("Religion: ").appendSibling(religionTextComponent)
         );
 
     }
