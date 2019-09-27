@@ -25,6 +25,7 @@ public class WorldGenVillageCasino extends WorldGenStructureBase {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
+        position = position.add(1,0,1);
         WorldServer worldServer = (WorldServer) worldIn;
         MinecraftServer minecraftServer = worldIn.getMinecraftServer();
         TemplateManager templateManager = worldServer.getStructureTemplateManager();

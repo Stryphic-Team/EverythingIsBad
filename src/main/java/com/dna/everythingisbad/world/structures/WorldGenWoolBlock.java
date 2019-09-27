@@ -21,9 +21,8 @@ public class WorldGenWoolBlock extends WorldGenStructureBase {
         MinecraftServer minecraftServer = worldIn.getMinecraftServer();
         TemplateManager templateManager = worldServer.getStructureTemplateManager();
         Template template = templateManager.get(minecraftServer,new ResourceLocation(Reference.MOD_ID,"wool_block"));
-
         PlacementSettings settings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(getRotation()).setIgnoreStructureBlock(false);
-        template.addBlocksToWorld(worldIn, position, settings);
+        template.addBlocksToWorld(worldIn, position.add(1,0,1), settings);
         return true;
     }
 }
