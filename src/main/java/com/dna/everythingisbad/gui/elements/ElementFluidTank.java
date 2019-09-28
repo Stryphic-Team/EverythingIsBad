@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.gui.elements;
 
-import com.dna.everythingisbad.capabilities.ModFluidHandler;
 import com.dna.everythingisbad.gui.DeviceContainerGuiBase;
 import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;

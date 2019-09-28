@@ -2,7 +2,7 @@ package com.dna.everythingisbad.gui;
 
 import com.dna.everythingisbad.gui.container.DryerMachineContainer;
 import com.dna.everythingisbad.gui.elements.*;
-import com.dna.everythingisbad.tile.TileDryerMachine;
+import com.dna.everythingisbad.tile.processing.TileDryerMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class DryerMachineGuiContainer extends DeviceContainerGuiBase {

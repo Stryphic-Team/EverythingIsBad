@@ -1,23 +1,19 @@
-package com.dna.everythingisbad.tile;
+package com.dna.everythingisbad.tile.generators;
 
+import com.dna.everythingisbad.tile.TileGeneratorBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 
 
 public class TileFluxTest extends TileGeneratorBase {
-    private int energyStored = 10000;
-    private int ticks = 0;
     public TileFluxTest(){
         super("flux_test");
         energyHandler.setMaxOutput(1);
+        setTotalEnergyProduced(10000);
+        setFinishedProgress(10);
     }
 
-    @Override
-    public void update(){
-        super.update();
-        energyHandler.setEnergyStorage(10000);
-    }
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing from) {
 
@@ -31,8 +27,13 @@ public class TileFluxTest extends TileGeneratorBase {
         }
         return super.getCapability(capability, from);
     }
+    @Override
+    public boolean hasFuel() {
+        return true;
+    }
 
-    static {
-        register("flux_test", TileFluxTest.class);
+    @Override
+    public void consumeFuel() {
+
     }
 }

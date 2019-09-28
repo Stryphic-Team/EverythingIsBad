@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.gui.elements;
 
-import com.dna.everythingisbad.capabilities.ModEnergyHandler;
 import com.dna.everythingisbad.gui.DeviceContainerGuiBase;
 import com.dna.everythingisbad.reference.Reference;
+import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
 import net.minecraft.util.ResourceLocation;
 
 public class ElementEnergyGauge extends ElementBase {

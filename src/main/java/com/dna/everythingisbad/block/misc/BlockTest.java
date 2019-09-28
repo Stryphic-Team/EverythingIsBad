@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.misc;
 
 import net.minecraft.block.BlockChest;
 

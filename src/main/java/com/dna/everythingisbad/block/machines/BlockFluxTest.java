@@ -1,6 +1,6 @@
 package com.dna.everythingisbad.block.machines;
 
-import com.dna.everythingisbad.tile.TileFluxTest;
+import com.dna.everythingisbad.tile.generators.TileFluxTest;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

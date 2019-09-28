@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.tile;
 
-import com.dna.everythingisbad.capabilities.ModEnergyHandler;
-import com.dna.everythingisbad.capabilities.ModFluidHandler;
-import com.dna.everythingisbad.capabilities.ModItemHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -11,12 +11,12 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileGeneratorBase extends TileDeviceBase implements ITickable {
+public abstract class TileGeneratorBase extends TileDeviceBase implements ITickable {
 
 
-    int ticks = 0;
     private int progress = 0;
     private int finishedProgress = 0;
+    private int totalEnergyProduced = 0;
 
 
     public TileGeneratorBase(String name){
@@ -45,6 +45,31 @@ public class TileGeneratorBase extends TileDeviceBase implements ITickable {
     @Override
     public void update() {
         energyHandler.updateEnergyOutput(this,this.world);
+        if(hasFuel() && !inProgress()){
+            consumeFuel();
+            stepProgress();
+        }
+        if(inProgress()){
+            if(canProduceEnergy()) {
+                stepProgress();
+                produceEnergy();
+            }
+        }
+        if(getProgress() >= getFinishedProgress()){
+            setProgress(0);
+        }
+    }
+    public abstract boolean hasFuel();
+    public abstract void consumeFuel();
+    public void produceEnergy(){
+        energyHandler.addEnergy(getEnergyProducedThisTick(),false);
+    }
+    public boolean canProduceEnergy(){
+        //Checks to see if we have enough energy in the buffer for this tick
+        return energyHandler.addEnergy(getEnergyProducedThisTick(),true);
+    }
+    public int getEnergyProducedThisTick(){
+        return totalEnergyProduced / finishedProgress;
     }
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing from) {
@@ -80,8 +105,17 @@ public class TileGeneratorBase extends TileDeviceBase implements ITickable {
     public void setFinishedProgress(int finishedProgress) {
         this.finishedProgress = finishedProgress;
     }
+    public boolean inProgress(){
+        if(progress > 0){
+            return progress < finishedProgress;
+        }
+        return false;
+    }
     public void stepProgress(){
         this.progress++;
+    }
+    public void setTotalEnergyProduced(int totalEnergyProduced){
+        this.totalEnergyProduced = totalEnergyProduced;
     }
 
 

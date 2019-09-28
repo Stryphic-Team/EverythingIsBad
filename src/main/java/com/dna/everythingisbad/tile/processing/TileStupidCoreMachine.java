@@ -1,8 +1,9 @@
-package com.dna.everythingisbad.tile;
+package com.dna.everythingisbad.tile.processing;
 
 
-import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.tile.TileMachineBase;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -33,10 +34,8 @@ public class TileStupidCoreMachine extends TileMachineBase {
 
     @Override
     public boolean hasNecessaryItems() {
-        if(energyHandler.getEnergyStored() > 10000 && itemStackHadler.getStackInSlot(0).getCount() < 64){
-            return true;
-        }
-        return false;
+        //Checks to see if we have enough space and if we have enough energy
+        return energyHandler.getEnergyStored() > 10000 && itemStackHadler.getStackInSlot(0).getCount() < 64;
     }
 
     @Override

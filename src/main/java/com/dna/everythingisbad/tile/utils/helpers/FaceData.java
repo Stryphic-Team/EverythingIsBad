@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.tile;
+package com.dna.everythingisbad.tile.utils.helpers;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

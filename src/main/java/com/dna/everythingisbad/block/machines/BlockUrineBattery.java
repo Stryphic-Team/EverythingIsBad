@@ -3,7 +3,7 @@ package com.dna.everythingisbad.block.machines;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.tile.TileDeviceBase;
-import com.dna.everythingisbad.tile.TileUrineBattery;
+import com.dna.everythingisbad.tile.storage.TileUrineBattery;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;

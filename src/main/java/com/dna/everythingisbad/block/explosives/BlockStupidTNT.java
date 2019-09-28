@@ -1,5 +1,6 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.explosives;
 
+import com.dna.everythingisbad.block.BlockExplodingBase;
 import com.dna.everythingisbad.entity.EntityStupidTNT;
 import com.dna.everythingisbad.utils.RandomUtils;
 import net.minecraft.block.SoundType;

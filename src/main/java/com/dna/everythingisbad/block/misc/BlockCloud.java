@@ -1,5 +1,6 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.misc;
 
+import com.dna.everythingisbad.block.BlockBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

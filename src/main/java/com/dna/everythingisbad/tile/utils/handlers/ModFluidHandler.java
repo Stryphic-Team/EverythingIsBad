@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.capabilities;
+package com.dna.everythingisbad.tile.utils.handlers;
 
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;

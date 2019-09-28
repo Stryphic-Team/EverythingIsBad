@@ -1,6 +1,6 @@
-package com.dna.everythingisbad.capabilities;
+package com.dna.everythingisbad.tile.utils.handlers;
 
-import com.dna.everythingisbad.tile.FaceData;
+import com.dna.everythingisbad.tile.utils.helpers.FaceData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;

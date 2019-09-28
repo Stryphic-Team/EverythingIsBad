@@ -1,8 +1,9 @@
-package com.dna.everythingisbad.tile;
+package com.dna.everythingisbad.tile.processing;
 
-import com.dna.everythingisbad.capabilities.ModFluidHandler;
-import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.DryerRecipes;
+import com.dna.everythingisbad.tile.TileMachineBase;
+import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import com.dna.everythingisbad.utils.prototypes.DryerRecipePrototype;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

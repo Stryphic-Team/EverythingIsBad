@@ -1,12 +1,11 @@
 package com.dna.everythingisbad.tile;
 
-import com.dna.everythingisbad.capabilities.ModEnergyHandler;
-import com.dna.everythingisbad.capabilities.ModFluidHandler;
-import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.ModTileEntities;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageSyncMachineGui;
-import com.dna.everythingisbad.utils.FluidCache;
+import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
@@ -27,7 +26,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nullable;
 
 
-public class TileDeviceBase extends TileEntity implements ITickable {
+public abstract class TileDeviceBase extends TileEntity implements ITickable {
     private String name;
     protected int progress = 0;
     protected int finishedProgress = 0;
@@ -99,45 +98,7 @@ public class TileDeviceBase extends TileEntity implements ITickable {
     public void update() {
 
     }
-    public void setField(EnumTileDataType type,int data){
-        FluidStack fluidStack;
-        switch (type){
-            case ENERGY_STORAGE:
-                energyHandler.setEnergyStorage(data);
-                break;
-            case PROGRESS:
-                this.progress = data;
-                break;
-            case FLUID_STORED:
-                fluidStack = fluidHandler.getFluidTank().getFluid();
-                if(fluidStack != null){
-                    fluidStack.amount = data;
-                }
-                break;
-            case FLUID_TYPE:
-                fluidHandler.getFluidTank().setFluid(new FluidStack(FluidCache.fromInt(data),0));
-                break;
-        }
-    }
-    public int getField(EnumTileDataType type){
-        switch (type){
-            case ENERGY_STORAGE:
-                return energyHandler.getEnergyStored();
-            case PROGRESS:
-                return progress;
-            case FLUID_STORED:
-                return fluidHandler.getFluidTank().getFluidAmount();
-            case FLUID_TYPE:
-                FluidStack fluid = fluidHandler.getFluidTank().getFluid();
-                if(fluid != null){
-                    return FluidCache.toInt(fluidHandler.getFluidTank().getFluid().getUnlocalizedName());
-                }else {
-                    return -1;
-                }
-            default:
-                return 0;
-        }
-    }
+
     public void sendGuiNetworkData(Container container, IContainerListener listener) {
 
         if (listener instanceof EntityPlayer) {

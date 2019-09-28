@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.block;
+package com.dna.everythingisbad.block.misc;
 
 import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.material.Material;

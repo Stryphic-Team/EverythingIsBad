@@ -4,7 +4,7 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.init.ModFluids;
 import com.dna.everythingisbad.tile.TileDeviceBase;
-import com.dna.everythingisbad.tile.TileDiaricGenerator;
+import com.dna.everythingisbad.tile.generators.TileDiaricGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

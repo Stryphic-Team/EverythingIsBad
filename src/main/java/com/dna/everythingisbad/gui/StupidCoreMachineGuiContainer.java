@@ -4,7 +4,7 @@ import com.dna.everythingisbad.gui.container.StupidCoreMachineContainer;
 import com.dna.everythingisbad.gui.elements.ElementEnergyGauge;
 import com.dna.everythingisbad.gui.elements.ElementOutputSlot;
 import com.dna.everythingisbad.gui.elements.ElementProgressBar;
-import com.dna.everythingisbad.tile.TileStupidCoreMachine;
+import com.dna.everythingisbad.tile.processing.TileStupidCoreMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class StupidCoreMachineGuiContainer extends DeviceContainerGuiBase {

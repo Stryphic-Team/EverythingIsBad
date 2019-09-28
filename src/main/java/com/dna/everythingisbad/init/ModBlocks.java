@@ -1,8 +1,12 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.block.*;
+import com.dna.everythingisbad.block.IOreDictBlock;
 import com.dna.everythingisbad.block.buildingblocks.*;
+import com.dna.everythingisbad.block.explosives.BlockStupidTNT;
 import com.dna.everythingisbad.block.machines.*;
+import com.dna.everythingisbad.block.misc.BlockCloud;
+import com.dna.everythingisbad.block.misc.BlockEmpty;
+import com.dna.everythingisbad.block.misc.BlockQuestionMark;
 import com.dna.everythingisbad.block.ore.BlockCopperOre;
 import com.dna.everythingisbad.block.plants.*;
 import net.minecraft.block.Block;

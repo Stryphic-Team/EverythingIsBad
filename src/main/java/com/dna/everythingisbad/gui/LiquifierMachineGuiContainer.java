@@ -5,7 +5,7 @@ import com.dna.everythingisbad.gui.elements.ElementEnergyGauge;
 import com.dna.everythingisbad.gui.elements.ElementFluidTank;
 import com.dna.everythingisbad.gui.elements.ElementInputSlot;
 import com.dna.everythingisbad.gui.elements.ElementProgressBar;
-import com.dna.everythingisbad.tile.TileLiquifierMachine;
+import com.dna.everythingisbad.tile.processing.TileLiquifierMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class LiquifierMachineGuiContainer extends DeviceContainerGuiBase {

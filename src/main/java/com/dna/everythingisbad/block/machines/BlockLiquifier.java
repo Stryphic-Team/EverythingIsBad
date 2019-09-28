@@ -2,7 +2,7 @@ package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.gui.GuiHandler;
-import com.dna.everythingisbad.tile.TileLiquifierMachine;
+import com.dna.everythingisbad.tile.processing.TileLiquifierMachine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

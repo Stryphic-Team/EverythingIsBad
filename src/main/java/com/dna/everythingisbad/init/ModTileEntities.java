@@ -1,6 +1,12 @@
 package com.dna.everythingisbad.init;
 
-import com.dna.everythingisbad.tile.*;
+import com.dna.everythingisbad.tile.TileDeviceBase;
+import com.dna.everythingisbad.tile.generators.TileDiaricGenerator;
+import com.dna.everythingisbad.tile.generators.TileFluxTest;
+import com.dna.everythingisbad.tile.processing.TileDryerMachine;
+import com.dna.everythingisbad.tile.processing.TileLiquifierMachine;
+import com.dna.everythingisbad.tile.processing.TileStupidCoreMachine;
+import com.dna.everythingisbad.tile.storage.TileUrineBattery;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;

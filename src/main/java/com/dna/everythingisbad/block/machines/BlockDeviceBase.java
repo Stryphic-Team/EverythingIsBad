@@ -1,10 +1,10 @@
 package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.block.BlockBase;
-import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.tile.TileDeviceBase;
-import com.dna.everythingisbad.tile.TileStupidCoreMachine;
+import com.dna.everythingisbad.tile.processing.TileStupidCoreMachine;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;

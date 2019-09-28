@@ -3,7 +3,7 @@ package com.dna.everythingisbad.block.machines;
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.tile.TileDeviceBase;
-import com.dna.everythingisbad.tile.TileDryerMachine;
+import com.dna.everythingisbad.tile.processing.TileDryerMachine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

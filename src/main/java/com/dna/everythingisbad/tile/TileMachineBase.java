@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.tile;
 
-import com.dna.everythingisbad.capabilities.ModEnergyHandler;
-import com.dna.everythingisbad.capabilities.ModFluidHandler;
-import com.dna.everythingisbad.capabilities.ModItemHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -40,26 +40,7 @@ public abstract class TileMachineBase  extends TileDeviceBase {
         }
         return super.getCapability(capability, facing);
     }
-    public void setField(EnumTileDataType type,int data){
-        switch (type){
-            case ENERGY_STORAGE:
-                energyHandler.setEnergyStorage(data);
-                break;
-            case PROGRESS:
-                this.progress = data;
-                break;
-        }
-    }
-    public int getField(EnumTileDataType type){
-        switch (type){
-            case ENERGY_STORAGE:
-                return energyHandler.getEnergyStored();
-            case PROGRESS:
-                return progress;
-            default:
-                return 0;
-        }
-    }
+
 
     @Override
     public void update() {

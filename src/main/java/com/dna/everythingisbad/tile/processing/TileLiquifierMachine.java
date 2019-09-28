@@ -1,9 +1,10 @@
-package com.dna.everythingisbad.tile;
+package com.dna.everythingisbad.tile.processing;
 
-import com.dna.everythingisbad.capabilities.ModEnergyHandler;
-import com.dna.everythingisbad.capabilities.ModFluidHandler;
-import com.dna.everythingisbad.capabilities.ModItemHandler;
 import com.dna.everythingisbad.init.LiquifierRecipes;
+import com.dna.everythingisbad.tile.TileMachineBase;
+import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import com.dna.everythingisbad.utils.prototypes.LiquifierRecipePrototype;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
