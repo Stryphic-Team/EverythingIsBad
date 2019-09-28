@@ -14,7 +14,7 @@ public class BiomeHeaven extends Biome {
     public BiomeHeaven() {
         super(new BiomeProperties("Heaven").setRainDisabled());
         this.jesusList.add(new Biome.SpawnListEntry(EntityJesus.class,1,1,5));
-        this.jesusList.add(new Biome.SpawnListEntry(EntityAngel.class,420,2,6));
+        this.jesusList.add(new Biome.SpawnListEntry(EntityAngel.class,1,1,3));
     }
 
     @Override

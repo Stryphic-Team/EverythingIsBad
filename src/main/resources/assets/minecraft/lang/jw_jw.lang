@@ -4,7 +4,7 @@ language.region=Φ≡±
 language.code=jw_jw
 
 gui.done=τ≈≥α≤Θ
-gui.cancel=Cancel
+gui.cancel=Ωα⌡α
 gui.back=°≈±α
 gui.toTitle=°≈±α ±π≈⌠≈πΘ ΦΘ≥α
 gui.toMenu=°≈±α ±⌡αΦΘ≥απΘ ÷α±°α
@@ -32,7 +32,14 @@ menu.respawning=Respawning
 menu.shareToLan=LAN ⌠αταΓα
 
 selectWorld.title=αΣα÷α ≈±α≤
+selectWorld.empty=°Θ≤ΓαΦΘ
 selectWorld.world=≈±α≤
+selectWorld.select=≈°α ≈±α≤ αΣα÷Θ
+selectWorld.create=ΓΘ⌡α ≈±α≤ ΓαπΘ
+selectWorld.recreate=ΓΘ⌡α ⌠α≤ΘΓ≈±
+selectWorld.createDemo=≈°α ≈±α≤ "πΘ≥≈" αΣα÷Θ
+selectWorld.delete=σα±÷α
+selectWorld.edit=α≤ΓΘ±α
 
 options.language=α⌡≈⌠≈...
 
@@ -45,12 +52,12 @@ tile.stone.diorite.name=πΘ≈⌡Θτα
 tile.stone.dioriteSmooth.name=πΘ≈⌡Θτα ⌠⌡Θ≤Θ
 tile.stone.andesite.name=α≤πα÷Θτα
 tile.stone.andesiteSmooth.name=α≤πα÷Θτα ⌠⌡Θ≤Θ
-tile.hayBlock.name=±α≤±α≤απΘ πα÷α ΣΘ≤α
-tile.grass.name=≈ΣαπΘ πα÷α
+tile.hayBlock.name=±α≤±α≤απΘ δ- ΣΘ≤α
+tile.grass.name=⌡-Θ δ-
 tile.dirt.name=τα⌡α
 tile.dirt.default.name=τα⌡α
 tile.dirt.coarse.name=τα⌡α ΓΘΓΘ
-tile.dirt.podzol.name=⌠≈π÷≈±
+tile.dirt.podzol.name=⌠≈πΩ≈±
 
 tile.water.name=≡÷
 
@@ -77,9 +84,9 @@ tile.leaves.birch.name=π≈±απΘ÷ ΣΘ±α≤
 tile.leaves.jungle.name=π≈±απΘ÷ Φα≤Γα±
 tile.leaves.acacia.name=π≈±απΘ÷ Φ≈
 tile.leaves.big_oak.name=π≈±απΘ÷ Θ±≈≤α ≤αΓ≈±α
-tile.tallgrass.name=πα÷α
+tile.tallgrass.name=δ-
 tile.tallgrass.shrub.name=Θ≥⌠α
-tile.tallgrass.grass.name=πα÷α
+tile.tallgrass.grass.name=δ-
 
 tile.cloth.name=⌠≈±⌠≈±
 tile.flower1.name=Σα⌡α±α
@@ -87,9 +94,9 @@ tile.flower1.dandelion.name=Σα⌡α±α τασ≈°α
 tile.flower2.name=Σα⌡α±α
 tile.flower2.poppy.name=Σα⌡α±α Φ≈ΦΘ
 
-tile.doublePlant.grass.name=πα÷α π≈⌠α≤
+tile.doublePlant.grass.name=δ- π≈⌠α≤
 
-tile.doublePlant.rose.name=Θ≥⌠απΘ Σα⌡α±α ⌡≈÷
+tile.doublePlant.rose.name=Θ≥⌠απΘ Σα⌡α±α ⌡≈Ω
 
 tile.obsidian.name=Θτα⌡α± ≤αΓ≈±
 tile.torch.name=≥Θ⌠⌡Θσα±Θ
@@ -100,14 +107,31 @@ tile.workbench.name=Φ≈≤Γα≤απΘ τ⌡α°α
 
 tile.furnace.name=≡≤Γαπ≈⌡α
 
+item.shovelIron.name=≥Θτα⌡απΘ °α±÷α
+item.pickaxeIron.name=≥Θπ≈ΓαπΘ °α±÷α
+item.hatchetIron.name=Iron Axe
+item.flintAndSteel.name=⌠Θ⌡απΘ Θσα≥α
+
 item.coal.name=Γα°α≤
 item.charcoal.name=Γα°α≤απΘ ≥Θπα±
 item.diamond.name=⌠⌡Θ≤απΘ ÷α±α
 item.emerald.name=⌠⌡Θ≤απ π≈±Θ
-item.ingotIron.name=Iron Ingot
-item.ingotGold.name=Gold Ingot
-item.swordIron.name=Iron Sword
-item.swordWood.name=Wooden Sword
+item.ingotIron.name=Θ≤ΓαπΘ °α±÷α
+item.ingotGold.name=Θ≤ΓαπΘ 
+item.swordIron.name=Θ÷⌠α±απΘ °α±÷α
+item.swordWood.name=Θ÷⌠α±απΘ ≥Θπα±
+item.shovelWood.name=≥Θτα⌡απΘ ≥Θπα±
+item.pickaxeWood.name=≥Θπ≈ΓαπΘ ≥Θπα±
+item.hatchetWood.name=Wooden Axe
+item.swordStone.name=Θ÷⌠α±απΘ ⌠Θ⌡α
+item.shovelStone.name=≥Θτα⌡απΘ ⌠Θ⌡α
+item.pickaxeStone.name=≥Θπ≈ΓαπΘ ⌠Θ⌡α
+item.hatchetStone.name=Stone Axe
+item.swordDiamond.name=Θ÷⌠α±απΘ ⌠⌡Θ≤απΘ ÷α±α
+item.shovelDiamond.name=≥Θτα⌡απΘ ⌠⌡Θ≤απΘ ÷α±α
+item.pickaxeDiamond.name=≥Θπ≈ΓαπΘ ⌠⌡Θ≤απΘ ÷α±α
+item.hatchetDiamond.name=Diamond Axe
+item.stick.name=Σα±≈
 
 item.wheat.name=τΘΓα
 item.bread.name=±αΓΘ≥≈

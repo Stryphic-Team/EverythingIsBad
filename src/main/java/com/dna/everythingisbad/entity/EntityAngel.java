@@ -15,7 +15,7 @@ public class EntityAngel extends EntityBat {
     @Override
     public boolean getCanSpawnHere() {
         IBlockState iblockstate = this.world.getBlockState((new BlockPos(this)).down());
-        if (RandomUtils.percentChance(1) && iblockstate.canEntitySpawn(this)){
+        if (RandomUtils.fromRangeI(0,1000)>995 && iblockstate.canEntitySpawn(this)){
             return true;
         }
         return false;
