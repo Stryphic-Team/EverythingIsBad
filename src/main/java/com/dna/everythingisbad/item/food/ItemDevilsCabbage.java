@@ -8,18 +8,20 @@ import com.dna.everythingisbad.utils.CommonUtils;
 import com.dna.everythingisbad.utils.SpawnUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemDevilsCabbage extends ItemFoodBase {
     public ItemDevilsCabbage(String name)
     {
-        super(0,0,true);
+        super(0,0,false);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         this.setPotionEffect(ModPotions.POTION_HIGHNESS.getPotionEffect(),1f);
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
+        this.setAlwaysEdible();
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {

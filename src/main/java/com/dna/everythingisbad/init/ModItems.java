@@ -63,6 +63,7 @@ public class ModItems {
     public static final ItemMedicineBottle MEDICINE_BOTTLE_ITEM = new ItemMedicineBottle("medicine_bottle");
     public static final ItemLaxative LAXATIVE_ITEM = new ItemLaxative("laxative");
     public static final ItemCookedBaby COOKED_BABY_ITEM = new ItemCookedBaby("cooked_baby");
+    public static final ItemAngelDust ANGEL_DUST = new ItemAngelDust("angel_dust");
     /**
      * Records
      */
