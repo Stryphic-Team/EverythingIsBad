@@ -1,0 +1,147 @@
+
+language.name=Φ≡±Θ
+language.region=Φ≡±
+language.code=jw_jw
+
+gui.done=τ≈≥α≤Θ
+gui.cancel=Cancel
+gui.back=°≈±α
+gui.toTitle=°≈±α ±π≈⌠≈πΘ ΦΘ≥α
+gui.toMenu=°≈±α ±⌡αΦΘ≥απΘ ÷α±°α
+gui.up=±≥α±
+gui.down=±ταΓαπ
+gui.yes=°Θ≤
+gui.no=±α
+gui.none=Φ≈≥≈±
+gui.all=Γ≈±
+
+menu.game=≥Θ≤≈πΘ ≈°απ
+menu.singleplayer=Θ≤α ≈°απ≈⌡α
+menu.multiplayer=≥α≤ ≈°απ≈⌡α÷
+menu.online=Minecraft Realms
+menu.options=αΣα÷απα÷...
+menu.quit=α÷α°α ≈°απ
+menu.returnToMenu=≥Θτ⌡α≥α °Θ α÷α°α
+menu.disconnect=Disconnect
+menu.returnToGame=°≈±α ±≈°απ
+menu.generatingLevel=Generating world
+menu.loadingLevel=Loading world
+menu.generatingTerrain=Building terrain
+menu.convertingLevel=Converting world
+menu.respawning=Respawning
+menu.shareToLan=LAN ⌠αταΓα
+
+selectWorld.title=αΣα÷α ≈±α≤
+selectWorld.world=≈±α≤
+
+options.language=α⌡≈⌠≈...
+
+options.forceUnicodeFont=≈π τα÷τ≈ Θσ≈≤ΘΓ≈π
+
+tile.stone.stone.name=⌠Θ⌡α
+tile.stone.granite.name=Γ⌡α≤Θτα
+tile.stone.graniteSmooth.name=Γ⌡α≤Θτα ⌠⌡Θ≤Θ
+tile.stone.diorite.name=πΘ≈⌡Θτα
+tile.stone.dioriteSmooth.name=πΘ≈⌡Θτα ⌠⌡Θ≤Θ
+tile.stone.andesite.name=α≤πα÷Θτα
+tile.stone.andesiteSmooth.name=α≤πα÷Θτα ⌠⌡Θ≤Θ
+tile.hayBlock.name=±α≤±α≤απΘ πα÷α ΣΘ≤α
+tile.grass.name=≈ΣαπΘ πα÷α
+tile.dirt.name=τα⌡α
+tile.dirt.default.name=τα⌡α
+tile.dirt.coarse.name=τα⌡α ΓΘΓΘ
+tile.dirt.podzol.name=⌠≈π÷≈±
+
+tile.water.name=≡÷
+
+tile.sand.name=α±α≤
+tile.sand.default.name=α±α≤
+tile.sand.red.name=α±α≤ Φ≈ΦΘ
+tile.sandStone.name=⌠Θ⌡απΘ α±α≤
+tile.sandStone.default.name=⌠Θ⌡απΘ α±α≤
+tile.sandStone.chiseled.name=⌠Θ⌡απΘ α±α≤ ≥≈σΘ±Θ
+tile.sandStone.smooth.name=⌠Θ⌡απΘ α±α≤ ⌠⌡Θ≤Θ
+
+tile.oreCoal.name=ΓΘΓΘπΘ Γα°α≤
+tile.log.name=≥Θπα±
+tile.log.oak.name=≥Θπα±απΘ Θ±≈≤α
+tile.log.spruce.name=≥Θπα±απΘ ÷α°≈±
+tile.log.birch.name=≥Θπα±απΘ ΣΘ±α≤
+tile.log.jungle.name=≥Θπα±απΘ Φα≤Γα±
+tile.log.acacia.name=≥Θπα±απΘ Φ≈
+tile.log.big_oak.name=≥Θπα±απΘ Θ±≈≤α ≤αΓ≈±α
+tile.leaves.name=π≈±α÷ 
+tile.leaves.oak.name=π≈±απΘ÷ Θ±≈≤α
+tile.leaves.spruce.name=π≈±απΘ÷ ÷α°≈±
+tile.leaves.birch.name=π≈±απΘ÷ ΣΘ±α≤
+tile.leaves.jungle.name=π≈±απΘ÷ Φα≤Γα±
+tile.leaves.acacia.name=π≈±απΘ÷ Φ≈
+tile.leaves.big_oak.name=π≈±απΘ÷ Θ±≈≤α ≤αΓ≈±α
+tile.tallgrass.name=πα÷α
+tile.tallgrass.shrub.name=Θ≥⌠α
+tile.tallgrass.grass.name=πα÷α
+
+tile.cloth.name=⌠≈±⌠≈±
+tile.flower1.name=Σα⌡α±α
+tile.flower1.dandelion.name=Σα⌡α±α τασ≈°α
+tile.flower2.name=Σα⌡α±α
+tile.flower2.poppy.name=Σα⌡α±α Φ≈ΦΘ
+
+tile.doublePlant.grass.name=πα÷α π≈⌠α≤
+
+tile.doublePlant.rose.name=Θ≥⌠απΘ Σα⌡α±α ⌡≈÷
+
+tile.obsidian.name=Θτα⌡α± ≤αΓ≈±
+tile.torch.name=≥Θ⌠⌡Θσα±Θ
+
+tile.redstoneDust.name=Θτα⌡α± Φ≈ΦΘ
+
+tile.workbench.name=Φ≈≤Γα≤απΘ τ⌡α°α
+
+tile.furnace.name=≡≤Γαπ≈⌡α
+
+item.coal.name=Γα°α≤
+item.charcoal.name=Γα°α≤απΘ ≥Θπα±
+item.diamond.name=⌠⌡Θ≤απΘ ÷α±α
+item.emerald.name=⌠⌡Θ≤απ π≈±Θ
+item.ingotIron.name=Iron Ingot
+item.ingotGold.name=Gold Ingot
+item.swordIron.name=Iron Sword
+item.swordWood.name=Wooden Sword
+
+item.wheat.name=τΘΓα
+item.bread.name=±αΓΘ≥≈
+
+item.egg.name=σ≈τ≈
+
+container.inventory=⌡αΦΘ≥απ παΣα±α÷
+
+container.crafting=τ⌡α°απ
+
+container.furnace=≡≤Γαπ≈⌡α
+
+entity.Creeper.name=Γ≈⌡Θ⌠α
+entity.Skeleton.name=απα≤α÷Γα
+entity.WitherSkeleton.name=απα≤α÷Γα ≈σΘπα
+entity.Stray.name=÷≈τ⌡τ
+entity.Spider.name=ασα°Θ
+entity.Giant.name=απα≤ Γ⌡α±
+entity.Zombie.name=°αΓα≥≈⌡α
+
+entity.Pig.name=πΘΦα±
+
+entity.Cow.name=°≈°≈
+entity.Chicken.name=τα±≈Γα±
+
+deathScreen.respawn=≤Θ÷α ⌠α≤ΘΓ≈±
+deathScreen.spectate=Spectate world
+deathScreen.deleteWorld=σα±÷α ≈±α≤
+deathScreen.titleScreen=π≈⌠≈πΘ ΦΘ≥α
+deathScreen.score=÷≈Γ≡
+deathScreen.title.hardcore=τ≈≥α≤≈ σ≈°απ!
+deathScreen.title=≥≈⌡α÷Θπ!
+deathScreen.leaveServer=α÷α°α ÷α±°α
+deathScreen.quit.confirm=Φαπα÷ πα ≈παΓα÷ ±α÷α°α?
+
+gui.advancements=απ≈°α≤÷≈≥Θ≤
+gui.stats=÷≈τατΘ÷τΘΓα
