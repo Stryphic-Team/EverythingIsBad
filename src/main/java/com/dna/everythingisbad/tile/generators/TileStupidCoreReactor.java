@@ -14,6 +14,7 @@ public class TileStupidCoreReactor extends TileGeneratorBase {
         setTotalEnergyProduced(10000000);
         setFinishedProgress(1000);
         itemStackHadler.setSlotConfig(0,true,true);
+        fluidHandler = null;
         displayName = ModBlocks.STUPID_CORE_REACTOR.getLocalizedName();
     }
 
@@ -32,11 +33,10 @@ public class TileStupidCoreReactor extends TileGeneratorBase {
         super.update();
 
         if(inProgress()) {
-            targetTemperature = 600;
-        }else{
-            targetTemperature = 23;
+            targetTemperature = 1000;
+            updateTemperature();
         }
-        if(temperature > 400){
+        if(temperature >= 666){
             world.createExplosion(null,pos.getX(),pos.getY(),pos.getZ(),50f,true);
         }
 

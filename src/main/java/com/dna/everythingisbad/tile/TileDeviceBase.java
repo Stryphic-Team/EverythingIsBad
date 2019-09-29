@@ -6,8 +6,11 @@ import com.dna.everythingisbad.network.messagestypes.MessageSyncMachineGui;
 import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
+import com.dna.everythingisbad.tile.utils.helpers.WorldUtils;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.ItemStackHelper;
@@ -15,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.capabilities.Capability;
@@ -24,6 +28,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 
 public abstract class TileDeviceBase extends TileEntity implements ITickable {
@@ -102,12 +107,48 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     @Override
     public void update(){
         tick++;
+        if(tick % 10 == 1) {
+            switch (world.getBiome(pos).getTempCategory()) {
+                case COLD:
+                    targetTemperature = -5;
+                    break;
+                case WARM:
+                    targetTemperature = 30;
+                    break;
+                case MEDIUM:
+                    targetTemperature = 23;
+                    break;
+                case OCEAN:
+                    targetTemperature = 10;
+                    break;
+            }
+        }
+        updateTemperature();
+        ArrayList<IBlockState> blockStates;
+        if(tick % 4 == 2){
+            int waterCount = 0;
+            BlockPos firstPoint = pos.add(-1,-1,-1);
+            BlockPos secondPoint = pos.add(1,1,1);
+            blockStates = WorldUtils.getBlocksInCuboid(world,
+                    new WorldUtils.SearchBoundingBox(firstPoint,secondPoint));
+            for(IBlockState blockState:blockStates){
+                if(blockState == Blocks.WATER.getDefaultState()){
+                    targetTemperature = 10;
+                    updateTemperature();
+                }
+                if(blockState == Blocks.LAVA.getDefaultState()){
+                    targetTemperature = 700;
+                    updateTemperature();
+                }
+            }
+        }
+    }
+    public void updateTemperature(){
         if(targetTemperature - temperature < 0) {
             temperature -= temperatureIncrement;
         }else{
             temperature += temperatureIncrement;
         }
-
         temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
     }
 
