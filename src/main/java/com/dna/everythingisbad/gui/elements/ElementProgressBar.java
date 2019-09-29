@@ -19,6 +19,12 @@ public class ElementProgressBar extends ElementBase {
         drawTexturedModalRect(gui.getGuiLeft() + startX, gui.getGuiTop() + startY, 0, 0, 23, 16);
         drawTexturedModalRect(gui.getGuiLeft() + startX, gui.getGuiTop() + startY, 0, 16, progressScaled, 16);
     }
+
+    @Override
+    public void drawForeground() {
+
+    }
+
     protected int getProgressScaled(int pixels)
     {
         int i = gui.getTileEntity().getProgress();

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "everythingbad:stupid_core_reactor" },
+    "facing=east": { "model": "everythingbad:stupid_core_reactor", "y": 90 },
+    "facing=south": { "model": "everythingbad:stupid_core_reactor", "y": 180 },
+    "facing=west": { "model": "everythingbad:stupid_core_reactor", "y": 270 }
+  }
+}

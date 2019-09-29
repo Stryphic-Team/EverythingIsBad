@@ -16,6 +16,7 @@ tile.everythingbad:machine_frame.name=Machine Frame
 tile.everythingbad:flux_test.name=Infinite Energy Block
 tile.everythingbad:liquifier_machine.name=Liquifier Machine
 tile.everythingbad:urine_battery.name=Urine Battery
+tile.everythingbad:stupid_core_reactor.name=Stupid Core Reactor
 
 tile.everythingbad:question_mark_block.name=Question Mark Block
 tile.everythingbad:empty_block.name=Empty Block

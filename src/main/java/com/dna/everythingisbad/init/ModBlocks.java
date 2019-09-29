@@ -42,6 +42,7 @@ public class ModBlocks
     public static final Block DRYER_MACHINE = new BlockDryerMachine("dryer_machine");
     public static final Block DIARIC_GENERATOR = new BlockDiaricGenerator("diaric_generator");
     public static final Block LIQUIFIER_MACHINE = new BlockLiquifier("liquifier_machine");
+    public static final Block STUPID_CORE_REACTOR = new BlockStupidCoreReactor("stupid_core_reactor");
     public static final Block MACHINE_FRAME = new BlockMachineFrame("machine_frame");
     public static final Block URINE_BATTERY = new BlockUrineBattery("urine_battery");
 

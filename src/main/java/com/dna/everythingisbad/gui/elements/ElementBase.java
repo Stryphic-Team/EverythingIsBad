@@ -31,6 +31,7 @@ public abstract class ElementBase {
     }
 
     public abstract void drawElement();
+    public abstract void drawForeground();
     public int getStartX() {
         return startX;
     }
@@ -47,5 +48,6 @@ public abstract class ElementBase {
     public int getHeight() {
         return height;
     }
+
 
 }

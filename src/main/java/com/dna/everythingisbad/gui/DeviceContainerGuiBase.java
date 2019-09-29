@@ -4,6 +4,7 @@ import com.dna.everythingisbad.gui.container.DeviceContainerBase;
 import com.dna.everythingisbad.gui.elements.ElementBase;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileDeviceBase;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -37,6 +38,10 @@ public abstract class DeviceContainerGuiBase extends GuiContainer {
     {
         this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 4, this.ySize - 96 + 2, 4210752);
         this.fontRenderer.drawString(tileEntity.getDisplayName().getUnformattedText(),4,4,4210752);
+        for(ElementBase element:guiElements){
+            element.drawForeground();
+        }
+        //drawHoveringText("Fuck",200,200);
     }
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -72,6 +77,15 @@ public abstract class DeviceContainerGuiBase extends GuiContainer {
     public void bindTexture(ResourceLocation texture) {
 
         mc.renderEngine.bindTexture(texture);
+    }
+    public void drawHoveringText(int x,int y,String text){
+        this.drawHoveringText(text,x,y);
+    }
+    public void drawText(int x,int y,String text){
+        this.fontRenderer.drawString(text,x,y,0x202020);
+    }
+    public FontRenderer getFontRenderer(){
+        return this.fontRenderer;
     }
 
 }
