@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.entity;
 
 import com.dna.everythingisbad.ai.EntityAIPoliceShootGun;
+import com.dna.everythingisbad.ai.EntityPoliceBreakDoor;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModSoundEvents;
 import net.minecraft.entity.Entity;
@@ -19,6 +20,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -37,7 +39,7 @@ import java.util.Random;
 public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttackMob {
 
     private boolean isBreakDoorsTaskSet;
-    private final EntityAIBreakDoor breakDoor = new EntityAIBreakDoor(this);
+    private final EntityPoliceBreakDoor breakDoor = new EntityPoliceBreakDoor(this);
     static Random random = new Random();
 
     public EntityPoliceOfficer(World worldIn) {
@@ -141,5 +143,12 @@ public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttack
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+
+        compound.setBoolean("CanBreakDoors", true);
     }
 }
