@@ -39,9 +39,9 @@ public class ChunkGeneratorHeaven implements IChunkGenerator {
 
     private final World world;
     private final Random random;
-    public ChunkGeneratorHeaven(World world) {
+    public ChunkGeneratorHeaven(World world, long seed) {
         this.world = world;
-        this.random = new Random();
+        this.random = new Random(seed);
         world.setSeaLevel(74);
         this.noiseAssShit = new NoiseGeneratorOctaves(this.random,8);
         this.lperlinNoise1 = new NoiseGeneratorOctaves(this.random, 16);

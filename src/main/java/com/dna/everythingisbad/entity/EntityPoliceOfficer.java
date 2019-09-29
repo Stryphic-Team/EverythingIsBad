@@ -26,6 +26,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -150,5 +151,11 @@ public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttack
         super.writeEntityToNBT(compound);
 
         compound.setBoolean("CanBreakDoors", true);
+    }
+
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable() {
+        return null;
     }
 }
