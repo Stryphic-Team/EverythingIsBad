@@ -26,6 +26,12 @@ public class ElementEnergyGauge extends ElementBase {
         //Draws the empty energy gauge
         drawTexturedModalRect(gui.getGuiLeft() + startX, gui.getGuiTop() + startY, 12, 0, 12, 72 - energyStoredScaled);
     }
+
+    @Override
+    public void drawForeground() {
+
+    }
+
     private int getEnergyStoredScaled(int pixels)
     {
         int i = energyHandler.getEnergyStored();

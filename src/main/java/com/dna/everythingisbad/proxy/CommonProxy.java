@@ -44,7 +44,7 @@ public class CommonProxy implements IProxy{
         ModBlocks.init();
         ModBlocks.initOreDictionary();
         ModItems.initOreDictionary();
-
+        ModTileEntities.register();
         ModDimensions.registerDimensions();
         ModBiomes.registerBiomes();
         //new ConfigLoader();
@@ -56,7 +56,7 @@ public class CommonProxy implements IProxy{
 
         Main.logger.info("Intializing");
         ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
-        ModTileEntities.register();
+
         NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
         PacketHandler.init();
 

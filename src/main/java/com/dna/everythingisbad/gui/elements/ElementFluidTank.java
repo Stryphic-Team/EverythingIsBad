@@ -38,6 +38,12 @@ public class ElementFluidTank  extends ElementBase{
         drawTexturedModalRect(gui.getGuiLeft() + startX, gui.getGuiTop() + startY, 0, 0, 12, 73-fluidStorageScaled);
         drawTexturedModalRect(gui.getGuiLeft() + startX, gui.getGuiTop() + startY, 12, 0, 12, 73);
     }
+
+    @Override
+    public void drawForeground() {
+
+    }
+
     protected int getFluidStorageScaled(int pixels){
         int i = fluidHandler.getFluidTank().getFluidAmount();
         int j = fluidHandler.getFluidTank().getCapacity();

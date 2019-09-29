@@ -3,10 +3,6 @@ package com.dna.everythingisbad.tile;
 import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 public abstract class TileMachineBase  extends TileDeviceBase {
     protected int outputSlot = 0;
@@ -23,24 +19,6 @@ public abstract class TileMachineBase  extends TileDeviceBase {
             progress += speedMultiplier;
         }
     }
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing from) {
-
-        return capability == CapabilityEnergy.ENERGY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-    }
-
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return CapabilityEnergy.ENERGY.cast(energyHandler);
-        }
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHadler);
-        }
-        return super.getCapability(capability, facing);
-    }
-
 
     @Override
     public void update() {

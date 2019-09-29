@@ -33,8 +33,13 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     protected ModItemHandler itemStackHadler;
     protected ModFluidHandler fluidHandler;
     protected ModEnergyHandler energyHandler;
+    protected float temperature = 23;
+    protected float temperatureIncrement = 0.1f;
+    protected float targetTemperature = 23;
     private MessageSyncMachineGui messageSyncMachineGui;
+    protected int tick = 0;
     protected String displayName = "NotSet";
+
 
     public TileDeviceBase(String name){
         this.name = name;
@@ -95,8 +100,15 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
 
     @Override
-    public void update() {
+    public void update(){
+        tick++;
+        if(targetTemperature - temperature < 0) {
+            temperature -= temperatureIncrement;
+        }else{
+            temperature += temperatureIncrement;
+        }
 
+        temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
     }
 
     public void sendGuiNetworkData(Container container, IContainerListener listener) {
@@ -164,5 +176,8 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
     public void setFinishedProgress(int finishedProgress){
         this.finishedProgress = finishedProgress;
+    }
+    public float getTemperature(){
+        return this.temperature;
     }
 }

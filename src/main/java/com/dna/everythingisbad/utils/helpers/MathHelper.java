@@ -2,7 +2,7 @@ package com.dna.everythingisbad.utils.helpers;
 
 public class MathHelper {
     public static int addThemZeros(int amountOfZeros){
-        return 10 ^ amountOfZeros;
+        return (int)Math.pow(10,amountOfZeros);
     }
 
 }

@@ -18,4 +18,9 @@ public class ElementInputSlot extends ElementBase{
         gui.bindTexture(resourceLocation);
         drawTexturedModalRect(gui.getGuiLeft() + startX - 1,gui.getGuiTop() + startY - 1,0,0,textureWidth,textureHeight);
     }
+
+    @Override
+    public void drawForeground() {
+
+    }
 }

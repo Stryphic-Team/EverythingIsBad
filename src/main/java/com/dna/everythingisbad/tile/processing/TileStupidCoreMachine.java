@@ -1,14 +1,11 @@
 package com.dna.everythingisbad.tile.processing;
 
 
+import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.tile.TileMachineBase;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.items.CapabilityItemHandler;
 import scala.util.Random;
 
 public class TileStupidCoreMachine extends TileMachineBase {
@@ -20,7 +17,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
         this.itemStackHadler = new ModItemHandler(1);
         setFinishedProgress(24000);
         itemStackHadler.setSlotConfig(0,true,false);
-        this.displayName = "Stupid tm Core Machine";
+        this.displayName = ModBlocks.STUPID_CORE_MACHINE.getLocalizedName();
     }
     @Override
     public void update() {
@@ -53,16 +50,6 @@ public class TileStupidCoreMachine extends TileMachineBase {
         energyHandler.reduceEnergy(1000,false);
     }
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return CapabilityEnergy.ENERGY.cast(energyHandler);
-        }
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
 
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHadler);
-        }
-        return super.getCapability(capability, facing);
-    }
 
 }
