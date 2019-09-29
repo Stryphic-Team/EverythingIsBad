@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import cofh.core.init.CoreEnchantments;
+import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.entity.EntityPoliceOfficer;
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
@@ -16,6 +17,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -208,7 +210,23 @@ public class PlayerHandler {
         potionEffectHandler(entityLivingBase);
         jesusBloodDropHandler(entityLivingBase);
         fluidHandler(entityLivingBase);
+        villagerBabyHandler(entityLivingBase);
     }
+
+    private static void villagerBabyHandler(EntityLivingBase entityLivingBase) {
+        if (entityLivingBase instanceof EntityVillager){
+            EntityVillager villager = (EntityVillager)entityLivingBase;
+            //if (villager.getWorld().getMinecraftServer() != null){
+               //WorldServer worldserver = villager.getWorld().getMinecraftServer().getWorld(villager.dimension);
+                if (!villager.isChild() && !villager.getWorld().isRemote){
+                    if (villager.ticksExisted % ModConfig.BABY_DROP_INTERVAL == random.nextInt(ModConfig.BABY_DROP_INTERVAL)){
+                        villager.dropItem(ModItems.BABY_ITEM,1);
+                    }
+                }
+            //}
+        }
+    }
+
     public static void jesusBloodDropHandler(EntityLivingBase entity){
         if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH){
             if(entity.getHealth() == 0){
