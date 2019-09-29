@@ -21,6 +21,7 @@ public class DryerMachineGuiContainer extends DeviceContainerGuiBase {
         guiElements.add(new ElementOutputSlot(this,116,35));
         guiElements.add(new ElementInputSlot(this,57,35));
         guiElements.add(new ElementProgressBar(this,80,35));
+        guiElements.add(new ElementStatistics(this,-80,15));
     }
 
 }

@@ -40,6 +40,7 @@ public class ModItems {
     public static final ItemUrineBrick URINE_BRICK_ITEM = new ItemUrineBrick("urine_brick");
     public static final ItemUrineCrystal URINE_CRYSTAL_ITEM = new ItemUrineCrystal("urine_crystal");
     public static final ItemBaby BABY_ITEM = new ItemBaby("baby");
+    public static final ItemUltraStupidCore ULTRA_STUPID_CORE = new ItemUltraStupidCore("ultra_stupid_core");
 
     /**
      * Machine parts

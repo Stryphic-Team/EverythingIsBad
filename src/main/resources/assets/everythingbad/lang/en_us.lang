@@ -16,7 +16,7 @@ tile.everythingbad:machine_frame.name=Machine Frame
 tile.everythingbad:flux_test.name=Infinite Energy Block
 tile.everythingbad:liquifier_machine.name=Liquifier Machine
 tile.everythingbad:urine_battery.name=Urine Battery
-tile.everythingbad:stupid_core_reactor.name=Stupid Core Reactor
+tile.everythingbad:stupid_core_reactor.name=Stupid™ Core Reactor
 
 tile.everythingbad:question_mark_block.name=Question Mark Block
 tile.everythingbad:empty_block.name=Empty Block
@@ -61,6 +61,7 @@ item.everythingbad:hair_dryer_gun.name=Hair Dryer Gun
 item.everythingbad:stupid_tnt_gun.name=Stupid™ TNT Gun
 item.everythingbad:stupid_tnt_cartridge.name=Stupid™ TNT Cartridge
 item.everythingbad:stupid_core.name=Stupid™ Core
+item.everythingbad:ultra_stupid_core.name=Ultra Stupid™ Core
 item.everythingbad:police_gun.name=Police Gun
 
 item.everythingbad:cowboy_hat.name=Cowboy Hat

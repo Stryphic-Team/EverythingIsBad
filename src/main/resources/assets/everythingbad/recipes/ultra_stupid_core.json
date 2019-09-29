@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DSD",
+    "STS",
+    "DSD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "everythingbad:stupid_core"
+    },
+    "T":{
+      "item": "everythingbad:stupid_tnt"
+    }
+  },
+  "result": {
+    "item": "everythingbad:ultra_stupid_core"
+  }
+}

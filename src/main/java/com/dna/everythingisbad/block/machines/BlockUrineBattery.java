@@ -1,15 +1,21 @@
 package com.dna.everythingisbad.block.machines;
 
+import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.gui.GuiHandler;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.storage.TileUrineBattery;
+import com.dna.everythingisbad.utils.CommonUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -38,6 +44,7 @@ public class BlockUrineBattery extends BlockGeneratorBase {
     public void addItemToRegistry() {
         ItemBlock itemBlock = new ItemBlockDevice(this,new TileUrineBattery().getEnergyHandler().getEnergyStored());
         itemBlock.setRegistryName(this.name);
+        itemBlock.setUnlocalizedName(CommonUtils.createUnlocalizedName(this.name));
         itemBlock.setMaxStackSize(1);
 
         ModItems.ITEMS.add(itemBlock);
@@ -68,5 +75,19 @@ public class BlockUrineBattery extends BlockGeneratorBase {
 
 
         }
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (worldIn.isRemote) {
+            return true;
+        }
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (!(te instanceof TileUrineBattery)) {
+            return false;
+        }
+
+        playerIn.openGui(Main.instance, GuiHandler.GUI_URINE_BATTERY, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        return true;
     }
 }

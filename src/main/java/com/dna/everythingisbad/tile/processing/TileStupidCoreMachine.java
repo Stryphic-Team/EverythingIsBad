@@ -17,6 +17,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
         this.itemStackHadler = new ModItemHandler(1);
         setFinishedProgress(24000);
         itemStackHadler.setSlotConfig(0,true,false);
+        fluidHandler = null;
         this.displayName = ModBlocks.STUPID_CORE_MACHINE.getLocalizedName();
     }
     @Override

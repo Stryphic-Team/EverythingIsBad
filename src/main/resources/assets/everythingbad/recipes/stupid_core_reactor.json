@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TST",
+    "SMS",
+    "TST"
+  ],
+  "key": {
+    "S": {
+      "item": "everythingbad:ultra_stupid_core"
+    },
+    "M": {
+      "item": "everythingbad:machine_frame"
+    },
+    "T": {
+      "item": "everythingbad:stupid_tnt"
+    }
+  },
+  "result": {
+    "item": "everythingbad:stupid_core_reactor"
+  }
+}

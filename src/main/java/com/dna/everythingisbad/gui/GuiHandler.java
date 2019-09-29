@@ -1,9 +1,7 @@
 package com.dna.everythingisbad.gui;
 
-import com.dna.everythingisbad.gui.container.DiaricGeneratorContainer;
-import com.dna.everythingisbad.gui.container.DryerMachineContainer;
-import com.dna.everythingisbad.gui.container.LiquifierMachineContainer;
-import com.dna.everythingisbad.gui.container.StupidCoreMachineContainer;
+import com.dna.everythingisbad.gui.container.*;
+import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.generators.TileDiaricGenerator;
 import com.dna.everythingisbad.tile.generators.TileStupidCoreReactor;
 import com.dna.everythingisbad.tile.processing.TileDryerMachine;
@@ -24,6 +22,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int GUI_DRYER_MACHINE = guiId++;
     public static final int GUI_LIQUIFIER_MACHINE = guiId++;
     public static final int GUI_STUPID_CORE_REACTOR = guiId++;
+    public static final int GUI_URINE_BATTERY = guiId++;
     @Nullable
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -32,6 +31,7 @@ public class GuiHandler implements IGuiHandler {
         if(ID == GUI_DRYER_MACHINE) return new DryerMachineContainer(player.inventory, (TileDryerMachine) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_LIQUIFIER_MACHINE) return new LiquifierMachineContainer(player.inventory, (TileLiquifierMachine) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_STUPID_CORE_REACTOR) return new StupidCoreMachineContainer(player.inventory, (TileStupidCoreReactor) world.getTileEntity(new BlockPos(x,y,z)));
+        if(ID == GUI_URINE_BATTERY) return new UrineBatteryContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
 
         return null;
     }
@@ -44,6 +44,7 @@ public class GuiHandler implements IGuiHandler {
         if(ID == GUI_DRYER_MACHINE) return new DryerMachineGuiContainer(player.inventory, (TileDryerMachine) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_LIQUIFIER_MACHINE) return new LiquifierMachineGuiContainer(player.inventory, (TileLiquifierMachine) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_STUPID_CORE_REACTOR) return new StupidCoreReactorGuiContainer(player.inventory, (TileStupidCoreReactor) world.getTileEntity(new BlockPos(x,y,z)));
+        if(ID == GUI_URINE_BATTERY) return new UrineBatteryGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         return null;
     }
 }

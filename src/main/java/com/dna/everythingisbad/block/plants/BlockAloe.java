@@ -6,21 +6,16 @@ import com.dna.everythingisbad.creativetab.CreativeTab;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.CommonUtils;
+import com.dna.everythingisbad.utils.RandomUtils;
 import net.minecraft.block.BlockDeadBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.Random;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockAloe extends BlockDeadBush implements IModBlockBase {
     public BlockAloe(String name){
@@ -49,26 +44,34 @@ public class BlockAloe extends BlockDeadBush implements IModBlockBase {
     {
         Main.proxy.registerModel(Item.getItemFromBlock(this),0);
     }
-    @Override
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
-    {
-        Random rand = new Random();
-        if (!worldIn.isRemote)
-        {
-            if (stack.getItem() == Items.SHEARS){
-                player.addStat(StatList.getBlockStats(this));
-                spawnAsEntity(worldIn, pos, new ItemStack(ModBlocks.ALOE_BLOCK, 1, 0));
-            }else{
-                player.addStat(StatList.getBlockStats(this));
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.ALOE_LEAF_ITEM, 1+rand.nextInt(2), 0));
-            }
 
-        }
-        else
-        {
-            //super.harvestBlock(worldIn, player, pos, state, te, stack);
-        }
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        //super.getDrops(drops, world, pos, state, fortune);
+        int randomAmount = RandomUtils.fromRangeI(1,4);
+        drops.add(new ItemStack(ModItems.ALOE_LEAF_ITEM, randomAmount));
     }
+
+//    @Override
+//    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
+//    {
+//        Random rand = new Random();
+//        if (!worldIn.isRemote)
+//        {
+//            if (stack.getItem() == Items.SHEARS){
+//                player.addStat(StatList.getBlockStats(this));
+//                spawnAsEntity(worldIn, pos, new ItemStack(ModBlocks.ALOE_BLOCK, 1, 0));
+//            }else{
+//                player.addStat(StatList.getBlockStats(this));
+//                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.ALOE_LEAF_ITEM, 1+rand.nextInt(2), 0));
+//            }
+//
+//        }
+//        else
+//        {
+//            //super.harvestBlock(worldIn, player, pos, state, te, stack);
+//        }
+//    }
     @Override
     public java.util.List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
     {

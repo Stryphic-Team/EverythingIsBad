@@ -8,7 +8,8 @@ public class TileUrineBattery extends TileGeneratorBase {
         super("urine_battery");
         this.energyHandler = new ModEnergyHandler(100000,69,0,false,true);
         energyHandler.setEnergyStorage(energyHandler.getMaxEnergyStored());
-        //displayName = ModBlocks.URINE_BATTERY.getLocalizedName();
+        fluidHandler = null;
+        this.displayName = "Urine Battery";
     }
 
     @Override
