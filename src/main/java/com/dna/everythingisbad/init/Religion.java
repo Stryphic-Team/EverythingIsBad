@@ -4,12 +4,13 @@ import net.minecraft.util.text.TextFormatting;
 
 public enum Religion {
 
-    NON_RELIGIOUS("Non-Religious", TextFormatting.DARK_GRAY),
+    NON_RELIGIOUS("Non-Religious", TextFormatting.GRAY),
     CHRISTIAN("Christian", TextFormatting.LIGHT_PURPLE),
     JEWISH("Jewish", TextFormatting.BLUE),
     MUSLIM("Muslim", TextFormatting.DARK_GREEN),
     HINDU("Hindu", TextFormatting.GOLD),
-    BUDDHIST("Buddhist", TextFormatting.YELLOW);
+    BUDDHIST("Buddhist", TextFormatting.YELLOW),
+    JOWALI("Jowali", TextFormatting.RED);
 
     private String displayName;
     private TextFormatting textFormatting;

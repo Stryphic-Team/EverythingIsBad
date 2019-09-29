@@ -22,7 +22,7 @@ public class HeavenProvider extends WorldProvider {
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkGeneratorHeaven(world);
+        return new ChunkGeneratorHeaven(world, world.getSeed()+1L);
     }
     @Override
     public boolean canRespawnHere(){

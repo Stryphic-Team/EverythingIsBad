@@ -1,27 +1,32 @@
 package com.dna.everythingisbad.entity;
 
 import com.dna.everythingisbad.ai.EntityAIPoliceShootGun;
+import com.dna.everythingisbad.ai.EntityPoliceBreakDoor;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAttackRangedBow;
-import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.AbstractSkeleton;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -34,6 +39,8 @@ import java.util.Random;
 
 public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttackMob {
 
+    private boolean isBreakDoorsTaskSet;
+    private final EntityPoliceBreakDoor breakDoor = new EntityPoliceBreakDoor(this);
     static Random random = new Random();
 
     public EntityPoliceOfficer(World worldIn) {
@@ -72,6 +79,8 @@ public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttack
         this.inventoryHandsDropChances[EntityEquipmentSlot.MAINHAND.getIndex()] = 0;
 
         this.setCombatTask();
+        this.setBreakDoorsAItask(true);
+
         return livingdata;
     }
 
@@ -97,5 +106,56 @@ public class EntityPoliceOfficer extends EntitySkeleton implements IRangedAttack
         super.setCombatTask();
         EntityAIPoliceShootGun doodly = new EntityAIPoliceShootGun(this, 1.0D, 20, 15.0F);
         this.tasks.addTask(4,doodly);
+    }
+
+    /**
+     * Sets or removes EntityAIBreakDoor task
+     */
+    public void setBreakDoorsAItask(boolean enabled)
+    {
+        if (this.isBreakDoorsTaskSet != enabled)
+        {
+            this.isBreakDoorsTaskSet = enabled;
+            ((PathNavigateGround)this.getNavigator()).setBreakDoors(enabled);
+
+            if (enabled)
+            {
+                this.tasks.addTask(3, this.breakDoor);
+            }
+            else
+            {
+                this.tasks.removeTask(this.breakDoor);
+            }
+        }
+    }
+
+    public boolean isBreakDoorsTaskSet()
+    {
+        return this.isBreakDoorsTaskSet;
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAIRestrictSun(this));
+        this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+
+        compound.setBoolean("CanBreakDoors", true);
+    }
+
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable() {
+        return null;
     }
 }

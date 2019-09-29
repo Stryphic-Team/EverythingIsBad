@@ -34,6 +34,7 @@ public class ItemJesusMeatCooked extends ItemFoodBase {
         this.setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
         setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
+        this.setAlwaysEdible();
 
     }
     @Override

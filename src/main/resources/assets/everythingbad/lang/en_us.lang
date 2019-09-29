@@ -49,6 +49,7 @@ item.everythingbad:medicine_bottle.name=Medicine Bottle
 item.everythingbad:laxative.name=Laxative
 item.everythingbad:cooked_baby.name=Cooked Baby
 item.everythingbad:baby.name=Baby
+item.everythingbad:angel_dust.name=Angel Dust
 
 item.everythingbad:iron_rod.name=Iron Rod
 item.everythingbad:solenoid.name=Solenoid
@@ -84,6 +85,7 @@ entity.satan.name=Satan
 entity.stupid_skeleton.name=Stupid Skeleton
 entity.good_mob.name=Good Mob
 entity.police_officer.name=Police Officer
+entity.angel.name=Angel
 
 effect.highness=Highness
 effect.common_cold=Common Cold
