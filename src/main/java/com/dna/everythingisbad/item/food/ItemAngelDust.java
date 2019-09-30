@@ -11,7 +11,7 @@ public class ItemAngelDust extends ItemFoodBase {
         super(0,0,false);
         setRegistryName(name);
         setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        this.setPotionEffect(ModPotions.POTION_HIGHNESS.getPotionEffect(),1f);
+        this.setPotionEffect(ModPotions.POTION_ADRENALINE.getPotionEffect(),1f);
         this.setCreativeTab(CreativeTab.EVERYTHING_BAD_TAB);
         ModItems.ITEMS.add(this);
         this.setAlwaysEdible();

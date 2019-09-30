@@ -109,6 +109,24 @@ public class PotionEffectHandler {
         }
     }
 
+    public static void livingEntityAdrenalineActive(EntityLivingBase entity, int duration) {
+        int time_left = entity.getActivePotionEffect(ModPotions.POTION_ADRENALINE.getPotion()).getDuration();
+        if (duration == 0){
+            entity.getEntityData().setInteger("adrenaline_duration", time_left);
+            entity.writeEntityToNBT(entity.getEntityData());
+        } else if (time_left > duration && duration != 0) {
+            entity.getEntityData().setInteger("adrenaline_duration",time_left);
+            entity.writeEntityToNBT(entity.getEntityData());
+        }
+
+        if(time_left == duration-1) {
+            //Speed
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), time_left, 50));
+            // Haste
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(3), time_left, 2));
+        }
+    }
+
     /**
      * Checks when the player has the highness effect active
      * and applies side effects
