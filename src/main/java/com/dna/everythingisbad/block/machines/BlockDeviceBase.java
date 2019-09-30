@@ -1,13 +1,13 @@
 package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.block.BlockBase;
-import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.processing.TileStupidCoreMachine;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -25,9 +25,11 @@ import javax.annotation.Nullable;
 //TODO: Implement IDismantlable
 public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    public static final PropertyBool ACTIVE = PropertyBool.create("active");
     public BlockDeviceBase(String name){
         super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
         setHardness(25);
     }
     @Override
@@ -78,7 +80,7 @@ public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, new IProperty[] {ACTIVE,FACING});
     }
     @Override
     public IBlockState getStateFromMeta(int meta)
@@ -108,7 +110,7 @@ public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
-    public static void setState(boolean active, World worldIn, BlockPos pos)
+    public static void setState(boolean active,IBlockState blockState, World worldIn, BlockPos pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -116,13 +118,13 @@ public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
 
         if (active)
         {
-            worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            //worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,true), 3);
         }
         else
         {
-            worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            //worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,false), 3);
         }
 
 

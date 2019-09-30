@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class DeviceContainerBase extends Container {
+public abstract class DeviceContainerBase extends Container {
     TileDeviceBase tileentity;
     IItemHandler itemHandler;
     int energy;
@@ -86,35 +86,7 @@ public class DeviceContainerBase extends Container {
             listener.sendWindowProperty(this, 0, energy);
             tileentity.sendGuiNetworkData(this,listener);
         }
-//        for(int i = 0; i < this.listeners.size(); ++i)
-//        {
-//            IContainerListener listener = (IContainerListener)this.listeners.get(i);
-//            int progress = this.tileentity.getProgress();
-//            int energy = this.tileentity.getEnergyHandler().getEnergyStorage();
-//            int fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
-//            FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
-//            if(fluidStack != null){
-//                fluid_type = FluidCache.toInt(fluidStack.getFluid().getName());
-//            }else{
-//                fluid_type = -1;
-//            }
-//            if(this.energy != energy) listener.sendWindowProperty(this, 0, energy);
-//            if(this.progress != progress) listener.sendWindowProperty(this, 1, progress);
-//            if(this.fluid_type != fluid_type) listener.sendWindowProperty(this, 3, fluid_type);
-//            if(this.fluid_stored != fluid_stored) listener.sendWindowProperty(this, 2, fluid_stored);
-//
-//
-//        }
-//
-//        this.energy = this.tileentity.getEnergyHandler().getEnergyStored();
-//        this.progress = this.tileentity.getProgress();
-//        this.fluid_stored = this.tileentity.getFluidHandler().getFluidTank().getFluidAmount();
-//        FluidStack fluidStack = this.tileentity.getFluidHandler().getFluidTank().getFluid();
-//        if(fluidStack != null){
-//            this.fluid_type = FluidCache.toInt(fluidStack.getUnlocalizedName());
-//        }else{
-//            this.fluid_type = -1;
-//        }
+
     }
 
 
@@ -168,4 +140,5 @@ public class DeviceContainerBase extends Container {
         }
         return stack;
     }
+
 }

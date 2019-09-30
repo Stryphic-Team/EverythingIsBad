@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "everythingbad:urine_battery" },
-    "facing=east": { "model": "everythingbad:urine_battery", "y": 90 },
-    "facing=south": { "model": "everythingbad:urine_battery", "y": 180 },
-    "facing=west": { "model": "everythingbad:urine_battery", "y": 270 }
+    "active=false,facing=north": { "model": "everythingbad:urine_battery" },
+    "active=false,facing=east": { "model": "everythingbad:urine_battery", "y": 90 },
+    "active=false,facing=south": { "model": "everythingbad:urine_battery", "y": 180 },
+    "active=false,facing=west": { "model": "everythingbad:urine_battery", "y": 270 },
+    "active=true,facing=north": { "model": "everythingbad:urine_battery" },
+    "active=true,facing=east": { "model": "everythingbad:urine_battery", "y": 90 },
+    "active=true,facing=south": { "model": "everythingbad:urine_battery", "y": 180 },
+    "active=true,facing=west": { "model": "everythingbad:urine_battery", "y": 270 }
   }
 }

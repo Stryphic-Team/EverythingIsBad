@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "everythingbad:liquifier_machine" },
-    "facing=east": { "model": "everythingbad:liquifier_machine", "y": 90 },
-    "facing=south": { "model": "everythingbad:liquifier_machine", "y": 180 },
-    "facing=west": { "model": "everythingbad:liquifier_machine", "y": 270 }
+    "active=false,facing=north": { "model": "everythingbad:liquifier_machine" },
+    "active=false,facing=east": { "model": "everythingbad:liquifier_machine", "y": 90 },
+    "active=false,facing=south": { "model": "everythingbad:liquifier_machine", "y": 180 },
+    "active=false,facing=west": { "model": "everythingbad:liquifier_machine", "y": 270 },
+    "active=true,facing=north": { "model": "everythingbad:liquifier_machine_active" },
+    "active=true,facing=east": { "model": "everythingbad:liquifier_machine_active", "y": 90 },
+    "active=true,facing=south": { "model": "everythingbad:liquifier_machine_active", "y": 180 },
+    "active=true,facing=west": { "model": "everythingbad:liquifier_machine_active", "y": 270 }
   }
 }
