@@ -4,7 +4,7 @@
 		"particle": "everythingbad:blocks/machine_base",
 		"up": "everythingbad:blocks/machine_base",
 		"down": "everythingbad:blocks/machine_base",
-		"north": "everythingbad:blocks/stupid_core_machine_off",
+		"north": "everythingbad:blocks/stupid_core_machine_active",
 		"east": "everythingbad:blocks/machine_base",
 		"south": "everythingbad:blocks/machine_base",
 		"west": "everythingbad:blocks/machine_base"

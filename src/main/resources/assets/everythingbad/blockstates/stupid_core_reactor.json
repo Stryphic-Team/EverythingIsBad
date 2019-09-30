@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "everythingbad:stupid_core_reactor" },
-    "facing=east": { "model": "everythingbad:stupid_core_reactor", "y": 90 },
-    "facing=south": { "model": "everythingbad:stupid_core_reactor", "y": 180 },
-    "facing=west": { "model": "everythingbad:stupid_core_reactor", "y": 270 }
+    "active=false,facing=north": { "model": "everythingbad:stupid_core_reactor" },
+    "active=false,facing=east": { "model": "everythingbad:stupid_core_reactor", "y": 90 },
+    "active=false,facing=south": { "model": "everythingbad:stupid_core_reactor", "y": 180 },
+    "active=false,facing=west": { "model": "everythingbad:stupid_core_reactor", "y": 270 },
+    "active=true,facing=north": { "model": "everythingbad:stupid_core_reactor_active" },
+    "active=true,facing=east": { "model": "everythingbad:stupid_core_reactor_active", "y": 90 },
+    "active=true,facing=south": { "model": "everythingbad:stupid_core_reactor_active", "y": 180 },
+    "active=true,facing=west": { "model": "everythingbad:stupid_core_reactor_active", "y": 270 }
   }
 }

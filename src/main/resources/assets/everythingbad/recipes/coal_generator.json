@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "CMC",
+    "RCR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "M": {
+      "item": "everythingbad:machine_frame"
+    },
+    "C": {
+      "item": "minecraft:coal",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "everythingbad:coal_generator"
+  }
+}

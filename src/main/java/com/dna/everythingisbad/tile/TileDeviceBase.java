@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.tile;
 
+import com.dna.everythingisbad.block.machines.BlockDeviceBase;
 import com.dna.everythingisbad.init.ModTileEntities;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageSyncMachineGui;
@@ -142,6 +143,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
                 }
             }
         }
+        updateBlockState();
     }
     public void updateTemperature(){
         if(targetTemperature - temperature < 0) {
@@ -150,6 +152,18 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
             temperature += temperatureIncrement;
         }
         temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
+    }
+    public void updateBlockState(){
+        if(tick % 20 == 19 && !world.isRemote) {
+            if (progress > 0) {
+                IBlockState blockState = world.getBlockState(pos);
+                BlockDeviceBase.setState(true,blockState.getBlock().getDefaultState(),world,pos);
+
+            }else{
+                IBlockState blockState = world.getBlockState(pos);
+                BlockDeviceBase.setState(false,blockState.getBlock().getDefaultState(),world,pos);
+            }
+        }
     }
 
     public void sendGuiNetworkData(Container container, IContainerListener listener) {

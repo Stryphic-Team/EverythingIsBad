@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.init;
 
 import com.dna.everythingisbad.tile.TileDeviceBase;
+import com.dna.everythingisbad.tile.generators.TileCoalGenerator;
 import com.dna.everythingisbad.tile.generators.TileDiaricGenerator;
 import com.dna.everythingisbad.tile.generators.TileFluxTest;
 import com.dna.everythingisbad.tile.generators.TileStupidCoreReactor;
@@ -21,6 +22,7 @@ public class ModTileEntities {
     public static final TileLiquifierMachine TILE_LIQUIFIER_MACHINE = new TileLiquifierMachine();
     public static final TileUrineBattery TILE_URINE_BATTERY = new TileUrineBattery();
     public static final TileStupidCoreReactor TILE_STUPID_CORE_REACTOR = new TileStupidCoreReactor();
+    public static final TileCoalGenerator TILE_COAL_GENERATOR = new TileCoalGenerator();
 
     public static void register(){
         for(TileDeviceBase device: TILE_ENTITIES){
