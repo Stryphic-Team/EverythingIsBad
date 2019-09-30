@@ -84,12 +84,11 @@ public class ServerEventHandler {
 //        }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void playerTimer(TickEvent.PlayerTickEvent event){
-//        if(event.player.isDead){
-//            PlayerHandler.playerDied(event.player);
-//        }
-        //PlayerHandler.playerTick(event.player);
+        if(event.player instanceof EntityPlayerMP) {
+            PlayerHandler.playerTick((EntityPlayerMP) event.player);
+        }
     }
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerRespawn(PlayerEvent.PlayerRespawnEvent event){

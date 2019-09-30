@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.client.RenderYellow;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -41,9 +42,11 @@ public class ClientEventHandler {
         PlayerHandler.playerRespawn(event.player);
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void playerTimer(TickEvent.PlayerTickEvent event){
-        //PlayerHandler.playerTick(event.player);
+        if(event.player instanceof EntityPlayerMP && event.phase == TickEvent.Phase.END) {
+            PlayerHandler.playerTick((EntityPlayerMP) event.player);
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)

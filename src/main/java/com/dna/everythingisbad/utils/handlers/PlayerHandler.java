@@ -1,7 +1,6 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import cofh.core.init.CoreEnchantments;
-import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.entity.EntityPoliceOfficer;
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
@@ -196,13 +195,14 @@ public class PlayerHandler {
 
     }
     public static void playerTick(EntityPlayer player){
-
-        questionMarkBlockHandler(player);
-        playerDeathHandler(player);
-        //fluidHandler(player);
-        heavenHandler(player);
-        commonColdHandler(player);
-        babyHandler(player);
+        if(!player.world.isRemote) {
+            questionMarkBlockHandler(player);
+            playerDeathHandler(player);
+            //fluidHandler(player);
+            heavenHandler(player);
+            commonColdHandler(player);
+            babyHandler(player);
+        }
 
     }
     public static void livingTick(EntityLivingBase entityLivingBase){
@@ -275,29 +275,31 @@ public class PlayerHandler {
         }
     }
 
-    public static void babyHandler(EntityLivingBase entity){
-        if (entity instanceof EntityPlayerMP && !entity.getEntityWorld().isRemote){
+    public static void babyHandler(EntityPlayer entity){
+        if (entity instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)entity;
             InventoryPlayer deeta = mp.inventory;
-            for (ItemStack stack : deeta.mainInventory){
-                if (stack.getItem() == ModItems.BABY_ITEM){
-                    NBTTagCompound compound = stack.getTagCompound();
-                    if (compound != null && mp.ticksExisted % 20 == 19){
-                        int age = compound.getInteger("age");
-                        age++;
-                        compound.setInteger("age",age);
-                        stack.setTagCompound(compound);
+            if(mp.ticksExisted % 20 == 19) {
+                for (ItemStack stack : deeta.mainInventory) {
+                    if (stack.getItem() == ModItems.BABY_ITEM) {
+                        NBTTagCompound compound = stack.getTagCompound();
+                        if (compound != null) {
+                            int age = compound.getInteger("age");
+                            age++;
+                            compound.setInteger("age", age);
+                            stack.setTagCompound(compound);
 
-                        if (age >= ModConfig.BABY_AGE_UP_TIME){
-                            String name = stack.getDisplayName();
-                            stack.shrink(1);
-                            EntityVillager entityVillager = new EntityVillager(mp.getServerWorld());
-                            entityVillager.setGrowingAge(-24000);
-                            entityVillager.setPosition(mp.posX,mp.posY,mp.posZ);
-                            if (!name.equals("Baby")){
-                                entityVillager.setCustomNameTag(name);
+                            if (age >= ModConfig.BABY_AGE_UP_TIME) {
+                                String name = stack.getDisplayName();
+                                stack.shrink(1);
+                                EntityVillager entityVillager = new EntityVillager(mp.getServerWorld());
+                                entityVillager.setGrowingAge(-24000);
+                                entityVillager.setPosition(mp.posX, mp.posY, mp.posZ);
+                                if (!name.equals("Baby")) {
+                                    entityVillager.setCustomNameTag(name);
+                                }
+                                mp.getServerWorld().spawnEntity(entityVillager);
                             }
-                            mp.getServerWorld().spawnEntity(entityVillager);
                         }
                     }
                 }
@@ -307,7 +309,7 @@ public class PlayerHandler {
     }
 
     public static void poopHandler(EntityLivingBase entity){
-        if(entity instanceof EntityPlayer) {
+        if(entity instanceof EntityPlayer && !entity.world.isRemote) {
             EntityPlayer entityPlayerMP = (EntityPlayer) entity;
             int intervalAlter = random.nextInt(500);
             if (entityPlayerMP.ticksExisted % Math.abs(ModConfig.AUTO_POOP_INTERVAL + intervalAlter) == 0) {
