@@ -16,8 +16,10 @@ public class ModConfig {
     public static int AUTO_POOP_INTERVAL = 24000;
     @Config.Name("Auto Poop Max")
     public static int AUTO_POOP_MAX = 6;
+    @Config.Name("Baby Age-Up Time (sec)")
+    public static int BABY_AGE_UP_TIME = 1200;
     @Config.Name("Baby Drop Interval")
-    public static int BABY_DROP_INTERVAL = 20000;
+    public static int BABY_DROP_INTERVAL = 40000;
     @Config.Name("Blindness Chance")
     public static int BLINDNESS_CHANCE = 100;
     @Config.Name("Blood Spawns on Death")

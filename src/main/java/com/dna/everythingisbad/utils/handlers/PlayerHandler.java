@@ -220,7 +220,12 @@ public class PlayerHandler {
                //WorldServer worldserver = villager.getWorld().getMinecraftServer().getWorld(villager.dimension);
                 if (!villager.isChild() && !villager.getWorld().isRemote){
                     if (villager.ticksExisted % ModConfig.BABY_DROP_INTERVAL == random.nextInt(ModConfig.BABY_DROP_INTERVAL)){
-                        villager.dropItem(ModItems.BABY_ITEM,1);
+                        // Makes a new itemstack and gives it an NBT string with the age of the baby in ticks
+                        ItemStack babyStack = new ItemStack(ModItems.BABY_ITEM, 1, 0);
+                        NBTTagCompound babyCmpound = new NBTTagCompound();
+                        babyCmpound.setInteger("age",1);
+                        babyStack.setTagCompound(babyCmpound);
+                        villager.entityDropItem(babyStack,0f);
                     }
                 }
             //}
@@ -271,9 +276,32 @@ public class PlayerHandler {
     }
 
     public static void babyHandler(EntityLivingBase entity){
-        if (entity instanceof EntityPlayerMP){
+        if (entity instanceof EntityPlayerMP && !entity.getEntityWorld().isRemote){
             EntityPlayerMP mp = (EntityPlayerMP)entity;
             InventoryPlayer deeta = mp.inventory;
+            for (ItemStack stack : deeta.mainInventory){
+                if (stack.getItem() == ModItems.BABY_ITEM){
+                    NBTTagCompound compound = stack.getTagCompound();
+                    if (compound != null && mp.ticksExisted % 20 == 19){
+                        int age = compound.getInteger("age");
+                        age++;
+                        compound.setInteger("age",age);
+                        stack.setTagCompound(compound);
+
+                        if (age >= ModConfig.BABY_AGE_UP_TIME){
+                            String name = stack.getDisplayName();
+                            stack.shrink(1);
+                            EntityVillager entityVillager = new EntityVillager(mp.getServerWorld());
+                            entityVillager.setGrowingAge(-24000);
+                            entityVillager.setPosition(mp.posX,mp.posY,mp.posZ);
+                            if (!name.equals("Baby")){
+                                entityVillager.setCustomNameTag(name);
+                            }
+                            mp.getServerWorld().spawnEntity(entityVillager);
+                        }
+                    }
+                }
+            }
             //TODO Finish this
         }
     }
