@@ -34,6 +34,9 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
     public EntityStupidTNT(World worldin,double x, double y, double z, EntityLivingBase igniter,float power){
         this(worldin,x,y,z,igniter);
         this.power = power;
+        if(igniter instanceof EntityStupidSkeleton && !world.getGameRules().getBoolean("mobGriefing")){
+            this.power = 0;
+        }
     }
     public EntityStupidTNT(World worldIn, double x, double y, double z, EntityLivingBase igniter) {
         this(worldIn);
