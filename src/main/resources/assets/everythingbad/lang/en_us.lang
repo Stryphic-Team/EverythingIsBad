@@ -109,3 +109,4 @@ itemGroup.everythingbad=Everything is Bad
 
 everythingbad.category.everythingbad=Everything Is Bad
 everythingbad.keybind.poopkey=Poop (Debug)
+commands.economy.error.insufficient_funds=Insufficient Funds
