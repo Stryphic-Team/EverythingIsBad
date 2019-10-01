@@ -2,6 +2,8 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.google.common.eventbus.Subscribe;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -9,7 +11,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CommonEventHandler {
 
-
+    @SubscribeEvent
+    public void livingDamage(LivingDamageEvent event){
+        PlayerHandler.livingDamage(event,event.getEntityLiving());
+    }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
