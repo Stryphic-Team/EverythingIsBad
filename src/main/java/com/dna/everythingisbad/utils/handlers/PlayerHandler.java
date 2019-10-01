@@ -38,6 +38,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.Random;
@@ -111,7 +112,7 @@ public class PlayerHandler {
             }
             boolean isBlind = playerProperties.isBlind();
             if (isBlind) {
-                player.addSuffix(new TextComponentString(" [Blind]").setStyle(new Style().setColor(TextFormatting.DARK_RED)));
+                //player.addSuffix(new TextComponentString(" [Blind]").setStyle(new Style().setColor(TextFormatting.DARK_RED)));
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 100000));
             }
         }
@@ -215,23 +216,40 @@ public class PlayerHandler {
         villagerBabyHandler(entityLivingBase);
     }
 
+    public static void livingDamage(LivingDamageEvent event, EntityLivingBase elb){
+        healBlindnessHandler(event, elb);
+    }
+
+    private static void healBlindnessHandler(LivingDamageEvent event, EntityLivingBase elb) {
+        if (elb instanceof EntityPlayerMP && !elb.getEntityWorld().isRemote){
+
+            PlayerProperties playerProperties = elb.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+            // Is it a Jesus that attacked you? if so then...
+            if (event.getSource().getTrueSource() instanceof EntityJesus){
+                // are you blind? currently? uhhh
+                if (elb.isPotionActive(Potion.getPotionById(15))){
+                    elb.removePotionEffect(Potion.getPotionById(15));
+                    playerProperties.setBlind(false);
+                    playerProperties.saveNBTData(elb.getEntityData());
+                }
+            }
+        }
+    }
+
     private static void villagerBabyHandler(EntityLivingBase entityLivingBase) {
         if (entityLivingBase instanceof EntityVillager){
             EntityVillager villager = (EntityVillager)entityLivingBase;
-            //if (villager.getWorld().getMinecraftServer() != null){
-               //WorldServer worldserver = villager.getWorld().getMinecraftServer().getWorld(villager.dimension);
-                if (!villager.isChild() && !villager.getWorld().isRemote){
-                    if (villager.ticksExisted % ModConfig.BABY_DROP_INTERVAL == random.nextInt(ModConfig.BABY_DROP_INTERVAL)){
-                        // Makes a new itemstack and gives it an NBT string with the age of the baby in ticks
-                        ItemStack babyStack = new ItemStack(ModItems.BABY_ITEM, 1, 0);
-                        NBTTagCompound babyCmpound = new NBTTagCompound();
-                        babyCmpound.setInteger("age",1);
-                        babyStack.setTagCompound(babyCmpound);
-                        villager.entityDropItem(babyStack,0f);
-                        villager.getWorld().playSound((EntityPlayer)null,villager.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.AMBIENT,2f,0.5f);
-                    }
+            if (!villager.isChild() && !villager.getWorld().isRemote){
+                if (villager.ticksExisted % ModConfig.BABY_DROP_INTERVAL == random.nextInt(ModConfig.BABY_DROP_INTERVAL)){
+                    // Makes a new itemstack and gives it an NBT string with the age of the baby in ticks
+                    ItemStack babyStack = new ItemStack(ModItems.BABY_ITEM, 1, 0);
+                    NBTTagCompound babyCmpound = new NBTTagCompound();
+                    babyCmpound.setInteger("age",1);
+                    babyStack.setTagCompound(babyCmpound);
+                    villager.entityDropItem(babyStack,0f);
+                    villager.getWorld().playSound((EntityPlayer)null,villager.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.AMBIENT,2f,0.5f);
                 }
-            //}
+            }
         }
     }
 
