@@ -64,6 +64,12 @@
       * Jesus heals you if you have the Blindness effect
       * Added angels to the Heaven dimension
       * Added Angel Dust which drops from Angels, gives Adrenaline effect when eaten
+    * Drugs/Potion Effects:
+      * Common Cold gives you slowness and weakness
+      * Added Adrenaline effect: gives speed and haste
+      * You get Levitation effect and then go to Heaven after eating Cooked Body of Christ
+      * You can now eat Devil's Cabbage and Body of Christ without being hungry
+      * Animals can get high from God's Pee
     * Miscellaneous:
       * COFH Core is now a dependency 
       * All config settings can be adjusted with the Forge config manager
@@ -72,10 +78,7 @@
       * Added religion: players will now spawn with a tag for the religion that they are assigned to
       * Souls now have infinite soul bound
       * Cloud blocks are now transparent
-      * Added partial Jowali language support
-      * Common Cold gives you slowness and weakness
-      * Animals can go in God's Pee and get high
-      * Added Adrenaline effect: gives speed and haste
+      * Added partial Jowali language support, Jowali font
       
   * Fixes
     * Twin towers now actually spawn
