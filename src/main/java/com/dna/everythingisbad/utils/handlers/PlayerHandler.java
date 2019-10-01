@@ -21,11 +21,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Biomes;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -226,6 +228,7 @@ public class PlayerHandler {
                         babyCmpound.setInteger("age",1);
                         babyStack.setTagCompound(babyCmpound);
                         villager.entityDropItem(babyStack,0f);
+                        villager.getWorld().playSound((EntityPlayer)null,villager.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.AMBIENT,2f,0.5f);
                     }
                 }
             //}
@@ -244,6 +247,8 @@ public class PlayerHandler {
     public static void potionEffectHandler(EntityLivingBase entity){
         boolean highness_active = entity.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
         boolean common_cold_active = entity.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion());
+        boolean adrenaline_active = entity.isPotionActive(ModPotions.POTION_ADRENALINE.getPotion());
+
         if(highness_active){
             if (entity instanceof EntityPlayerMP) {
                 // Casting to entityplayermp
@@ -260,6 +265,11 @@ public class PlayerHandler {
         if (common_cold_active && !(entity instanceof EntityPlayerSP)){
             int common_cold_duration = entity.getEntityData().getInteger("common_cold_duration");
             PotionEffectHandler.livingEntityCommonColdActive(entity,common_cold_duration);
+        }
+
+        if (adrenaline_active && !(entity instanceof EntityPlayerSP)){
+            int adrenaline_duration = entity.getEntityData().getInteger("adrenaline_duration");
+            PotionEffectHandler.livingEntityAdrenalineActive(entity,adrenaline_duration);
         }
     }
 
