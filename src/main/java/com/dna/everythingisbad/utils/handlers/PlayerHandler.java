@@ -57,7 +57,7 @@ public class PlayerHandler {
 
             blindnessHandler(player,true);
             religionHandler(player);
-            soulHandler(player);
+            //soulHandler(player);
 
     }
     public static void playerJoined(EntityPlayer entityPlayer) {
@@ -66,7 +66,7 @@ public class PlayerHandler {
         //EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
         PlayerProperties playerProperties = entityPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
-        if(playerProperties != null) {
+        if(playerProperties != null && !entityPlayer.world.isRemote) {
             boolean hasBeenInitialized = playerProperties.hasBeenInitialized();
             ///////////////////////////////////////////////////////
             //// All initializers need to be run in this block ////

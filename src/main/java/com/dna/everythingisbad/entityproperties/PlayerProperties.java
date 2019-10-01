@@ -96,6 +96,7 @@ public class PlayerProperties {
         this.isBlind = compound.getBoolean("isBlind");
         this.religion = compound.getInteger("religion");
         this.timesPooped = compound.getInteger("timesPooped");
+        this.hasSoul = compound.getBoolean("hasSoul");
         this.balance = compound.getInteger("balance");
     }
 
