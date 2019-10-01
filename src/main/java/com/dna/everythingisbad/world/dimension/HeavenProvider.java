@@ -36,7 +36,7 @@ public class HeavenProvider extends WorldProvider {
 
     @Override
     public BiomeProvider getBiomeProvider() {
-        return new BiomeProviderSingle(ModBiomes.HEAVEN);
+        return this.biomeProvider;
     }
 
     @Override
