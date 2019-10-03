@@ -5,6 +5,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 
 public class BlockFluxTest extends BlockGeneratorBase {
     public BlockFluxTest(String name){
@@ -16,9 +18,10 @@ public class BlockFluxTest extends BlockGeneratorBase {
     {
         return true;
     }
+
+    @Nullable
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileFluxTest();
     }
 

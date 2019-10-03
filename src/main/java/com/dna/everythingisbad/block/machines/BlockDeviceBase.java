@@ -2,7 +2,6 @@ package com.dna.everythingisbad.block.machines;
 
 import com.dna.everythingisbad.block.BlockBase;
 import com.dna.everythingisbad.tile.TileDeviceBase;
-import com.dna.everythingisbad.tile.processing.TileStupidCoreMachine;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
@@ -23,7 +22,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 //TODO: Implement IDismantlable
-public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
+public abstract class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool ACTIVE = PropertyBool.create("active");
     public BlockDeviceBase(String name){
@@ -39,9 +38,7 @@ public class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     }
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileStupidCoreMachine();
-    }
+    public abstract TileEntity createNewTileEntity(World worldIn, int meta);
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {

@@ -21,9 +21,8 @@ public class BlockStupidCoreReactor extends BlockGeneratorBase {
         super(name);
     }
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileStupidCoreReactor();
     }
 
