@@ -46,7 +46,8 @@ public class BlockDiaricGenerator extends BlockGeneratorBase {
 
         Fluid diariaFluid = ModFluids.DIARIA.getFluid();
         ItemStack diariaBucket = FluidUtil.getFilledBucket(new FluidStack(diariaFluid,1));
-        if(playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).getItem().equals(diariaBucket.getItem())){
+        FluidStack fluidInBucket = FluidUtil.getFluidContained(playerIn.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND));
+        if(fluidInBucket != null && fluidInBucket.getFluid() == ModFluids.DIARIA.getFluid()){
             FluidTank fluidTank = tileEntity.getFluidHandler().getFluidTank();
             if(fluidTank.getFluidAmount() + 1000 <= fluidTank.getCapacity()){
                 tileEntity.getFluidHandler().fill(new FluidStack(diariaFluid,1000),true);
