@@ -41,6 +41,7 @@ public abstract class DeviceContainerGuiBase extends GuiContainer {
         for(ElementBase element:guiElements){
             element.drawForeground();
         }
+        this.renderHoveredToolTip(mouseX-guiLeft, mouseY-guiTop);
         //drawHoveringText("Fuck",200,200);
     }
     @Override
