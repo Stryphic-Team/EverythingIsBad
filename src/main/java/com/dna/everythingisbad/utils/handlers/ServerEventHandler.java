@@ -84,12 +84,7 @@ public class ServerEventHandler {
 //        }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void playerTimer(TickEvent.PlayerTickEvent event){
-        if(event.player instanceof EntityPlayerMP) {
-            PlayerHandler.playerTick((EntityPlayerMP) event.player);
-        }
-    }
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public void playerRespawn(PlayerEvent.PlayerRespawnEvent event){
         PlayerHandler.playerRespawn(event.player);

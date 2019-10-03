@@ -2,12 +2,13 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
-import com.google.common.eventbus.Subscribe;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class CommonEventHandler {
 
@@ -34,6 +35,12 @@ public class CommonEventHandler {
                 PlayerProperties newStore = InitializedPlayerProperties.getPlayerProperties(event.getEntityPlayer());
                 newStore.copyFrom(oldStore);
             }
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void playerTimer(TickEvent.PlayerTickEvent event){
+        if(event.player instanceof EntityPlayerMP && event.phase == TickEvent.Phase.END) {
+            PlayerHandler.playerTick((EntityPlayerMP) event.player);
         }
     }
 }

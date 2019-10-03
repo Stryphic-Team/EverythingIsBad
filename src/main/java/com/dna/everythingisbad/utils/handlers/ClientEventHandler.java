@@ -1,7 +1,6 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.client.RenderYellow;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -9,7 +8,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import scala.util.Random;
 
 /**
@@ -42,12 +40,7 @@ public class ClientEventHandler {
         PlayerHandler.playerRespawn(event.player);
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void playerTimer(TickEvent.PlayerTickEvent event){
-        if(event.player instanceof EntityPlayerMP && event.phase == TickEvent.Phase.END) {
-            PlayerHandler.playerTick((EntityPlayerMP) event.player);
-        }
-    }
+
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void smeltItem(PlayerEvent.ItemSmeltedEvent event){
