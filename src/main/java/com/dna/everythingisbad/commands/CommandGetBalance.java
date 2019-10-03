@@ -14,6 +14,12 @@ public class CommandGetBalance extends ModCommandBase {
         addAlias("getbal");
         addAlias("money");
     }
+
+    @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
     @Override
     public String getUsage(ICommandSender sender) {
         return "Gets your balance";

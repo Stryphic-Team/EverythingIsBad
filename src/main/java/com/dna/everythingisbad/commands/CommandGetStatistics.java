@@ -15,6 +15,11 @@ public class CommandGetStatistics extends ModCommandBase {
     }
 
     @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
+    @Override
     public String getUsage(ICommandSender sender) {
         return "Gets the current status of your player";
     }

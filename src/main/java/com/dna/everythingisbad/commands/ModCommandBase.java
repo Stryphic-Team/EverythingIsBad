@@ -12,6 +12,7 @@ public abstract class ModCommandBase extends CommandBase {
     public ModCommandBase(String name){
         this.name = Reference.RESOURCE_PREFIX + name;
         ModCommands.COMMANDS.add(this);
+
     }
 
     @Override

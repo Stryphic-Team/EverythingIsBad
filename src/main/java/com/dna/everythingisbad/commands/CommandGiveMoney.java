@@ -18,6 +18,11 @@ public class CommandGiveMoney extends ModCommandBase {
     }
 
     @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
+    @Override
     public String getUsage(ICommandSender sender) {
         return "/givemoney <username> <amount>";
     }
