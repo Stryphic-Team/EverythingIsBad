@@ -33,7 +33,7 @@ public abstract class TileMachineBase  extends TileDeviceBase {
                 setProgress(0);
             }
         }else{
-            setProgress(0);
+            //setProgress(0);
         }
 
     }
