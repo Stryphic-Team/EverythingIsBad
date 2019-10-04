@@ -70,7 +70,7 @@ public class PotionEffectHandler {
             // the duration they underwent over the intended duration (24000 ticks).
             // So, if you only undergo 6000 ticks of highness then you only have a
             // 25% chance of getting a Stupid Core.
-            if (rand.nextFloat() < (highness_duration/24000)){
+            if (rand.nextFloat() < ((float)highness_duration/(float)potion_duration)){
                 ItemStack itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
                 if (entity instanceof EntityPlayer){
                     EntityPlayer player = (EntityPlayer)entity;

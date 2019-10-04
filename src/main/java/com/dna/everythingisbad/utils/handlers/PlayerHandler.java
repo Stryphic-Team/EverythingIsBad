@@ -129,10 +129,9 @@ public class PlayerHandler {
                 NBTTagCompound soulCompound = new NBTTagCompound();
                 soulCompound.setString("player_name", player.getDisplayNameString());
                 soulStack.setTagCompound(soulCompound);
-                soulStack.addEnchantment(CoreEnchantments.soulbound, 1);
 
-                //soulstack.addEnchantment(Enchantment.getEnchantmentByID(2),1);
-                //TODO: Add soulbound enchantment to itemstack (or make one)
+                // Enchants it with soulbound
+                soulStack.addEnchantment(CoreEnchantments.soulbound, 1);
 
                 // Give it to the player, or drop it if they cant fit it (for whatever reason)
                 if (!player.inventory.addItemStackToInventory(soulStack)) {
@@ -168,7 +167,7 @@ public class PlayerHandler {
 
             // On first join, you get a religion assigned
             if (!playerInitialized) {
-                int rnadomnum = random.nextInt(6);
+                int rnadomnum = random.nextInt(Religion.values().length);
                 playerProperties.setReligion(rnadomnum);
                 playerProperties.saveNBTData(player.getEntityData());
             }
@@ -332,7 +331,6 @@ public class PlayerHandler {
                     }
                 }
             }
-            //TODO Finish this
         }
     }
 
