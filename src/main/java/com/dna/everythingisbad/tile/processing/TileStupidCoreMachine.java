@@ -18,6 +18,7 @@ public class TileStupidCoreMachine extends TileMachineBase {
         setFinishedProgress(24000);
         itemStackHadler.setSlotConfig(0,true,false);
         fluidHandler = null;
+        energyUsedPerTick = 1000;
         this.displayName = ModBlocks.STUPID_CORE_MACHINE.getLocalizedName();
     }
     @Override
@@ -44,11 +45,6 @@ public class TileStupidCoreMachine extends TileMachineBase {
     @Override
     public void reduceInput() {
 
-    }
-
-    @Override
-    public void reduceEnergy() {
-        energyHandler.reduceEnergy(1000,false);
     }
 
 
