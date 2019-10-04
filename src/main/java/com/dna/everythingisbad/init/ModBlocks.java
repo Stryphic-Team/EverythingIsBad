@@ -46,6 +46,7 @@ public class ModBlocks
     public static final Block MACHINE_FRAME = new BlockMachineFrame("machine_frame");
     public static final Block URINE_BATTERY = new BlockUrineBattery("urine_battery");
     public static final Block COAL_GENERATOR = new BlockCoalGenerator("coal_generator");
+    public static final Block QUARRY = new BlockQuarry("quarry");
 
     // Woke blocks
     public static final Block POOP_STAIRS = new BlockPoopStairs("poop_stairs");
