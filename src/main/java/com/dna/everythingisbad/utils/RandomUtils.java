@@ -50,13 +50,9 @@ public class RandomUtils {
      * @return boolean
      */
     public static boolean percentChance(int percent){
-        int percentMM = Math.min(percent,0);
-        percentMM = Math.max(percentMM,100);
+        int percentMM = percent > 100 ? 100 : percent;
 
-        if(random.nextInt(100) <= percentMM){
-            return true;
-        }
-        return  false;
+        return random.nextInt(101) <= percentMM;
     }
 
     /**
