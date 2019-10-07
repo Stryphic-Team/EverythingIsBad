@@ -1,14 +1,17 @@
 package com.dna.everythingisbad.tile.processing;
 
+import com.dna.everythingisbad.block.machines.BlockDeviceBase;
 import com.dna.everythingisbad.tile.TileMachineBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 public class TileQuarry extends TileMachineBase {
     BlockPos relativePosition = new BlockPos(0,0,0);
     Block currentBlock;
+    BlockPos currentPos;
     Block[] nonMinableBlocks = new Block[]{
         Blocks.AIR,
         Blocks.BEDROCK
@@ -17,7 +20,7 @@ public class TileQuarry extends TileMachineBase {
 
     public TileQuarry() {
         super("quarry");
-        setFinishedProgress(10);
+        setFinishedProgress(1);
     }
 
 
@@ -28,33 +31,46 @@ public class TileQuarry extends TileMachineBase {
 
     @Override
     public boolean hasNecessaryItems() {
-        return energyHandler.getEnergyStored() > 100;
+        return energyHandler.getEnergyStored() > energyUsedPerTick;
     }
 
 
     @Override
     public void insertOutput() {
         if(drillWorking) {
-
-            if(pos.getY() - relativePosition.getY() >= 1){
-                relativePosition = relativePosition.add(0,1,0);
-            }else{
-                relativePosition = relativePosition.subtract(new BlockPos(0,relativePosition.getY(),0));
-                relativePosition = relativePosition.add(1,0,0);
-            }
-            if(relativePosition.getX() >= 64){
-                relativePosition = relativePosition.subtract(new BlockPos(relativePosition.getX(),0,0));
-                relativePosition = relativePosition.add(0,0,1);
-            }
-            if(relativePosition.getZ() >= 64){
-                drillWorking = false;
-            }
-            BlockPos currentPos = pos.subtract(relativePosition).down().subtract(new BlockPos(1,0,1));;
+            currentPos = pos.subtract(relativePosition).down().subtract(new BlockPos(1,0,1));;
             IBlockState currentBlock = world.getBlockState(currentPos);
+            while(true) {
+                currentPos = pos.subtract(relativePosition).down().subtract(new BlockPos(1, 0, 1));
+                currentBlock = world.getBlockState(currentPos);
+                EnumFacing facing = world.getBlockState(pos).getValue(BlockDeviceBase.FACING);
+                //StructureBoundingBox boundingBox = new StructureBoundingBox(0,0,0,64,64,64);
+
+                if (pos.getY() - relativePosition.getY() >= 1) {
+                    relativePosition = relativePosition.add(0, 1, 0);
+                } else {
+                    relativePosition = relativePosition.subtract(new BlockPos(0, relativePosition.getY(), 0));
+                    relativePosition = relativePosition.add(1, 0, 0);
+                }
+                if (relativePosition.getX() >= 64) {
+                    relativePosition = relativePosition.subtract(new BlockPos(relativePosition.getX(), 0, 0));
+                    relativePosition = relativePosition.add(0, 0, 1);
+                }
+                if (relativePosition.getZ() >= 64) {
+                    drillWorking = false;
+                }
+
+
+                if(currentBlock.getBlock() != Blocks.AIR){
+                    break;
+                }
+            }
+
             if(canBeMined(currentBlock.getBlock())) {
                 currentBlock.getBlock().dropBlockAsItem(world, pos.up(), currentBlock, 0);
                 world.setBlockToAir(currentPos);
-                energyHandler.reduceEnergy((int)currentBlock.getBlockHardness(world,currentPos),false);
+                this.energyUsedPerTick = (int)currentBlock.getBlockHardness(world,currentPos);
+                //energyHandler.reduceEnergy(,false);
             }
 
         }
