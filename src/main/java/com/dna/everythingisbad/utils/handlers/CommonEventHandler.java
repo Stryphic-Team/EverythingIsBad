@@ -2,10 +2,14 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -42,5 +46,10 @@ public class CommonEventHandler {
         if(event.player instanceof EntityPlayerMP && event.phase == TickEvent.Phase.END) {
             PlayerHandler.playerTick((EntityPlayerMP) event.player);
         }
+    }
+
+    @SubscribeEvent (priority = EventPriority.LOW)
+    public void blockBreaken(BlockEvent.BreakEvent event){
+        PlayerHandler.playerBrokeBlock(event);
     }
 }
