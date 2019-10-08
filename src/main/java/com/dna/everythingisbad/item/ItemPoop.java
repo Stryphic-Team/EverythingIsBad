@@ -17,8 +17,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
-public class ItemPoop extends ItemDye implements IHasModel {
+public class ItemPoop extends ItemDye implements IHasModel,IOreDictItem {
     public ItemPoop(String name)
     {
 
@@ -123,4 +124,9 @@ public class ItemPoop extends ItemDye implements IHasModel {
     }
 
 
+    @Override
+    public void initOreDict() {
+        OreDictionary.registerOre("fertilizer",new ItemStack(this,1,3));
+        OreDictionary.registerOre("dyeBrown",new ItemStack(this,1,3));
+    }
 }

@@ -8,9 +8,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
@@ -19,7 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.Random;
 
 public class BlockLeavesHappy extends BlockLeavesBase {
     public BlockLeavesHappy(String name)
@@ -80,14 +79,16 @@ public class BlockLeavesHappy extends BlockLeavesBase {
         return 2;
     }
 
+
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         if (RandomUtils.percentChance(50)){
-            return Item.getItemFromBlock(ModBlocks.SAPLING_HAPPY_BLOCK);
+
+            drops.add(new ItemStack(ModBlocks.SAPLING_HAPPY_BLOCK,1));
         }else{
-            return ModItems.DEVILS_CABBAGE_ITEM;
+            drops.add(new ItemStack(ModItems.DEVILS_CABBAGE_ITEM,1));
         }
+
     }
 
     @Nonnull
