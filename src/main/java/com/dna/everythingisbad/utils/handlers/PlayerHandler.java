@@ -31,7 +31,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -253,8 +252,8 @@ public class PlayerHandler {
     }
 
     public static void jesusBloodDropHandler(EntityLivingBase entity){
-        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH){
-            if(entity.getHealth() == 0){
+        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH && !entity.world.isRemote){
+            if(entity.getHealth() < 0.1f){
                 World world = entity.getEntityWorld();
                 world.setBlockState(entity.getPosition(),ModFluids.BLOOD.getBlockFluidBase().getDefaultState());
             }
