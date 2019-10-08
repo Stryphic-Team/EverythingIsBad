@@ -9,6 +9,7 @@ import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
 import com.dna.everythingisbad.utils.ModTeleporter;
+import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.utils.SpawnUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -21,6 +22,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Biomes;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,7 +33,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -39,6 +40,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.Random;
@@ -253,8 +256,8 @@ public class PlayerHandler {
     }
 
     public static void jesusBloodDropHandler(EntityLivingBase entity){
-        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH){
-            if(entity.getHealth() == 0){
+        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH && !entity.world.isRemote){
+            if(entity.getHealth() < 0.1f){
                 World world = entity.getEntityWorld();
                 world.setBlockState(entity.getPosition(),ModFluids.BLOOD.getBlockFluidBase().getDefaultState());
             }
@@ -439,6 +442,16 @@ public class PlayerHandler {
                 for (ItemStack lutestack : loottable.generateLootForPools(rand,lootcontext$builder.build())){
                     player.dropItem(lutestack,false);
                 }
+            }
+        }
+    }
+
+    public static void playerBrokeBlock(BlockEvent.BreakEvent event) {
+        if (!event.getPlayer().getEntityWorld().isRemote && !event.getPlayer().isCreative())
+        if (event.getState().getBlock() == Blocks.TALLGRASS){
+            // 9% drop chance from tall grass
+            if (RandomUtils.percentChance(9)){
+                event.getPlayer().dropItem(ModItems.TOBACCO_SEEDS_ITEM,1);
             }
         }
     }
