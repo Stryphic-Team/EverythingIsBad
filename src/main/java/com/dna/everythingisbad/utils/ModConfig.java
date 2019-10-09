@@ -23,7 +23,7 @@ public class ModConfig {
     @Config.Name("Blindness Chance")
     public static int BLINDNESS_CHANCE = 100;
     @Config.Name("Blood Spawns on Death")
-    public static boolean BLOOD_SPAWNS_ON_DEATH = true;
+    public static boolean BLOOD_SPAWNS_ON_DEATH = false;
     @Config.Name("Mob Speed Multiplier")
     public static int MOB_SPEED_MULTIPLIER = 2;
     @Config.Name("Common Cold Chance")
