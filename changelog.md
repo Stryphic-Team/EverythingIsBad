@@ -86,3 +86,23 @@
     * Heaven is no longer laggy
     * Fixed block inheritance so block properties are more consistent in later releases 
     * Fixed issue with souls being giving new souls to players when they die and when the server restarts
+    
+### 0.1.1-alpha `10/8/19`
+ 
+  * Fixes
+    * Blood spawning on death is now false by default
+    * Ghost blood fluid when client config and server config aren't synced is fixed
+    * Happy leaves actually drop devils cabbage instead of always dropping saplings
+    * Added poop to the ore dictionary for dyeBrown and fertilizer
+    * Machines speed multiplier is now working as it should
+    * Jowali religion can now be obtained
+    * Diaric Generators don't accept any forge fluid with a bucket now
+    * Babies don't age in doubles 
+    * Commands now work without being opped
+    * Machines don't reset their progress if they don't have enough energy
+    * Happy trees don't spawn on super flat anymore
+    * Fixed the stupid core not dropping after highness effect ends
+  * Added
+    * Added Adrenaline potion effect
+    * Added adrenaline potion
+    * Machine guis now have actual tooltips
