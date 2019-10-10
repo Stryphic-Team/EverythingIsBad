@@ -2,7 +2,7 @@ package com.dna.everythingisbad.block.machines;
 
 import net.minecraft.util.ITickable;
 
-public class BlockMachineBase extends BlockDeviceBase implements ITickable {
+public abstract class BlockMachineBase extends BlockDeviceBase implements ITickable {
     public BlockMachineBase(String name){
         super(name);
     }
