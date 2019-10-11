@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.gui.container;
 
+import cofh.core.util.helpers.InventoryHelper;
 import com.dna.everythingisbad.gui.GuiSync;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,20 +60,6 @@ public abstract class DeviceContainerBase extends Container {
             this.tileentity.getFluidHandler().getFluidTank().setFluid(new FluidStack(fluid, GuiSync.FLUID_STORED));
         }
         this.tileentity.setProgress(GuiSync.PROGRESS);
-//        switch (id){
-//            case 0:
-//                tileentity.setField(EnumTileDataType.PROGRESS,data);
-//                break;
-//            case 1:
-//                tileentity.setField(EnumTileDataType.ENERGY_STORAGE,data);
-//                break;
-//            case 2:
-//                tileentity.setField(EnumTileDataType.FLUID_STORED,data);
-//                break;
-//            case 3:
-//                tileentity.setField(EnumTileDataType.FLUID_TYPE,data);
-//                break;
-//        }
 
 
 
@@ -139,6 +126,11 @@ public abstract class DeviceContainerBase extends Container {
             slot.onTake(player, stackInSlot);
         }
         return stack;
+    }
+    @Override
+    protected boolean mergeItemStack(ItemStack stack, int slotMin, int slotMax, boolean ascending) {
+
+        return InventoryHelper.mergeItemStack(this.inventorySlots, stack, slotMin, slotMax, ascending);
     }
 
 }

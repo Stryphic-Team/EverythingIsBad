@@ -176,7 +176,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         }
     }
     public MessageSyncMachineGui getGuiPacket(){
-        int energyStored = energyHandler.getEnergyStored();
+        int energyStored = energyHandler != null ? energyHandler.getEnergyStored() : 0;
         int fluidStored = fluidHandler != null ? fluidHandler.getFluidTank().getFluidAmount() : 0;
         int progress = getProgress();
         FluidStack fluid = fluidHandler != null ? fluidHandler.getFluidTank().getFluid() : null;
@@ -234,5 +234,11 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
     public float getTemperature(){
         return this.temperature;
+    }
+    public void stepProgress(){
+        progress++;
+    }
+    public boolean inProgress(){
+        return progress > 0 && progress <= finishedProgress;
     }
 }
