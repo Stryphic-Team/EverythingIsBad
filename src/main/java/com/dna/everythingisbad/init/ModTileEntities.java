@@ -5,6 +5,7 @@ import com.dna.everythingisbad.tile.generators.TileCoalGenerator;
 import com.dna.everythingisbad.tile.generators.TileDiaricGenerator;
 import com.dna.everythingisbad.tile.generators.TileFluxTest;
 import com.dna.everythingisbad.tile.generators.TileStupidCoreReactor;
+import com.dna.everythingisbad.tile.misc.TileSlotMachine;
 import com.dna.everythingisbad.tile.processing.TileDryerMachine;
 import com.dna.everythingisbad.tile.processing.TileLiquifierMachine;
 import com.dna.everythingisbad.tile.processing.TileQuarry;
@@ -25,6 +26,7 @@ public class ModTileEntities {
     public static final TileStupidCoreReactor TILE_STUPID_CORE_REACTOR = new TileStupidCoreReactor();
     public static final TileCoalGenerator TILE_COAL_GENERATOR = new TileCoalGenerator();
     public static final TileQuarry TILE_QUARRY = new TileQuarry();
+    public static final TileSlotMachine TILE_SLOT_MACHINE = new TileSlotMachine();
 
     public static void register(){
         for(TileDeviceBase device: TILE_ENTITIES){

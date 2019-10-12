@@ -5,6 +5,7 @@ import com.dna.everythingisbad.gui.elements.ElementBase;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -36,20 +37,27 @@ public abstract class DeviceContainerGuiBase extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
+
         this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 4, this.ySize - 96 + 2, 4210752);
         this.fontRenderer.drawString(tileEntity.getDisplayName().getUnformattedText(),4,4,4210752);
         for(ElementBase element:guiElements){
             element.drawForeground();
         }
         this.renderHoveredToolTip(mouseX-guiLeft, mouseY-guiTop);
+
+
         //drawHoveringText("Fuck",200,200);
     }
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+
         bindTexture(background);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         for(ElementBase element:guiElements){
             element.drawElement();
+        }
+        for(GuiButton button: buttonList){
+            button.drawButton(mc,mouseX+guiLeft,mouseY+guiTop,0);
         }
     }
 
