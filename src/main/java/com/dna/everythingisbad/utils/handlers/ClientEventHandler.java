@@ -32,19 +32,19 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public void leaveServer(PlayerLoggedOutEvent event){
-        PlayerHandler.playerLeft(event.player);
+        //PlayerHandler.playerLeft(event.player);
     }
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event){
-        PlayerHandler.playerRespawn(event.player);
+        //PlayerHandler.playerRespawn(event.player);
     }
 
 
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void smeltItem(PlayerEvent.ItemSmeltedEvent event){
-        PlayerHandler.playerSmelted(event, event.player);
+        //PlayerHandler.playerSmelted(event, event.player);
     }
 
     @SubscribeEvent
