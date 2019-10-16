@@ -63,6 +63,7 @@ public class PlayerHandler {
             //soulHandler(player);
 
     }
+    @Deprecated
     public static void playerJoined(EntityPlayer entityPlayer) {
         //entity player needs to be casted to its respective type when writing nbt data
 

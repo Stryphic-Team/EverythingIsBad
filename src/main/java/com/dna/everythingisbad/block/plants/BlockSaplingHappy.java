@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.block.plants;
 
+import com.dna.everythingisbad.block.IOreDictBlock;
 import com.dna.everythingisbad.world.trees.WorldGenTreeHappy;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
@@ -9,10 +10,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockSaplingHappy extends BlockSaplingBase {
+public class BlockSaplingHappy extends BlockSaplingBase implements IOreDictBlock {
     public BlockSaplingHappy(String name){
         super(name);
 
@@ -71,5 +73,10 @@ public class BlockSaplingHappy extends BlockSaplingBase {
                 worldIn.setBlockState(pos, state, 4);
             }
         }
+    }
+
+    @Override
+    public void initOreDict() {
+        OreDictionary.registerOre("treeSapling", this);
     }
 }
