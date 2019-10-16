@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "everythingbad:tobacco_leaf"
+    }
+  },
+  "result": {
+    "item": "everythingbad:cigar",
+    "count": 2
+  }
+}
