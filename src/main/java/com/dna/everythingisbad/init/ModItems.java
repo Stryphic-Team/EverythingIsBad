@@ -64,6 +64,8 @@ public class ModItems {
     public static final ItemLaxative LAXATIVE_ITEM = new ItemLaxative("laxative");
     public static final ItemCookedBaby COOKED_BABY_ITEM = new ItemCookedBaby("cooked_baby");
     public static final ItemAngelDust ANGEL_DUST = new ItemAngelDust("angel_dust");
+    public static final ItemCigarette CIGARETTE_ITEM = new ItemCigarette("cigarette");
+    public static final ItemCigar CIGAR_ITEM = new ItemCigar("cigar");
     /**
      * Records
      */

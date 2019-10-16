@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xtx"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:paper"
+    },
+    "t": {
+      "item": "everythingbad:tobacco_leaf"
+    }
+  },
+  "result": {
+    "item": "everythingbad:cigarette",
+    "count": 2
+  }
+}
