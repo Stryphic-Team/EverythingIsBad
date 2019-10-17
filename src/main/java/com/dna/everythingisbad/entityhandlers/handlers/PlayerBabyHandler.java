@@ -19,6 +19,9 @@ public class PlayerBabyHandler extends PlayerHandlerBase {
         if (player instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)player;
             InventoryPlayer deeta = mp.inventory;
+            // Every second (20 ticks), the player's inventory is iterated through
+            // and each Baby item's age is incremented. If the age is enough then the
+            // baby becomes a villager.
             if(mp.ticksExisted % 20 == 19) {
                 for (ItemStack stack : deeta.mainInventory) {
                     if (stack.getItem() == ModItems.BABY_ITEM) {
@@ -32,9 +35,12 @@ public class PlayerBabyHandler extends PlayerHandlerBase {
                             if (age >= ModConfig.BABY_AGE_UP_TIME) {
                                 String name = stack.getDisplayName();
                                 stack.shrink(1);
-                                EntityVillager entityVillager = new EntityVillager(mp.getServerWorld());
+                                // random villager profession id assigned (new to 0.2.0; before this you could only get farmer types)
+                                EntityVillager entityVillager = new EntityVillager(mp.getServerWorld(),random.nextInt(6));
+                                // negative values indicate a child, with 1 day (24000 ticks) being the usual value
                                 entityVillager.setGrowingAge(-24000);
                                 entityVillager.setPosition(mp.posX, mp.posY, mp.posZ);
+                                // if you name the Baby item in an anvil, it carries over onto the villager entity
                                 if (!name.equals("Baby")) {
                                     entityVillager.setCustomNameTag(name);
                                 }
@@ -51,6 +57,7 @@ public class PlayerBabyHandler extends PlayerHandlerBase {
         super.playerSmeltItem(player, smelting);
         if (player instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)player;
+            // If you cook a baby then 1-4 police officers spawn around you in an annulus between 5 and 10 blocks away
             if (smelting.getItem() == ModItems.COOKED_BABY_ITEM){
                 int randomamount = random.nextInt(3)+1;
                 for (int i=0;i<randomamount;i++){

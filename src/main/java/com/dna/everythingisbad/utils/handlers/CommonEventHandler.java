@@ -31,6 +31,7 @@ public class CommonEventHandler {
     public static PlayerHandlerBase PLAYER_BABY_HANDLER = new PlayerBabyHandler();
     public static PlayerHandlerBase PLAYER_QUESTION_MARK_BLOCK_HANDLER = new PlayerQuestionMarkBlockHandler();
     public static PlayerHandlerBase PLAYER_GRASS_BREAK_HANDLER = new PlayerGrassBreakHandler();
+    public static PlayerHandlerBase PLAYER_HEART_RATE_HANDLER = new PlayerHeartRateHandler();
     //Living Handlers
     public static LivingHandlerBase LIVING_JESUS_HEAL_HANDLER = new LivingJesusHealHandler();
     public static LivingHandlerBase LIVING_VILLAGER_BABY_HANDLER = new LivingVillagerBabyHandler();
