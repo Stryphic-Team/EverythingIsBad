@@ -44,9 +44,10 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.Random;
-
+@Deprecated
 public class PlayerHandler {
     private static Random random = new Random();
+    @Deprecated
     public static void playerDied(EntityPlayer player){
         if(ModConfig.BLOOD_SPAWNS_ON_DEATH) {
             player.getEntityWorld().setBlockState(
@@ -56,6 +57,7 @@ public class PlayerHandler {
         }
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
+    @Deprecated
     public static void playerRespawn(EntityPlayer player){
 
             blindnessHandler(player,true);
@@ -90,6 +92,7 @@ public class PlayerHandler {
         }
 
     }
+    @Deprecated
     public static void commonColdInitializer(EntityPlayer player, boolean rollDice){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
@@ -101,6 +104,7 @@ public class PlayerHandler {
             playerProperties.saveNBTData(player.getEntityData());
         }
     }
+    @Deprecated
     public static void blindnessHandler(EntityPlayer player,boolean rollDice) {
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
@@ -120,7 +124,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void soulHandler(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
@@ -162,7 +166,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void religionHandler(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
@@ -186,7 +190,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void playerPooped(EntityPlayer entityPlayer, int amount) {
 
 
@@ -199,6 +203,7 @@ public class PlayerHandler {
         }
 
     }
+    @Deprecated
     public static void playerTick(EntityPlayer player){
         if(!player.world.isRemote) {
             questionMarkBlockHandler(player);
@@ -210,6 +215,7 @@ public class PlayerHandler {
         }
 
     }
+    @Deprecated
     public static void livingTick(EntityLivingBase entityLivingBase){
         poopHandler(entityLivingBase);
         potionEffectHandler(entityLivingBase);
@@ -217,11 +223,11 @@ public class PlayerHandler {
         fluidHandler(entityLivingBase);
         villagerBabyHandler(entityLivingBase);
     }
-
+    @Deprecated
     public static void livingDamage(LivingDamageEvent event, EntityLivingBase elb){
         healBlindnessHandler(event, elb);
     }
-
+    @Deprecated
     private static void healBlindnessHandler(LivingDamageEvent event, EntityLivingBase elb) {
         if (elb instanceof EntityPlayerMP && !elb.getEntityWorld().isRemote){
 
@@ -237,7 +243,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     private static void villagerBabyHandler(EntityLivingBase entityLivingBase) {
         if (entityLivingBase instanceof EntityVillager){
             EntityVillager villager = (EntityVillager)entityLivingBase;
@@ -254,7 +260,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void jesusBloodDropHandler(EntityLivingBase entity){
         if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH && !entity.world.isRemote){
             if(entity.getHealth() < 0.1f){
@@ -264,6 +270,7 @@ public class PlayerHandler {
         }
     }
     //Detects which effect is active and routes it to the PotionEffectHandler
+    @Deprecated
     public static void potionEffectHandler(EntityLivingBase entity){
         boolean highness_active = entity.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion());
         boolean common_cold_active = entity.isPotionActive(ModPotions.POTION_COMMON_COLD.getPotion());
@@ -292,7 +299,7 @@ public class PlayerHandler {
             PotionEffectHandler.livingEntityAdrenalineActive(entity,adrenaline_duration);
         }
     }
-
+    @Deprecated
     public static void playerSmelted(PlayerEvent.ItemSmeltedEvent event, EntityPlayer player){
         if (player instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)player;
@@ -304,7 +311,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void babyHandler(EntityPlayer entity){
         if (entity instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)entity;
@@ -336,7 +343,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void poopHandler(EntityLivingBase entity){
         if(entity instanceof EntityPlayer && !entity.world.isRemote) {
             EntityPlayer entityPlayerMP = (EntityPlayer) entity;
@@ -364,15 +371,17 @@ public class PlayerHandler {
             }
         }
     }
+    @Deprecated
     public static void playerDeathHandler(EntityPlayer player){
         if (player.isDead) {
             PlayerHandler.playerDied(player);
         }
     }
-
+    @Deprecated
     public static void playerLeft(EntityPlayer player) {
 
     }
+    @Deprecated
     public static void fluidHandler(EntityLivingBase elb){
         if(elb instanceof EntityPlayerMP || elb instanceof EntityCreature){
             BlockPos playerPos = elb.getPosition();
@@ -383,6 +392,7 @@ public class PlayerHandler {
         }
 
     }
+    @Deprecated
     public static void commonColdHandler(EntityPlayer player){
 
 
@@ -400,6 +410,7 @@ public class PlayerHandler {
         }
 
     }
+    @Deprecated
     public static void heavenHandler(EntityPlayer player){
         if (player instanceof EntityPlayerMP){
             EntityPlayerMP mp = (EntityPlayerMP)player;
@@ -418,6 +429,7 @@ public class PlayerHandler {
             }
         }
     }
+    @Deprecated
     public static void questionMarkBlockHandler(EntityPlayer player){
         if (player instanceof EntityPlayerMP){
             Random rand = new Random();
@@ -445,7 +457,7 @@ public class PlayerHandler {
             }
         }
     }
-
+    @Deprecated
     public static void playerBrokeBlock(BlockEvent.BreakEvent event) {
         if (!event.getPlayer().getEntityWorld().isRemote && !event.getPlayer().isCreative())
         if (event.getState().getBlock() == Blocks.TALLGRASS){

@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "everythingbad:items/heart_rate_monitor0"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lit": 1
+      },
+      "model": "everythingbad:item/heart_rate_monitor1"
+    }
+  ]
+}

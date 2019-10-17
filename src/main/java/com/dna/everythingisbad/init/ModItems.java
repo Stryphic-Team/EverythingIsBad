@@ -40,6 +40,7 @@ public class ModItems {
     public static final ItemUrineCrystal URINE_CRYSTAL_ITEM = new ItemUrineCrystal("urine_crystal");
     public static final ItemBaby BABY_ITEM = new ItemBaby("baby");
     public static final ItemUltraStupidCore ULTRA_STUPID_CORE = new ItemUltraStupidCore("ultra_stupid_core");
+    public static final ItemHeartRateMonitor HEART_RATE_MONITOR_ITEM = new ItemHeartRateMonitor("heart_rate_monitor");
 
     /**
      * Machine parts
@@ -64,8 +65,10 @@ public class ModItems {
     public static final ItemLaxative LAXATIVE_ITEM = new ItemLaxative("laxative");
     public static final ItemCookedBaby COOKED_BABY_ITEM = new ItemCookedBaby("cooked_baby");
     public static final ItemAngelDust ANGEL_DUST = new ItemAngelDust("angel_dust");
+    public static final ItemCigarette CIGARETTE_ITEM = new ItemCigarette("cigarette");
+    public static final ItemCigar CIGAR_ITEM = new ItemCigar("cigar");
     /**
-     * Records
+     * Music
      */
     public static final ItemRecordGasolineBabies RECORD_GASOLINE_BABIES_ITEM = new ItemRecordGasolineBabies("record_gasoline_babies");
     public static final ItemRecordGodsPee RECORD_GODS_PEE = new ItemRecordGodsPee("record_gods_pee");

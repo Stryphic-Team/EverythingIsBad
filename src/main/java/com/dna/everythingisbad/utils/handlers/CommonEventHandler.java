@@ -2,13 +2,14 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.entityhandlers.LivingHandlerBase;
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
-import com.dna.everythingisbad.entityhandlers.handlers.PlayerCommonColdHandler;
-import com.dna.everythingisbad.entityhandlers.handlers.PlayerReligionHandler;
-import com.dna.everythingisbad.entityhandlers.handlers.PlayerSoulHandler;
+import com.dna.everythingisbad.entityhandlers.handlers.*;
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -22,23 +23,42 @@ public class CommonEventHandler {
     public static ArrayList<PlayerHandlerBase> PLAYER_HANDLERS = new ArrayList<PlayerHandlerBase>();
     public static ArrayList<LivingHandlerBase> LIVING_HANDLERS = new ArrayList<LivingHandlerBase>();
 
+    //Player Handlers
     public static PlayerHandlerBase PLAYER_RELIGION_HANDLER = new PlayerReligionHandler();
     public static PlayerHandlerBase PLAYER_COMMON_COLD_HANDLER = new PlayerCommonColdHandler();
     public static PlayerHandlerBase PLAYER_SOUL_HANDLER = new PlayerSoulHandler();
+    public static PlayerHandlerBase PLAYER_BLINDNESS_HANDLER = new PlayerBlindnessHandler();
+    public static PlayerHandlerBase PLAYER_BABY_HANDLER = new PlayerBabyHandler();
+    public static PlayerHandlerBase PLAYER_QUESTION_MARK_BLOCK_HANDLER = new PlayerQuestionMarkBlockHandler();
+    public static PlayerHandlerBase PLAYER_GRASS_BREAK_HANDLER = new PlayerGrassBreakHandler();
+    public static PlayerHandlerBase PLAYER_HEART_RATE_HANDLER = new PlayerHeartRateHandler();
+    //Living Handlers
+    public static LivingHandlerBase LIVING_JESUS_HEAL_HANDLER = new LivingJesusHealHandler();
+    public static LivingHandlerBase LIVING_VILLAGER_BABY_HANDLER = new LivingVillagerBabyHandler();
+    public static LivingHandlerBase LIVING_FLUID_HANDLER = new LivingFluidHandler();
+    public static LivingHandlerBase LIVING_HEAVEN_HANDLER = new LivingHeavenHandler();
+    public static LivingHandlerBase LIVING_POTION_EFFECT_HANDLER = new LivingPotionEffectHandler();
+    public static LivingHandlerBase LIVING_POOP_HANDLER = new LivingPoopHandler();
+
 
 
     @SubscribeEvent
     public void livingDamage(LivingDamageEvent event){
-        PlayerHandler.livingDamage(event,event.getEntityLiving());
+        //PlayerHandler.livingDamage(event,event.getEntityLiving());
+        if(!event.getEntity().getEntityWorld().isRemote) {
+            for (LivingHandlerBase livingHandler : LIVING_HANDLERS) {
+                livingHandler.livingDamage(event.getEntityLiving(), event.getSource(), event.getAmount());
+            }
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void livingTimer(LivingEvent.LivingUpdateEvent event){
-
-        PlayerHandler.livingTick(event.getEntityLiving());
-
-        for (LivingHandlerBase livingHandler : LIVING_HANDLERS) {
-            livingHandler.livingTick(event.getEntityLiving());
+        //PlayerHandler.livingTick(event.getEntityLiving());
+        if(!event.getEntity().getEntityWorld().isRemote) {
+            for (LivingHandlerBase livingHandler : LIVING_HANDLERS) {
+                livingHandler.livingTick(event.getEntityLiving());
+            }
         }
 
 
@@ -56,37 +76,50 @@ public class CommonEventHandler {
     }
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void playerTimer(TickEvent.PlayerTickEvent event){
-        if(event.player instanceof EntityPlayerMP && event.phase == TickEvent.Phase.END) {
-            PlayerHandler.playerTick((EntityPlayerMP) event.player);
-        }
-        if(event.phase == TickEvent.Phase.END) {
-            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-                playerHandler.playerTick(event.player);
+        // server side
+        if(!event.player.getEntityWorld().isRemote) {
+            if (event.phase == TickEvent.Phase.END) {
+                for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                    playerHandler.playerTick(event.player);
+                }
+            }
+        // client side (ONLY USED BY THE HEART RATE MONITOR)
+        }else{
+            if (event.phase == TickEvent.Phase.END) {
+                for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                    playerHandler.clientPlayerTick(event.player);
+                }
             }
         }
     }
 
     @SubscribeEvent (priority = EventPriority.LOW)
-    public void blockBreaken(BlockEvent.BreakEvent event){
-        PlayerHandler.playerBrokeBlock(event);
-        for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-            playerHandler.playerBreakBlock(event.getPlayer(),event.getState());
+    public void blockBroken(BlockEvent.BreakEvent event){
+        //PlayerHandler.playerBrokeBlock(event);
+        if(!event.getPlayer().getEntityWorld().isRemote) {
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                playerHandler.playerBreakBlock(event.getPlayer(), event.getState());
+            }
         }
     }
 
     @SubscribeEvent
     public void leaveServer(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent event){
-        PlayerHandler.playerLeft(event.player);
-        for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-            playerHandler.playerLeave(event.player);
+        //PlayerHandler.playerLeft(event.player);
+        if(!event.player.getEntityWorld().isRemote) {
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                playerHandler.playerLeave(event.player);
+            }
         }
     }
 
     @SubscribeEvent
     public void respawn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent event){
-        PlayerHandler.playerRespawn(event.player);
-        for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-            playerHandler.playerRespawn(event.player);
+        //PlayerHandler.playerRespawn(event.player);
+        if(!event.player.getEntityWorld().isRemote) {
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                playerHandler.playerRespawn(event.player);
+            }
         }
     }
 
@@ -94,22 +127,24 @@ public class CommonEventHandler {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void smeltItem(net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent event){
-        PlayerHandler.playerSmelted(event, event.player);
-        for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-            playerHandler.playerSmeltItem(event.player,event.smelting);
+        //PlayerHandler.playerSmelted(event, event.player);
+        if(!event.player.getEntityWorld().isRemote) {
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                playerHandler.playerSmeltItem(event.player, event.smelting);
+            }
         }
     }
     @SubscribeEvent
     public void joinedServer(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event){
         //PlayerHandler.playerJoined(event.player);
+        if(!event.player.getEntityWorld().isRemote) {
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                playerHandler.playerJoined(event.player);
+            }
 
-        for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-            playerHandler.playerJoined(event.player);
-        }
-        if(!event.player.world.isRemote){
-            PlayerProperties playerProperties = event.player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
-            if(playerProperties != null){
-                if(!playerProperties.hasBeenInitialized()){
+            PlayerProperties playerProperties = event.player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
+            if (playerProperties != null) {
+                if (!playerProperties.hasBeenInitialized()) {
 
                     for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
                         playerHandler.playerPreInitialization(event.player);
@@ -123,7 +158,21 @@ public class CommonEventHandler {
                 }
             }
         }
-
+    }
+    @SubscribeEvent
+    public void livingDied(LivingDeathEvent event){
+        if(!event.getEntity().getEntityWorld().isRemote) {
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                if (event.getEntity() instanceof EntityPlayer) {
+                    playerHandler.playerDied((EntityPlayer) event.getEntity());
+                }
+            }
+            for (LivingHandlerBase livingHandler : LIVING_HANDLERS) {
+                if (event.getEntity() instanceof EntityCreature) {
+                    livingHandler.livingDied((EntityLivingBase) event.getEntity());
+                }
+            }
+        }
 
     }
 }

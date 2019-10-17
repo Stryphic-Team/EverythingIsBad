@@ -30,5 +30,8 @@ public abstract class PlayerHandlerBase {
     public void playerRespawn(EntityPlayer player){}
     //Called when a player smelts a item in a furnace
     public void playerSmeltItem(EntityPlayer player, ItemStack smelting){}
-
+    //Called when the player dies
+    public void playerDied(EntityPlayer player){}
+    // Called once per tick on the EntityPlayerSP
+    public void clientPlayerTick(EntityPlayer player){};
 }

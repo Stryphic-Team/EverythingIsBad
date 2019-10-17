@@ -19,7 +19,7 @@ public class ModConfig {
     @Config.Name("Baby Age-Up Time (sec)")
     public static int BABY_AGE_UP_TIME = 1200;
     @Config.Name("Baby Drop Interval")
-    public static int BABY_DROP_INTERVAL = 40000;
+    public static int BABY_DROP_INTERVAL = 60000;
     @Config.Name("Blindness Chance")
     public static int BLINDNESS_CHANCE = 100;
     @Config.Name("Blood Spawns on Death")

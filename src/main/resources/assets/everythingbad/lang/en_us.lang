@@ -51,12 +51,14 @@ item.everythingbad:laxative.name=Laxative
 item.everythingbad:cooked_baby.name=Cooked Baby
 item.everythingbad:baby.name=Baby
 item.everythingbad:angel_dust.name=Angel Dust
+item.everythingbad:cigarette.name=Cigarette
+item.everythingbad:cigar.name=Cigar
+item.everythingbad:heart_rate_monitor.name=Heart Rate Monitor
 
 item.everythingbad:iron_rod.name=Iron Rod
 item.everythingbad:solenoid.name=Solenoid
 item.everythingbad:copper_ingot.name=Copper Ingot
 tile.everythingbad:copper_ore.name=Copper Ore
-
 
 item.everythingbad:hair_dryer_gun.name=Hair Dryer Gun
 item.everythingbad:stupid_tnt_gun.name=Stupid™ TNT Gun
