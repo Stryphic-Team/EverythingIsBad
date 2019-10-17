@@ -76,10 +76,18 @@ public class CommonEventHandler {
     }
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void playerTimer(TickEvent.PlayerTickEvent event){
+        // server side
         if(!event.player.getEntityWorld().isRemote) {
             if (event.phase == TickEvent.Phase.END) {
                 for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
                     playerHandler.playerTick(event.player);
+                }
+            }
+        // client side (ONLY USED BY THE HEART RATE MONITOR)
+        }else{
+            if (event.phase == TickEvent.Phase.END) {
+                for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                    playerHandler.clientPlayerTick(event.player);
                 }
             }
         }

@@ -2,7 +2,10 @@ package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.network.PacketHandler;
+import com.dna.everythingisbad.network.messagestypes.MessageHeartRateSync;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +19,11 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
         // If player's heart rate is nonexistent then it assigns it to normal 70
         if (entitydata.getInteger("heart_rate") == 0){
             entitydata.setInteger("heart_rate",70);
+            player.writeEntityToNBT(entitydata);
+        }
+        // Ditto with the target heart rate
+        if (entitydata.getInteger("target_heart_rate") == 0){
+            entitydata.setInteger("target_heart_rate",70);
             player.writeEntityToNBT(entitydata);
         }
     }
@@ -61,5 +69,14 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
                 stack.setTagCompound(itemtagz);
             }
         }
+
+        int heartRateAndShit = player.getEntityData().getInteger("heart_rate");
+        EntityPlayerMP mp = (EntityPlayerMP)player;
+        PacketHandler.INSTANCE.sendTo(new MessageHeartRateSync(heartRateAndShit), mp);
+    }
+
+    @Override
+    public void clientPlayerTick(EntityPlayer player) {
+        super.clientPlayerTick(player);
     }
 }
