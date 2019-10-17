@@ -17,13 +17,13 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
         super.playerJoined(player);
         NBTTagCompound entitydata = player.getEntityData();
         // If player's heart rate is nonexistent then it assigns it to normal 70
-        if (entitydata.getInteger("heart_rate") == 0){
-            entitydata.setInteger("heart_rate",70);
+        if (entitydata.getFloat("heart_rate") == 0f){
+            entitydata.setFloat("heart_rate",70f);
             player.writeEntityToNBT(entitydata);
         }
         // Ditto with the target heart rate
-        if (entitydata.getInteger("target_heart_rate") == 0){
-            entitydata.setInteger("target_heart_rate",70);
+        if (entitydata.getFloat("target_heart_rate") == 0f){
+            entitydata.setFloat("target_heart_rate",140f);
             player.writeEntityToNBT(entitydata);
         }
     }
@@ -33,7 +33,7 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
         super.playerRespawn(player);
         // Resets the player's heart rate upon respawn back to 70
         NBTTagCompound entitydata = player.getEntityData();
-        entitydata.setInteger("heart_rate",70);
+        entitydata.setFloat("heart_rate",70f);
         player.writeEntityToNBT(entitydata);
     }
 
@@ -52,6 +52,20 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
     @Override
     public void playerTick(EntityPlayer player) {
         super.playerTick(player);
+        // Updating the heart rate once per second
+        if (player.ticksExisted % 20 == 19){
+            float target = player.getEntityData().getFloat("target_heart_rate");
+            float oldrate = player.getEntityData().getFloat("heart_rate");
+            float newrate;
+            float dist = target-oldrate;
+            newrate = (float)( (float)oldrate + ((1f/45f) * (float)dist));
+
+            NBTTagCompound entitydata = player.getEntityData();
+            entitydata.setFloat("heart_rate",newrate);
+            player.writeEntityToNBT(entitydata);
+        }
+
+        // Giving the PlayerSP and the heart rate monitor item the PlayerMP's heart rate
         InventoryPlayer deeta = player.inventory;
         for (ItemStack stack : deeta.mainInventory) {
             if (stack.getItem() == ModItems.HEART_RATE_MONITOR_ITEM) {
@@ -64,13 +78,13 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
                      itemtagz = new NBTTagCompound();
                 }
 
-                int heartRate = tagz.getInteger("heart_rate");
-                itemtagz.setInteger("item_heart_rate", heartRate);
+                float heartRate = tagz.getFloat("heart_rate");
+                itemtagz.setFloat("item_heart_rate", heartRate);
                 stack.setTagCompound(itemtagz);
             }
         }
 
-        int heartRateAndShit = player.getEntityData().getInteger("heart_rate");
+        float heartRateAndShit = player.getEntityData().getFloat("heart_rate");
         EntityPlayerMP mp = (EntityPlayerMP)player;
         PacketHandler.INSTANCE.sendTo(new MessageHeartRateSync(heartRateAndShit), mp);
     }

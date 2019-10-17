@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageHeartRateSyncHandler implements IMessageHandler<MessageHeartRateSync, IMessage> {
-    public static int clientHeartRate = 69;
+    public static float clientHeartRate = 69f;
     @Override
     public IMessage onMessage(MessageHeartRateSync message, MessageContext ctx) {
         clientHeartRate = message.getHeartRate();

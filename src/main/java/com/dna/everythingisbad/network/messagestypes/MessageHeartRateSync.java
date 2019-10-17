@@ -8,22 +8,22 @@ public class MessageHeartRateSync implements IMessage {
 
     }
 
-    private int heartRate;
-    public MessageHeartRateSync(int heartRate){
+    private float heartRate;
+    public MessageHeartRateSync(float heartRate){
         this.heartRate = heartRate;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        heartRate = buf.readInt();
+        heartRate = buf.readFloat();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(heartRate);
+        buf.writeFloat(heartRate);
     }
 
-    public int getHeartRate() {
+    public float getHeartRate() {
         return heartRate;
     }
 }

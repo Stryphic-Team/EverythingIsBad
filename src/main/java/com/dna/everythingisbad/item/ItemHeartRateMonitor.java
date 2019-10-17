@@ -28,8 +28,8 @@ public class ItemHeartRateMonitor extends ItemBase {
                     return 0f;
                 }else{
                     // in bpm
-                    int heartrate = MessageHeartRateSyncHandler.clientHeartRate;
-                    float beatsPerSecond = (float)heartrate/60f;
+                    float heartrate = MessageHeartRateSyncHandler.clientHeartRate;
+                    float beatsPerSecond = heartrate/60f;
                     float moduloval = 20f/beatsPerSecond;
 
                     // (Can't divide by zero lol, found this out the hard way...)
@@ -53,9 +53,10 @@ public class ItemHeartRateMonitor extends ItemBase {
         NBTTagCompound compound = this.getNBTShareTag(stack);
         if (compound != null){
             // item_heart_rate is the item's internal nbt tag to be displayed
-            int heartRate = compound.getInteger("item_heart_rate");
+            float heartRate = compound.getFloat("item_heart_rate");
             //tooltip.add("Heart Rate: " + heartRate + " BPM");
-            tooltip.add(heartRate + " BPM");
+            int heartrateint = Math.round(heartRate);
+            tooltip.add(heartrateint + " BPM");
         }
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
