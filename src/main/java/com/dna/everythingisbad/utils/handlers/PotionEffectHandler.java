@@ -84,8 +84,10 @@ public class PotionEffectHandler {
                 }
             }
 
-            // Sets to -1 whenever the player is not high
+            // Sets to 0 whenever the player is not high
             entity.getEntityData().setInteger("highness_duration",0);
+            // Indicates that the target heart rate will return to the base value
+            entity.getEntityData().setFloat("drug_sum", 0);
             entity.writeEntityToNBT(entity.getEntityData());
         }
     }
@@ -124,6 +126,12 @@ public class PotionEffectHandler {
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), time_left, 50));
             // Haste
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(3), time_left, 2));
+        }
+
+        if (time_left == 1){
+            // Indicates that the target heart rate will return to the base value
+            entity.getEntityData().setFloat("drug_sum", 0);
+            entity.writeEntityToNBT(entity.getEntityData());
         }
     }
 
