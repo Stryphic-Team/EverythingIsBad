@@ -24,9 +24,14 @@ public class ItemDevilsCabbage extends ItemFoodBase {
         this.setAlwaysEdible();
     }
 
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayerMP){
             //SpawnUtils.spawnMobInRadius(worldIn,(EntityPlayerMP)entityLiving,new EntityPoliceOfficer(worldIn),5,10);
+
+            // Subtract 20 from the entity's drug_sum (the value added on to the target heart rate when under the influence)
+            float drugSum = entityLiving.getEntityData().getFloat("drug_sum");
+            entityLiving.getEntityData().setFloat("drug_sum", drugSum - 20f);
         }
         return super.onItemUseFinish(stack, worldIn, entityLiving);
     }

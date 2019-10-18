@@ -2,6 +2,7 @@ package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
 import com.dna.everythingisbad.init.ModItems;
+import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageHeartRateSync;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.Mod;
 
 public class PlayerHeartRateHandler extends PlayerHandlerBase {
     @Override
@@ -70,7 +72,15 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
             }else{
                 target = 105f;
             }
+            if (player.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion())){
+                target = target - 20;
+            }
+            if (player.isPotionActive(ModPotions.POTION_ADRENALINE.getPotion())){
+                target = target + 80;
+            }
+
             NBTTagCompound entitydata = player.getEntityData();
+            //float drugSum = entitydata.getFloat("drug_sum");
             entitydata.setFloat("target_heart_rate",target);
             player.writeEntityToNBT(entitydata);
         }
