@@ -11,13 +11,12 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -25,11 +24,14 @@ import javax.annotation.Nullable;
 public abstract class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool ACTIVE = PropertyBool.create("active");
+    private TileDeviceBase tileDeviceBase;
+
     public BlockDeviceBase(String name){
         super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
-        setHardness(25);
+        setHardness(15);
+        setHarvestLevel("pickaxe",0);
     }
     @Override
     public boolean hasTileEntity(IBlockState state)
@@ -132,29 +134,29 @@ public abstract class BlockDeviceBase extends BlockBase implements ITileEntityPr
         }
     }
 
+
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        TileDeviceBase tileDeviceBase = (TileDeviceBase)worldIn.getTileEntity(pos);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileDeviceBase){
+            this.tileDeviceBase = (TileDeviceBase)tileEntity;
+        }
+        super.breakBlock(worldIn, pos, state);
+    }
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ModItemHandler itemStackHandler = tileDeviceBase.getItemStackHadler();
         if(itemStackHandler != null){
             int slotCount = itemStackHandler.getSlots();
             for(int i = 0;i<slotCount;i++){
-                EntityItem itemEntity = new EntityItem(worldIn);
-                itemEntity.setItem(itemStackHandler.getStackInSlot(i));
-                itemEntity.setPosition(pos.getX(),pos.getY(),pos.getZ());
-                worldIn.spawnEntity(itemEntity);
+                drops.add(itemStackHandler.getStackInSlot(i));
             }
         }
-        worldIn.removeTileEntity(pos);
+        super.getDrops(drops,world,pos,state,fortune);
     }
 
     @Override
-    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
-
-
-
-        super.onBlockDestroyedByPlayer(worldIn, pos, state);
+    public boolean canDropFromExplosion(Explosion explosionIn) {
+        return false;
     }
-
-
 }
