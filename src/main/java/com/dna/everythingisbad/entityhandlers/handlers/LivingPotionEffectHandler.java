@@ -3,7 +3,6 @@ package com.dna.everythingisbad.entityhandlers.handlers;
 import com.dna.everythingisbad.entityhandlers.LivingHandlerBase;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.handlers.PotionEffectHandler;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -29,12 +28,12 @@ public class LivingPotionEffectHandler extends LivingHandlerBase {
             }
         }
 
-        if (common_cold_active && !(livingBase instanceof EntityPlayerSP)){
+        if (common_cold_active){
             int common_cold_duration = livingBase.getEntityData().getInteger("common_cold_duration");
             PotionEffectHandler.livingEntityCommonColdActive(livingBase,common_cold_duration);
         }
 
-        if (adrenaline_active && !(livingBase instanceof EntityPlayerSP)){
+        if (adrenaline_active){
             int adrenaline_duration = livingBase.getEntityData().getInteger("adrenaline_duration");
             PotionEffectHandler.livingEntityAdrenalineActive(livingBase,adrenaline_duration);
         }
