@@ -1,0 +1,13 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "particle": "everythingbad:blocks/slot_machine_side",
+    "up": "everythingbad:blocks/slot_machine_side",
+    "down": "everythingbad:blocks/slot_machine_side",
+    "north": "everythingbad:blocks/slot_machine_front_off",
+    "east": "everythingbad:blocks/slot_machine_side",
+    "south": "everythingbad:blocks/slot_machine_side",
+    "west": "everythingbad:blocks/slot_machine_right_off"
+  }
+
+}

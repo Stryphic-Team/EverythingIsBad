@@ -80,6 +80,8 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
             }
 
             NBTTagCompound entitydata = player.getEntityData();
+
+            // Currently drug_sum is disabled because it wouldn't work with any potions
             //float drugSum = entitydata.getFloat("drug_sum");
             entitydata.setFloat("target_heart_rate",target);
             player.writeEntityToNBT(entitydata);
