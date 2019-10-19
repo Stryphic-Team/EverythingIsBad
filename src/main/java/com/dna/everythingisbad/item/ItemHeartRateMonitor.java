@@ -33,7 +33,6 @@ public class ItemHeartRateMonitor extends ItemBase {
                     float moduloval = 20f/beatsPerSecond;
 
                     // (Can't divide by zero lol, found this out the hard way...)
-                    System.out.println(heartrate);
                     if (heartrate != 0){
                         if (entityIn.ticksExisted % moduloval < 2){
                             return 1f;
