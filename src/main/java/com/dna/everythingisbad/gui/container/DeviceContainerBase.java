@@ -46,18 +46,23 @@ public abstract class DeviceContainerBase extends Container {
     @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int data) {
-        this.tileentity.getEnergyHandler().setEnergyStorage(GuiSync.ENERGY_STORED);
-        String fluidName = GuiSync.FLUID_TYPE.replaceAll("fluid.","");
-        Fluid fluid = FluidRegistry.getFluid(fluidName);;
-        if(fluidName.equals("tile.water")){
-            fluid = FluidRegistry.WATER;
+        if(tileentity.getEnergyHandler() != null) {
+            this.tileentity.getEnergyHandler().setEnergyStorage(GuiSync.ENERGY_STORED);
         }
-        if(fluidName.equals("tile.lava")){
-            fluid = FluidRegistry.LAVA;
-        }
+        if(tileentity.getFluidHandler() != null) {
+            String fluidName = GuiSync.FLUID_TYPE.replaceAll("fluid.", "");
+            Fluid fluid = FluidRegistry.getFluid(fluidName);
+            ;
+            if (fluidName.equals("tile.water")) {
+                fluid = FluidRegistry.WATER;
+            }
+            if (fluidName.equals("tile.lava")) {
+                fluid = FluidRegistry.LAVA;
+            }
 
-        if(fluid != null) {
-            this.tileentity.getFluidHandler().getFluidTank().setFluid(new FluidStack(fluid, GuiSync.FLUID_STORED));
+            if (fluid != null) {
+                this.tileentity.getFluidHandler().getFluidTank().setFluid(new FluidStack(fluid, GuiSync.FLUID_STORED));
+            }
         }
         this.tileentity.setProgress(GuiSync.PROGRESS);
 

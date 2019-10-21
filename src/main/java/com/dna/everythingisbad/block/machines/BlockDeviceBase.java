@@ -111,20 +111,22 @@ public abstract class BlockDeviceBase extends BlockBase implements ITileEntityPr
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
-    public static void setState(boolean active,IBlockState blockState, World worldIn, BlockPos pos)
+    public static void setState(boolean active,IBlockState currentState, World worldIn, BlockPos pos)
     {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
+        IBlockState defaultState = worldIn.getBlockState(pos).getBlock().getDefaultState();
         TileEntity tileentity = worldIn.getTileEntity(pos);
-
 
         if (active)
         {
-            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,true), 2);
+            worldIn.setBlockState(pos, defaultState.withProperty(FACING, currentState.getValue(FACING)).withProperty(ACTIVE,true), 3);
+            worldIn.notifyBlockUpdate(pos,currentState,defaultState.withProperty(FACING,currentState.getValue(FACING)).withProperty(ACTIVE,true),3);
         }
         else
         {
-            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,false), 2);
+            worldIn.setBlockState(pos, defaultState.withProperty(FACING, currentState.getValue(FACING)).withProperty(ACTIVE,false), 3);
+            worldIn.notifyBlockUpdate(pos,currentState,defaultState.withProperty(FACING,currentState.getValue(FACING)).withProperty(ACTIVE,false),3);
         }
+
 
 
         if (tileentity != null)

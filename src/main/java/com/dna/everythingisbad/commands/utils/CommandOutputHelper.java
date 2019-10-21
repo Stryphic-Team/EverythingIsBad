@@ -14,6 +14,12 @@ public class CommandOutputHelper {
         int currentBalance = playerProperties.getBalance();
         player.sendMessage(new TextComponentString("Balance: $"+String.valueOf(currentBalance)));
     }
+    public static void sendBankBalance(EntityPlayer player){
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+
+        int currentBalance = playerProperties.getBankBalance();
+        player.sendMessage(new TextComponentString("Bank Balance: $"+String.valueOf(currentBalance)));
+    }
     public static void sendPlayerReligion(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 

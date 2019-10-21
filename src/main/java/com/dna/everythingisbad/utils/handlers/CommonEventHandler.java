@@ -2,6 +2,7 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.entityhandlers.LivingHandlerBase;
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
+import com.dna.everythingisbad.entityhandlers.WorldHandlerBase;
 import com.dna.everythingisbad.entityhandlers.handlers.*;
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class CommonEventHandler {
     public static ArrayList<PlayerHandlerBase> PLAYER_HANDLERS = new ArrayList<PlayerHandlerBase>();
     public static ArrayList<LivingHandlerBase> LIVING_HANDLERS = new ArrayList<LivingHandlerBase>();
+    public static ArrayList<WorldHandlerBase> WORLD_HANDLERS = new ArrayList<WorldHandlerBase>();
 
     //Player Handlers
     public static PlayerHandlerBase PLAYER_RELIGION_HANDLER = new PlayerReligionHandler();
@@ -39,6 +41,9 @@ public class CommonEventHandler {
     public static LivingHandlerBase LIVING_HEAVEN_HANDLER = new LivingHeavenHandler();
     public static LivingHandlerBase LIVING_POTION_EFFECT_HANDLER = new LivingPotionEffectHandler();
     public static LivingHandlerBase LIVING_POOP_HANDLER = new LivingPoopHandler();
+    //World Handlers
+    public static WorldHandlerBase WORLD_BANK_HANDLER = new WorldBankHandler();
+
 
 
 
@@ -173,6 +178,13 @@ public class CommonEventHandler {
                 }
             }
         }
-
+    }
+    @SubscribeEvent
+    public void worldTick(TickEvent.WorldTickEvent event){
+        if(event.phase == TickEvent.Phase.END){
+            for(WorldHandlerBase worldHandler: WORLD_HANDLERS){
+                worldHandler.worldTick(event.world);
+            }
+        }
     }
 }

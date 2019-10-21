@@ -3,6 +3,7 @@ package com.dna.everythingisbad.entityproperties;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerProperties {
+    public final float bankInterestRate = 0.03f;
     private boolean hasBeenInitialized = false;
     private boolean hasSoul = false;
     private boolean hasCommonColdImmunity = false;
@@ -10,6 +11,7 @@ public class PlayerProperties {
     private int religion = 0;
     private int timesPooped = 0;
     private int balance = 0;
+    private int bankBalance = 100;
     public PlayerProperties(){
 
     }
@@ -69,6 +71,14 @@ public class PlayerProperties {
         this.balance = balance;
     }
 
+    public int getBankBalance() {
+        return bankBalance;
+    }
+
+    public void setBankBalance(int bankBalance) {
+        this.bankBalance = bankBalance;
+    }
+
     public void copyFrom(PlayerProperties oldPlayerProperties){
         this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
         this.hasSoul = oldPlayerProperties.hasSoul();
@@ -77,6 +87,7 @@ public class PlayerProperties {
         this.religion = oldPlayerProperties.getReligion();
         this.timesPooped = oldPlayerProperties.getTimesPooped();
         this.balance = oldPlayerProperties.getBalance();
+        this.bankBalance = oldPlayerProperties.getBankBalance();
 
     }
 
@@ -88,6 +99,7 @@ public class PlayerProperties {
         compound.setInteger("religion",religion);
         compound.setInteger("timesPooped",timesPooped);
         compound.setInteger("balance",balance);
+        compound.setInteger("bankBalance",bankBalance);
     }
 
     public void loadNBTData(NBTTagCompound compound){
@@ -98,6 +110,7 @@ public class PlayerProperties {
         this.timesPooped = compound.getInteger("timesPooped");
         this.hasSoul = compound.getBoolean("hasSoul");
         this.balance = compound.getInteger("balance");
+        this.bankBalance = compound.getInteger("bankBalance");
     }
 
 }

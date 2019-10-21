@@ -20,7 +20,7 @@ public class TileQuarry extends TileMachineBase {
 
     public TileQuarry() {
         super("quarry");
-        setFinishedProgress(1);
+        setFinishedProgress(10);
     }
 
 
@@ -87,21 +87,5 @@ public class TileQuarry extends TileMachineBase {
     @Override
     public void reduceInput() {
 
-//            energyHandler.reduceEnergy(100, true);
-//            BlockPos currentPos = pos.subtract(relativePosition).subtract(new BlockPos(17,0,17));
-//            if (currentPos.getY() > 3) {
-//                relativePosition = relativePosition.add(0, 1, 0);
-//            } else {
-//                if (relativePosition.getX() <= 64) {
-//                    relativePosition = new BlockPos(relativePosition.getX() + 16, 0, relativePosition.getZ());
-//                }else{
-//                    relativePosition = new BlockPos(0, 0, relativePosition.getZ()+16);
-//                }
-//                if(relativePosition.getZ() >= 64){
-//                    drillWorking = false;
-//                }
-//
-//            }
-//        }
     }
 }
