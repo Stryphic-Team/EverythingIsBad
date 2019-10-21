@@ -20,6 +20,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Random;
+
 //TODO: Implement IDismantlable
 public abstract class BlockDeviceBase extends BlockBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -117,13 +119,11 @@ public abstract class BlockDeviceBase extends BlockBase implements ITileEntityPr
 
         if (active)
         {
-            //worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,true), 3);
+            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,true), 2);
         }
         else
         {
-            //worldIn.setBlockState(pos, ModBlocks.STUPID_CORE_MACHINE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,false), 3);
+            worldIn.setBlockState(pos, blockState.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE,false), 2);
         }
 
 
@@ -158,5 +158,10 @@ public abstract class BlockDeviceBase extends BlockBase implements ITileEntityPr
     @Override
     public boolean canDropFromExplosion(Explosion explosionIn) {
         return false;
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        super.updateTick(worldIn, pos, state, rand);
     }
 }
