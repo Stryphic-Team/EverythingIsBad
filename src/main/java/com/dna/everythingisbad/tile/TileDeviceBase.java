@@ -71,6 +71,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         if(energyHandler != null){
             energyHandler.setEnergyStorage(compound.getInteger("energyStored"));
         }
+        temperature = compound.getFloat("temperature");
         progress = compound.getInteger("progress");
     }
 
@@ -85,6 +86,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         if(energyHandler != null){
             compound.setInteger("energyStored",energyHandler.getEnergyStored());
         }
+        compound.setFloat("temperature",temperature);
         compound.setInteger("progress",progress);
         return super.writeToNBT(compound);
     }
@@ -104,46 +106,47 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     public ModEnergyHandler getEnergyHandler() {
         return energyHandler;
     }
-
     @Override
     public void update(){
-        tick++;
-        if(tick % 10 == 1) {
-            switch (world.getBiome(pos).getTempCategory()) {
-                case COLD:
-                    targetTemperature = -5;
-                    break;
-                case WARM:
-                    targetTemperature = 30;
-                    break;
-                case MEDIUM:
-                    targetTemperature = 23;
-                    break;
-                case OCEAN:
-                    targetTemperature = 10;
-                    break;
-            }
-        }
-        updateTemperature();
-        ArrayList<IBlockState> blockStates;
-        if(tick % 4 == 2){
-            int waterCount = 0;
-            BlockPos firstPoint = pos.add(-1,-1,-1);
-            BlockPos secondPoint = pos.add(1,1,1);
-            blockStates = WorldUtils.getBlocksInCuboid(world,
-                    new WorldUtils.SearchBoundingBox(firstPoint,secondPoint));
-            for(IBlockState blockState:blockStates){
-                if(blockState == Blocks.WATER.getDefaultState()){
-                    targetTemperature = 10;
-                    updateTemperature();
-                }
-                if(blockState == Blocks.LAVA.getDefaultState()){
-                    targetTemperature = 700;
-                    updateTemperature();
+        if(!world.isRemote) {
+            tick++;
+            if (tick % 10 == 1) {
+                switch (world.getBiome(pos).getTempCategory()) {
+                    case COLD:
+                        targetTemperature = -5;
+                        break;
+                    case WARM:
+                        targetTemperature = 30;
+                        break;
+                    case MEDIUM:
+                        targetTemperature = 23;
+                        break;
+                    case OCEAN:
+                        targetTemperature = 10;
+                        break;
                 }
             }
+            updateTemperature();
+            ArrayList<IBlockState> blockStates;
+            if (tick % 4 == 2) {
+                int waterCount = 0;
+                BlockPos firstPoint = pos.add(-1, -1, -1);
+                BlockPos secondPoint = pos.add(1, 1, 1);
+                blockStates = WorldUtils.getBlocksInCuboid(world,
+                        new WorldUtils.SearchBoundingBox(firstPoint, secondPoint));
+                for (IBlockState blockState : blockStates) {
+                    if (blockState == Blocks.WATER.getDefaultState()) {
+                        targetTemperature = 10;
+                        updateTemperature();
+                    }
+                    if (blockState == Blocks.LAVA.getDefaultState()) {
+                        targetTemperature = 700;
+                        updateTemperature();
+                    }
+                }
+            }
+            updateBlockState();
         }
-        updateBlockState();
     }
     public void updateTemperature(){
         if(targetTemperature - temperature < 0) {
@@ -153,15 +156,16 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         }
         temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
     }
+
     public void updateBlockState(){
         if(tick % 20 == 19 && !world.isRemote) {
-            if (progress > 0) {
-                IBlockState blockState = world.getBlockState(pos);
-                BlockDeviceBase.setState(true,blockState.getBlock().getDefaultState(),world,pos);
-
+            IBlockState blockState = world.getBlockState(pos);
+            if (inProgress()) {
+                BlockDeviceBase.setState(true,blockState,world,pos);
+                //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),true));
             }else{
-                IBlockState blockState = world.getBlockState(pos);
-                BlockDeviceBase.setState(false,blockState.getBlock().getDefaultState(),world,pos);
+                BlockDeviceBase.setState(false,blockState,world,pos);
+                //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),false));
             }
         }
     }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "BMB",
+    "SBS"
+  ],
+  "key": {
+    "M": {
+      "item": "everythingbad:machine_frame"
+    },
+    "S": {
+      "item": "everythingbad:solenoid"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+
+  },
+  "result": {
+    "item": "everythingbad:liquifier_machine"
+  }
+}

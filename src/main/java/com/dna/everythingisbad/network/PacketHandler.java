@@ -2,10 +2,7 @@ package com.dna.everythingisbad.network;
 
 import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.gui.GuiSync;
-import com.dna.everythingisbad.network.handlers.MessageDebugGivePoopHandler;
-import com.dna.everythingisbad.network.handlers.MessageHeartRateSyncHandler;
-import com.dna.everythingisbad.network.handlers.MessagePlayNoteHandler;
-import com.dna.everythingisbad.network.handlers.MessageRollSlotMachineHandler;
+import com.dna.everythingisbad.network.handlers.*;
 import com.dna.everythingisbad.network.messagestypes.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
@@ -24,6 +21,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(GuiSync.class, MessageSyncMachineGui.class, 3, Side.CLIENT);
         INSTANCE.registerMessage(MessageRollSlotMachineHandler.class, MessageRollSlotMachine.class, 4, Side.SERVER);
         INSTANCE.registerMessage(MessageHeartRateSyncHandler.class, MessageHeartRateSync.class, 5, Side.CLIENT);
+        INSTANCE.registerMessage(MessageTileSyncHandler.class, MessageTileSync.class, 6, Side.CLIENT);
 
         if(ModConfig.IS_DEBUG) {
 
