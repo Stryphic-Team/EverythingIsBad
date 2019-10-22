@@ -42,6 +42,7 @@ public class MessageTransaction implements IMessage {
     }
     public enum TransactionType{
         WITHDRAW,
-        DEPOSIT
+        DEPOSIT,
+        BALANCE
     }
 }

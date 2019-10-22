@@ -2,7 +2,9 @@ package com.dna.everythingisbad.network.handlers;
 
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageTransaction;
+import com.dna.everythingisbad.network.messagestypes.MessageTransactionStatus;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -21,6 +23,9 @@ public class MessageTransactionHandler implements IMessageHandler<MessageTransac
                         int currentBalance = playerProperties.getBalance();
                         playerProperties.setBankBalance(currentBankBalance - message.getAmount());
                         playerProperties.setBalance(currentBalance + message.getAmount());
+                        PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(true,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
+                    }else{
+                        PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(false,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
                     }
                 }else if(message.getTransactionType() == MessageTransaction.TransactionType.DEPOSIT){
                     if(playerProperties.getBalance() >= message.getAmount()){
@@ -28,8 +33,14 @@ public class MessageTransactionHandler implements IMessageHandler<MessageTransac
                         int currentBalance = playerProperties.getBalance();
                         playerProperties.setBankBalance(currentBankBalance + message.getAmount());
                         playerProperties.setBalance(currentBalance - message.getAmount());
+                        PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(true,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
+                    }else{
+                        PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(false,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
                     }
+                }else if(message.getTransactionType() == MessageTransaction.TransactionType.BALANCE){
+                    PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(true,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
                 }
+                playerProperties.saveNBTData(player.getEntityData());
             }
         }
         return null;
