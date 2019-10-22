@@ -34,6 +34,7 @@ public class CommandGetStatistics extends ModCommandBase {
             CommandOutputHelper.sendPlayerBlindness((EntityPlayer) sender.getCommandSenderEntity());
             CommandOutputHelper.sendPlayerCommonColdImmunity((EntityPlayer) sender.getCommandSenderEntity());
             CommandOutputHelper.sendPlayerTimesPooped((EntityPlayer) sender.getCommandSenderEntity());
+            CommandOutputHelper.sendAddictionLevel((EntityPlayer) sender.getCommandSenderEntity());
             CommandOutputHelper.sendBorder((EntityPlayer) sender.getCommandSenderEntity());
         }
     }
