@@ -1,8 +1,12 @@
 package com.dna.everythingisbad.utils.handlers;
 
+import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerProperties;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -48,8 +52,8 @@ public class PotionEffectHandler {
         if(time_left == highness_duration-1) {
             //Main.logger.info("Adding side effects");
 
-            //Mining Fatigue
-            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), time_left, 4));
+            // Regeneration (used to be Mining Fatigue)
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), time_left, 0));
             //Weakness
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(18), time_left, 4));
             //Hunger
@@ -122,6 +126,18 @@ public class PotionEffectHandler {
         }
 
         if(time_left == duration-1) {
+
+            // If you have angel dust withdrawal symptoms then they will be removed
+            // upon ingesting the angel dust.
+            if (entity.isPotionActive(ModPotions.POTION_WITHDRAWAL.getPotion())){
+                entity.removePotionEffect(ModPotions.POTION_WITHDRAWAL.getPotion());
+                //slowness
+                entity.removePotionEffect(Potion.getPotionById(2));
+                // poison
+                entity.removePotionEffect(Potion.getPotionById(19));
+                // nausea
+                entity.removePotionEffect(Potion.getPotionById(9));
+            }
             //Speed
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), time_left, 50));
             // Haste
@@ -134,6 +150,103 @@ public class PotionEffectHandler {
             entity.writeEntityToNBT(entity.getEntityData());
         }
     }
+
+    public static void livingEntityWithdrawalActive (EntityLivingBase entity, int duration){
+        // I haved to put this here because of a nullpointerexception crash
+        if (entity.isPotionActive(ModPotions.POTION_WITHDRAWAL.getPotion())){
+
+            int time_left = entity.getActivePotionEffect(ModPotions.POTION_WITHDRAWAL.getPotion()).getDuration();
+            if (duration == 0){
+                entity.getEntityData().setInteger("withdrawal_duration", time_left);
+                entity.writeEntityToNBT(entity.getEntityData());
+            } else if (time_left > duration && duration != 0) {
+                entity.getEntityData().setInteger("withdrawal_duration",time_left);
+                entity.writeEntityToNBT(entity.getEntityData());
+            }
+            if (time_left == duration-1) {
+                // Slowness
+                entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), time_left, 1));
+                // Poison
+                entity.addPotionEffect(new PotionEffect(Potion.getPotionById(19), time_left, 0));
+                // Nausea
+                entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), time_left, 4));
+            }
+            if (time_left == 1){
+                PlayerProperties playerProperties = entity.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+                if (playerProperties != null){
+                    int addictionlvl = playerProperties.getAngelDustAddictionLvl();
+                    if (addictionlvl > 0){
+                        playerProperties.setAngelDustAddictionLvl(addictionlvl - 1);
+                        playerProperties.saveNBTData(entity.getEntityData());
+                    }
+                }
+            }
+        }
+    }
+
+    public static void livingEntityStimulationActive (EntityLivingBase entity, int duration){
+        int time_left = entity.getActivePotionEffect(ModPotions.POTION_STIMULATION.getPotion()).getDuration();
+        if (duration == 0){
+            entity.getEntityData().setInteger("stimulation_duration", time_left);
+            entity.writeEntityToNBT(entity.getEntityData());
+        } else if (time_left > duration) {
+            entity.getEntityData().setInteger("stimulation_duration",time_left);
+            entity.writeEntityToNBT(entity.getEntityData());
+        }
+
+        if(time_left == duration-1) {
+
+            // If you have tobacco withdrawal symptoms then they will be removed
+            // upon smoking.
+            if (entity.isPotionActive(ModPotions.POTION_TOBACCO_WITHDRAWAL.getPotion())){
+                entity.removePotionEffect(ModPotions.POTION_TOBACCO_WITHDRAWAL.getPotion());
+                //slowness
+                entity.removePotionEffect(Potion.getPotionById(2));
+                // poison
+                entity.removePotionEffect(Potion.getPotionById(19));
+                // nausea
+                entity.removePotionEffect(Potion.getPotionById(9));
+            }
+            // Haste
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(3), time_left, 0));
+            // Resistance
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), time_left, 0));
+        }
+    }
+
+    public static void livingEntityTobaccoWithdrawalActive (EntityLivingBase entity, int duration){
+        // I haved to put this here because of a nullpointerexception crash
+        if (entity.isPotionActive(ModPotions.POTION_TOBACCO_WITHDRAWAL.getPotion())){
+
+            int time_left = entity.getActivePotionEffect(ModPotions.POTION_TOBACCO_WITHDRAWAL.getPotion()).getDuration();
+            if (duration == 0){
+                entity.getEntityData().setInteger("tobacco_withdrawal_duration", time_left);
+                entity.writeEntityToNBT(entity.getEntityData());
+            } else if (time_left > duration) {
+                entity.getEntityData().setInteger("tobacco_withdrawal_duration",time_left);
+                entity.writeEntityToNBT(entity.getEntityData());
+            }
+            if (time_left == duration-1) {
+                // Slowness
+                entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), time_left, 1));
+                // Poison
+                entity.addPotionEffect(new PotionEffect(Potion.getPotionById(19), time_left, 0));
+                // Nausea
+                entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), time_left, 4));
+            }
+            if (time_left == 1){
+                PlayerProperties playerProperties = entity.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+                if (playerProperties != null){
+                    int addictionlvl = playerProperties.getTobaccoAddictionLvl();
+                    if (addictionlvl > 0){
+                        playerProperties.setTobaccoAddictionLvl(addictionlvl - 1);
+                        playerProperties.saveNBTData(entity.getEntityData());
+                    }
+                }
+            }
+        }
+    }
+
 
     /**
      * Checks when the player has the highness effect active

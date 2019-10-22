@@ -25,6 +25,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int GUI_URINE_BATTERY = guiId++;
     public static final int GUI_COAL_GENERATOR = guiId++;
     public static final int GUI_SLOT_MACHINE = guiId++;
+    public static final int GUI_AUTOMATED_TELLER_MACHINE = guiId++;
     @Nullable
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -36,6 +37,7 @@ public class GuiHandler implements IGuiHandler {
         if(ID == GUI_URINE_BATTERY) return new UrineBatteryContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_COAL_GENERATOR) return new CoalGeneratorContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_SLOT_MACHINE) return new SlotMachineContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
+        if(ID == GUI_AUTOMATED_TELLER_MACHINE) return new AutomatedTellerMachineContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
 
         return null;
     }
@@ -51,6 +53,7 @@ public class GuiHandler implements IGuiHandler {
         if(ID == GUI_URINE_BATTERY) return new UrineBatteryGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_COAL_GENERATOR) return new CoalGeneratorGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_SLOT_MACHINE) return new SlotMachineGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
+        if(ID == GUI_AUTOMATED_TELLER_MACHINE) return new AutomatedTellerMachineGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         return null;
     }
 }

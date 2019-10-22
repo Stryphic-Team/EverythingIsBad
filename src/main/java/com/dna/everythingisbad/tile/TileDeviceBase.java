@@ -16,6 +16,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -108,45 +109,44 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
     @Override
     public void update(){
-        if(!world.isRemote) {
-            tick++;
-            if (tick % 10 == 1) {
-                switch (world.getBiome(pos).getTempCategory()) {
-                    case COLD:
-                        targetTemperature = -5;
-                        break;
-                    case WARM:
-                        targetTemperature = 30;
-                        break;
-                    case MEDIUM:
-                        targetTemperature = 23;
-                        break;
-                    case OCEAN:
-                        targetTemperature = 10;
-                        break;
-                }
+
+        tick++;
+        if (tick % 10 == 1) {
+            switch (world.getBiome(pos).getTempCategory()) {
+                case COLD:
+                    targetTemperature = -5;
+                    break;
+                case WARM:
+                    targetTemperature = 30;
+                    break;
+                case MEDIUM:
+                    targetTemperature = 23;
+                    break;
+                case OCEAN:
+                    targetTemperature = 10;
+                    break;
             }
-            updateTemperature();
-            ArrayList<IBlockState> blockStates;
-            if (tick % 4 == 2) {
-                int waterCount = 0;
-                BlockPos firstPoint = pos.add(-1, -1, -1);
-                BlockPos secondPoint = pos.add(1, 1, 1);
-                blockStates = WorldUtils.getBlocksInCuboid(world,
-                        new WorldUtils.SearchBoundingBox(firstPoint, secondPoint));
-                for (IBlockState blockState : blockStates) {
-                    if (blockState == Blocks.WATER.getDefaultState()) {
-                        targetTemperature = 10;
-                        updateTemperature();
-                    }
-                    if (blockState == Blocks.LAVA.getDefaultState()) {
-                        targetTemperature = 700;
-                        updateTemperature();
-                    }
-                }
-            }
-            updateBlockState();
         }
+        updateTemperature();
+        ArrayList<IBlockState> blockStates;
+        if (tick % 4 == 2) {
+            BlockPos firstPoint = pos.add(-1, -1, -1);
+            BlockPos secondPoint = pos.add(1, 1, 1);
+            blockStates = WorldUtils.getBlocksInCuboid(world,
+                    new WorldUtils.SearchBoundingBox(firstPoint, secondPoint));
+            for (IBlockState blockState : blockStates) {
+                if (blockState == Blocks.WATER.getDefaultState()) {
+                    targetTemperature = 10;
+                    updateTemperature();
+                }
+                if (blockState == Blocks.LAVA.getDefaultState()) {
+                    targetTemperature = 700;
+                    updateTemperature();
+                }
+            }
+        }
+        updateBlockState();
+
     }
     public void updateTemperature(){
         if(targetTemperature - temperature < 0) {
@@ -158,13 +158,17 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
 
     public void updateBlockState(){
-        if(tick % 20 == 19 && !world.isRemote) {
-            IBlockState blockState = world.getBlockState(pos);
+        if(tick % 20 == 19) {
+            IBlockState currentState = world.getBlockState(pos);
+            IBlockState defaultState = currentState.getBlock().getDefaultState();
+
             if (inProgress()) {
-                BlockDeviceBase.setState(true,blockState,world,pos);
+                //world.setBlockState(pos, defaultState.withProperty(BlockDeviceBase.FACING, currentState.getValue(BlockDeviceBase.FACING)).withProperty(BlockDeviceBase.ACTIVE,true), 3);
+                BlockDeviceBase.setState(true,currentState,world,pos);
                 //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),true));
             }else{
-                BlockDeviceBase.setState(false,blockState,world,pos);
+                //world.setBlockState(pos, defaultState.withProperty(BlockDeviceBase.FACING, currentState.getValue(BlockDeviceBase.FACING)).withProperty(BlockDeviceBase.ACTIVE,false), 3);
+                BlockDeviceBase.setState(false,currentState,world,pos);
                 //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),false));
             }
         }
@@ -244,5 +248,11 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
     public boolean inProgress(){
         return progress > 0 && progress <= finishedProgress;
+    }
+
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return super.getUpdatePacket();
     }
 }

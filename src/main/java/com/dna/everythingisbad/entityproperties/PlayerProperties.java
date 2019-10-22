@@ -3,6 +3,7 @@ package com.dna.everythingisbad.entityproperties;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerProperties {
+    public final float bankInterestRate = 0.03f;
     private boolean hasBeenInitialized = false;
     private boolean hasSoul = false;
     private boolean hasCommonColdImmunity = false;
@@ -10,6 +11,10 @@ public class PlayerProperties {
     private int religion = 0;
     private int timesPooped = 0;
     private int balance = 0;
+    private int bankBalance = 100;
+    private int angelDustAddictionLvl = 0;
+    private int tobaccoAddictionLvl = 0;
+
     public PlayerProperties(){
 
     }
@@ -69,6 +74,26 @@ public class PlayerProperties {
         this.balance = balance;
     }
 
+    public int getBankBalance() {
+        return bankBalance;
+    }
+
+    public void setBankBalance(int bankBalance) {
+        this.bankBalance = bankBalance;
+    }
+    public int getAngelDustAddictionLvl() { return angelDustAddictionLvl; }
+
+    public void setAngelDustAddictionLvl(int angelDustAddictionLvl) { this.angelDustAddictionLvl = angelDustAddictionLvl; }
+
+    public int getTobaccoAddictionLvl() {
+        return tobaccoAddictionLvl;
+    }
+
+    public void setTobaccoAddictionLvl(int tobaccoAddictionLvl) {
+        this.tobaccoAddictionLvl = tobaccoAddictionLvl;
+    }
+
+
     public void copyFrom(PlayerProperties oldPlayerProperties){
         this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
         this.hasSoul = oldPlayerProperties.hasSoul();
@@ -77,7 +102,9 @@ public class PlayerProperties {
         this.religion = oldPlayerProperties.getReligion();
         this.timesPooped = oldPlayerProperties.getTimesPooped();
         this.balance = oldPlayerProperties.getBalance();
-
+        this.bankBalance = oldPlayerProperties.getBankBalance();
+        this.angelDustAddictionLvl = oldPlayerProperties.getAngelDustAddictionLvl();
+        this.tobaccoAddictionLvl = oldPlayerProperties.getTobaccoAddictionLvl();
     }
 
     public void saveNBTData(NBTTagCompound compound){
@@ -88,7 +115,11 @@ public class PlayerProperties {
         compound.setInteger("religion",religion);
         compound.setInteger("timesPooped",timesPooped);
         compound.setInteger("balance",balance);
+        compound.setInteger("bankBalance",bankBalance);
+        compound.setInteger("angelDustAddictionLvl", angelDustAddictionLvl);
+        compound.setInteger("tobaccoAddictionLvl", tobaccoAddictionLvl);
     }
+
 
     public void loadNBTData(NBTTagCompound compound){
         this.hasBeenInitialized = compound.getBoolean("hasBeenInitialized");
@@ -98,6 +129,9 @@ public class PlayerProperties {
         this.timesPooped = compound.getInteger("timesPooped");
         this.hasSoul = compound.getBoolean("hasSoul");
         this.balance = compound.getInteger("balance");
+        this.bankBalance = compound.getInteger("bankBalance");
+        this.angelDustAddictionLvl = compound.getInteger("angelDustAddictionLvl");
+        this.tobaccoAddictionLvl = compound.getInteger("tobaccoAddictionLvl");
     }
 
 }

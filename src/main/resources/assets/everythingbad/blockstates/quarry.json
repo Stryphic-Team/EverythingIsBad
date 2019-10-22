@@ -1,12 +1,12 @@
 {
   "variants": {
-    "active=false,facing=north": { "model": "everythingbad:stupid_core_machine" },
-    "active=false,facing=east": { "model": "everythingbad:stupid_core_machine", "y": 90 },
-    "active=false,facing=south": { "model": "everythingbad:stupid_core_machine", "y": 180 },
-    "active=false,facing=west": { "model": "everythingbad:stupid_core_machine", "y": 270 },
-    "active=true,facing=north": { "model": "everythingbad:stupid_core_machine_active" },
-    "active=true,facing=east": { "model": "everythingbad:stupid_core_machine_active", "y": 90 },
-    "active=true,facing=south": { "model": "everythingbad:stupid_core_machine_active", "y": 180 },
-    "active=true,facing=west": { "model": "everythingbad:stupid_core_machine_active", "y": 270 }
+    "active=false,facing=north": { "model": "everythingbad:quarry" },
+    "active=false,facing=east": { "model": "everythingbad:quarry", "y": 90 },
+    "active=false,facing=south": { "model": "everythingbad:quarry", "y": 180 },
+    "active=false,facing=west": { "model": "everythingbad:quarry", "y": 270 },
+    "active=true,facing=north": { "model": "everythingbad:quarry_active" },
+    "active=true,facing=east": { "model": "everythingbad:quarry_active", "y": 90 },
+    "active=true,facing=south": { "model": "everythingbad:quarry_active", "y": 180 },
+    "active=true,facing=west": { "model": "everythingbad:quarry_active", "y": 270 }
   }
 }

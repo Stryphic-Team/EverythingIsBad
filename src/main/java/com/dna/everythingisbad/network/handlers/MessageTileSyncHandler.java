@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.network.handlers;
 
+import com.dna.everythingisbad.block.machines.BlockDeviceBase;
 import com.dna.everythingisbad.network.messagestypes.MessageTileSync;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.block.state.IBlockState;
@@ -20,15 +21,7 @@ public class MessageTileSyncHandler implements IMessageHandler<MessageTileSync, 
         IBlockState iBlockState = world.getBlockState(pos);
         TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileDeviceBase){
-            TileDeviceBase tileDeviceBase = (TileDeviceBase)tileEntity;
-            tileDeviceBase.setFinishedProgress(10);
-            if(active){
-                tileDeviceBase.setProgress(1);
-            }else{
-                tileDeviceBase.setProgress(0);
-            }
-
-            tileDeviceBase.updateBlockState();
+            BlockDeviceBase.setState(active,iBlockState,world,pos);
         }
         return null;
     }
