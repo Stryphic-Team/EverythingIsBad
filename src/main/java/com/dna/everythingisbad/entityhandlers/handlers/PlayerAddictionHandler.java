@@ -30,18 +30,7 @@ public class PlayerAddictionHandler extends PlayerHandlerBase {
                 playerProperties.saveNBTData(player.getEntityData());
             }
         }
-        // and decrement every two minutes (2400 ticks) if you have withdrawal
-        if (player.ticksExisted % 2400 == 420){
-            if (player.isPotionActive(ModPotions.POTION_WITHDRAWAL.getPotion())){
-                NBTTagCompound deeta = player.getEntityData();
-                int angelDustAddiction = deeta.getInteger("angel_dust_addiction");
-                if (angelDustAddiction > 0){
-                    int addictionlvl = playerProperties.getAngelDustAddictionLvl();
-                    playerProperties.setAngelDustAddictionLvl(addictionlvl - 1);
-                    playerProperties.saveNBTData(player.getEntityData());
-                }
-            }
-        }
+
         int angel_dust_addiction = playerProperties.getAngelDustAddictionLvl();
         float addictionTime;
 

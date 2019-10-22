@@ -41,7 +41,8 @@ public class LivingPotionEffectHandler extends LivingHandlerBase {
         }
 
         if (withdrawal_active) {
-            PotionEffectHandler.livingEntityWithdrawalActive(livingBase);
+            int withdrawal_duration = livingBase.getEntityData().getInteger("withdrawal_duration");
+            PotionEffectHandler.livingEntityWithdrawalActive(livingBase,withdrawal_duration);
         }
     }
 }
