@@ -13,6 +13,8 @@ public class PlayerProperties {
     private int balance = 0;
     private int bankBalance = 100;
     private int angelDustAddictionLvl = 0;
+    private int tobaccoAddictionLvl = 0;
+
     public PlayerProperties(){
 
     }
@@ -83,6 +85,15 @@ public class PlayerProperties {
 
     public void setAngelDustAddictionLvl(int angelDustAddictionLvl) { this.angelDustAddictionLvl = angelDustAddictionLvl; }
 
+    public int getTobaccoAddictionLvl() {
+        return tobaccoAddictionLvl;
+    }
+
+    public void setTobaccoAddictionLvl(int tobaccoAddictionLvl) {
+        this.tobaccoAddictionLvl = tobaccoAddictionLvl;
+    }
+
+
     public void copyFrom(PlayerProperties oldPlayerProperties){
         this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
         this.hasSoul = oldPlayerProperties.hasSoul();
@@ -93,8 +104,7 @@ public class PlayerProperties {
         this.balance = oldPlayerProperties.getBalance();
         this.bankBalance = oldPlayerProperties.getBankBalance();
         this.angelDustAddictionLvl = oldPlayerProperties.getAngelDustAddictionLvl();
-
-
+        this.tobaccoAddictionLvl = oldPlayerProperties.getTobaccoAddictionLvl();
     }
 
     public void saveNBTData(NBTTagCompound compound){
@@ -107,6 +117,7 @@ public class PlayerProperties {
         compound.setInteger("balance",balance);
         compound.setInteger("bankBalance",bankBalance);
         compound.setInteger("angelDustAddictionLvl", angelDustAddictionLvl);
+        compound.setInteger("tobaccoAddictionLvl", tobaccoAddictionLvl);
     }
 
 
@@ -120,6 +131,7 @@ public class PlayerProperties {
         this.balance = compound.getInteger("balance");
         this.bankBalance = compound.getInteger("bankBalance");
         this.angelDustAddictionLvl = compound.getInteger("angelDustAddictionLvl");
+        this.tobaccoAddictionLvl = compound.getInteger("tobaccoAddictionLvl");
     }
 
 }

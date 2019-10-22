@@ -62,7 +62,9 @@ public class CommandOutputHelper {
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
         int addictionlvl = playerProperties.getAngelDustAddictionLvl();
+        int tobacco_addiction_lvl = playerProperties.getTobaccoAddictionLvl();
 
         player.sendMessage(new TextComponentString("Angel Dust Addiction Lvl: " + addictionlvl));
+        player.sendMessage(new TextComponentString("Tobacco Addiction Lvl: " + tobacco_addiction_lvl));
     }
 }
