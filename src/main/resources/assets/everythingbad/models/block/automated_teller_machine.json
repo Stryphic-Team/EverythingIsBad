@@ -1,0 +1,13 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"particle": "everythingbad:blocks/machine_base",
+		"up": "everythingbad:blocks/machine_base",
+		"down": "everythingbad:blocks/machine_base",
+		"north": "everythingbad:blocks/automated_teller_machine",
+		"east": "everythingbad:blocks/machine_base",
+		"south": "everythingbad:blocks/machine_base",
+		"west": "everythingbad:blocks/machine_base"
+	}
+
+}

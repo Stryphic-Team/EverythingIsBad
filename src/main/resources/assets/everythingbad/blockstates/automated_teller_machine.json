@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "active=false,facing=north": { "model": "everythingbad:automated_teller_machine" },
+    "active=false,facing=east": { "model": "everythingbad:automated_teller_machine", "y": 90 },
+    "active=false,facing=south": { "model": "everythingbad:automated_teller_machine", "y": 180 },
+    "active=false,facing=west": { "model": "everythingbad:automated_teller_machine", "y": 270 },
+    "active=true,facing=north": { "model": "everythingbad:automated_teller_machine" },
+    "active=true,facing=east": { "model": "everythingbad:automated_teller_machine", "y": 90 },
+    "active=true,facing=south": { "model": "everythingbad:automated_teller_machine", "y": 180 },
+    "active=true,facing=west": { "model": "everythingbad:automated_teller_machine", "y": 270 }
+  }
+}

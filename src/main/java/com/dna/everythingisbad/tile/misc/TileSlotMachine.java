@@ -3,10 +3,12 @@ package com.dna.everythingisbad.tile.misc;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import com.dna.everythingisbad.utils.RandomUtils;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
 
 import java.util.ArrayList;
 
@@ -51,6 +53,7 @@ public class TileSlotMachine extends TileDeviceBase {
                 if (progress == finishedProgress - 1) {
                     onFinish();
                 }
+                world.playSound(null,pos, SoundEvents.BLOCK_NOTE_HAT, SoundCategory.PLAYERS,4f,1f);
 
             }
         }
@@ -70,17 +73,14 @@ public class TileSlotMachine extends TileDeviceBase {
             //Checks if the item is good
             if(isItemGood(itemStack.getItem())){
                 if(!world.isRemote){
-                    EntityItem entityItem = new EntityItem(world);
-                    entityItem.setItem(new ItemStack(Items.GOLD_NUGGET,1));
-                    entityItem.setPosition(pos.getX(),pos.getY()+1,pos.getZ());
-                    world.spawnEntity(entityItem);
+                    Block.spawnAsEntity(world,pos.up(),new ItemStack(Items.GOLD_NUGGET,1));
+                    world.playSound(null,pos, SoundEvents.BLOCK_NOTE_CHIME, SoundCategory.PLAYERS,4f,1f);
                 }
             }
             if(isJackPot()){
-                EntityItem entityItem = new EntityItem(world);
-                entityItem.setItem(new ItemStack(Items.DIAMOND,RandomUtils.fromRangeI(1,7)));
-                entityItem.setPosition(pos.getX(),pos.getY()+1,pos.getZ());
-                world.spawnEntity(entityItem);
+
+                Block.spawnAsEntity(world,pos.up(),new ItemStack(Items.DIAMOND,RandomUtils.fromRangeI(1,7)));
+                world.playSound(null,pos, SoundEvents.BLOCK_NOTE_FLUTE, SoundCategory.PLAYERS,4f,1f);
             }
         }
     }
