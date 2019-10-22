@@ -5,10 +5,12 @@ import com.dna.everythingisbad.gui.elements.ElementBase;
 import com.dna.everythingisbad.gui.elements.ElementButton;
 import com.dna.everythingisbad.gui.elements.ElementNumberInput;
 import com.dna.everythingisbad.gui.elements.ElementTextField;
+import com.dna.everythingisbad.network.PacketHandler;
+import com.dna.everythingisbad.network.messagestypes.MessageTransaction;
 import com.dna.everythingisbad.tile.TileDeviceBase;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase {
+public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase{
     public ElementButton withdrawButton;
     public ElementButton depositButton;
     public ElementButton backButton;
@@ -16,6 +18,7 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase {
     public ElementTextField textFieldDeposit;
     public GuiState currentState = GuiState.STATE_MAIN;
     public ElementButton submitButton;
+
 
     public AutomatedTellerMachineGuiContainer(InventoryPlayer player, TileDeviceBase tileentity) {
         super(new AutomatedTellerMachineContainer(player,tileentity), player, tileentity);
@@ -59,6 +62,7 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase {
         }
     }
 
+
     @Override
     public void buttonPressed(ElementButton elementButton) {
         super.buttonPressed(elementButton);
@@ -72,35 +76,15 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase {
         else if(elementButton == backButton){
             currentState = GuiState.STATE_MAIN;
         }
+        else if(elementButton == submitButton){
+            if(currentState == GuiState.STATE_DEPOSIT){
+                PacketHandler.INSTANCE.sendToServer(new MessageTransaction(Integer.parseInt(textFieldDeposit.textField.getText()), MessageTransaction.TransactionType.DEPOSIT));
+            }else if(currentState == GuiState.STATE_WITHDRAW){
+                PacketHandler.INSTANCE.sendToServer(new MessageTransaction(Integer.parseInt(textFieldWithdraw.textField.getText()), MessageTransaction.TransactionType.WITHDRAW));
+            }
+        }
+    }
 
-    }
-    public void showWithdrawScreen(){
-        hideMainMenu();
-        textFieldWithdraw.setVisible(true);
-
-
-    }
-    public void showDepositScreen(){
-        hideMainMenu();
-        textFieldDeposit.setVisible(true);
-    }
-    public void showMainMenu(){
-        withdrawButton.setVisible(true);
-        depositButton.setVisible(true);
-    }
-    public void hideMainMenu(){
-        withdrawButton.setVisible(false);
-        depositButton.setVisible(false);
-        backButton.setVisible(true);
-    }
-    public void hideWithDrawScreen(){
-        backButton.setVisible(false);
-        textFieldWithdraw.setVisible(false);
-    }
-    public void hideDepositScreen(){
-        backButton.setVisible(false);
-        textFieldDeposit.setVisible(false);
-    }
     enum GuiState{
         STATE_MAIN,
         STATE_DEPOSIT,

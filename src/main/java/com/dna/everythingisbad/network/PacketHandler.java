@@ -22,7 +22,8 @@ public class PacketHandler {
         INSTANCE.registerMessage(MessageRollSlotMachineHandler.class, MessageRollSlotMachine.class, 4, Side.SERVER);
         INSTANCE.registerMessage(MessageHeartRateSyncHandler.class, MessageHeartRateSync.class, 5, Side.CLIENT);
         INSTANCE.registerMessage(MessageTileSyncHandler.class, MessageTileSync.class, 6, Side.CLIENT);
-
+        INSTANCE.registerMessage(MessageTransactionHandler.class, MessageTransaction.class, 7, Side.SERVER);
+        //INSTANCE.registerMessage(AutomatedTellerMachineGuiContainer.class, MessageTransactionStatus.class, 8, Side.CLIENT);
         if(ModConfig.IS_DEBUG) {
 
         }
