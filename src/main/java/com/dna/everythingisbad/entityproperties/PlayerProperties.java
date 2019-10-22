@@ -12,6 +12,7 @@ public class PlayerProperties {
     private int timesPooped = 0;
     private int balance = 0;
     private int bankBalance = 100;
+    private int angelDustAddictionLvl = 0;
     public PlayerProperties(){
 
     }
@@ -78,6 +79,9 @@ public class PlayerProperties {
     public void setBankBalance(int bankBalance) {
         this.bankBalance = bankBalance;
     }
+    public int getAngelDustAddictionLvl() { return angelDustAddictionLvl; }
+
+    public void setAngelDustAddictionLvl(int angelDustAddictionLvl) { this.angelDustAddictionLvl = angelDustAddictionLvl; }
 
     public void copyFrom(PlayerProperties oldPlayerProperties){
         this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
@@ -88,6 +92,8 @@ public class PlayerProperties {
         this.timesPooped = oldPlayerProperties.getTimesPooped();
         this.balance = oldPlayerProperties.getBalance();
         this.bankBalance = oldPlayerProperties.getBankBalance();
+        this.angelDustAddictionLvl = oldPlayerProperties.getAngelDustAddictionLvl();
+
 
     }
 
@@ -100,7 +106,9 @@ public class PlayerProperties {
         compound.setInteger("timesPooped",timesPooped);
         compound.setInteger("balance",balance);
         compound.setInteger("bankBalance",bankBalance);
+        compound.setInteger("angelDustAddictionLvl", angelDustAddictionLvl);
     }
+
 
     public void loadNBTData(NBTTagCompound compound){
         this.hasBeenInitialized = compound.getBoolean("hasBeenInitialized");
@@ -111,6 +119,7 @@ public class PlayerProperties {
         this.hasSoul = compound.getBoolean("hasSoul");
         this.balance = compound.getInteger("balance");
         this.bankBalance = compound.getInteger("bankBalance");
+        this.angelDustAddictionLvl = compound.getInteger("angelDustAddictionLvl");
     }
 
 }
