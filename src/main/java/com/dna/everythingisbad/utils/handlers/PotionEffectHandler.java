@@ -139,7 +139,7 @@ public class PotionEffectHandler {
                 entity.removePotionEffect(Potion.getPotionById(9));
             }
             //Speed
-            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), time_left, 50));
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), time_left, 20));
             // Haste
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(3), time_left, 2));
         }
