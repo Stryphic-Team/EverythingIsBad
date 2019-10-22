@@ -3,6 +3,7 @@ package com.dna.everythingisbad.commands.utils;
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
 import com.dna.everythingisbad.init.Religion;
+import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -12,13 +13,13 @@ public class CommandOutputHelper {
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
         int currentBalance = playerProperties.getBalance();
-        player.sendMessage(new TextComponentString("Balance: $"+String.valueOf(currentBalance)));
+        player.sendMessage(new TextComponentString("Balance: $"+String.valueOf(FormatHelper.formatNumber(currentBalance))));
     }
     public static void sendBankBalance(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
         int currentBalance = playerProperties.getBankBalance();
-        player.sendMessage(new TextComponentString("Bank Balance: $"+String.valueOf(currentBalance)));
+        player.sendMessage(new TextComponentString("Bank Balance: $"+String.valueOf(FormatHelper.formatNumber(currentBalance))));
     }
     public static void sendPlayerReligion(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);

@@ -181,7 +181,7 @@ public class CommonEventHandler {
     }
     @SubscribeEvent
     public void worldTick(TickEvent.WorldTickEvent event){
-        if(event.phase == TickEvent.Phase.END){
+        if(event.phase == TickEvent.Phase.END && !event.world.isRemote){
             for(WorldHandlerBase worldHandler: WORLD_HANDLERS){
                 worldHandler.worldTick(event.world);
             }

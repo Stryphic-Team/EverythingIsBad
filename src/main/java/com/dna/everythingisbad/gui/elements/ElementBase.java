@@ -4,6 +4,8 @@ import com.dna.everythingisbad.gui.DeviceContainerGuiBase;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.ResourceLocation;
 
+import java.io.IOException;
+
 public abstract class ElementBase {
 
     protected ResourceLocation resourceLocation;
@@ -19,7 +21,7 @@ public abstract class ElementBase {
     protected int textureWidth;
     protected int textureHeight;
 
-    protected boolean visible;
+    protected boolean visible = true;
     public ElementBase(DeviceContainerGuiBase gui, int startX, int startY){
         this.gui = gui;
         this.startX = startX;
@@ -29,6 +31,8 @@ public abstract class ElementBase {
 
         gui.drawSizedTexturedModalRect(x, y, u, v, width, height, textureWidth, textureHeight);
     }
+    public void keyTyped(char typedChar, int keyCode) throws IOException{}
+    public void mouseClicked(int mouseX, int mouseY, int mouseButton){}
 
     public abstract void drawElement();
     public abstract void drawForeground();
@@ -47,6 +51,9 @@ public abstract class ElementBase {
     }
     public int getHeight() {
         return height;
+    }
+    public void setVisible(boolean visible){
+        this.visible = visible;
     }
 
 

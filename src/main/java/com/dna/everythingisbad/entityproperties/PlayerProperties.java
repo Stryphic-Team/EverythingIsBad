@@ -11,7 +11,7 @@ public class PlayerProperties {
     private int religion = 0;
     private int timesPooped = 0;
     private int balance = 0;
-    private int bankBalance = 100;
+    private int bankBalance = 0;
     public PlayerProperties(){
 
     }
