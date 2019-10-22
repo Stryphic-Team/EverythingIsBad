@@ -56,4 +56,12 @@ public class CommandOutputHelper {
     public static void sendBorder(EntityPlayer player){
         player.sendMessage(new TextComponentString("==========================================="));
     }
+
+    public static void sendAddictionLevel(EntityPlayer player){
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+
+        int addictionlvl = playerProperties.getAngelDustAddictionLvl();
+
+        player.sendMessage(new TextComponentString("Angel Dust Addiction Lvl: " + addictionlvl));
+    }
 }

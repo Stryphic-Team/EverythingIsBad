@@ -48,8 +48,8 @@ public class PotionEffectHandler {
         if(time_left == highness_duration-1) {
             //Main.logger.info("Adding side effects");
 
-            //Mining Fatigue
-            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), time_left, 4));
+            // Regeneration (used to be Mining Fatigue)
+            entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), time_left, 0));
             //Weakness
             entity.addPotionEffect(new PotionEffect(Potion.getPotionById(18), time_left, 4));
             //Hunger
@@ -134,6 +134,16 @@ public class PotionEffectHandler {
             entity.writeEntityToNBT(entity.getEntityData());
         }
     }
+
+    public static void livingEntityWithdrawalActive (EntityLivingBase entity){
+        // Slowness
+        entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2),80,1));
+        // Poison
+        entity.addPotionEffect(new PotionEffect(Potion.getPotionById(19),100,0));
+        // Nausea
+        entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9),80,4));
+    }
+
 
     /**
      * Checks when the player has the highness effect active
