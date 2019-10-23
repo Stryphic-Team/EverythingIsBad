@@ -1,6 +1,7 @@
 package com.dna.everythingisbad.network;
 
 import com.dna.everythingisbad.Main;
+import com.dna.everythingisbad.gui.ATMSync;
 import com.dna.everythingisbad.gui.GuiSync;
 import com.dna.everythingisbad.network.handlers.*;
 import com.dna.everythingisbad.network.messagestypes.*;
@@ -22,7 +23,8 @@ public class PacketHandler {
         INSTANCE.registerMessage(MessageRollSlotMachineHandler.class, MessageRollSlotMachine.class, 4, Side.SERVER);
         INSTANCE.registerMessage(MessageHeartRateSyncHandler.class, MessageHeartRateSync.class, 5, Side.CLIENT);
         INSTANCE.registerMessage(MessageTileSyncHandler.class, MessageTileSync.class, 6, Side.CLIENT);
-
+        INSTANCE.registerMessage(MessageTransactionHandler.class, MessageTransaction.class, 7, Side.SERVER);
+        INSTANCE.registerMessage(ATMSync.class, MessageTransactionStatus.class, 8, Side.CLIENT);
         if(ModConfig.IS_DEBUG) {
 
         }

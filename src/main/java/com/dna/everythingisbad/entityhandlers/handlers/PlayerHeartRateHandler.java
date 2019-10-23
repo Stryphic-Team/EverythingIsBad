@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.entityhandlers.handlers;
 
+import com.dna.everythingisbad.damagesource.ModDamageSources;
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
@@ -72,11 +73,17 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
             }else{
                 target = 105f;
             }
+            // If you have ingested devil's cabbage
             if (player.isPotionActive(ModPotions.POTION_HIGHNESS.getPotion())){
                 target = target - 20;
             }
+            // If you have ingested angel dust
             if (player.isPotionActive(ModPotions.POTION_ADRENALINE.getPotion())){
                 target = target + 80;
+            }
+            // If you have ingested ciggys and cigars
+            if (player.isPotionActive(ModPotions.POTION_STIMULATION.getPotion())){
+                target = target + 40;
             }
 
             NBTTagCompound entitydata = player.getEntityData();
@@ -98,6 +105,26 @@ public class PlayerHeartRateHandler extends PlayerHandlerBase {
             NBTTagCompound entitydata = player.getEntityData();
             entitydata.setFloat("heart_rate",newrate);
             player.writeEntityToNBT(entitydata);
+
+            if (newrate >= 150){
+                // Heart attack chance per second = 1 / 10000/(((rate/10)-14)^3)
+                // 150bpm: 1/10000
+                // 160bpm: 1/1250
+                // 170bpm: 1/370
+                // 180bpm: 1/156
+                // 190bpm: 1/80
+                // 200bpm: 1/46
+                // 210bpm: 1/29
+                // 220bpm: 1/19
+                // 230bpm: 1/13
+                float heartAttackChance;
+                float heartAttackDenom = (newrate/10f)-14f;
+                heartAttackChance = 10000f/(float)(Math.pow(heartAttackDenom,3));
+
+                if (random.nextInt((int)heartAttackChance) == 1){
+                    player.attackEntityFrom(ModDamageSources.HEART_ATTACK,player.getHealth() + 20f);
+                }
+            }
         }
 
         // Giving the PlayerSP and the heart rate monitor item the PlayerMP's heart rate
