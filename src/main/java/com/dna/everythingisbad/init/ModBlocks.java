@@ -49,6 +49,7 @@ public class ModBlocks
     public static final Block QUARRY = new BlockQuarry("quarry");
     public static final Block SLOT_MACHINE = new BlockSlotMachine("slot_machine");
     public static final Block AUTOMATED_TELLER_MACHINE = new BlockAutomatedTellerMachine("automated_teller_machine");
+    public static final Block INCUBATOR = new BlockIncubator("incubator");
 
     // Woke blocks
     public static final Block POOP_STAIRS = new BlockPoopStairs("poop_stairs");

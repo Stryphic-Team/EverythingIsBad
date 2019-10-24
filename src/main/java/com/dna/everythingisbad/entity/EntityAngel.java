@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 public class EntityAngel extends EntityBat {
     public EntityAngel(World worldIn) {
         super(worldIn);
+        this.setAIMoveSpeed(0.1f);
     }
 
     @Override
