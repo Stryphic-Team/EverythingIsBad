@@ -30,6 +30,11 @@ public abstract class DeviceContainerBase extends Container {
         addPlayerSlots(playerInventory);
         detectAndSendChanges();
     }
+    public DeviceContainerBase(IInventory playerInventory,ItemStack itemStack){
+        this.itemHandler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,null);
+        addPlayerSlots(playerInventory);
+        detectAndSendChanges();
+    }
     protected void addPlayerSlots(IInventory playerInventory){
         for(int y = 0; y < 3; y++)
         {
