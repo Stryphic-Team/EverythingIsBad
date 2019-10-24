@@ -35,4 +35,21 @@ public class PlayerReligionHandler extends PlayerHandlerBase {
             }
         }
     }
+
+    @Override
+    public void playerRespawn(EntityPlayer player) {
+        super.playerRespawn(player);
+
+        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        if(playerProperties != null) {
+            int playerReligion = playerProperties.getReligion();
+            Religion[] rel = Religion.values(); // That's how you're supposed to define a array in java, lol
+            for (Religion religion : rel) {
+                if (religion.ordinal() == playerReligion) {
+                    player.addSuffix(new TextComponentString(" [" +
+                            religion.getDisplayName() + "]").setStyle(new Style().setColor(religion.getTextFormatting())));
+                }
+            }
+        }
+    }
 }
