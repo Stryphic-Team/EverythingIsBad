@@ -20,9 +20,10 @@ public class PlayerReligionHandler extends PlayerHandlerBase {
         }
     }
 
+
     @Override
-    public void playerPostInitialization(EntityPlayer player) {
-        super.playerPostInitialization(player);
+    public void playerJoined(EntityPlayer player) {
+        super.playerJoined(player);
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             int playerReligion = playerProperties.getReligion();
