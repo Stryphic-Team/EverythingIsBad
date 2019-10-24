@@ -145,9 +145,7 @@ public class CommonEventHandler {
     public void joinedServer(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event){
         //PlayerHandler.playerJoined(event.player);
         if(!event.player.getEntityWorld().isRemote) {
-            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
-                playerHandler.playerJoined(event.player);
-            }
+
 
             PlayerProperties playerProperties = event.player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
             if (playerProperties != null) {
@@ -163,6 +161,9 @@ public class CommonEventHandler {
                         playerHandler.playerPostInitialization(event.player);
                     }
                 }
+            }
+            for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
+                playerHandler.playerJoined(event.player);
             }
         }
     }
