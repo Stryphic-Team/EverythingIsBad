@@ -7,10 +7,7 @@ import com.dna.everythingisbad.tile.generators.TileFluxTest;
 import com.dna.everythingisbad.tile.generators.TileStupidCoreReactor;
 import com.dna.everythingisbad.tile.misc.TileAutomatedTellerMachine;
 import com.dna.everythingisbad.tile.misc.TileSlotMachine;
-import com.dna.everythingisbad.tile.processing.TileDryerMachine;
-import com.dna.everythingisbad.tile.processing.TileLiquifierMachine;
-import com.dna.everythingisbad.tile.processing.TileQuarry;
-import com.dna.everythingisbad.tile.processing.TileStupidCoreMachine;
+import com.dna.everythingisbad.tile.processing.*;
 import com.dna.everythingisbad.tile.storage.TileUrineBattery;
 import net.minecraft.tileentity.TileEntity;
 
@@ -29,6 +26,7 @@ public class ModTileEntities {
     public static final TileQuarry TILE_QUARRY = new TileQuarry();
     public static final TileSlotMachine TILE_SLOT_MACHINE = new TileSlotMachine();
     public static final TileAutomatedTellerMachine TILE_AUTOMATED_TELLER_MACHINE = new TileAutomatedTellerMachine();
+    public static final TileIncubator TILE_INCUBATOR = new TileIncubator();
 
     public static void register(){
         for(TileDeviceBase device: TILE_ENTITIES){
