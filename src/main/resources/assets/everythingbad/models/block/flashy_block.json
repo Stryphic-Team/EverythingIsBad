@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "everythingbad:blocks/flashy_block"
+  }
+}
