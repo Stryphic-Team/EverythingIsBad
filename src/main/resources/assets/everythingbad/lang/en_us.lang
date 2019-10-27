@@ -21,6 +21,7 @@ tile.everythingbad:coal_generator.name=Coal Generator
 tile.everythingbad:slot_machine.name=Slot Machine
 tile.everythingbad:automated_teller_machine.name=ATM
 tile.everythingbad:incubator.name=Incubator
+tile.everythingbad:quarry.name=Quarry
 
 tile.everythingbad:question_mark_block.name=Question Mark Block
 tile.everythingbad:empty_block.name=Empty Block
