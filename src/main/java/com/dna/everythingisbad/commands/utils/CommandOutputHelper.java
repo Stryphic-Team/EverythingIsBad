@@ -7,8 +7,12 @@ import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 
 public class CommandOutputHelper {
+    String[] Docs = new String[]{
+
+    };
     public static void sendPlayerBalance(EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
 
@@ -55,7 +59,7 @@ public class CommandOutputHelper {
         player.sendMessage(new TextComponentString("Common Cold Immunity: "+hasCommonColdImmunity));
     }
     public static void sendBorder(EntityPlayer player){
-        player.sendMessage(new TextComponentString("==========================================="));
+        player.sendMessage(new TextComponentString("===========================================").setStyle(new Style().setColor(TextFormatting.GOLD)));
     }
 
     public static void sendAddictionLevel(EntityPlayer player){

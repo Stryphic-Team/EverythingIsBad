@@ -1,7 +1,6 @@
 package com.dna.everythingisbad.commands;
 
 import com.dna.everythingisbad.init.ModCommands;
-import com.dna.everythingisbad.reference.Reference;
 import net.minecraft.command.CommandBase;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ public abstract class ModCommandBase extends CommandBase {
     protected String name;
     private ArrayList<String> aliases = new ArrayList<String>();
     public ModCommandBase(String name){
-        this.name = Reference.RESOURCE_PREFIX + name;
+        this.name = name;
         ModCommands.COMMANDS.add(this);
 
     }
@@ -26,6 +25,7 @@ public abstract class ModCommandBase extends CommandBase {
     }
 
     public void addAlias(String alias){
-        aliases.add(Reference.RESOURCE_PREFIX+alias);
+        aliases.add(alias);
     }
+    public abstract String getDocumentation();
 }

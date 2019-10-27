@@ -9,10 +9,12 @@ import net.minecraft.server.MinecraftServer;
 public class CommandGetBalance extends ModCommandBase {
     public CommandGetBalance(String name) {
         super(name);
-        addAlias("bal");
-        addAlias("balance");
-        addAlias("getbal");
-        addAlias("money");
+
+    }
+
+    @Override
+    public String getDocumentation() {
+        return "Retrieves your current balance.";
     }
 
     @Override
@@ -22,7 +24,7 @@ public class CommandGetBalance extends ModCommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "Gets your balance";
+        return "/everthingisbad balance";
     }
 
     @Override

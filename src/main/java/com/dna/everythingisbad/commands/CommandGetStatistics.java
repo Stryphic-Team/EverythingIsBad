@@ -9,9 +9,12 @@ import net.minecraft.server.MinecraftServer;
 public class CommandGetStatistics extends ModCommandBase {
     public CommandGetStatistics(String name) {
         super(name);
-        addAlias("getstats");
-        addAlias("stats");
-        addAlias("statistics");
+
+    }
+
+    @Override
+    public String getDocumentation() {
+        return "Retrieves your current statistics.";
     }
 
     @Override
@@ -21,7 +24,7 @@ public class CommandGetStatistics extends ModCommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "Gets the current status of your player";
+        return "/everythingisbad statistics";
     }
 
     @Override
