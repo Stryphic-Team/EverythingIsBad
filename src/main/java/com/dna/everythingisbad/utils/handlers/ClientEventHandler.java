@@ -1,7 +1,11 @@
 package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.client.RenderYellow;
+import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,9 +29,13 @@ public class ClientEventHandler {
 
     }
     @SubscribeEvent
-    public void joinedServer(PlayerLoggedInEvent event){
-        //PlayerHandler.playerJoined(event.player);
-        //event.player.getEntityData().setInteger("highness_duration",);
+    public void joinedServer(EntityJoinWorldEvent event){
+        if (event.getEntity() instanceof EntityPlayerSP){
+            for (PlayerHandlerBase playerHandler : CommonEventHandler.PLAYER_HANDLERS) {
+                playerHandler.clientPlayerJoined((EntityPlayerSP)event.getEntity());
+            }
+        }
+
     }
 
     @SubscribeEvent
@@ -52,6 +60,12 @@ public class ClientEventHandler {
 
     }
 
+    @SubscribeEvent
+    public void renderGameOverlay(RenderGameOverlayEvent event){
+        for (PlayerHandlerBase playerHandler : CommonEventHandler.PLAYER_HANDLERS) {
+            playerHandler.gameOverlayEvent(event);
+        }
+    }
 
 //    @SubscribeEvent(priority = EventPriority.HIGH)
 //    public void renderGameOverlayEvent (RenderGameOverlayEvent event){

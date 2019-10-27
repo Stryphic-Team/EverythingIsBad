@@ -3,8 +3,10 @@ package com.dna.everythingisbad.entityhandlers;
 import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.utils.handlers.CommonEventHandler;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import scala.util.Random;
 
 public abstract class PlayerHandlerBase {
@@ -34,4 +36,8 @@ public abstract class PlayerHandlerBase {
     public void playerDied(EntityPlayer player){}
     // Called once per tick on the EntityPlayerSP
     public void clientPlayerTick(EntityPlayer player){};
+    // Called when the overlays are rendered
+    public void gameOverlayEvent(RenderGameOverlayEvent event){};
+
+    public void clientPlayerJoined(EntityPlayer player){};
 }
