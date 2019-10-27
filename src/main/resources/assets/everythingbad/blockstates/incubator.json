@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "active=false,facing=north": { "model": "everythingbad:incubator" },
+    "active=false,facing=east": { "model": "everythingbad:incubator", "y": 90 },
+    "active=false,facing=south": { "model": "everythingbad:incubator", "y": 180 },
+    "active=false,facing=west": { "model": "everythingbad:incubator", "y": 270 },
+    "active=true,facing=north": { "model": "everythingbad:incubator_active" },
+    "active=true,facing=east": { "model": "everythingbad:incubator_active", "y": 90 },
+    "active=true,facing=south": { "model": "everythingbad:incubator_active", "y": 180 },
+    "active=true,facing=west": { "model": "everythingbad:incubator_active", "y": 270 }
+  }
+}

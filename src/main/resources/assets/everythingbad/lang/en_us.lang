@@ -20,6 +20,7 @@ tile.everythingbad:stupid_core_reactor.name=Stupid™ Core Reactor
 tile.everythingbad:coal_generator.name=Coal Generator
 tile.everythingbad:slot_machine.name=Slot Machine
 tile.everythingbad:automated_teller_machine.name=ATM
+tile.everythingbad:incubator.name=Incubator
 
 tile.everythingbad:question_mark_block.name=Question Mark Block
 tile.everythingbad:empty_block.name=Empty Block
@@ -57,6 +58,7 @@ item.everythingbad:angel_dust.name=Angel Dust
 item.everythingbad:cigarette.name=Cigarette
 item.everythingbad:cigar.name=Cigar
 item.everythingbad:heart_rate_monitor.name=Heart Rate Monitor
+item.everythingbad:baby_soup.name=Baby Soup
 
 item.everythingbad:iron_rod.name=Iron Rod
 item.everythingbad:solenoid.name=Solenoid
