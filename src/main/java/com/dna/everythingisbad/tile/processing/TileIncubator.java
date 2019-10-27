@@ -6,9 +6,13 @@ import com.dna.everythingisbad.tile.TileMachineBase;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
 import com.dna.everythingisbad.utils.ModConfig;
 import com.dna.everythingisbad.utils.RandomUtils;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -43,8 +47,13 @@ public class TileIncubator extends TileMachineBase {
             EntityVillager entityVillager = new EntityVillager(this.world, RandomUtils.random.nextInt(6));
             // negative values indicate a child, with 1 day (24000 ticks) being the usual value
             entityVillager.setGrowingAge(-24000);
-            // spawns directly above the block (y+1)
-            entityVillager.setPosition(this.pos.getX(), this.pos.getY() + 1, this.pos.getZ());
+
+            // spawns directly in front of the block based off of the blockstate's facing
+            IBlockState blockState = this.world.getBlockState(this.pos);
+            EnumFacing facing = blockState.getValue(BlockHorizontal.FACING);
+            BlockPos spawnpos = this.pos.offset(facing,1);
+            entityVillager.setPosition(spawnpos.getX(),spawnpos.getY(),spawnpos.getZ());
+
             // if you name the Baby item in an anvil, it carries over onto the villager entity
             if (!name.equals("Baby")) {
                 entityVillager.setCustomNameTag(name);

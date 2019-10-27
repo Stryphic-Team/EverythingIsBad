@@ -36,6 +36,7 @@ public class CommonEventHandler {
     public static PlayerHandlerBase PLAYER_HEART_RATE_HANDLER = new PlayerHeartRateHandler();
     public static PlayerAngelDustAddictionHandler PLAYER_ADDICTION_HANDLER = new PlayerAngelDustAddictionHandler();
     public static PlayerTobaccoAddictionHandler PLAYER_TOBACCO_ADDICTION_HANDLER = new PlayerTobaccoAddictionHandler();
+    //public static PlayerScreenYellowHandler PLAYER_SCREEN_YELLOW_HANDLER = new PlayerScreenYellowHandler();
     //Living Handlers
     public static LivingHandlerBase LIVING_JESUS_HEAL_HANDLER = new LivingJesusHealHandler();
     public static LivingHandlerBase LIVING_VILLAGER_BABY_HANDLER = new LivingVillagerBabyHandler();

@@ -35,6 +35,7 @@ public class ModBlocks
     public static final Block TOBACCO_BLOCK = new BlockTobacco("tobacco");
     public static final Block CLOUD_BLOCK = new BlockCloud("cloud_block");
     public static final Block COPPER_ORE_BLOCK = new BlockCopperOre("copper_ore");
+    public static final Block FLASHY_BLOCK = new BlockFlashy("flashy_block");
 
     // Machines and generaters
     public static final Block FLUX_TEST = new BlockFluxTest("flux_test");

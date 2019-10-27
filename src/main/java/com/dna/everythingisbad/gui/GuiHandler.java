@@ -18,6 +18,7 @@ public class GuiHandler implements IGuiHandler {
 
 
     private static int guiId = 0;
+    // Machine GUIs
     public static final int GUI_STUPID_CORE_MACHINE = guiId++;
     public static final int GUI_DIARIC_GENERATOR = guiId++;
     public static final int GUI_DRYER_MACHINE = guiId++;
@@ -29,6 +30,9 @@ public class GuiHandler implements IGuiHandler {
     public static final int GUI_AUTOMATED_TELLER_MACHINE = guiId++;
     public static final int GUI_ITEM_CARDBOARD_BOX = guiId++;
     public static final int GUI_INCUBATOR = guiId++;
+    // Non-machine GUIs
+    public static final int GUI_YELLOW_OVERLAY = guiId++;
+
     @Nullable
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -59,6 +63,8 @@ public class GuiHandler implements IGuiHandler {
         if(ID == GUI_SLOT_MACHINE) return new SlotMachineGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_AUTOMATED_TELLER_MACHINE) return new AutomatedTellerMachineGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
         if(ID == GUI_INCUBATOR) return new IncubatorGuiContainer(player.inventory, (TileDeviceBase) world.getTileEntity(new BlockPos(x,y,z)));
+
+        if (ID == GUI_YELLOW_OVERLAY) return new GuiYellowOverlay();
 
         return null;
     }

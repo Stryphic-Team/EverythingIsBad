@@ -67,6 +67,7 @@ public class ModItems {
     public static final ItemAngelDust ANGEL_DUST = new ItemAngelDust("angel_dust");
     public static final ItemCigarette CIGARETTE_ITEM = new ItemCigarette("cigarette");
     public static final ItemCigar CIGAR_ITEM = new ItemCigar("cigar");
+    public static final ItemBabySoup BABY_SOUP_ITEM = new ItemBabySoup("baby_soup");
     /**
      * Music
      */

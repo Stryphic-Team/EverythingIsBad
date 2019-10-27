@@ -18,13 +18,18 @@ public class CommandGiveMoney extends ModCommandBase {
     }
 
     @Override
+    public String getDocumentation() {
+        return "Gives money to a specified player";
+    }
+
+    @Override
     public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
     }
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "/givemoney <username> <amount>";
+        return "/everythingisbad money <username> <amount>";
     }
 
     @Override
@@ -71,4 +76,5 @@ public class CommandGiveMoney extends ModCommandBase {
     {
         return args.length >= 1 ? getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()) : Collections.emptyList();
     }
+
 }
