@@ -10,8 +10,8 @@ public class PlayerProperties {
     private boolean isBlind = false;
     private int religion = 0;
     private int timesPooped = 0;
-    private int balance = 0;
-    private int bankBalance = 100;
+    private float balance = 0;
+    private float bankBalance = -1000;
     private int angelDustAddictionLvl = 0;
     private int tobaccoAddictionLvl = 0;
 
@@ -66,19 +66,19 @@ public class PlayerProperties {
         this.timesPooped = timesPooped;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
-    public int getBankBalance() {
+    public float getBankBalance() {
         return bankBalance;
     }
 
-    public void setBankBalance(int bankBalance) {
+    public void setBankBalance(float bankBalance) {
         this.bankBalance = bankBalance;
     }
     public int getAngelDustAddictionLvl() { return angelDustAddictionLvl; }
@@ -114,8 +114,8 @@ public class PlayerProperties {
         compound.setBoolean("isBlind",isBlind);
         compound.setInteger("religion",religion);
         compound.setInteger("timesPooped",timesPooped);
-        compound.setInteger("balance",balance);
-        compound.setInteger("bankBalance",bankBalance);
+        compound.setFloat("balance",balance);
+        compound.setFloat("bankBalance",bankBalance);
         compound.setInteger("angelDustAddictionLvl", angelDustAddictionLvl);
         compound.setInteger("tobaccoAddictionLvl", tobaccoAddictionLvl);
     }
@@ -128,8 +128,8 @@ public class PlayerProperties {
         this.religion = compound.getInteger("religion");
         this.timesPooped = compound.getInteger("timesPooped");
         this.hasSoul = compound.getBoolean("hasSoul");
-        this.balance = compound.getInteger("balance");
-        this.bankBalance = compound.getInteger("bankBalance");
+        this.balance = compound.getFloat("balance");
+        this.bankBalance = compound.getFloat("bankBalance");
         this.angelDustAddictionLvl = compound.getInteger("angelDustAddictionLvl");
         this.tobaccoAddictionLvl = compound.getInteger("tobaccoAddictionLvl");
     }

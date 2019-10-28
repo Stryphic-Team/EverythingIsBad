@@ -13,7 +13,7 @@ public class ElementNumberInput extends ElementTextField {
     public void keyTyped(char typedChar, int keyCode) throws IOException {
         super.keyTyped(typedChar, keyCode);
         try {
-            Integer.parseInt(textField.getText());
+            Float.parseFloat(textField.getText());
         }catch (NumberFormatException e){
             String currentText = textField.getText();
             if(!currentText.equals("")) textField.setText(currentText.substring(0,currentText.length()-1));

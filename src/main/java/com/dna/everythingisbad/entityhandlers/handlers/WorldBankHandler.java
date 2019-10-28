@@ -3,6 +3,7 @@ package com.dna.everythingisbad.entityhandlers.handlers;
 import com.dna.everythingisbad.entityhandlers.WorldHandlerBase;
 import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
@@ -24,13 +25,13 @@ public class WorldBankHandler extends WorldHandlerBase {
                     if (currentPlayer != null) {
                         PlayerProperties playerProperties = currentPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
                         if (playerProperties != null) {
-                            int currentBankBalance = playerProperties.getBankBalance();
+                            float currentBankBalance = playerProperties.getBankBalance();
                             if(currentBankBalance > 0){
-                                int newBankBalance = currentBankBalance + Math.round(playerProperties.bankInterestRate * (float)currentBankBalance);
+                                float newBankBalance = currentBankBalance + (playerProperties.bankInterestRate * currentBankBalance);
                                 if(newBankBalance > 0){
                                     playerProperties.setBankBalance(newBankBalance);
                                     playerProperties.saveNBTData(currentPlayer.getEntityData());
-                                    currentPlayer.sendMessage(new TextComponentString("Interest has been paid on your bank balance."));
+                                    currentPlayer.sendMessage(new TextComponentString("Interest of "+ FormatHelper.formatMoney(playerProperties.bankInterestRate * currentBankBalance)+" has been paid on your bank balance."));
                                 }
                             }
                         }
@@ -39,4 +40,5 @@ public class WorldBankHandler extends WorldHandlerBase {
             }
         }
     }
+
 }

@@ -4,32 +4,32 @@ import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessageTransaction implements IMessage {
-    private int amount;
+    private float amount;
     private TransactionType transactionType;
     public MessageTransaction(){
 
     }
-    public MessageTransaction(int amount,TransactionType transactionType){
+    public MessageTransaction(float amount,TransactionType transactionType){
         this.amount = amount;
         this.transactionType = transactionType;
     }
     @Override
     public void fromBytes(ByteBuf buf) {
-        amount = buf.readInt();
+        amount = buf.readFloat();
         transactionType = TransactionType.values()[buf.readInt()];
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(amount);
+        buf.writeFloat(amount);
         buf.writeInt(transactionType.ordinal());
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

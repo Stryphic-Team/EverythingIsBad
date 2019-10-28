@@ -5,12 +5,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessageTransactionStatus implements IMessage {
     private boolean pass;
-    private int balance;
-    private int bankBalance;
+    private float balance;
+    private float bankBalance;
     public MessageTransactionStatus(){
 
     }
-    public MessageTransactionStatus(boolean pass,int balance,int bankBalance){
+    public MessageTransactionStatus(boolean pass,float balance,float bankBalance){
         this.pass = pass;
         this.balance = balance;
         this.bankBalance = bankBalance;
@@ -24,33 +24,33 @@ public class MessageTransactionStatus implements IMessage {
         this.pass = pass;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
-    public int getBankBalance() {
+    public float getBankBalance() {
         return bankBalance;
     }
 
-    public void setBankBalance(int bankBalance) {
+    public void setBankBalance(float bankBalance) {
         this.bankBalance = bankBalance;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         pass = buf.readBoolean();
-        balance = buf.readInt();
-        bankBalance = buf.readInt();
+        balance = buf.readFloat();
+        bankBalance = buf.readFloat();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(pass);
-        buf.writeInt(balance);
-        buf.writeInt(bankBalance);
+        buf.writeFloat(balance);
+        buf.writeFloat(bankBalance);
     }
 }

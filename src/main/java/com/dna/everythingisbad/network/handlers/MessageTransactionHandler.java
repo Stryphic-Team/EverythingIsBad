@@ -19,8 +19,8 @@ public class MessageTransactionHandler implements IMessageHandler<MessageTransac
             if(playerProperties != null){
                 if(message.getTransactionType() == MessageTransaction.TransactionType.WITHDRAW){
                     if(playerProperties.getBankBalance() >= message.getAmount()){
-                        int currentBankBalance = playerProperties.getBankBalance();
-                        int currentBalance = playerProperties.getBalance();
+                        float currentBankBalance = playerProperties.getBankBalance();
+                        float currentBalance = playerProperties.getBalance();
                         playerProperties.setBankBalance(currentBankBalance - message.getAmount());
                         playerProperties.setBalance(currentBalance + message.getAmount());
                         PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(true,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
@@ -29,8 +29,8 @@ public class MessageTransactionHandler implements IMessageHandler<MessageTransac
                     }
                 }else if(message.getTransactionType() == MessageTransaction.TransactionType.DEPOSIT){
                     if(playerProperties.getBalance() >= message.getAmount()){
-                        int currentBankBalance = playerProperties.getBankBalance();
-                        int currentBalance = playerProperties.getBalance();
+                        float currentBankBalance = playerProperties.getBankBalance();
+                        float currentBalance = playerProperties.getBalance();
                         playerProperties.setBankBalance(currentBankBalance + message.getAmount());
                         playerProperties.setBalance(currentBalance - message.getAmount());
                         PacketHandler.INSTANCE.sendTo(new MessageTransactionStatus(true,playerProperties.getBalance(),playerProperties.getBankBalance()),player);
