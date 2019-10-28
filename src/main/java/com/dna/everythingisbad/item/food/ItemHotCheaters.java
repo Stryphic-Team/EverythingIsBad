@@ -27,7 +27,7 @@ public class ItemHotCheaters extends ItemFoodBase {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving){
         if (!worldIn.isRemote){
-            CureEffect(entityLiving, MobEffects.MINING_FATIGUE);
+            CureEffect(entityLiving, MobEffects.WEAKNESS);
         }
 
         if (entityLiving instanceof EntityPlayerMP)
