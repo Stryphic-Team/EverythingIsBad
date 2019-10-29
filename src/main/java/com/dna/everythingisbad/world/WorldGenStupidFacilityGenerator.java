@@ -45,8 +45,8 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
             BlockPos currentPos = firstPosition;
 
             int randomSign;
-            //int randomSize = RandomUtils.fromRangeI(1,15);
-            int randomSize = 1;
+            int randomSize = RandomUtils.fromRangeI(1,15);
+            //int randomSize = 1;
 
             if(!biomeExcluded(biome)  && world.getBlockState(firstPosition).getBlock() != Blocks.WATER){
                 for (int i = 0; i < randomSize; i++){
