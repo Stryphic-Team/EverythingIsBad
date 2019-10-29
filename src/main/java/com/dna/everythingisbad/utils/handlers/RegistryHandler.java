@@ -2,13 +2,12 @@ package com.dna.everythingisbad.utils.handlers;
 
 import com.dna.everythingisbad.block.IModBlockBase;
 import com.dna.everythingisbad.entityproperties.CapabilityProvider;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.IHasModel;
 import com.dna.everythingisbad.utils.ModConfig;
-import net.minecraft.advancements.critereon.PlayerHurtEntityTrigger;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
@@ -26,7 +25,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.GetCollisionBoxesEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -109,11 +107,11 @@ public class RegistryHandler {
     public static void onAttachCapabilitiesEvent(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayerMP) {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) event.getObject();
-            if (!entityPlayerMP.hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
+            if (!entityPlayerMP.hasCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null)) {
                 event.addCapability(new ResourceLocation(Reference.MOD_ID, "player_data"), new CapabilityProvider());
             }
         }else if(event.getObject() instanceof  EntityPlayer){
-            if (!event.getObject().hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
+            if (!event.getObject().hasCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null)) {
                 event.addCapability(new ResourceLocation(Reference.MOD_ID, "player_data"), new CapabilityProvider());
             }
         }

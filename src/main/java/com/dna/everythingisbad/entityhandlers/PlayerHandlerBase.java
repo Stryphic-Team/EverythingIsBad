@@ -3,9 +3,10 @@ package com.dna.everythingisbad.entityhandlers;
 import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.utils.handlers.CommonEventHandler;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.GuiGameOver;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import scala.util.Random;
 
@@ -40,4 +41,9 @@ public abstract class PlayerHandlerBase {
     public void gameOverlayEvent(RenderGameOverlayEvent event){};
 
     public void clientPlayerJoined(EntityPlayer player){};
+    //Called when a player catches a fish
+    public void playerCaughtFish(EntityPlayer entityPlayer, NonNullList<ItemStack> drops) {
+    }
+    //called when a player kills a entity living
+    public void playerKilledLiving(EntityPlayer player, Entity entity) { }
 }

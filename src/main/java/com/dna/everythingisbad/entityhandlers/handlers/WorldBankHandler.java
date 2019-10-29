@@ -1,8 +1,10 @@
 package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entityhandlers.WorldHandlerBase;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
+import com.dna.everythingisbad.utils.ModConfig;
+import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
@@ -22,16 +24,21 @@ public class WorldBankHandler extends WorldHandlerBase {
                 for (String playerName : onlinePlayers) {
                     EntityPlayerMP currentPlayer = playerList.getPlayerByUsername(playerName);
                     if (currentPlayer != null) {
-                        PlayerProperties playerProperties = currentPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
+                        PlayerProperties playerProperties = currentPlayer.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
                         if (playerProperties != null) {
-                            int currentBankBalance = playerProperties.getBankBalance();
+                            float currentBankBalance = playerProperties.getBankBalance();
                             if(currentBankBalance > 0){
-                                int newBankBalance = currentBankBalance + Math.round(playerProperties.bankInterestRate * (float)currentBankBalance);
+                                float newBankBalance = currentBankBalance + (playerProperties.bankInterestRate * currentBankBalance);
                                 if(newBankBalance > 0){
                                     playerProperties.setBankBalance(newBankBalance);
                                     playerProperties.saveNBTData(currentPlayer.getEntityData());
-                                    currentPlayer.sendMessage(new TextComponentString("Interest has been paid on your bank balance."));
+                                    currentPlayer.sendMessage(new TextComponentString("Interest of "+ FormatHelper.formatMoney(playerProperties.bankInterestRate * currentBankBalance)+" has been paid on your bank balance."));
                                 }
+                            }else if(currentBankBalance < 0){
+                                float newBankBalance = currentBankBalance + ((ModConfig.NEGATIVE_BALANCE_INTEREST / 100f) * currentBankBalance);
+                                playerProperties.setBankBalance(newBankBalance);
+                                playerProperties.saveNBTData(currentPlayer.getEntityData());
+                                currentPlayer.sendMessage(new TextComponentString("Interest of "+ FormatHelper.formatMoney((ModConfig.NEGATIVE_BALANCE_INTEREST / 100f) * currentBankBalance)+" has been deducted from your bank balance."));
                             }
                         }
                     }
@@ -39,4 +46,6 @@ public class WorldBankHandler extends WorldHandlerBase {
             }
         }
     }
+
+
 }

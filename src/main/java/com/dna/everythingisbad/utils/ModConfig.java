@@ -3,9 +3,7 @@ package com.dna.everythingisbad.utils;
 import com.dna.everythingisbad.reference.Reference;
 import net.minecraftforge.common.config.Config;
 
-/**
- * This is for variables that will later be moved to the config
- */
+
 @Config(modid = Reference.MOD_ID)
 public class ModConfig {
     @Config.Name("Mobs Move Faster")
@@ -28,6 +26,10 @@ public class ModConfig {
     public static int MOB_SPEED_MULTIPLIER = 2;
     @Config.Name("Common Cold Chance")
     public static int COMMON_COLD_CHANCE = 1000;
+    @Config.Name("Negative Balance Interest")
+    public static float NEGATIVE_BALANCE_INTEREST = 5f;
+    @Config.Name("Student Chance")
+    public static float STUDENT_CHANCE = 6f;
     @Config.Name("Copper Ore Spawns")
     @Config.RequiresMcRestart
     public static boolean COPPER_ORE_SPAWN = true;

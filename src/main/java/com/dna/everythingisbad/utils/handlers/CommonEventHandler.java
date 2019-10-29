@@ -4,14 +4,15 @@ import com.dna.everythingisbad.entityhandlers.LivingHandlerBase;
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
 import com.dna.everythingisbad.entityhandlers.WorldHandlerBase;
 import com.dna.everythingisbad.entityhandlers.handlers.*;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -34,8 +35,11 @@ public class CommonEventHandler {
     public static PlayerHandlerBase PLAYER_QUESTION_MARK_BLOCK_HANDLER = new PlayerQuestionMarkBlockHandler();
     public static PlayerHandlerBase PLAYER_GRASS_BREAK_HANDLER = new PlayerGrassBreakHandler();
     public static PlayerHandlerBase PLAYER_HEART_RATE_HANDLER = new PlayerHeartRateHandler();
-    public static PlayerAngelDustAddictionHandler PLAYER_ADDICTION_HANDLER = new PlayerAngelDustAddictionHandler();
-    public static PlayerTobaccoAddictionHandler PLAYER_TOBACCO_ADDICTION_HANDLER = new PlayerTobaccoAddictionHandler();
+    public static PlayerHandlerBase PLAYER_JOB_HANDLER = new PlayerJobHandler();
+    public static PlayerHandlerBase PLAYER_ADDICTION_HANDLER = new PlayerAngelDustAddictionHandler();
+    public static PlayerHandlerBase PLAYER_TOBACCO_ADDICTION_HANDLER = new PlayerTobaccoAddictionHandler();
+    public static PlayerHandlerBase PLAYER_MONEY_HANDLER = new PlayerMoneyHandler();
+    public static PlayerHandlerBase PLAYER_COLLEGE_STUDENT_HANDLER = new PlayerCollegeStudentHandler();
     //public static PlayerScreenYellowHandler PLAYER_SCREEN_YELLOW_HANDLER = new PlayerScreenYellowHandler();
     //Living Handlers
     public static LivingHandlerBase LIVING_JESUS_HEAL_HANDLER = new LivingJesusHealHandler();
@@ -75,9 +79,9 @@ public class CommonEventHandler {
     @SubscribeEvent
     public void onPlayerCloned(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
-            if (event.getOriginal().hasCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null)) {
-                PlayerProperties oldStore = event.getOriginal().getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
-                PlayerProperties newStore = InitializedPlayerProperties.getPlayerProperties(event.getEntityPlayer());
+            if (event.getOriginal().hasCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null)) {
+                PlayerProperties oldStore = event.getOriginal().getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
+                PlayerProperties newStore = PlayerPropertiesCapability.getPlayerProperties(event.getEntityPlayer());
                 newStore.copyFrom(oldStore);
             }
         }
@@ -107,6 +111,7 @@ public class CommonEventHandler {
         if(!event.getPlayer().getEntityWorld().isRemote) {
             for (PlayerHandlerBase playerHandler : PLAYER_HANDLERS) {
                 playerHandler.playerBreakBlock(event.getPlayer(), event.getState());
+
             }
         }
     }
@@ -148,7 +153,7 @@ public class CommonEventHandler {
         if(!event.player.getEntityWorld().isRemote) {
 
 
-            PlayerProperties playerProperties = event.player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES, null);
+            PlayerProperties playerProperties = event.player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
             if (playerProperties != null) {
                 if (!playerProperties.hasBeenInitialized()) {
 
@@ -188,6 +193,20 @@ public class CommonEventHandler {
         if(event.phase == TickEvent.Phase.END && !event.world.isRemote){
             for(WorldHandlerBase worldHandler: WORLD_HANDLERS){
                 worldHandler.worldTick(event.world);
+            }
+        }
+    }
+    @SubscribeEvent
+    public void playerCaughtFish(ItemFishedEvent event){
+        for(PlayerHandlerBase playerHandler: PLAYER_HANDLERS){
+            playerHandler.playerCaughtFish(event.getEntityPlayer(),event.getDrops());
+        }
+    }
+    @SubscribeEvent
+    public void playerKilledMob(LivingDeathEvent event){
+        if(event.getSource().getTrueSource() instanceof EntityPlayer){
+            for(PlayerHandlerBase playerHandler: PLAYER_HANDLERS){
+                playerHandler.playerKilledLiving((EntityPlayer)event.getSource().getTrueSource(),event.getEntity());
             }
         }
     }

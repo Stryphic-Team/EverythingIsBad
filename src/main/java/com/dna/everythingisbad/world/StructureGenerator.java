@@ -2,10 +2,7 @@ package com.dna.everythingisbad.world;
 
 import com.dna.everythingisbad.init.ModBiomes;
 import com.dna.everythingisbad.utils.RandomUtils;
-import com.dna.everythingisbad.world.structures.WorldGenLandMine;
-import com.dna.everythingisbad.world.structures.WorldGenTwinTowers;
-import com.dna.everythingisbad.world.structures.WorldGenVillageCasino;
-import com.dna.everythingisbad.world.structures.WorldGenWoolBlock;
+import com.dna.everythingisbad.world.structures.*;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -46,7 +43,6 @@ public class StructureGenerator implements IWorldGenerator {
                 worldGenWoolBlock.generate(world, random, position);
             }
             if (random.nextFloat() < 0.005f) {
-                //TODO: Re add this in 0.2.0
                 WorldGenVillageCasino worldGenVillageCasino = new WorldGenVillageCasino();
                 BlockPos position = new BlockPos(xPos, 1, zPos);
 
@@ -59,7 +55,6 @@ public class StructureGenerator implements IWorldGenerator {
 
                 worldGenLandMine.generate(world,random,position);
             }
-
         }
     }
     public boolean biomeExcluded(Biome biome){

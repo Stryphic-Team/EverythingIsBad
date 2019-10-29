@@ -16,8 +16,8 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase{
     private ElementTextField textFieldDeposit;
     private ElementButton submitButton;
     public static GuiState currentState = GuiState.STATE_MAIN;
-    public static int currentBalance = ATMSync.balance;
-    public static int bankBalance = ATMSync.bankBalance;
+    public static float currentBalance = ATMSync.balance;
+    public static float bankBalance = ATMSync.bankBalance;
     private ElementButton balanceButton;
     private ElementText bankBalanceText;
     private ElementText balanceText;
@@ -43,8 +43,8 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase{
         guiElements.add(textFieldDeposit = new ElementNumberInput(this,(width / 2) - guiLeft - 40,14));
         guiElements.add(depositTitleText = new ElementText(this,50,4,"Deposit"));
         guiElements.add(submitButton = new ElementButton(this,(width / 2) - guiLeft + 65,14,">"));
-        guiElements.add(balanceText = new ElementText(this,10,40,"Balance: $" + currentBalance));
-        guiElements.add(bankBalanceText = new ElementText(this,10,50,"BankBalance: $" + bankBalance));
+        guiElements.add(balanceText = new ElementText(this,10,40,"Balance: " + FormatHelper.formatMoney(currentBalance)));
+        guiElements.add(bankBalanceText = new ElementText(this,10,50,"BankBalance: " + FormatHelper.formatMoney(bankBalance)));
         backButton.guiButton.width = 40;
         submitButton.guiButton.width = 20;
 
@@ -78,8 +78,8 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase{
                 bankBalanceText.setVisible(true);
                 balanceText.setVisible(true);
                 backButton.setVisible(true);
-                balanceText.setText("Balance: $"+ FormatHelper.formatNumber(currentBalance));
-                bankBalanceText.setText("Bank Balance: $" + FormatHelper.formatNumber(bankBalance));
+                balanceText.setText("Balance: "+ FormatHelper.formatMoney(currentBalance));
+                bankBalanceText.setText("Bank Balance: " + FormatHelper.formatMoney(bankBalance));
                 break;
         }
     }

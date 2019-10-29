@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.commands;
 
 import com.dna.everythingisbad.commands.utils.InsufficientFundsException;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -44,8 +44,8 @@ public class CommandGiveMoney extends ModCommandBase {
                     if (Integer.parseInt(amountString) > 0) {
                         EntityPlayer receiver = server.getPlayerList().getPlayerByUsername(username);
                         if(receiver != null){
-                            PlayerProperties receiverProperties = receiver.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
-                            PlayerProperties senderProperties = sender.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+                            PlayerProperties receiverProperties = receiver.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
+                            PlayerProperties senderProperties = sender.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
                             if(receiverProperties != null && senderProperties != null){
                                 int amount = Integer.parseInt(amountString);
                                 if(senderProperties.getBalance() >= amount){

@@ -6,8 +6,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class ATMSync implements IMessageHandler<MessageTransactionStatus, IMessage> {
-    static int balance = 0;
-    static int bankBalance = 0;
+    static float balance = 0;
+    static float bankBalance = 0;
     @Override
     public IMessage onMessage(MessageTransactionStatus message, MessageContext ctx) {
 

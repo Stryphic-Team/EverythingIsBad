@@ -8,10 +8,7 @@ import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.FluidCache;
 import com.dna.everythingisbad.utils.handlers.CommonEventHandler;
 import com.dna.everythingisbad.utils.handlers.PlayerInteractionHandler;
-import com.dna.everythingisbad.world.StructureGenerator;
-import com.dna.everythingisbad.world.WorldGenAloeGenerator;
-import com.dna.everythingisbad.world.WorldGenModOres;
-import com.dna.everythingisbad.world.WorldGenQuestionMarkBlockGenerator;
+import com.dna.everythingisbad.world.*;
 import com.dna.everythingisbad.world.trees.WorldGenHappyTreeGenerator;
 import com.dna.everythingisbad.world.water.WorldGenBloodGenerator;
 import com.dna.everythingisbad.world.water.WorldGenGodsPeeGenerator;
@@ -77,6 +74,8 @@ public class CommonProxy implements IProxy{
         GameRegistry.registerWorldGenerator(WorldGenBloodGenerator.INSTANCE,30);
         GameRegistry.registerWorldGenerator(StructureGenerator.INSTANCE,30);
         GameRegistry.registerWorldGenerator(WorldGenModOres.INSTANCE,101);
+        GameRegistry.registerWorldGenerator(WorldGenStupidFacilityGenerator.INSTANCE,30);
+
         //VillagerRegistry.instance().registerVillageCreationHandler(new VillageCasino.VillageManager());
         //MapGenStructureIO.registerStructureComponent(VillageCasino.class, Reference.MOD_ID+":villageCasino");
         MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());

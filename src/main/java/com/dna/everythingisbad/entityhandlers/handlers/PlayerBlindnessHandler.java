@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -12,7 +12,7 @@ public class PlayerBlindnessHandler  extends PlayerHandlerBase {
     @Override
     public void playerRespawn(EntityPlayer player) {
         super.playerRespawn(player);
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
 
             if (random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1) {
@@ -35,7 +35,7 @@ public class PlayerBlindnessHandler  extends PlayerHandlerBase {
     @Override
     public void playerJoined(EntityPlayer player) {
         super.playerJoined(player);
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
 
             boolean isBlind = playerProperties.isBlind();
