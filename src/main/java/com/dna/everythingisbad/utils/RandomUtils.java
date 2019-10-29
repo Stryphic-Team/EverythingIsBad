@@ -66,6 +66,9 @@ public class RandomUtils {
         }
         return false;
     }
+    public static boolean percentChance(float probabbility){
+        return random.nextFloat() * 100f <= Math.max(probabbility, 0) + 1f;
+    }
 
     /**
      * returns a position within a given min and max of a point

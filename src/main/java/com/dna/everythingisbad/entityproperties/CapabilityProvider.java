@@ -13,13 +13,13 @@ public class CapabilityProvider implements ICapabilityProvider, INBTSerializable
     private PlayerProperties playerProperties = new PlayerProperties();
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-        return capability == InitializedPlayerProperties.PLAYER_PROPERTIES;
+        return capability == PlayerPropertiesCapability.PLAYER_PROPERTIES;
     }
 
     @Nullable
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-        if(capability == InitializedPlayerProperties.PLAYER_PROPERTIES){
+        if(capability == PlayerPropertiesCapability.PLAYER_PROPERTIES){
             return (T) playerProperties;
         }
 

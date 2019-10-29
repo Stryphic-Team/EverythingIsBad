@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.network.handlers;
 
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageTransaction;
 import com.dna.everythingisbad.network.messagestypes.MessageTransactionStatus;
@@ -15,7 +15,7 @@ public class MessageTransactionHandler implements IMessageHandler<MessageTransac
     public IMessage onMessage(MessageTransaction message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
         if(player != null){
-            PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+            PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
             if(playerProperties != null){
                 if(message.getTransactionType() == MessageTransaction.TransactionType.WITHDRAW){
                     if(playerProperties.getBankBalance() >= message.getAmount()){

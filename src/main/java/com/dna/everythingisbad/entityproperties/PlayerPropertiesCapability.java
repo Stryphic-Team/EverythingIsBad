@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
-public class InitializedPlayerProperties {
+public class PlayerPropertiesCapability {
 
     @CapabilityInject(PlayerProperties.class)
     public static Capability<PlayerProperties> PLAYER_PROPERTIES = null;

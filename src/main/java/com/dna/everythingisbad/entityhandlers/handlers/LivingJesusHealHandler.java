@@ -2,8 +2,8 @@ package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.entityhandlers.LivingHandlerBase;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
@@ -15,7 +15,7 @@ public class LivingJesusHealHandler extends LivingHandlerBase {
         super.livingDamage(entityLiving, source, amount);
         if (entityLiving instanceof EntityPlayerMP){
 
-            PlayerProperties playerProperties = entityLiving.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+            PlayerProperties playerProperties = entityLiving.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
             // Is it a Jesus that attacked you? if so then...
             if (source.getTrueSource() instanceof EntityJesus){
                 // are you blind? currently? uhhh

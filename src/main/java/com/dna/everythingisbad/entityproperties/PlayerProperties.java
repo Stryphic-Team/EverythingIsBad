@@ -11,7 +11,8 @@ public class PlayerProperties {
     private int religion = 0;
     private int timesPooped = 0;
     private float balance = 0;
-    private float bankBalance = -1000;
+    private float bankBalance = 100;
+    private boolean student = false;
     private int angelDustAddictionLvl = 0;
     private int tobaccoAddictionLvl = 0;
 
@@ -93,6 +94,13 @@ public class PlayerProperties {
         this.tobaccoAddictionLvl = tobaccoAddictionLvl;
     }
 
+    public boolean isStudent() {
+        return student;
+    }
+
+    public void setStudent(boolean student) {
+        this.student = student;
+    }
 
     public void copyFrom(PlayerProperties oldPlayerProperties){
         this.hasBeenInitialized = oldPlayerProperties.hasBeenInitialized();
@@ -105,6 +113,7 @@ public class PlayerProperties {
         this.bankBalance = oldPlayerProperties.getBankBalance();
         this.angelDustAddictionLvl = oldPlayerProperties.getAngelDustAddictionLvl();
         this.tobaccoAddictionLvl = oldPlayerProperties.getTobaccoAddictionLvl();
+        this.student = oldPlayerProperties.isStudent();
     }
 
     public void saveNBTData(NBTTagCompound compound){
@@ -118,6 +127,7 @@ public class PlayerProperties {
         compound.setFloat("bankBalance",bankBalance);
         compound.setInteger("angelDustAddictionLvl", angelDustAddictionLvl);
         compound.setInteger("tobaccoAddictionLvl", tobaccoAddictionLvl);
+        compound.setBoolean("student",student);
     }
 
 
@@ -132,6 +142,7 @@ public class PlayerProperties {
         this.bankBalance = compound.getFloat("bankBalance");
         this.angelDustAddictionLvl = compound.getInteger("angelDustAddictionLvl");
         this.tobaccoAddictionLvl = compound.getInteger("tobaccoAddictionLvl");
+        this.student = compound.getBoolean("student");
     }
 
 }

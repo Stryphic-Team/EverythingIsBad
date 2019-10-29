@@ -1,12 +1,10 @@
 package com.dna.everythingisbad.utils.handlers;
 
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -172,7 +170,7 @@ public class PotionEffectHandler {
                 entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), time_left, 4));
             }
             if (time_left == 1){
-                PlayerProperties playerProperties = entity.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+                PlayerProperties playerProperties = entity.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
                 if (playerProperties != null){
                     int addictionlvl = playerProperties.getAngelDustAddictionLvl();
                     if (addictionlvl > 0){
@@ -235,7 +233,7 @@ public class PotionEffectHandler {
                 entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), time_left, 4));
             }
             if (time_left == 1){
-                PlayerProperties playerProperties = entity.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+                PlayerProperties playerProperties = entity.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
                 if (playerProperties != null){
                     int addictionlvl = playerProperties.getTobaccoAddictionLvl();
                     if (addictionlvl > 0){

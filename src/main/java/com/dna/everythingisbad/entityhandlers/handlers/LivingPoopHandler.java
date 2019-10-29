@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entityhandlers.LivingHandlerBase;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.ModConfig;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,7 +25,7 @@ public class LivingPoopHandler extends LivingHandlerBase {
                 ItemStack item = new ItemStack(ModItems.POOP_ITEM, random_amount, 3);
                 entityPlayerMP.inventory.addItemStackToInventory(item);
                 //Increments times pooped interval
-                PlayerProperties playerProperties = entityPlayerMP.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+                PlayerProperties playerProperties = entityPlayerMP.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
                 if(playerProperties != null) {
                     int current = playerProperties.getTimesPooped();
                     playerProperties.setTimesPooped(current+random_amount);

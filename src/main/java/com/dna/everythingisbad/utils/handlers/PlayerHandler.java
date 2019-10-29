@@ -3,8 +3,8 @@ package com.dna.everythingisbad.utils.handlers;
 import cofh.core.init.CoreEnchantments;
 import com.dna.everythingisbad.entity.EntityJesus;
 import com.dna.everythingisbad.entity.EntityPoliceOfficer;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.ModConfig;
@@ -70,7 +70,7 @@ public class PlayerHandler {
         //entity player needs to be casted to its respective type when writing nbt data
 
         //EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityPlayer;
-        PlayerProperties playerProperties = entityPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = entityPlayer.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         if(playerProperties != null && !entityPlayer.world.isRemote) {
             boolean hasBeenInitialized = playerProperties.hasBeenInitialized();
@@ -94,7 +94,7 @@ public class PlayerHandler {
     }
     @Deprecated
     public static void commonColdInitializer(EntityPlayer player, boolean rollDice){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             if (random.nextInt(ModConfig.COMMON_COLD_CHANCE) == 1) {
                 playerProperties.setHasCommonColdImmunity(false);
@@ -106,7 +106,7 @@ public class PlayerHandler {
     }
     @Deprecated
     public static void blindnessHandler(EntityPlayer player,boolean rollDice) {
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             if (rollDice) {
                 if (random.nextInt(ModConfig.BLINDNESS_CHANCE) == 1) {
@@ -126,7 +126,7 @@ public class PlayerHandler {
     }
     @Deprecated
     public static void soulHandler(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             boolean hasSoul = playerProperties.hasSoul();
             if (!hasSoul) {
@@ -168,7 +168,7 @@ public class PlayerHandler {
     }
     @Deprecated
     public static void religionHandler(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             boolean playerInitialized = playerProperties.hasBeenInitialized();
 
@@ -195,7 +195,7 @@ public class PlayerHandler {
 
 
 
-        PlayerProperties playerProperties = entityPlayer.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = entityPlayer.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             int current = playerProperties.getTimesPooped();
             playerProperties.setTimesPooped(current+amount);
@@ -231,7 +231,7 @@ public class PlayerHandler {
     private static void healBlindnessHandler(LivingDamageEvent event, EntityLivingBase elb) {
         if (elb instanceof EntityPlayerMP && !elb.getEntityWorld().isRemote){
 
-            PlayerProperties playerProperties = elb.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+            PlayerProperties playerProperties = elb.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
             // Is it a Jesus that attacked you? if so then...
             if (event.getSource().getTrueSource() instanceof EntityJesus){
                 // are you blind? currently? uhhh
@@ -396,7 +396,7 @@ public class PlayerHandler {
     public static void commonColdHandler(EntityPlayer player){
 
 
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             World world = player.getEntityWorld();
             boolean Immune = playerProperties.hasCommonColdImmunity();

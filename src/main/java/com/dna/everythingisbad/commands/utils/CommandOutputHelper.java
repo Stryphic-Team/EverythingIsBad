@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.commands.utils;
 
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.Religion;
 import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,21 +14,21 @@ public class CommandOutputHelper {
 
     };
     public static void sendPlayerBalance(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             float currentBalance = playerProperties.getBalance();
             player.sendMessage(new TextComponentString("Balance: " + FormatHelper.formatMoney(currentBalance)));
         }
     }
     public static void sendBankBalance(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             float currentBalance = playerProperties.getBankBalance();
             player.sendMessage(new TextComponentString("Bank Balance: " + FormatHelper.formatMoney(currentBalance)));
         }
     }
     public static void sendPlayerReligion(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         Religion currentReligion = Religion.values()[playerProperties.getReligion()];
         Style religionStyle = new Style().setColor(currentReligion.getTextFormatting());
@@ -40,21 +40,21 @@ public class CommandOutputHelper {
 
     }
     public static void sendPlayerTimesPooped(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         int timesPooped = playerProperties.getTimesPooped();
 
         player.sendMessage(new TextComponentString("Times Pooped: "+timesPooped));
     }
     public static void sendPlayerBlindness(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         boolean isBlind = playerProperties.isBlind();
 
         player.sendMessage(new TextComponentString("Blind: "+isBlind));
     }
     public static void sendPlayerCommonColdImmunity(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         boolean hasCommonColdImmunity = playerProperties.hasCommonColdImmunity();
 
@@ -65,12 +65,17 @@ public class CommandOutputHelper {
     }
 
     public static void sendAddictionLevel(EntityPlayer player){
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         int addictionlvl = playerProperties.getAngelDustAddictionLvl();
         int tobacco_addiction_lvl = playerProperties.getTobaccoAddictionLvl();
 
         player.sendMessage(new TextComponentString("Angel Dust Addiction Lvl: " + addictionlvl));
         player.sendMessage(new TextComponentString("Tobacco Addiction Lvl: " + tobacco_addiction_lvl));
+    }
+    public static void sendStudentStatus(EntityPlayer player){
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
+        boolean isStudent = playerProperties.isStudent();
+        player.sendMessage(new TextComponentString("Student: "+isStudent));
     }
 }

@@ -1,8 +1,8 @@
 package com.dna.everythingisbad.entityhandlers.handlers;
 
 import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
-import com.dna.everythingisbad.entityproperties.InitializedPlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
+import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.ModPotions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
@@ -12,7 +12,7 @@ public class PlayerTobaccoAddictionHandler extends PlayerHandlerBase {
     public void playerTick(EntityPlayer player) {
         super.playerTick(player);
 
-        PlayerProperties playerProperties = player.getCapability(InitializedPlayerProperties.PLAYER_PROPERTIES,null);
+        PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         // Addictions increment every minute (1200 ticks)
         // (May change to 2 minutes later)
