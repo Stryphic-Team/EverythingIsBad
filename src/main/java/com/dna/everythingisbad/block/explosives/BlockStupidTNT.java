@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class BlockStupidTNT extends BlockExplodingBase {
     public final float range = 25f;
-    public final int count = 15;
+    public final int count = 5;
     public BlockStupidTNT(String name){
         super(name);
         setSoundType(SoundType.PLANT);

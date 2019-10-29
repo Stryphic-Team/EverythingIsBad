@@ -1,14 +1,10 @@
 package com.dna.everythingisbad.world.structures;
 
-import com.dna.everythingisbad.gui.container.StupidCoreMachineContainer;
 import com.dna.everythingisbad.init.ModLootTables;
 import com.dna.everythingisbad.reference.Reference;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +13,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraftforge.common.DungeonHooks;
 
 import java.util.Map;
 import java.util.Random;
@@ -46,13 +41,6 @@ public class WorldGenStupidFacility extends WorldGenStructureBase {
         PlacementSettings settings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(getRotation()).setIgnoreStructureBlock(false);
         BlockPos structureSize = currentTemplate.getSize();
 
-        //BlockPos startPos = new BlockPos(position.getX(), position.getY(), position.getZ());
-//        if (!isGroundAir(
-//                world,
-//                startPos.down(),
-//                startPos.getX() + currentTemplate.getSize().getX(),
-//                startPos.getZ() + currentTemplate.getSize().getZ())
-//        ) {
         // Foundation
         for (int x = position.getX(); x < position.getX() + structureSize.getX(); x++){
             for (int z = position.getZ(); z < position.getZ() + structureSize.getZ(); z++){

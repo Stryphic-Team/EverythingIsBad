@@ -50,7 +50,7 @@ public class EntityStupidTNT extends EntityTNTPrimed implements IProjectile {
         this.prevPosY = y;
         this.prevPosZ = z;
         this.tntPlacedBy = igniter;
-        this.power = 20f;
+        this.power = 35f;
 
     }
     public EntityStupidTNT(World worldin, EntityPlayer player){

@@ -82,7 +82,7 @@ public class EntityStupidSkeleton extends EntitySkeleton {
     {
         super.setCombatTask();
         EntityAIStupidSkeletonShootGun aiStupidSkeletonShootGun = new EntityAIStupidSkeletonShootGun(this, 1.0D, 20, 15.0F);
-        this.tasks.addTask(4,aiStupidSkeletonShootGun);
+        //this.tasks.addTask(4,aiStupidSkeletonShootGun);
     }
     /**
      * Attack the specified entity using a ranged attack.
