@@ -57,10 +57,14 @@ public class CommandEverythingIsBad extends CommandBase {
                 for(int i = 1;i<args.length;i++){
                     newArgs[i - 1] = args[i];
                 }
-                completions = new ArrayList<String>();
+//                completions = new ArrayList<String>();
                 return command.getTabCompletions(server,server,newArgs,targetPos);
             }
         }
         return completions;
+    }
+    @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
     }
 }
