@@ -15,6 +15,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -26,11 +27,13 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
             ModBiomes.HEAVEN,
             Biomes.SKY
     };
+    ArrayList<ChunkPosition> usedChunks = new ArrayList<>();
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        HashMap<ChunkPosition, Boolean> usedChunks = new HashMap<>();
-        if (random.nextFloat() < 0.01) {
+
+        usedChunks = new ArrayList<>(                       );
+        if (random.nextFloat() < 0.001) {
             int xPos = chunkX * 16;
             int zPos = chunkZ * 16;
 
@@ -45,21 +48,23 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
             BlockPos currentPos = firstPosition;
 
             int randomSign;
-            int randomSize = RandomUtils.fromRangeI(1,15);
+            int randomSize = RandomUtils.fromRangeI(3,15);
             //int randomSize = 1;
 
             if(!biomeExcluded(biome)  && world.getBlockState(firstPosition).getBlock() != Blocks.WATER){
                 for (int i = 0; i < randomSize; i++){
 
                     // If there is no building already there then place one down here!
-                    if (!usedChunks.containsKey(new ChunkPosition(currentChunkX, currentChunkZ))){
+                    if (!isChunkUsed(currentChunkX,currentChunkZ)){
 
                         Chunk currentChunk = chunkProvider.provideChunk(currentChunkX,currentChunkZ);
                         currentChunk.markLoaded(true);
 
                         WorldGenStupidFacility worldGenStupidFacility = new WorldGenStupidFacility();
                         worldGenStupidFacility.generate(world,random,currentPos);
-                        usedChunks.put(new ChunkPosition(currentChunkX,currentChunkZ) , true);
+                        usedChunks.add(new ChunkPosition(currentChunkX,currentChunkZ));
+                    }else{
+                        int i_eat_babies = 69;
                     }
 
                     // Has a 1/2 chance of being -1 or 1
@@ -85,6 +90,15 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
     public static boolean biomeExcluded(Biome biome){
         for(Biome excludedBiome : EXCLUDED_BIOMES){
             if(excludedBiome == biome){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isChunkUsed( int x, int z){
+        for (ChunkPosition chunkPosition : usedChunks){
+            if (x == chunkPosition.getX() && z == chunkPosition.getZ()){
                 return true;
             }
         }
