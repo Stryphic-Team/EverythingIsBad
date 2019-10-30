@@ -1,7 +1,7 @@
 package com.dna.everythingisbad.block.plants;
 
 import com.dna.everythingisbad.block.IOreDictBlock;
-import com.dna.everythingisbad.world.trees.WorldGenTreeHappy;
+import com.dna.everythingisbad.world.nature.WorldGenTreeHappy;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
