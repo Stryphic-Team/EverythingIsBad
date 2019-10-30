@@ -8,7 +8,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -17,17 +16,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
-    static boolean generating = false;
-    static int minSize = 5;
-    static int maxSize = 30;
-    static int size = 0;
-    static int selectedSize = 0;
-    static int currentChunkX = 0;
-    static int currentChunkZ = 0;
-    static int currentYPos = 0;
-    static BlockPos firstPosition;
-    static ArrayList<ChunkPosition> usedChunks = new ArrayList<>();
-    static int chunksGenerated = 0;
+    private static boolean generating = false;
+    private static int minSize = 20;
+    private static int maxSize = 30;
+    private static int size = 0;
+    private static int selectedSize = 0;
+    private static int currentChunkX = 0;
+    private static int currentChunkZ = 0;
+    private static int startChunkX = 0;
+    private static int startChunkZ = 0;
+    private static int currentYPos = 0;
+    private static BlockPos firstPosition;
+    private static ArrayList<ChunkPosition> usedChunks = new ArrayList<>();
+    private static int[][] structureMap;
+    private static int chunksGenerated = 0;
 
     public static WorldGenStupidFacilityGenerator INSTANCE = new WorldGenStupidFacilityGenerator();
     public static Biome[] EXCLUDED_BIOMES = new Biome[]{
@@ -41,54 +43,103 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         chunksGenerated++;
+
         if(!generating) {
-            if (RandomUtils.withinChance(10000)) {
+            if (RandomUtils.withinChance(1000)) {
                 firstPosition = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16));
                 if(world.getBlockState(firstPosition).getBlock() != Blocks.WATER) {
                     generating = true;
                     size = 0;
                     currentYPos = firstPosition.getY();
-                    selectedSize = RandomUtils.fromRangeI(minSize, maxSize);
-                    currentChunkX = chunkX;
-                    currentChunkZ = chunkZ;
+                    currentChunkX = 0;
+                    currentChunkZ = 0;
+                    startChunkX = chunkX;
+                    startChunkZ= chunkZ;
+
+                    structureMap = generateStructureMap(50,50,maxSize);
+
                 }
             }
-            if(RandomUtils.withinChance(100)){
+            if(world.getWorldTime() % 200 == 199){
                     generating = false;
             }
         }
         if(generating) {
-            int randomSign;
-            if (size < selectedSize + 1) {
-                randomSign = random.nextInt(2);
-                if (randomSign == 0) {
-                    randomSign = -1;
-                }
 
-                // Either steps/decrements the X or Z of the chunk, and the block pos by +-16
-                if (random.nextBoolean()) {
-                    currentChunkX += randomSign;
-                } else {
-                    currentChunkZ += randomSign;
-                }
+            //usedChunks.add(new ChunkPosition(currentChunkX, currentChunkZ));
 
-                // If there is no building already there then place one down here!
-                if (!isChunkUsed(currentChunkX, currentChunkZ)) {
+            if (currentChunkX < structureMap.length - 1) {
 
-                    Chunk currentChunk = chunkProvider.provideChunk(currentChunkX, currentChunkZ);
-                    currentChunk.markLoaded(true);
-
-                    WorldGenStupidFacility worldGenStupidFacility = new WorldGenStupidFacility();
-                    worldGenStupidFacility.generate(world, random, new BlockPos(currentChunkX * 16, currentYPos, currentChunkZ * 16));
-                    usedChunks.add(new ChunkPosition(currentChunkX, currentChunkZ));
-                    size++;
-                }
-
+                currentChunkX++;
             } else {
-                generating = false;
+                currentChunkZ++;
+                currentChunkX = 0;
             }
+            if (currentChunkZ > structureMap[0].length - 1) {
+                generating = false;
+            }else{
+                WorldGenStupidFacility worldGenStupidFacility = new WorldGenStupidFacility();
+                worldGenStupidFacility.generate(world, random, new BlockPos((currentChunkX + startChunkX) * 16, currentYPos, (currentChunkZ + startChunkZ) * 16).add(1,0,1),structureMap[currentChunkX][currentChunkZ]);
+            }
+
         }
 
+
+                // If there is no building already there then place one down here!
+//                if (!isChunkUsed(currentChunkX, currentChunkZ)) {
+//
+//                    //Chunk currentChunk = chunkProvider.provideChunk(currentChunkX, currentChunkZ);
+//                    //currentChunk.markLoaded(true);
+//
+//
+//                    size++;
+//                }else{
+//                    randomSign = random.nextInt(2);
+//                    if (randomSign == 0) {
+//                        randomSign = -1;
+//                    }
+//
+//                    // Either steps/decrements the X or Z of the chunk, and the block pos by +-16
+//                    if (random.nextBoolean()) {
+//                        currentChunkX += randomSign;
+//
+//                    } else {
+//                        currentChunkZ += randomSign;
+//
+//                    }
+//                }
+//
+//            } else {
+//                generating = false;
+//            }
+
+
+    }
+    public int[][] generateStructureMap(int width,int height,int max){
+        int[][] map = new int[width][height];
+        int currentX = RandomUtils.fromRangeI(0,width);
+        int currentZ = RandomUtils.fromRangeI(0,height);
+        for(int i = 0;i<max;i++){
+            int randomSign = RandomUtils.random.nextBoolean() ? -1 : 1;
+
+            if(RandomUtils.random.nextBoolean()){
+                currentX += randomSign;
+
+                if(currentX > width || currentX < 0 || map[currentX][currentZ] != 0){
+                    currentX -= randomSign;
+                }
+            }else{
+                currentZ += randomSign;
+                if(currentZ > height || currentZ < 0 || map[currentX][currentZ] != 0){
+                    currentZ -= randomSign;
+                }
+            }
+            if(map[currentX][currentZ] == 0){
+                map[currentX][currentZ] = RandomUtils.fromRangeI(1,4);
+            }
+
+        }
+        return map;
     }
 
     public static boolean biomeExcluded(Biome biome){
@@ -108,6 +159,7 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
         }
         return false;
     }
+
 }
 
 class ChunkPosition {

@@ -19,8 +19,8 @@ import java.util.Random;
 
 public class WorldGenStupidFacility extends WorldGenStructureBase {
 
-    @Override
-    public boolean generate(World world, Random rand, BlockPos position) {
+
+    public boolean generate(World world, Random rand, BlockPos position,int structureIndex) {
         WorldServer worldServer = (WorldServer) world;
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = worldServer.getStructureTemplateManager();
@@ -36,44 +36,46 @@ public class WorldGenStupidFacility extends WorldGenStructureBase {
 
         // Picks one of the templates randomly
         int threeSidedDie = rand.nextInt(STUPID_FACILITY_TEMPLATES.length);
-        Template currentTemplate = STUPID_FACILITY_TEMPLATES[threeSidedDie];
 
-        PlacementSettings settings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(getRotation()).setIgnoreStructureBlock(false);
-        BlockPos structureSize = currentTemplate.getSize();
+        if(structureIndex != 0) {
+            Template currentTemplate = STUPID_FACILITY_TEMPLATES[structureIndex - 1];
+            PlacementSettings settings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(getRotation()).setIgnoreStructureBlock(false);
+            BlockPos structureSize = currentTemplate.getSize();
 
-        // Foundation
-        for (int x = position.getX(); x < position.getX() + structureSize.getX(); x++){
-            for (int z = position.getZ(); z < position.getZ() + structureSize.getZ(); z++){
-                //BlockPos currentTopBlock = world.getTopSolidOrLiquidBlock(new BlockPos(x,0,z));
-                int currentHeight = world.getHeight(x,z);
+            // Foundation
+            for (int x = position.getX(); x < position.getX() + structureSize.getX(); x++) {
+                for (int z = position.getZ(); z < position.getZ() + structureSize.getZ(); z++) {
+                    //BlockPos currentTopBlock = world.getTopSolidOrLiquidBlock(new BlockPos(x,0,z));
+                    int currentHeight = world.getHeight(x, z);
 
-                if (currentHeight < position.getY()){
-                    for (int y = currentHeight; y < position.getY(); y++){
-                        world.setBlockState( new BlockPos( x, y, z ), Blocks.DIRT.getDefaultState() );
+                    if (currentHeight < position.getY()) {
+                        for (int y = currentHeight; y < position.getY(); y++) {
+                            world.setBlockState(new BlockPos(x, y, z), Blocks.DIRT.getDefaultState());
+                        }
                     }
                 }
             }
-        }
 
-        currentTemplate.addBlocksToWorld(world, position, settings);
-        Map<BlockPos, String> dataBlocks = currentTemplate.getDataBlocks(position, settings);
-        Object[] keys = dataBlocks.keySet().toArray();
-        for (int i = 0; i < keys.length; i++) {
-            BlockPos blockPos = (BlockPos) keys[i];
-            String type = dataBlocks.get(blockPos);
-            //Removes the structure blocks
-            world.setBlockToAir(blockPos);
+            currentTemplate.addBlocksToWorld(world, position, settings);
+            Map<BlockPos, String> dataBlocks = currentTemplate.getDataBlocks(position, settings);
+            Object[] keys = dataBlocks.keySet().toArray();
+            for (int i = 0; i < keys.length; i++) {
+                BlockPos blockPos = (BlockPos) keys[i];
+                String type = dataBlocks.get(blockPos);
+                //Removes the structure blocks
+                world.setBlockToAir(blockPos);
 
-            if (type.equals("chest")) {
-                TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
-                ResourceLocation randomLootTable = ModLootTables.CHEST_EVERYTHINGBAD_LOOT;
-                chest.setLootTable(randomLootTable, rand.nextLong());
-            }
-            // TODO: Make unique loot table with "good stuff"
-            if (type.equals("chest_bonus")) {
-                TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
-                ResourceLocation randomLootTable = ModLootTables.CHEST_EVERYTHINGBAD_LOOT;
-                chest.setLootTable(randomLootTable, rand.nextLong());
+                if (type.equals("chest")) {
+                    TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
+                    ResourceLocation randomLootTable = ModLootTables.CHEST_EVERYTHINGBAD_LOOT;
+                    chest.setLootTable(randomLootTable, rand.nextLong());
+                }
+                // TODO: Make unique loot table with "good stuff"
+                if (type.equals("chest_bonus")) {
+                    TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
+                    ResourceLocation randomLootTable = ModLootTables.CHEST_EVERYTHINGBAD_LOOT;
+                    chest.setLootTable(randomLootTable, rand.nextLong());
+                }
             }
         }
         return true;
@@ -88,5 +90,11 @@ public class WorldGenStupidFacility extends WorldGenStructureBase {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean generate(World worldIn, Random rand, BlockPos position) {
+        this.generate(worldIn,rand,position,0);
+        return true;
     }
 }
