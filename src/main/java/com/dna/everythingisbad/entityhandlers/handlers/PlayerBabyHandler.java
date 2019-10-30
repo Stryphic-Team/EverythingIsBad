@@ -5,6 +5,9 @@ import com.dna.everythingisbad.entityhandlers.PlayerHandlerBase;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.utils.ModConfig;
 import com.dna.everythingisbad.utils.SpawnUtils;
+import net.minecraft.block.BlockFurnace;
+import net.minecraft.block.BlockOre;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -45,6 +48,12 @@ public class PlayerBabyHandler extends PlayerHandlerBase {
                                     entityVillager.setCustomNameTag(name);
                                 }
                                 mp.getServerWorld().spawnEntity(entityVillager);
+                                //player.addExperience(2);
+
+                                int i = EntityXPOrb.getXPSplit(3);
+                                for (int poop = 0; poop < 4; poop++){
+                                    mp.getServerWorld().spawnEntity(new EntityXPOrb(mp.getServerWorld(), player.posX, player.posY + 0.5D, player.posZ, i));
+                                }
                             }
                         }
                     }
