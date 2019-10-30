@@ -17,7 +17,7 @@ import java.util.Random;
 public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
     private static boolean generating = false;
     private static int minSize = 20;
-    private static int maxSize = 30;
+    private static int maxSize = 100;
     private static int size = 0;
     private static int selectedSize = 0;
     private static int currentChunkX = 0;
@@ -44,7 +44,7 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
         chunksGenerated++;
 
         if(!generating) {
-            if (RandomUtils.withinChance(1000)) {
+            if (RandomUtils.withinChance(10000)) {
                 firstPosition = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16));
                 if(world.getBlockState(firstPosition).getBlock() != Blocks.WATER) {
                     generating = true;
@@ -94,9 +94,9 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
                         structureMap[currentChunkX][currentChunkZ]
                 );
             }
-            if(world.getWorldTime() % 200 == 199){
-                generating = false;
-            }
+//            if(world.getWorldTime() % 500 == 499){
+//                generating = false;
+//            }
 
         }
 
