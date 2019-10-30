@@ -29,10 +29,17 @@ public class WorldGenStupidFacility extends WorldGenStructureBase {
         Template labTemplate = templateManager.get(minecraftServer, new ResourceLocation(Reference.MOD_ID, "stupid_facility_lab"));
         Template warehouseTemplate = templateManager.get(minecraftServer, new ResourceLocation(Reference.MOD_ID, "stupid_facility_warehouse"));
         Template greenhouseTemplate = templateManager.get(minecraftServer, new ResourceLocation(Reference.MOD_ID, "stupid_facility_green_house"));
+        Template courtYardTemplate = templateManager.get(minecraftServer, new ResourceLocation(Reference.MOD_ID, "stupid_facility_court_yard"));
+        Template reactorTemplate = templateManager.get(minecraftServer, new ResourceLocation(Reference.MOD_ID, "stupid_facility_reactor"));
 
         // And like, register them, I guess!!!
         Template[] STUPID_FACILITY_TEMPLATES = new Template[]{
-                labTemplate, warehouseTemplate, greenhouseTemplate};
+                labTemplate,
+                warehouseTemplate,
+                greenhouseTemplate,
+                courtYardTemplate,
+                reactorTemplate
+        };
 
         // Picks one of the templates randomly
         int threeSidedDie = rand.nextInt(STUPID_FACILITY_TEMPLATES.length);
