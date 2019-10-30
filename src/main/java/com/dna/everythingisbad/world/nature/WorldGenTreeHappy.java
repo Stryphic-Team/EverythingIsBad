@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.world.trees;
+package com.dna.everythingisbad.world.nature;
 
 import com.dna.everythingisbad.init.ModBlocks;
 import net.minecraft.block.material.Material;

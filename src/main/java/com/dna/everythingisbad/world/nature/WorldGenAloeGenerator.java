@@ -1,4 +1,4 @@
-package com.dna.everythingisbad.world;
+package com.dna.everythingisbad.world.nature;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
