@@ -106,3 +106,50 @@
     * Added Adrenaline potion effect
     * Added adrenaline potion
     * Machine guis now have actual tooltips
+    
+### 0.2.0-alpha `11/1/19`
+
+  * Added
+    * Machines:
+      * Added ATM Machine
+      * Added Slot Machine
+      * Added Quarry
+      * Added incubator
+    * Generation:
+      * Added Stupid™ Facility
+      * Added Casinos
+      * Urine Crystals now spawn the nether similar to glowstone
+    * Drugs/Potion Effects:
+      * Added withdrawal symptoms(For tobacco, angel dust)
+      * Added Stimulation potion effect
+    * Economy:
+      * Money is now a floating point(so you can have cents now)
+      * You now have a chance of being a student(6 percent chance) when you first join and start with debt that you have to pay off($1000 to $20,000).
+      * There are now tasks that you can do to obtain money(Fishing, Mob Hunting, and Mining)
+    * Miscellaneous:
+      * You now get xp for raising a baby
+      * Added a sub command system for the everythingisbad command
+      * Added Random Teleport Command(RTP) for ops only
+      * Added Help command
+      * Added Heart rate monitor
+      * Custom records are now obtainable
+      * Added cigarettes
+      * Added cigars
+      * There is now a 2% chance that a ultra Stupid™ Core will drop when you or a mob goes through the highness effect
+      * Added liquifier recipe :-( 
+      * Added flashy block which spawns in the stupid™ facility reactor room and the casino
+      * Added Heart attack when your heart rate gets to high
+      * Angel dust is now less potent
+      
+    * Visual Enhancements
+      * Added a new look for the statistics page
+      * Added new ultra stupid core texture
+      * Player now has a heart rate which can be viewed with a heart rate monitor
+  * Fixes
+    * Adrenaline is now only 3 minutes long by default
+    * Babies aged up can now have all villager professions
+    * Fixed ore dictionary for happy tree saplings
+    * Fixed ghost stupid cores when mobs finish the highness effect
+    * Fixed the immediate destruction when you are on a server of your player file when you use angel dust
+    * Removed Blood spawning on death
+
