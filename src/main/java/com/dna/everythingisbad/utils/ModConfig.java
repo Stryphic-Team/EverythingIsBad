@@ -20,7 +20,8 @@ public class ModConfig {
     public static int BABY_DROP_INTERVAL = 60000;
     @Config.Name("Blindness Chance")
     public static int BLINDNESS_CHANCE = 100;
-    @Config.Name("Blood Spawns on Death")
+    @Config.Name("Blood Spawns on Death(Deprecated)")
+    @Deprecated
     public static boolean BLOOD_SPAWNS_ON_DEATH = false;
     @Config.Name("Mob Speed Multiplier")
     public static int MOB_SPEED_MULTIPLIER = 2;

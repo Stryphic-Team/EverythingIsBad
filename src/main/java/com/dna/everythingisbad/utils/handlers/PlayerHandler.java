@@ -49,12 +49,12 @@ public class PlayerHandler {
     private static Random random = new Random();
     @Deprecated
     public static void playerDied(EntityPlayer player){
-        if(ModConfig.BLOOD_SPAWNS_ON_DEATH) {
-            player.getEntityWorld().setBlockState(
-                    new BlockPos(player.posX, player.posY, player.posZ),
-                    ModFluids.BLOOD.getBlockFluidBase().getDefaultState()
-            );
-        }
+//        if(ModConfig.BLOOD_SPAWNS_ON_DEATH) {
+//            player.getEntityWorld().setBlockState(
+//                    new BlockPos(player.posX, player.posY, player.posZ),
+//                    ModFluids.BLOOD.getBlockFluidBase().getDefaultState()
+//            );
+//        }
         //PotionEffectHandler.potionEffectFirstTimes.put(player,false);
     }
     @Deprecated
@@ -262,12 +262,12 @@ public class PlayerHandler {
     }
     @Deprecated
     public static void jesusBloodDropHandler(EntityLivingBase entity){
-        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH && !entity.world.isRemote){
-            if(entity.getHealth() < 0.1f){
-                World world = entity.getEntityWorld();
-                world.setBlockState(entity.getPosition(),ModFluids.BLOOD.getBlockFluidBase().getDefaultState());
-            }
-        }
+//        if(entity instanceof EntityJesus && ModConfig.BLOOD_SPAWNS_ON_DEATH && !entity.world.isRemote){
+//            if(entity.getHealth() < 0.1f){
+//                World world = entity.getEntityWorld();
+//                world.setBlockState(entity.getPosition(),ModFluids.BLOOD.getBlockFluidBase().getDefaultState());
+//            }
+//        }
     }
     //Detects which effect is active and routes it to the PotionEffectHandler
     @Deprecated
