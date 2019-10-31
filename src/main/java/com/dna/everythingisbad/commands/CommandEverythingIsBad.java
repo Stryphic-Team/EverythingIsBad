@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandEverythingIsBad extends CommandBase {
+
     String name;
     public CommandEverythingIsBad(String name) {
         this.name = name;
@@ -37,7 +38,9 @@ public class CommandEverythingIsBad extends CommandBase {
                 for(int i = 1;i<args.length;i++){
                     newArgs[i - 1] = args[i];
                 }
-                command.execute(server,sender,newArgs);
+                if(command.checkPermission(server,sender)) {
+                    command.execute(server, sender, newArgs);
+                }
                 executed = true;
             }
         }
@@ -51,7 +54,15 @@ public class CommandEverythingIsBad extends CommandBase {
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         ArrayList<String> completions = new ArrayList<String>();
         for(ModCommandBase command: ModCommands.COMMANDS){
-            completions.add(command.getName());
+            if(args.length > 0){
+                if(command.getName().startsWith(args[0])) {
+                    if(command.checkPermission(server,sender)) {
+                        completions.add(command.getName());
+                    }
+                }
+            }else{
+                completions.add(command.getName());
+            }
             if(command.getName().equals(args[0])){
                 String[] newArgs = new String[args.length - 1];
                 for(int i = 1;i<args.length;i++){
@@ -61,10 +72,13 @@ public class CommandEverythingIsBad extends CommandBase {
                 return command.getTabCompletions(server,server,newArgs,targetPos);
             }
         }
+
         return completions;
     }
+
     @Override
     public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
+
     }
 }
