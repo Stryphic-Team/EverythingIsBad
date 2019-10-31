@@ -4,6 +4,7 @@ import com.dna.everythingisbad.entityproperties.PlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModPotions;
+import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.utils.helpers.TimeHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -73,7 +74,7 @@ public class PotionEffectHandler {
             // So, if you only undergo 6000 ticks of highness then you only have a
             // 25% chance of getting a Stupid Core.
             if (rand.nextFloat() < ((float)highness_duration/(float)potion_duration)){
-                ItemStack itemstack = new ItemStack(ModItems.STUPID_CORE_ITEM,1);
+                ItemStack itemstack = RandomUtils.percentChance(2) ? new ItemStack(ModItems.ULTRA_STUPID_CORE,1) : new ItemStack(ModItems.STUPID_CORE_ITEM,1);
                 if (entity instanceof EntityPlayer){
                     EntityPlayer player = (EntityPlayer)entity;
                     if (!player.inventory.addItemStackToInventory(itemstack)) {
@@ -82,7 +83,7 @@ public class PotionEffectHandler {
                         player.inventory.addItemStackToInventory(itemstack);
                     }
                 }else{
-                    entity.dropItem(ModItems.STUPID_CORE_ITEM,1);
+                    entity.dropItem(itemstack.getItem(),1);
                 }
             }
 
