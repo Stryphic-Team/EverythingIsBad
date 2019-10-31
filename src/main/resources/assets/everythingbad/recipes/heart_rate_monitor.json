@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "gFg",
+    "ISI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "g": {
+      "item": "minecraft:redstone"
+    },
+    "F": {
+      "item": "minecraft:glass"
+    },
+    "S": {
+      "item": "everythingbad:solenoid"
+    },
+    "C": {
+      "item": "minecraft:clock"
+    }
+  },
+  "result": {
+    "item": "everythingbad:heart_rate_monitor"
+  }
+}
