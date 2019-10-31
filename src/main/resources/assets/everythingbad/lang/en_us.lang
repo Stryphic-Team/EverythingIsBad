@@ -76,6 +76,7 @@ item.everythingbad:police_gun.name=Police Gun
 item.everythingbad:cowboy_hat.name=Cowboy Hat
 item.everythingbad:santa_hat.name=Santa Hat
 item.everythingbad:camo_chestplate.name=Camo Jacket
+item.everythingbad:hillbilly_hat.name=Hillbilly Hat
 
 item.everythingbad:record_gasoline_babies.name=Music Disc
 item.record.record_gasoline_babies.desc=Eczema Pizza - Gasoline Babies
@@ -96,6 +97,7 @@ entity.stupid_skeleton.name=Stupid Skeleton
 entity.good_mob.name=Good Mob
 entity.police_officer.name=Police Officer
 entity.angel.name=Angel
+entity.hillbilly.name=Hillbilly
 
 effect.highness=Highness
 effect.common_cold=Common Cold
