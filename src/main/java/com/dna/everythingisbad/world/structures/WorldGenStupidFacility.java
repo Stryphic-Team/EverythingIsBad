@@ -77,10 +77,19 @@ public class WorldGenStupidFacility extends WorldGenStructureBase {
                     ResourceLocation randomLootTable = ModLootTables.CHEST_EVERYTHINGBAD_LOOT;
                     chest.setLootTable(randomLootTable, rand.nextLong());
                 }
-                // TODO: Make unique loot table with "good stuff"
                 if (type.equals("chest_bonus")) {
                     TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
-                    ResourceLocation randomLootTable = ModLootTables.CHEST_EVERYTHINGBAD_LOOT;
+                    ResourceLocation randomLootTable = ModLootTables.CHEST_BONUS_LOOT;
+                    chest.setLootTable(randomLootTable, rand.nextLong());
+                }
+                if (type.equals("chest_lab")) {
+                    TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
+                    ResourceLocation randomLootTable = ModLootTables.CHEST_LAB_LOOT;
+                    chest.setLootTable(randomLootTable, rand.nextLong());
+                }
+                if (type.equals("chest_green_house")) {
+                    TileEntityChest chest = (TileEntityChest) world.getTileEntity(blockPos.down());
+                    ResourceLocation randomLootTable = ModLootTables.CHEST_GREEN_HOUSE_LOOT;
                     chest.setLootTable(randomLootTable, rand.nextLong());
                 }
             }
