@@ -4,7 +4,7 @@
       "name": "stupid_core",
       "rolls": {
         "min": 1,
-        "max": 5
+        "max": 3
       },
       "entries": [
         {
@@ -27,7 +27,7 @@
       "name": "stupid_tnt",
       "rolls": {
         "min": 1,
-        "max": 5
+        "max": 3
       },
       "entries": [
         {
@@ -49,8 +49,8 @@
     {
       "name": "stupid_tnt_gun",
       "rolls": {
-        "min": 1,
-        "max": 2
+        "min": 0,
+        "max": 1
       },
       "entries": [
         {
@@ -66,6 +66,85 @@
             }
           ],
           "weight": 30
+        }
+      ]
+    },
+    {
+      "name": "records",
+      "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "everythingbad:record_gasoline_babies",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 10
+        },
+        {
+          "type": "item",
+          "name": "everythingbad:record_gods_pee",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 10
+        },
+        {
+          "type": "item",
+          "name": "everythingbad:record_smart_man1",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 10
+        },
+        {
+          "type": "item",
+          "name": "everythingbad:record_smart_man2",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 10
+        },
+        {
+          "type": "item",
+          "name": "everythingbad:record_smart_man3",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 10
         }
       ]
     }

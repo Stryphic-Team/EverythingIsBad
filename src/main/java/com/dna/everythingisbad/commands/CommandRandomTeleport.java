@@ -36,4 +36,9 @@ public class CommandRandomTeleport extends ModCommandBase {
             //entityPlayer.setPosition((double)x,(double)y,(double)z);
         }
     }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 4;
+    }
 }

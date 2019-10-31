@@ -1,0 +1,85 @@
+{
+  "pools": [
+    {
+      "name": "highness_potion",
+      "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{Potion:\"everythingbad:highness\"}"
+            }
+          ],
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "name": "common_cold_potion",
+      "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{Potion:\"everythingbad:common_cold\"}"
+            }
+          ],
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "name": "adrenaline_potion",
+      "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{Potion:\"everythingbad:adrenaline\"}"
+            }
+          ],
+          "weight": 30
+        }
+      ]
+    }
+  ]
+}

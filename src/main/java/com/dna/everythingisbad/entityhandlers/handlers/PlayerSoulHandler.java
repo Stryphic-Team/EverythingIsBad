@@ -6,6 +6,7 @@ import com.dna.everythingisbad.init.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 public class PlayerSoulHandler extends PlayerHandlerBase {
 
@@ -29,5 +30,19 @@ public class PlayerSoulHandler extends PlayerHandlerBase {
         }
     }
 
+    @Override
+    public void playerRespawn(EntityPlayer player) {
+        super.playerRespawn(player);
+        int inventorySize = player.inventory.getSizeInventory();
+        for(int i = 0;i<inventorySize;i++){
+            ItemStack itemStack = player.inventory.getStackInSlot(i);
+            if(itemStack.getItem() == ModItems.SOUL_ITEM){
+                NBTTagList enchantments = itemStack.getEnchantmentTagList();
+                if(enchantments.tagCount() == 0){
+                    itemStack.addEnchantment(CoreEnchantments.soulbound,1);
+                }
 
+            }
+        }
+    }
 }
