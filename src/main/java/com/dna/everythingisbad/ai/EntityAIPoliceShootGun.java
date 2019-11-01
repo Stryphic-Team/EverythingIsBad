@@ -45,7 +45,9 @@ public class EntityAIPoliceShootGun<T extends EntityMob & IRangedAttackMob> exte
 
     protected boolean isBowInMainhand()
     {
-        return !this.entity.getHeldItemMainhand().isEmpty() && this.entity.getHeldItemMainhand().getItem() == ModItems.POLICE_GUN_ITEM;
+        return !this.entity.getHeldItemMainhand().isEmpty() &&
+                (this.entity.getHeldItemMainhand().getItem() == ModItems.POLICE_GUN_ITEM
+                || this.entity.getHeldItemMainhand().getItem() == ModItems.HUNTING_RIFLE);
     }
 
     /**
