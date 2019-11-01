@@ -9,6 +9,7 @@ import com.dna.everythingisbad.Main;
 import com.dna.everythingisbad.init.ModSoundEvents;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessagePlayNote;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -83,11 +84,17 @@ public class MidiHandler {
     }
 
     //Is only used in the MessagePlayNoteHandler for triggering note events when the player sends a MessagePlayNote to the server
-    public static void PlayNote(int notenumber, int instrumentId, EntityPlayer entityPlayer) {
-        World worldIn = entityPlayer.getEntityWorld();
+    public static void PlayNote(int notenumber, int instrumentId, EntityLivingBase entity) {
+        World worldIn = entity.getEntityWorld();
+        String current_hand;
+        if (entity instanceof EntityPlayer){
+            EntityPlayer player = (EntityPlayer)entity;
+            //gets the name of the item in the player's main hand
+            current_hand = player.inventory.getCurrentItem().getUnlocalizedName();
+        }else{
+            current_hand = entity.getHeldItemMainhand().getUnlocalizedName();
+        }
 
-        //gets the name of the item in the player's main hand
-        String current_hand = entityPlayer.inventory.getCurrentItem().getUnlocalizedName();
         HashMap<String, SoundEvent[]> soundMap = new HashMap<String,SoundEvent[]>();
         soundMap.put("item.everythingbad:banjo",new SoundEvent[]{
             ModSoundEvents.SOUND_EVENT_BANJO
@@ -102,11 +109,11 @@ public class MidiHandler {
                 float note_coefficient = (float) Math.pow(2, (((float) notenumber - 60) / 12));
                 worldIn.playSound(
                         (EntityPlayer)null,
-                        entityPlayer.posX,
-                        entityPlayer.posY,
-                        entityPlayer.posZ,
+                        entity.posX,
+                        entity.posY,
+                        entity.posZ,
                         sound,
-                        SoundCategory.PLAYERS,
+                        SoundCategory.HOSTILE,
                         2F,
                         note_coefficient
                 );
