@@ -1,0 +1,167 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "everythingbad:items/hunting_rifle",
+		"particle": "everythingbad:items/hunting_rifle"
+	},
+	"elements": [
+		{
+			"name": "Barrel",
+			"from": [8.1, 3.1, 0],
+			"to": [8.9, 3.9, 5],
+			"faces": {
+				"north": {"uv": [0, 0, 3.4, 0.4], "texture": "#0"},
+				"east": {"uv": [0, 0, 3.4, 0.4], "texture": "#0"},
+				"south": {"uv": [0, 0, 3.4, 0.4], "texture": "#0"},
+				"west": {"uv": [0, 0, 3.4, 0.4], "texture": "#0"},
+				"up": {"uv": [0, 0, 3.4, 0.4], "texture": "#0"},
+				"down": {"uv": [0, 0, 3.4, 0.4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Handle",
+			"from": [7.7, 3, 5],
+			"to": [9.3, 4.2, 10],
+			"faces": {
+				"north": {"uv": [1, 2, 5, 3.1], "texture": "#0"},
+				"east": {"uv": [1, 2, 5, 3.1], "texture": "#0"},
+				"south": {"uv": [1, 2, 5, 3.1], "texture": "#0"},
+				"west": {"uv": [1, 2, 5, 3.1], "texture": "#0"},
+				"up": {"uv": [1, 2, 5, 3.1], "texture": "#0"},
+				"down": {"uv": [1, 2, 5, 3.1], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Upper",
+			"from": [7.9, 2.5, 10],
+			"to": [9.1, 4.2, 13],
+			"faces": {
+				"north": {"uv": [3, 3.5, 4.6, 4.5], "texture": "#0"},
+				"east": {"uv": [1, 3.5, 2.5, 4.35], "texture": "#0"},
+				"south": {"uv": [3, 3.5, 4.6, 4.5], "texture": "#0"},
+				"west": {"uv": [1, 3.5, 2.5, 4.35], "texture": "#0"},
+				"up": {"uv": [3, 3.5, 4.6, 4.5], "texture": "#0"},
+				"down": {"uv": [3, 3.5, 4.6, 4.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Far Sight",
+			"from": [8.3, 3.9, 0],
+			"to": [8.7, 4.2, 0.3],
+			"faces": {
+				"north": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"east": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"south": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"west": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"up": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"down": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Near Sight",
+			"from": [8.3, 4.1, 10],
+			"to": [8.7, 4.4, 10.3],
+			"faces": {
+				"north": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"east": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"south": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"west": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"up": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"},
+				"down": {"uv": [0, 4.5, 0.65, 5.15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Stock 1",
+			"from": [7.8, 3, 16],
+			"to": [9.2, 4.2, 18.6],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 11]},
+			"faces": {
+				"north": {"uv": [1, 2, 4.95, 2.8], "texture": "#0"},
+				"east": {"uv": [1, 2, 4.95, 2.8], "texture": "#0"},
+				"south": {"uv": [1, 2, 4.95, 2.8], "texture": "#0"},
+				"west": {"uv": [1, 2, 4.95, 2.8], "texture": "#0"},
+				"up": {"uv": [1, 2, 4.95, 2.8], "texture": "#0"},
+				"down": {"uv": [1, 2, 4.95, 2.8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Stock 2",
+			"from": [8, 2, 18.6],
+			"to": [9, 5, 19.6],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 11]},
+			"faces": {
+				"north": {"uv": [1, 2, 5, 3.5], "texture": "#0"},
+				"east": {"uv": [1, 2, 5, 3.5], "texture": "#0"},
+				"south": {"uv": [1, 2, 5, 3.5], "texture": "#0"},
+				"west": {"uv": [1, 2, 5, 3.5], "texture": "#0"},
+				"up": {"uv": [1, 2, 5, 3.5], "texture": "#0"},
+				"down": {"uv": [1, 2, 5, 3.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Magazine",
+			"from": [8, 1.1, 10.1],
+			"to": [9, 3, 12.9],
+			"faces": {
+				"north": {"uv": [0, 0, 3.4, 1.95], "texture": "#0"},
+				"east": {"uv": [0, 0, 3.4, 1.95], "texture": "#0"},
+				"south": {"uv": [0, 0, 3.4, 1.95], "texture": "#0"},
+				"west": {"uv": [0, 0, 3.4, 1.95], "texture": "#0"},
+				"up": {"uv": [0, 2, 1, 4.4], "texture": "#0"},
+				"down": {"uv": [0, 2, 1, 4.4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Handle 2",
+			"from": [7.9, 3, 13],
+			"to": [9.1, 4.2, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 0.6, 0.6], "texture": "#0"},
+				"east": {"uv": [0, 0, 1.5, 0.6], "texture": "#0"},
+				"south": {"uv": [0, 0, 0.6, 0.6], "texture": "#0"},
+				"west": {"uv": [0, 0, 1.5, 0.6], "texture": "#0"},
+				"up": {"uv": [0, 0, 0.6, 1], "texture": "#0"},
+				"down": {"uv": [0, 0, 0.6, 1], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Handle 3",
+			"from": [8, 0.9, 14.4],
+			"to": [9, 3.3, 15.4],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8.52182, 1.98955, 14.48862]},
+			"faces": {
+				"north": {"uv": [1, 2, 5, 3.45], "texture": "#0"},
+				"east": {"uv": [1, 2, 5, 3.45], "texture": "#0"},
+				"south": {"uv": [1, 2, 5, 3.45], "texture": "#0"},
+				"west": {"uv": [1, 2, 5, 3.45], "texture": "#0"},
+				"up": {"uv": [1, 2, 5, 3.45], "texture": "#0"},
+				"down": {"uv": [1, 2, 5, 3.45], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [-0.25, 5.75, -5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0.5, 6.25, -5.25]
+		},
+		"firstperson_righthand": {
+			"translation": [-7.5, 10, 2]
+		},
+		"firstperson_lefthand": {
+			"translation": [-7.25, 9.25, 0]
+		},
+		"ground": {
+			"translation": [0, 4, 0]
+		},
+		"gui": {
+			"rotation": [0, 90, 0],
+			"translation": [-1.75, 2.75, 0]
+		},
+		"fixed": {
+			"rotation": [0, 90, 0],
+			"translation": [-1.75, 2.75, 0]
+		}
+	}
+}

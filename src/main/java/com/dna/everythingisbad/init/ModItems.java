@@ -86,6 +86,8 @@ public class ModItems {
     public static final ItemHairDryerGun HAIR_DRYER_GUN_ITEM = new ItemHairDryerGun("hair_dryer_gun");
     public static final ItemStupidTNTGun STUPID_TNT_GUN_ITEM = new ItemStupidTNTGun("stupid_tnt_gun");
     public static final ItemStupidTNTCartridge STUPID_TNT_CARTRIDGE_ITEM = new ItemStupidTNTCartridge("stupid_tnt_cartridge");
+    public static final ItemHuntingRifle HUNTING_RIFLE = new ItemHuntingRifle("hunting_rifle");
+    public static final ItemRifleCartridge RIFLE_CARTRIDGE = new ItemRifleCartridge("rifle_cartridge");
     public static final ItemStupidCore STUPID_CORE_ITEM = new ItemStupidCore("stupid_core");
     public static final ItemPoliceGun POLICE_GUN_ITEM = new ItemPoliceGun("police_gun");
     public static final ItemBullet BULLET_ITEM = new ItemBullet("bullet");
