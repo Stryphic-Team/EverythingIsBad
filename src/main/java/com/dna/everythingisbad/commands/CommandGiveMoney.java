@@ -9,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,13 +42,13 @@ public class CommandGiveMoney extends ModCommandBase {
                 String username = args[0];
                 String amountString = args[1];
                 try {
-                    if (Integer.parseInt(amountString) > 0) {
+                    if (Float.parseFloat(amountString) > 0) {
                         EntityPlayer receiver = server.getPlayerList().getPlayerByUsername(username);
                         if(receiver != null){
                             PlayerProperties receiverProperties = receiver.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
                             PlayerProperties senderProperties = sender.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
                             if(receiverProperties != null && senderProperties != null){
-                                int amount = Integer.parseInt(amountString);
+                                float amount = Float.parseFloat(amountString);
                                 if(senderProperties.getBalance() >= amount){
                                     senderProperties.setBalance(senderProperties.getBalance() - amount);
                                     receiverProperties.setBalance(receiverProperties.getBalance() + amount);
@@ -74,7 +75,16 @@ public class CommandGiveMoney extends ModCommandBase {
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
-        return args.length >= 1 ? getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()) : Collections.emptyList();
+        ArrayList<String> completions = new ArrayList<>();
+        if(args.length == 1) {
+            return server.getPlayerList().getCurrentPlayerCount() > 0 ? getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()) : Collections.emptyList();
+        }else if(args.length == 2){
+            for(int i = 0;i<20 ;i++){
+                completions.add(Integer.toString(i * 5));
+            }
+            return completions;
+        }
+        return new ArrayList<String>();
     }
 
 }

@@ -4,6 +4,7 @@ package com.dna.everythingisbad.init;
 import com.dna.everythingisbad.item.*;
 import com.dna.everythingisbad.item.armor.ItemCamoChestplate;
 import com.dna.everythingisbad.item.armor.ItemCowboyHat;
+import com.dna.everythingisbad.item.armor.ItemHillbillyHat;
 import com.dna.everythingisbad.item.armor.ItemSantaHat;
 import com.dna.everythingisbad.item.food.*;
 import com.dna.everythingisbad.item.instruments.ItemBanjo;
@@ -95,6 +96,7 @@ public class ModItems {
     public static  final ItemCowboyHat COWBOY_HAT_ITEM = new ItemCowboyHat("cowboy_hat");
     public static  final ItemSantaHat SANTA_HAT_ITEM = new ItemSantaHat("santa_hat");
     public static final ItemCamoChestplate CAMO_CHESTPLATE_ITEM = new ItemCamoChestplate("camo_chestplate");
+    public static final ItemHillbillyHat HILLBILLY_HAT_ITEM = new ItemHillbillyHat("hillbilly_hat");
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
