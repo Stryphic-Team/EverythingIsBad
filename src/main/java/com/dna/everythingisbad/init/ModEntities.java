@@ -4,9 +4,6 @@ import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
 import net.minecraft.init.Biomes;
@@ -59,6 +56,7 @@ public class ModEntities {
                 } else {
                     EntityRegistry.addSpawn(EntityStupidSkeleton.class, 10, 1, 10, EnumCreatureType.MONSTER, biome);
                     EntityRegistry.addSpawn(EntityJesus.class, 5, 1, 5, EnumCreatureType.MONSTER, biome);
+                    EntityRegistry.addSpawn(EntityHillbilly.class, 5, 1, 5, EnumCreatureType.MONSTER, biome);
                 }
             }
         }
