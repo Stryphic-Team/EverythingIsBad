@@ -3,6 +3,7 @@ package com.dna.everythingisbad.entity;
 import com.dna.everythingisbad.ai.EntityAIPoliceShootGun;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModLootTables;
+import com.dna.everythingisbad.init.ModSoundEvents;
 import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.utils.handlers.MidiHandler;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +18,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -162,6 +165,26 @@ public class EntityHillbilly extends EntitySkeleton implements IRangedAttackMob 
         }else{
             return false;
         }
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return ModSoundEvents.SOUND_EVENT_HILLBILLY_HURT[rand.nextInt(4)];
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSoundEvents.SOUND_EVENT_HILLBILLY_HURT[rand.nextInt(4)];
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 1f;
     }
 }
 

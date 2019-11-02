@@ -183,5 +183,33 @@
         "name": "everythingbad:angel_die_0"
       }
     ]
+  },
+  "hillbilly_0": {
+    "sounds": [
+      {
+        "name": "everythingbad:hillbilly_0"
+      }
+    ]
+  },
+  "hillbilly_1": {
+    "sounds": [
+      {
+        "name": "everythingbad:hillbilly_1"
+      }
+    ]
+  },
+  "hillbilly_2": {
+    "sounds": [
+      {
+        "name": "everythingbad:hillbilly_2"
+      }
+    ]
+  },
+  "hillbilly_3": {
+    "sounds": [
+      {
+        "name": "everythingbad:hillbilly_3"
+      }
+    ]
   }
 }
