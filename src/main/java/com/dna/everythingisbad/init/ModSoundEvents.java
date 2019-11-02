@@ -29,6 +29,25 @@ public class ModSoundEvents {
             register("police_ambient_4"),
             register("police_ambient_5"),
     };
+    public static SoundEvent[] SOUND_EVENT_ANGEL_AMBIENT = new SoundEvent[]{
+            register("angel_0"),
+            register("angel_1"),
+            register("angel_2"),
+            register("angel_3")
+    };
+    public static SoundEvent[] SOUND_EVENT_ANGEL_HURT = new SoundEvent[]{
+            register("angel_hurt_0"),
+            register("angel_hurt_1"),
+            register("angel_hurt_2")
+    };
+    public static SoundEvent SOUND_EVENT_ANGEL_DIE = register("angel_die_0");
+
+    public static SoundEvent[] SOUND_EVENT_HILLBILLY_HURT = new SoundEvent[]{
+            register("hillbilly_0"),
+            register("hillbilly_1"),
+            register("hillbilly_2"),
+            register("hillbilly_3")
+    };
 
     public static SoundEvent register(String name){
         ResourceLocation location = new ResourceLocation(Reference.MOD_ID, name);

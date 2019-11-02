@@ -4,9 +4,6 @@ import com.dna.everythingisbad.client.*;
 import com.dna.everythingisbad.entity.*;
 import com.dna.everythingisbad.reference.Reference;
 import com.dna.everythingisbad.utils.prototypes.EntityPrototype;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
 import net.minecraft.init.Biomes;
@@ -54,11 +51,13 @@ public class ModEntities {
             if(!biome.equals(Biomes.MUSHROOM_ISLAND) && !biome.equals(Biomes.MUSHROOM_ISLAND_SHORE)) {
                 if (biome.equals(Biomes.HELL)) {
                     EntityRegistry.addSpawn(EntitySatan.class, 1, 1, 10, EnumCreatureType.MONSTER, biome);
-//            }else if (biome == ModBiomes.HEAVEN){
-//                EntityRegistry.addSpawn(EntityJesus.class,100,5,10, EnumCreatureType.MONSTER,biome);
+                }else if (biome == Biomes.EXTREME_HILLS || biome == Biomes.EXTREME_HILLS_WITH_TREES
+                || biome == Biomes.SWAMPLAND){
+                    EntityRegistry.addSpawn(EntityHillbilly.class,30,4,6, EnumCreatureType.MONSTER,biome);
                 } else {
                     EntityRegistry.addSpawn(EntityStupidSkeleton.class, 10, 1, 10, EnumCreatureType.MONSTER, biome);
                     EntityRegistry.addSpawn(EntityJesus.class, 5, 1, 5, EnumCreatureType.MONSTER, biome);
+                    EntityRegistry.addSpawn(EntityHillbilly.class, 5, 2, 4, EnumCreatureType.MONSTER, biome);
                 }
             }
         }
@@ -73,6 +72,7 @@ public class ModEntities {
                 EntityRegistry.removeSpawn(EntityEnderman.class,EnumCreatureType.MONSTER,biome);
                 EntityRegistry.removeSpawn(EntityZombieVillager.class,EnumCreatureType.MONSTER,biome);
                 EntityRegistry.removeSpawn(EntityStupidSkeleton.class,EnumCreatureType.MONSTER,biome);
+                EntityRegistry.removeSpawn(EntityHillbilly.class,EnumCreatureType.MONSTER,biome);
             }
         }
 
