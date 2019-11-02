@@ -127,5 +127,61 @@
         "name": "everythingbad:police_ambient_5"
       }
     ]
+  },
+  "angel_0": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_0"
+      }
+    ]
+  },
+  "angel_1": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_1"
+      }
+    ]
+  },
+  "angel_2": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_2"
+      }
+    ]
+  },
+  "angel_3": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_3"
+      }
+    ]
+  },
+  "angel_hurt_0": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_hurt_0"
+      }
+    ]
+  },
+  "angel_hurt_1": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_hurt_1"
+      }
+    ]
+  },
+  "angel_hurt_2": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_hurt_2"
+      }
+    ]
+  },
+  "angel_die_0": {
+    "sounds": [
+      {
+        "name": "everythingbad:angel_die_0"
+      }
+    ]
   }
 }

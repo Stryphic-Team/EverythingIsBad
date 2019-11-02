@@ -5,6 +5,7 @@ import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.init.ModLootTables;
 import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.utils.handlers.MidiHandler;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -17,8 +18,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -127,28 +130,46 @@ public class EntityHillbilly extends EntitySkeleton implements IRangedAttackMob 
     @Override
     protected void initEntityAI()
     {
+        // normal stuff
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIRestrictSun(this));
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 
-        // Hunting aminals
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityCow.class, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntitySheep.class, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityChicken.class, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPig.class, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityRabbit.class, true));
+        // Hunting the player is more prioritised than aminals
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+
+        // Hunting aminals (small aminals are less prioritised than big ones)
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityCow.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntitySheep.class, true));
+        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityChicken.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPig.class, true));
+        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityRabbit.class, true));
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        if (this.rand.nextFloat() < 0.01){
+
+            // All of this is so that we skip the EntityMob's light level requirement
+            IBlockState iblockstate = this.world.getBlockState((new BlockPos(this)).down());
+            return this.world.getDifficulty() != EnumDifficulty.PEACEFUL; //&&
+            //this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F &&
+            //iblockstate.canEntitySpawn(this);
+
+        }else{
+            return false;
+        }
     }
 }
 
 class SoundFrame {
-    int tick;
-    int note1;
-    int note2;
-    int note3;
+    private int tick;
+    private int note1;
+    private int note2;
+    private int note3;
 
     SoundFrame(int tick, int note1, int note2, int note3){
         this.tick = tick;
