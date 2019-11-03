@@ -1,8 +1,10 @@
 package com.dna.everythingisbad.commands;
 
+import com.dna.everythingisbad.commands.utils.CommandOutputHelper;
 import com.dna.everythingisbad.commands.utils.InsufficientFundsException;
 import com.dna.everythingisbad.entityproperties.PlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
+import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CommandGiveMoney extends ModCommandBase {
     public CommandGiveMoney(String name) {
         super(name);
+        addAlias("givemoney");
     }
 
     @Override
@@ -52,6 +55,8 @@ public class CommandGiveMoney extends ModCommandBase {
                                 if(senderProperties.getBalance() >= amount){
                                     senderProperties.setBalance(senderProperties.getBalance() - amount);
                                     receiverProperties.setBalance(receiverProperties.getBalance() + amount);
+                                    CommandOutputHelper.sendPositiveMessage(sender,"You have sent " + FormatHelper.formatMoney(amount) + " to " + receiver.getDisplayNameString());
+                                    CommandOutputHelper.sendPositiveMessage(receiver,"You have received " + FormatHelper.formatMoney(amount) + " from " + sender.getDisplayNameString());
                                 }else{
                                     throw new InsufficientFundsException("commands.economy.error.insufficient_funds");
                                 }

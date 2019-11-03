@@ -12,6 +12,7 @@ public class CommandRandomTeleport extends ModCommandBase {
 
     public CommandRandomTeleport(String name) {
         super(name);
+        addAlias("randomtp");
     }
 
     @Override

@@ -43,6 +43,19 @@ public class CommandEverythingIsBad extends CommandBase {
                 }
                 executed = true;
             }
+            for(String alias:command.getAliases()){
+                if(args.length != 0 && alias.equals(args[0])){
+                    String[] newArgs = new String[args.length - 1];
+                    for(int i = 1;i<args.length;i++){
+                        newArgs[i - 1] = args[i];
+                    }
+                    if(command.checkPermission(server,sender)) {
+                        command.execute(server, sender, newArgs);
+                    }
+                    executed = true;
+                }
+            }
+
         }
         if(!executed) {
             String[] newArgs = new String[0];
@@ -58,6 +71,13 @@ public class CommandEverythingIsBad extends CommandBase {
                 if(command.getName().startsWith(args[0])) {
                     if(command.checkPermission(server,sender)) {
                         completions.add(command.getName());
+                    }
+                }
+                for(String alias:command.getAliases()){
+                    if(alias.startsWith(args[0])) {
+                        if(command.checkPermission(server,sender)) {
+                            completions.add(alias);
+                        }
                     }
                 }
             }else{
@@ -80,5 +100,13 @@ public class CommandEverythingIsBad extends CommandBase {
     public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
 
+    }
+
+    @Override
+    public List<String> getAliases() {
+        ArrayList<String> alises = new ArrayList<String>();
+        alises.add("eib");
+        alises.add("bad");
+        return alises;
     }
 }

@@ -15,6 +15,7 @@ public class CommandHelp extends ModCommandBase {
 
     public CommandHelp(String name) {
         super(name);
+        addAlias("h");
     }
 
     @Override
