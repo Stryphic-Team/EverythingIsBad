@@ -100,9 +100,9 @@ public class AutomatedTellerMachineGuiContainer extends DeviceContainerGuiBase{
         }
         else if(elementButton == submitButton){
             if(currentState == GuiState.STATE_DEPOSIT){
-                PacketHandler.INSTANCE.sendToServer(new MessageTransaction(Integer.parseInt(textFieldDeposit.textField.getText()), MessageTransaction.TransactionType.DEPOSIT));
+                PacketHandler.INSTANCE.sendToServer(new MessageTransaction(Float.parseFloat(textFieldDeposit.textField.getText()), MessageTransaction.TransactionType.DEPOSIT));
             }else if(currentState == GuiState.STATE_WITHDRAW){
-                PacketHandler.INSTANCE.sendToServer(new MessageTransaction(Integer.parseInt(textFieldWithdraw.textField.getText()), MessageTransaction.TransactionType.WITHDRAW));
+                PacketHandler.INSTANCE.sendToServer(new MessageTransaction(Float.parseFloat(textFieldWithdraw.textField.getText()), MessageTransaction.TransactionType.WITHDRAW));
             }
         }else if(elementButton == balanceButton){
             currentState = GuiState.STATE_BALANCE;
