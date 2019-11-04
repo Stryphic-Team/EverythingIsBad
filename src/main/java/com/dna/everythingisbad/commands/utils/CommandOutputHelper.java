@@ -78,4 +78,7 @@ public class CommandOutputHelper {
         boolean isStudent = playerProperties.isStudent();
         player.sendMessage(new TextComponentString("Student: "+isStudent));
     }
+    public static void sendPositiveMessage(EntityPlayer player,String message){
+        player.sendMessage(new TextComponentString(message).setStyle(new Style().setColor(TextFormatting.GREEN)));
+    }
 }

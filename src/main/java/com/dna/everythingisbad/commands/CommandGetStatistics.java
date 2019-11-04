@@ -9,6 +9,8 @@ import net.minecraft.server.MinecraftServer;
 public class CommandGetStatistics extends ModCommandBase {
     public CommandGetStatistics(String name) {
         super(name);
+        addAlias("stats");
+        addAlias("getstats");
 
     }
 

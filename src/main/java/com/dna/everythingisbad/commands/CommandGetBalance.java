@@ -9,6 +9,8 @@ import net.minecraft.server.MinecraftServer;
 public class CommandGetBalance extends ModCommandBase {
     public CommandGetBalance(String name) {
         super(name);
+        addAlias("bal");
+        addAlias("getbal");
 
     }
 
