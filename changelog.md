@@ -155,5 +155,5 @@
 ### 0.2.1-alpha `11/4/19`
    * Fixed triple interest rate return
    * Fixed client crash when withdrawing fractional amounts from the ATM
-   * Giving money to a another player now notifies the player that they recieved the mone
+   * Giving money to a another player now notifies the player that they received the money
 
