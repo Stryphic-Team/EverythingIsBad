@@ -13,7 +13,7 @@ public class PlayerBankHandler extends PlayerHandlerBase {
     @Override
     public void playerTick(EntityPlayer player) {
         super.playerTick(player);
-        int interestInterval = 240;
+        int interestInterval = 24000;
         World world = player.getEntityWorld();
         int worldTime = (int)world.getWorldTime();
         if(!world.isRemote && world.getWorldTime() % interestInterval == interestInterval-1) {
