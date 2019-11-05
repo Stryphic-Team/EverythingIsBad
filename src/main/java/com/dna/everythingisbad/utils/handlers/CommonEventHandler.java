@@ -40,6 +40,7 @@ public class CommonEventHandler {
     public static PlayerHandlerBase PLAYER_TOBACCO_ADDICTION_HANDLER = new PlayerTobaccoAddictionHandler();
     public static PlayerHandlerBase PLAYER_MONEY_HANDLER = new PlayerMoneyHandler();
     public static PlayerHandlerBase PLAYER_COLLEGE_STUDENT_HANDLER = new PlayerCollegeStudentHandler();
+    public static PlayerHandlerBase PLAYER_BANK_HANDLER = new PlayerBankHandler();
     //public static PlayerScreenYellowHandler PLAYER_SCREEN_YELLOW_HANDLER = new PlayerScreenYellowHandler();
     //Living Handlers
     public static LivingHandlerBase LIVING_JESUS_HEAL_HANDLER = new LivingJesusHealHandler();
@@ -49,7 +50,7 @@ public class CommonEventHandler {
     public static LivingHandlerBase LIVING_POTION_EFFECT_HANDLER = new LivingPotionEffectHandler();
     public static LivingHandlerBase LIVING_POOP_HANDLER = new LivingPoopHandler();
     //World Handlers
-    public static WorldHandlerBase WORLD_BANK_HANDLER = new WorldBankHandler();
+    //public static WorldHandlerBase WORLD_BANK_HANDLER = new WorldBankHandler();
 
 
 
