@@ -14,10 +14,10 @@ import net.minecraft.world.World;
 public class WorldBankHandler extends WorldHandlerBase {
     @Override
     public void worldTick(World world) {
-        int interestInterval = 24000;
+        int interestInterval = 240;
         super.worldTick(world);
         MinecraftServer server = world.getMinecraftServer();
-        if(!world.isRemote && world.getTotalWorldTime() % interestInterval == interestInterval-1) {
+        if(!world.isRemote && world.getWorldTime() % interestInterval == interestInterval-1) {
             if (server != null) {
                 PlayerList playerList = world.getMinecraftServer().getPlayerList();
                 String[] onlinePlayers = playerList.getOnlinePlayerNames();
