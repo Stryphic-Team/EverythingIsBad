@@ -45,6 +45,12 @@ public class LiquifierRecipes {
             new ItemStack(Blocks.OBSIDIAN),
             10000,FluidRegistry.LAVA,
             400);
+    public static final LiquifierRecipePrototype BLOOD_BLOCK_TO_BLOOD = new LiquifierRecipePrototype(
+            100,
+            new ItemStack(ModBlocks.BLOOD_BLOCK),
+            1000,ModFluids.BLOOD.getFluid(),
+            250);
+
     public static void init(){
         for(LiquifierRecipePrototype recipe:RECIPES){
             RECIPES_MAP.put(recipe.getInput().getItem(),recipe);
