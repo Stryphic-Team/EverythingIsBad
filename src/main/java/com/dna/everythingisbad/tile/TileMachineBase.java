@@ -24,7 +24,7 @@ public abstract class TileMachineBase  extends TileDeviceBase {
     public void update() {
         super.update();
         if(hasNecessaryItems()){
-            speedMultiplier = energyHandler.getEnergyStoredPercentage() / 12;
+            speedMultiplier = (int) Math.round(Math.abs(Math.log(1f / (1f + (float)energyHandler.getEnergyStored()))));
             stepProgress();
             reduceEnergy();
             if(getProgress() >= getFinishedProgress()){

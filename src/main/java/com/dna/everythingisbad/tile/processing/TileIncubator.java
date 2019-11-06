@@ -14,13 +14,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
-import java.util.List;
 
 public class TileIncubator extends TileMachineBase {
 
@@ -30,7 +26,7 @@ public class TileIncubator extends TileMachineBase {
         setFinishedProgress(24000);
         itemStackHadler.setSlotConfig(0,true,true);
         fluidHandler = null;
-        energyUsedPerTick = 100;
+        energyUsedPerTick = 50;
     }
 
     @Override

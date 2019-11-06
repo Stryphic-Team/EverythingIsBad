@@ -49,7 +49,7 @@ public class LiquifierRecipes {
             100,
             new ItemStack(ModBlocks.BLOOD_BLOCK),
             1000,ModFluids.BLOOD.getFluid(),
-            250);
+            1000);
 
     public static void init(){
         for(LiquifierRecipePrototype recipe:RECIPES){
