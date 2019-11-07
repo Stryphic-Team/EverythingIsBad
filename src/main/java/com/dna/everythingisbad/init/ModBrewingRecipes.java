@@ -20,5 +20,8 @@ public class ModBrewingRecipes {
 
         // Adrenaline potion
         PotionHelper.addMix(PotionTypes.AWKWARD,ModItems.ANGEL_DUST,ModPotions.POTION_ADRENALINE.getPotionType());
+
+        // Stimulation potion
+        PotionHelper.addMix(PotionTypes.AWKWARD,ModItems.TOBACCO_LEAF_ITEM,ModPotions.POTION_STIMULATION.getPotionType());
     }
 }
