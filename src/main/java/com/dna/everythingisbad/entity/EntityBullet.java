@@ -2,10 +2,13 @@ package com.dna.everythingisbad.entity;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -28,7 +31,7 @@ public class EntityBullet extends EntityThrowable {
     protected void onImpact(RayTraceResult result) {
         if (result.entityHit != null && result.entityHit != this.getThrower())
         {
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 12f);
+            result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("arrow", this, this.getThrower()), 12f);
         }
         if (!this.world.isRemote){
             if (result.typeOfHit == RayTraceResult.Type.BLOCK){

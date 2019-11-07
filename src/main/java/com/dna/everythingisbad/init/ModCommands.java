@@ -11,6 +11,7 @@ public class ModCommands {
     public static final ModCommandBase COMMAND_GIVE_MONEY = new CommandGiveMoney("money");
     public static final ModCommandBase COMMAND_GET_STATISTICS = new CommandGetStatistics("statistics");
     public static final ModCommandBase COMMAND_RANDOM_TELEPORT = new CommandRandomTeleport("rtp");
+    public static final ModCommandBase COMMAND_TOP_BALANCE = new CommandTopBalance("topbalance");
     public static final ModCommandBase COMMAND_HELP = new CommandHelp("help");
     public static void init(FMLServerStartingEvent event){
         event.registerServerCommand(new CommandEverythingIsBad("everythingisbad"));
