@@ -4,10 +4,20 @@ import com.dna.everythingisbad.entityproperties.PlayerProperties;
 import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.Religion;
 import com.dna.everythingisbad.utils.helpers.FormatHelper;
+import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerInteractionManager;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.UUID;
 
 public class CommandOutputHelper {
     String[] Docs = new String[]{
@@ -80,5 +90,64 @@ public class CommandOutputHelper {
     }
     public static void sendPositiveMessage(EntityPlayer player,String message){
         player.sendMessage(new TextComponentString(message).setStyle(new Style().setColor(TextFormatting.GREEN)));
+    }
+    public static void sendTopBalance(EntityPlayer player,int page){
+        MinecraftServer server = player.world.getMinecraftServer();
+        if(server != null) {
+            PlayerList players = server.getPlayerList();
+            players.getOnlinePlayerNames();
+
+            String[] playerData = players.getAvailablePlayerDat();
+            ArrayList<EntityPlayerMP> allPlayers = new ArrayList<EntityPlayerMP>();
+            for(String playerUUID:playerData){
+                GameProfile profileByUUID = server.getPlayerProfileCache().getProfileByUUID(UUID.fromString(playerUUID));
+                if(profileByUUID != null) {
+                    EntityPlayerMP currentPlayer = new EntityPlayerMP(server, server.getWorld(player.dimension), profileByUUID, new PlayerInteractionManager(player.world));
+                    NBTTagCompound nbtTagCompound = players.readPlayerDataFromFile(currentPlayer);
+                    if(nbtTagCompound != null) {
+                        currentPlayer.readFromNBT(nbtTagCompound);
+                    }
+                    allPlayers.add(currentPlayer);
+                }
+            }
+            page = Math.min(page,allPlayers.size() / 5);
+            page = Math.max(page,0);
+            allPlayers.sort(new Comparator<EntityPlayerMP>() {
+                @Override
+                public int compare(EntityPlayerMP o1, EntityPlayerMP o2) {
+                    PlayerProperties playerProperties1 = o1.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
+                    PlayerProperties playerProperties2 = o2.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
+
+                    if (playerProperties1 != null && playerProperties2 != null) {
+
+                        return Math.round(playerProperties2.getBankBalance() - playerProperties1.getBankBalance());
+                    }else{
+                        return 0;
+                    }
+                }
+            });
+            sendBorder(player);
+            for(int i = (page * 5);i<Math.min((page + 1) * 5,allPlayers.size());i++){
+                EntityPlayer currentPlayer = allPlayers.get(i);
+                PlayerProperties playerProperties = currentPlayer.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
+
+                if (playerProperties != null) {
+                    playerProperties.loadNBTData(currentPlayer.getEntityData());
+                    float bankBalance = playerProperties.getBankBalance();
+
+                    player.sendMessage(
+                            new TextComponentString(currentPlayer.getDisplayNameString()).appendSibling(
+                            new TextComponentString(" : ").setStyle(new Style().setColor(TextFormatting.GOLD))).appendSibling(
+                            new TextComponentString(FormatHelper.formatMoney(bankBalance))).setStyle(new Style().setColor(TextFormatting.GREEN))
+                    );
+
+                }
+            }
+            player.sendMessage(
+                    new TextComponentString((page + 1) + " / " + ((allPlayers.size() / 5) + 1)).setStyle(new Style().setColor(TextFormatting.GREEN))
+            );
+            sendBorder(player);
+
+        }
     }
 }
