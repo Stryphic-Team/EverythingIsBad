@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 public class ItemStupidTNTGun extends ItemGunBase {
     public ItemStupidTNTGun(String name){
         super(name);
+        delay = 30;
     }
 
     @Override
