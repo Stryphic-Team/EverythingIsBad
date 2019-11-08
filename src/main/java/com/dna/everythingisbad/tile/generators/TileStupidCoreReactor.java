@@ -4,6 +4,9 @@ import com.dna.everythingisbad.init.ModBlocks;
 import com.dna.everythingisbad.init.ModItems;
 import com.dna.everythingisbad.tile.TileGeneratorBase;
 import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
+import com.dna.everythingisbad.utils.RandomUtils;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 
 public class TileStupidCoreReactor extends TileGeneratorBase {
     public TileStupidCoreReactor() {
@@ -31,15 +34,28 @@ public class TileStupidCoreReactor extends TileGeneratorBase {
     @Override
     public void update() {
         super.update();
+        int exposionRate = 20;
 
-        if(inProgress()) {
-            targetTemperature = 1000;
-            updateTemperature();
+        if (inProgress()) {
+            thermalHandler.addTemperatureVector(3f);
         }
-        if(temperature >= 666){
-            world.createExplosion(null,pos.getX(),pos.getY(),pos.getZ(),50f,true);
-        }
+        BlockPos topRandomBlock = world.getTopSolidOrLiquidBlock(new BlockPos(pos.getX() + RandomUtils.fromRangeI(-20, 20), 0, pos.getZ() + RandomUtils.fromRangeI(-20, 20)));
+        if (thermalHandler.getCurrentTemperature() >= 400f) {
+            if (!world.isRemote) {
 
+                world.setBlockState(topRandomBlock, Blocks.FIRE.getDefaultState());
+            }
+            //
+        }
+        if (thermalHandler.getCurrentTemperature() > 450f) {
+            exposionRate = (int) Math.max(20f - (thermalHandler.getCurrentTemperature() - 450f), 1f);
+            if (tick % exposionRate == exposionRate - 1) {
+                world.createExplosion(null, topRandomBlock.getX(), topRandomBlock.getY(), topRandomBlock.getZ(), 2.5f, true);
+            }
+
+
+        }
 
     }
+
 }

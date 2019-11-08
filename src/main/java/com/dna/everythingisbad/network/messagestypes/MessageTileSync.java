@@ -1,5 +1,6 @@
 package com.dna.everythingisbad.network.messagestypes;
 
+import com.dna.everythingisbad.tile.TileDeviceBase;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -9,7 +10,7 @@ public class MessageTileSync implements IMessage {
     private int y;
     private int z;
     private boolean state;
-    public MessageTileSync(){
+    public MessageTileSync(int x, int y, int z, TileDeviceBase tileDeviceBase){
 
     }
     public MessageTileSync(int x,int y,int z,boolean state){

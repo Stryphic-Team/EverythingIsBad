@@ -35,7 +35,7 @@ public class ElementStatistics extends ElementBase {
         if(tileDeviceBase.getFluidHandler() != null){
             stringList.add("Fluid: "+ FormatHelper.formatNumber(tileDeviceBase.getFluidHandler().getFluidTank().getFluidAmount()));
         }
-        String temperature = String.valueOf(tileDeviceBase.getTemperature());
+        String temperature = String.valueOf(tileDeviceBase.getThermalHandler().getCurrentTemperature());
         stringList.add("Temp: "+ temperature.substring(0,Math.min(temperature.length(),5)));
         for(int i = 0;i<stringList.size();i++){
             gui.drawText(startX + 4,startY+(i*8)+5,stringList.get(i));

@@ -7,6 +7,7 @@ import com.dna.everythingisbad.network.messagestypes.MessageSyncMachineGui;
 import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
+import com.dna.everythingisbad.tile.utils.handlers.ModThermalHandler;
 import com.dna.everythingisbad.tile.utils.helpers.WorldUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,6 +41,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     protected ModItemHandler itemStackHadler;
     protected ModFluidHandler fluidHandler;
     protected ModEnergyHandler energyHandler;
+    protected ModThermalHandler thermalHandler;
     protected float temperature = 23;
     protected float temperatureIncrement = 0.1f;
     protected float targetTemperature = 23;
@@ -52,6 +54,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         this.name = name;
         ModTileEntities.TILE_ENTITIES.add(this);
         messageSyncMachineGui = new MessageSyncMachineGui("",0,0,0);
+        thermalHandler = new ModThermalHandler(-5f,900f,20f,0.001f);
     }
 
     @Nullable
@@ -72,7 +75,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         if(energyHandler != null){
             energyHandler.setEnergyStorage(compound.getInteger("energyStored"));
         }
-        temperature = compound.getFloat("temperature");
+        thermalHandler.setCurrentTemperature(compound.getFloat("temperature"));
         progress = compound.getInteger("progress");
     }
 
@@ -87,7 +90,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         if(energyHandler != null){
             compound.setInteger("energyStored",energyHandler.getEnergyStored());
         }
-        compound.setFloat("temperature",temperature);
+        compound.setFloat("temperature",thermalHandler.getCurrentTemperature());
         compound.setInteger("progress",progress);
         return super.writeToNBT(compound);
     }
@@ -114,20 +117,20 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         if (tick % 10 == 1) {
             switch (world.getBiome(pos).getTempCategory()) {
                 case COLD:
-                    targetTemperature = -5;
+                    thermalHandler.setAmbientTemperature(-5f);
                     break;
                 case WARM:
-                    targetTemperature = 30;
+                    thermalHandler.setAmbientTemperature(30f);
                     break;
                 case MEDIUM:
-                    targetTemperature = 23;
+                    thermalHandler.setAmbientTemperature(23f);
                     break;
                 case OCEAN:
-                    targetTemperature = 10;
+                    thermalHandler.setAmbientTemperature(10f);
                     break;
             }
         }
-        updateTemperature();
+//        updateTemperature();
         ArrayList<IBlockState> blockStates;
         if (tick % 4 == 2) {
             BlockPos firstPoint = pos.add(-1, -1, -1);
@@ -136,25 +139,28 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
                     new WorldUtils.SearchBoundingBox(firstPoint, secondPoint));
             for (IBlockState blockState : blockStates) {
                 if (blockState == Blocks.WATER.getDefaultState()) {
-                    targetTemperature = 10;
-                    updateTemperature();
+                    thermalHandler.addTemperatureVector(-0.5f);
+                    //updateTemperature();
                 }
                 if (blockState == Blocks.LAVA.getDefaultState()) {
-                    targetTemperature = 700;
-                    updateTemperature();
+                    thermalHandler.addTemperatureVector(1.5f);
+                    //updateTemperature();
                 }
             }
         }
+        thermalHandler.update();
         updateBlockState();
+        updateTile();
 
     }
     public void updateTemperature(){
-        if(targetTemperature - temperature < 0) {
-            temperature -= temperatureIncrement;
-        }else{
-            temperature += temperatureIncrement;
-        }
-        temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
+//        if(targetTemperature - temperature < 0) {
+//            temperature -= temperatureIncrement;
+//        }else{
+//            temperature += temperatureIncrement;
+//        }
+
+        //temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
     }
 
     public void updateBlockState(){
@@ -169,8 +175,13 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
             }else{
                 //world.setBlockState(pos, defaultState.withProperty(BlockDeviceBase.FACING, currentState.getValue(BlockDeviceBase.FACING)).withProperty(BlockDeviceBase.ACTIVE,false), 3);
                 BlockDeviceBase.setState(false,currentState,world,pos);
-                //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),false));
+
             }
+        }
+    }
+    public void updateTile(){
+        if(tick % 20 == 19 && !world.isRemote){
+            //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),this));
         }
     }
 
@@ -254,5 +265,9 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
         return super.getUpdatePacket();
+    }
+
+    public ModThermalHandler getThermalHandler() {
+        return thermalHandler;
     }
 }
