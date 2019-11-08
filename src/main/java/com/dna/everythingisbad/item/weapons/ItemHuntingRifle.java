@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 public class ItemHuntingRifle extends ItemGunBase {
     public ItemHuntingRifle(String name) {
         super(name);
+        delay = 20;
 
     }
 

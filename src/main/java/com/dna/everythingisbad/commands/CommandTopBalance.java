@@ -9,6 +9,8 @@ import net.minecraft.server.MinecraftServer;
 public class CommandTopBalance extends ModCommandBase {
     public CommandTopBalance(String name) {
         super(name);
+        addAlias("topbal");
+        addAlias("baltop");
     }
 
     @Override
@@ -32,4 +34,5 @@ public class CommandTopBalance extends ModCommandBase {
     public boolean checkPermission(MinecraftServer p_checkPermission_1_, ICommandSender p_checkPermission_2_) {
         return true;
     }
+
 }

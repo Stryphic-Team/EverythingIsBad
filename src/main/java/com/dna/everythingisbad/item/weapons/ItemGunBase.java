@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 
 public abstract class ItemGunBase extends ItemBase {
     protected boolean ignoreAmmo;
+    private long lastTickUsed = 0;
+    protected int delay = 10;
     public ItemGunBase(String name){
         super(name);
         this.maxStackSize = 1;
@@ -35,20 +37,26 @@ public abstract class ItemGunBase extends ItemBase {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        ItemStack ammoStack = getAmmo(playerIn);
-        // TODO Add real gunshot sound
-        if(hasAmmo(playerIn) || ignoreAmmo || playerIn.capabilities.isCreativeMode) {
-            onShoot(worldIn, playerIn, handIn);
+        if(playerIn.ticksExisted - lastTickUsed > delay) {
+            lastTickUsed = playerIn.ticksExisted;
+            ItemStack ammoStack = getAmmo(playerIn);
+            // TODO Add real gunshot sound
+            if (hasAmmo(playerIn) || ignoreAmmo || playerIn.capabilities.isCreativeMode) {
+                onShoot(worldIn, playerIn, handIn);
+            } else {
+                onEmpty(worldIn, playerIn, handIn);
+            }
+            if (!playerIn.capabilities.isCreativeMode && hasAmmo(playerIn) && !ignoreAmmo) {
+                ammoStack.setItemDamage(ammoStack.getItemDamage() + 1);
+            }
+
+
+            playerIn.addStat(StatList.getObjectUseStats(this));
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
         }else{
-            onEmpty(worldIn, playerIn, handIn);
+            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
         }
-        if(!playerIn.capabilities.isCreativeMode && hasAmmo(playerIn) && !ignoreAmmo){
-            ammoStack.setItemDamage(ammoStack.getItemDamage()+1);
-        }
-
-
-
-        playerIn.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
     }
+
+
 }
