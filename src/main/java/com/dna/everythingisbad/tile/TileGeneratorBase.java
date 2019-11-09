@@ -18,6 +18,7 @@ public abstract class TileGeneratorBase extends TileDeviceBase implements ITicka
         fluidHandler = new ModFluidHandler(false,true);
         energyHandler = new ModEnergyHandler(100000,1000,0,false,true);
 
+
     }
 
 
