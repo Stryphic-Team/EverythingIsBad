@@ -49,7 +49,7 @@ public class TileStupidCoreReactor extends TileGeneratorBase {
         }
         if (thermalHandler.getCurrentTemperature() > 450f) {
             exposionRate = (int) Math.max(20f - (thermalHandler.getCurrentTemperature() - 450f), 1f);
-            if (tick % exposionRate == exposionRate - 1) {
+            if (tick % exposionRate == exposionRate - 1 && !world.isRemote) {
                 world.createExplosion(null, topRandomBlock.getX(), topRandomBlock.getY(), topRandomBlock.getZ(), 2.5f, true);
             }
 

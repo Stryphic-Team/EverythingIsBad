@@ -118,13 +118,13 @@ public abstract class BlockDeviceBase extends BlockBase implements ITileEntityPr
 
         if (active)
         {
-            worldIn.setBlockState(pos, defaultState.withProperty(FACING, currentState.getValue(FACING)).withProperty(ACTIVE,true), 3);
-            worldIn.notifyBlockUpdate(pos,currentState,defaultState.withProperty(FACING,currentState.getValue(FACING)).withProperty(ACTIVE,true),3);
+            worldIn.setBlockState(pos, defaultState.withProperty(FACING, currentState.getValue(FACING)).withProperty(ACTIVE,true), 1);
+            //worldIn.notifyBlockUpdate(pos,currentState,defaultState.withProperty(FACING,currentState.getValue(FACING)).withProperty(ACTIVE,true),3);
         }
         else
         {
-            worldIn.setBlockState(pos, defaultState.withProperty(FACING, currentState.getValue(FACING)).withProperty(ACTIVE,false), 3);
-            worldIn.notifyBlockUpdate(pos,currentState,defaultState.withProperty(FACING,currentState.getValue(FACING)).withProperty(ACTIVE,false),3);
+            worldIn.setBlockState(pos, defaultState.withProperty(FACING, currentState.getValue(FACING)).withProperty(ACTIVE,false), 1);
+            //worldIn.notifyBlockUpdate(pos,currentState,defaultState.withProperty(FACING,currentState.getValue(FACING)).withProperty(ACTIVE,false),3);
         }
 
 

@@ -4,6 +4,7 @@ import com.dna.everythingisbad.block.machines.BlockDeviceBase;
 import com.dna.everythingisbad.init.ModTileEntities;
 import com.dna.everythingisbad.network.PacketHandler;
 import com.dna.everythingisbad.network.messagestypes.MessageSyncMachineGui;
+import com.dna.everythingisbad.network.messagestypes.MessageTileSync;
 import com.dna.everythingisbad.tile.utils.handlers.ModEnergyHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModFluidHandler;
 import com.dna.everythingisbad.tile.utils.handlers.ModItemHandler;
@@ -164,7 +165,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
 
     public void updateBlockState(){
-        if(tick % 20 == 19) {
+        if(tick % 20 == 19 && world.isRemote) {
             IBlockState currentState = world.getBlockState(pos);
             IBlockState defaultState = currentState.getBlock().getDefaultState();
 
@@ -181,7 +182,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     }
     public void updateTile(){
         if(tick % 20 == 19 && !world.isRemote){
-            //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),this));
+            PacketHandler.INSTANCE.sendToAll(new MessageTileSync(this));
         }
     }
 
