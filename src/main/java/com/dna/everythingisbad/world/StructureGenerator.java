@@ -1,13 +1,15 @@
 package com.dna.everythingisbad.world;
 
-import com.dna.everythingisbad.init.ModBiomes;
 import com.dna.everythingisbad.utils.RandomUtils;
-import com.dna.everythingisbad.world.structures.*;
+import com.dna.everythingisbad.world.structures.WorldGenLandMine;
+import com.dna.everythingisbad.world.structures.WorldGenTwinTowers;
+import com.dna.everythingisbad.world.structures.WorldGenVillageCasino;
+import com.dna.everythingisbad.world.structures.WorldGenWoolBlock;
+import com.dna.everythingisbad.world.utils.BiomeUtils;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -16,17 +18,11 @@ import java.util.Random;
 
 public class StructureGenerator implements IWorldGenerator {
     public static StructureGenerator INSTANCE = new StructureGenerator();
-    public Biome[] EXCLUDED_BIOMES = new Biome[]{
-            Biomes.HELL,
-            Biomes.VOID,
-            ModBiomes.HEAVEN,
-            Biomes.SKY,
-    };
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         int xPos = chunkX * 16;
         int zPos = chunkZ * 16;
-        if (!biomeExcluded(world.getBiome(new BlockPos(xPos, 64, zPos))) && !isWaterChunk(world, chunkX, chunkZ)) {
+        if (BiomeUtils.isOverworld(world,new BlockPos(xPos,0,zPos)) && !isWaterChunk(world, chunkX, chunkZ)) {
             if (world.getBiome(new BlockPos(xPos, 64, zPos)) == Biomes.PLAINS || world.getBiome(new BlockPos(xPos, 64, zPos)) == Biomes.ICE_PLAINS) {
                 //NOTE: Should have tested to see it spawns before changing conditions for spawn
                 if (random.nextFloat() < 0.0001f) {
@@ -57,14 +53,7 @@ public class StructureGenerator implements IWorldGenerator {
             }
         }
     }
-    public boolean biomeExcluded(Biome biome){
-        for(Biome excludedBiome : EXCLUDED_BIOMES){
-            if(excludedBiome == biome){
-                return true;
-            }
-        }
-        return false;
-    }
+
     public boolean isWaterChunk(World world,int chunkX, int chunkZ){
         for(int x = chunkX * 16;x < chunkX * 16 + 16;x++){
             for(int z = chunkZ * 16;z < chunkZ * 16 + 16;z++){

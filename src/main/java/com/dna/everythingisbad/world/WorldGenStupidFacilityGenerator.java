@@ -1,13 +1,11 @@
 package com.dna.everythingisbad.world;
 
-import com.dna.everythingisbad.init.ModBiomes;
 import com.dna.everythingisbad.utils.RandomUtils;
 import com.dna.everythingisbad.world.structures.WorldGenStupidFacility;
-import net.minecraft.init.Biomes;
+import com.dna.everythingisbad.world.utils.BiomeUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -31,12 +29,7 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
     private static int chunksGenerated = 0;
 
     public static WorldGenStupidFacilityGenerator INSTANCE = new WorldGenStupidFacilityGenerator();
-    public static Biome[] EXCLUDED_BIOMES = new Biome[]{
-            Biomes.HELL,
-            Biomes.VOID,
-            ModBiomes.HEAVEN,
-            Biomes.SKY
-    };
+
 
 
     @Override
@@ -46,7 +39,7 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
         if(!generating) {
             if (RandomUtils.withinChance(10000)) {
                 firstPosition = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16));
-                if(world.getBlockState(firstPosition).getBlock() != Blocks.WATER) {
+                if(world.getBlockState(firstPosition).getBlock() != Blocks.WATER && BiomeUtils.isOverworld(world,firstPosition)) {
                     generating = true;
                     size = 0;
                     currentYPos = firstPosition.getY();
@@ -94,42 +87,7 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
                         structureMap[currentChunkX][currentChunkZ]
                 );
             }
-//            if(world.getWorldTime() % 500 == 499){
-//                generating = false;
-//            }
-
         }
-
-
-                // If there is no building already there then place one down here!
-//                if (!isChunkUsed(currentChunkX, currentChunkZ)) {
-//
-//                    //Chunk currentChunk = chunkProvider.provideChunk(currentChunkX, currentChunkZ);
-//                    //currentChunk.markLoaded(true);
-//
-//
-//                    size++;
-//                }else{
-//                    randomSign = random.nextInt(2);
-//                    if (randomSign == 0) {
-//                        randomSign = -1;
-//                    }
-//
-//                    // Either steps/decrements the X or Z of the chunk, and the block pos by +-16
-//                    if (random.nextBoolean()) {
-//                        currentChunkX += randomSign;
-//
-//                    } else {
-//                        currentChunkZ += randomSign;
-//
-//                    }
-//                }
-//
-//            } else {
-//                generating = false;
-//            }
-
-
     }
     public int[][] generateStructureMap(int width,int height,int max){
         int[][] map = new int[width][height];
@@ -157,18 +115,6 @@ public class WorldGenStupidFacilityGenerator implements IWorldGenerator {
         }
         return map;
     }
-
-    public static boolean biomeExcluded(Biome biome){
-        for(Biome excludedBiome : EXCLUDED_BIOMES){
-            if(excludedBiome == biome){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-
 }
 
 

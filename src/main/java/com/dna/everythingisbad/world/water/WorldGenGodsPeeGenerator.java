@@ -1,11 +1,10 @@
 package com.dna.everythingisbad.world.water;
 
 import com.dna.everythingisbad.init.ModFluids;
+import com.dna.everythingisbad.world.utils.BiomeUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEnd;
-import net.minecraft.world.biome.BiomeHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenLakes;
@@ -22,8 +21,7 @@ public class WorldGenGodsPeeGenerator implements IWorldGenerator {
         int zPos = chunkZ * 16 + 8;
         Biome biome = world.getBiome(new BlockPos(xPos,64,zPos));
         // make sure you aren't in a hell biome or the end biome
-        if(random.nextFloat() < 0.02 && !biome.getBiomeClass().equals(BiomeHell.class)
-        && !biome.getBiomeClass().equals(BiomeEnd.class)) {
+        if(random.nextFloat() < 0.02 && BiomeUtils.isOverworld(biome)) {
             WorldGenLakes lake = new WorldGenLakes(ModFluids.DEVILS_PEE.getBlockFluidBase());
             lake.generate(world, random, new BlockPos(xPos, 64, zPos));
         }
