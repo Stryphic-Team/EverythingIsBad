@@ -26,7 +26,7 @@ public class CommandTopBalance extends ModCommandBase {
     @Override
     public void execute(MinecraftServer minecraftServer, ICommandSender iCommandSender, String[] strings) throws CommandException {
 
-        CommandOutputHelper.sendTopBalance((EntityPlayer) iCommandSender, (strings.length > 0 ? Integer.parseInt(strings[0]) : 1) - 1);
+        CommandOutputHelper.sendTopBalance(iCommandSender,(EntityPlayer) iCommandSender, (strings.length > 0 ? Integer.parseInt(strings[0]) : 1) - 1);
 
     }
 

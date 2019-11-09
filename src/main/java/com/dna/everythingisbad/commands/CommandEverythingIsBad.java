@@ -67,7 +67,7 @@ public class CommandEverythingIsBad extends CommandBase {
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         ArrayList<String> completions = new ArrayList<String>();
         for(ModCommandBase command: ModCommands.COMMANDS){
-            if(args.length > 0){
+            if(args.length == 1){
                 if(command.getName().startsWith(args[0])) {
                     if(command.checkPermission(server,sender)) {
                         completions.add(command.getName());
@@ -84,12 +84,24 @@ public class CommandEverythingIsBad extends CommandBase {
                 completions.add(command.getName());
             }
             if(command.getName().equals(args[0])){
-                String[] newArgs = new String[args.length - 1];
-                for(int i = 1;i<args.length;i++){
-                    newArgs[i - 1] = args[i];
+                if(command.checkPermission(server,sender)) {
+                    String[] newArgs = new String[args.length - 1];
+                    for (int i = 1; i < args.length; i++) {
+                        newArgs[i - 1] = args[i];
+                    }
+                    return command.getTabCompletions(server, server, newArgs, targetPos);
                 }
-//                completions = new ArrayList<String>();
-                return command.getTabCompletions(server,server,newArgs,targetPos);
+            }
+            for(String alias:command.getAliases()){
+                if(alias.equals(args[0])) {
+                    if(command.checkPermission(server,sender)) {
+                        String[] newArgs = new String[args.length - 1];
+                        for(int i = 1;i<args.length;i++){
+                            newArgs[i - 1] = args[i];
+                        }
+                        return command.getTabCompletions(server,server,newArgs,targetPos);
+                    }
+                }
             }
         }
 

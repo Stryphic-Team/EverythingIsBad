@@ -5,6 +5,7 @@ import com.dna.everythingisbad.entityproperties.PlayerPropertiesCapability;
 import com.dna.everythingisbad.init.Religion;
 import com.dna.everythingisbad.utils.helpers.FormatHelper;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,75 +24,76 @@ public class CommandOutputHelper {
     String[] Docs = new String[]{
 
     };
-    public static void sendPlayerBalance(EntityPlayer player){
+    public static void sendPlayerBalance(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             float currentBalance = playerProperties.getBalance();
-            player.sendMessage(new TextComponentString("Balance: " + FormatHelper.formatMoney(currentBalance)));
+            sender.sendMessage(new TextComponentString("Balance: " + FormatHelper.formatMoney(currentBalance)));
         }
     }
-    public static void sendBankBalance(EntityPlayer player){
+    public static void sendBankBalance(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         if(playerProperties != null) {
             float currentBalance = playerProperties.getBankBalance();
-            player.sendMessage(new TextComponentString("Bank Balance: " + FormatHelper.formatMoney(currentBalance)));
+            sender.sendMessage(new TextComponentString("Bank Balance: " + FormatHelper.formatMoney(currentBalance)));
         }
     }
-    public static void sendPlayerReligion(EntityPlayer player){
+    public static void sendPlayerReligion(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         Religion currentReligion = Religion.values()[playerProperties.getReligion()];
         Style religionStyle = new Style().setColor(currentReligion.getTextFormatting());
         TextComponentString religionTextComponent = new TextComponentString(currentReligion.getDisplayName());
         religionTextComponent.setStyle(religionStyle);
-        player.sendMessage(
+        sender.sendMessage(
                 new TextComponentString("Religion: ").appendSibling(religionTextComponent)
         );
 
     }
-    public static void sendPlayerTimesPooped(EntityPlayer player){
+    public static void sendPlayerTimesPooped(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         int timesPooped = playerProperties.getTimesPooped();
 
-        player.sendMessage(new TextComponentString("Times Pooped: "+timesPooped));
+        sender.sendMessage(new TextComponentString("Times Pooped: "+timesPooped));
     }
-    public static void sendPlayerBlindness(EntityPlayer player){
+    public static void sendPlayerBlindness(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         boolean isBlind = playerProperties.isBlind();
 
-        player.sendMessage(new TextComponentString("Blind: "+isBlind));
+        sender.sendMessage(new TextComponentString("Blind: "+isBlind));
     }
-    public static void sendPlayerCommonColdImmunity(EntityPlayer player){
+    public static void sendPlayerCommonColdImmunity(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         boolean hasCommonColdImmunity = playerProperties.hasCommonColdImmunity();
 
-        player.sendMessage(new TextComponentString("Common Cold Immunity: "+hasCommonColdImmunity));
+        sender.sendMessage(new TextComponentString("Common Cold Immunity: "+hasCommonColdImmunity));
     }
-    public static void sendBorder(EntityPlayer player){
-        player.sendMessage(new TextComponentString("===========================================").setStyle(new Style().setColor(TextFormatting.GOLD)));
+    public static void sendBorder(ICommandSender sender,EntityPlayer player){
+        sender.sendMessage(new TextComponentString("===========================================").setStyle(new Style().setColor(TextFormatting.GOLD)));
     }
 
-    public static void sendAddictionLevel(EntityPlayer player){
+    public static void sendAddictionLevel(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
 
         int addictionlvl = playerProperties.getAngelDustAddictionLvl();
         int tobacco_addiction_lvl = playerProperties.getTobaccoAddictionLvl();
 
-        player.sendMessage(new TextComponentString("Angel Dust Addiction Lvl: " + addictionlvl));
-        player.sendMessage(new TextComponentString("Tobacco Addiction Lvl: " + tobacco_addiction_lvl));
+        sender.sendMessage(new TextComponentString("Angel Dust Addiction Lvl: " + addictionlvl));
+        sender.sendMessage(new TextComponentString("Tobacco Addiction Lvl: " + tobacco_addiction_lvl));
     }
-    public static void sendStudentStatus(EntityPlayer player){
+    public static void sendStudentStatus(ICommandSender sender,EntityPlayer player){
         PlayerProperties playerProperties = player.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES,null);
         boolean isStudent = playerProperties.isStudent();
-        player.sendMessage(new TextComponentString("Student: "+isStudent));
+        sender.sendMessage(new TextComponentString("Student: "+isStudent));
     }
-    public static void sendPositiveMessage(EntityPlayer player,String message){
-        player.sendMessage(new TextComponentString(message).setStyle(new Style().setColor(TextFormatting.GREEN)));
+    public static void sendPositiveMessage(ICommandSender sender, EntityPlayer player, String message){
+        sender.sendMessage(new TextComponentString(message).setStyle(new Style().setColor(TextFormatting.GREEN)));
     }
-    public static void sendTopBalance(EntityPlayer player,int page){
+
+    public static void sendTopBalance(ICommandSender sender, EntityPlayer player,int page){
         MinecraftServer server = player.world.getMinecraftServer();
         if(server != null) {
             PlayerList players = server.getPlayerList();
@@ -126,7 +128,7 @@ public class CommandOutputHelper {
                     }
                 }
             });
-            sendBorder(player);
+            sendBorder(sender,player);
             for(int i = (page * 5);i<Math.min((page + 1) * 5,allPlayers.size());i++){
                 EntityPlayer currentPlayer = allPlayers.get(i);
                 PlayerProperties playerProperties = currentPlayer.getCapability(PlayerPropertiesCapability.PLAYER_PROPERTIES, null);
@@ -146,7 +148,7 @@ public class CommandOutputHelper {
             player.sendMessage(
                     new TextComponentString((page + 1) + " / " + ((allPlayers.size() / 5) + 1)).setStyle(new Style().setColor(TextFormatting.GREEN))
             );
-            sendBorder(player);
+            sendBorder(sender,player);
 
         }
     }

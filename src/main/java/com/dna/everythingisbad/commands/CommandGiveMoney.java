@@ -12,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CommandGiveMoney extends ModCommandBase {
@@ -55,8 +54,8 @@ public class CommandGiveMoney extends ModCommandBase {
                                 if(senderProperties.getBalance() >= amount){
                                     senderProperties.setBalance(senderProperties.getBalance() - amount);
                                     receiverProperties.setBalance(receiverProperties.getBalance() + amount);
-                                    CommandOutputHelper.sendPositiveMessage(sender,"You have sent " + FormatHelper.formatMoney(amount) + " to " + receiver.getDisplayNameString());
-                                    CommandOutputHelper.sendPositiveMessage(receiver,"You have received " + FormatHelper.formatMoney(amount) + " from " + sender.getDisplayNameString());
+                                    CommandOutputHelper.sendPositiveMessage(iCommandSender,sender,"You have sent " + FormatHelper.formatMoney(amount) + " to " + receiver.getDisplayNameString());
+                                    CommandOutputHelper.sendPositiveMessage(iCommandSender,receiver,"You have received " + FormatHelper.formatMoney(amount) + " from " + sender.getDisplayNameString());
                                 }else{
                                     throw new InsufficientFundsException("commands.economy.error.insufficient_funds");
                                 }
@@ -82,14 +81,19 @@ public class CommandGiveMoney extends ModCommandBase {
     {
         ArrayList<String> completions = new ArrayList<>();
         if(args.length == 1) {
-            return server.getPlayerList().getCurrentPlayerCount() > 0 ? getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()) : Collections.emptyList();
+            for (String username : server.getPlayerList().getOnlinePlayerNames()) {
+                if (username.startsWith(args[0])){
+                    completions.add(username);
+                }
+            }
+            //return server.getPlayerList().getCurrentPlayerCount() > 0 ? getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()) : Collections.emptyList();
         }else if(args.length == 2){
             for(int i = 0;i<20 ;i++){
                 completions.add(Integer.toString(i * 5));
             }
-            return completions;
+            //return completions;
         }
-        return new ArrayList<String>();
+        return completions;
     }
 
 }

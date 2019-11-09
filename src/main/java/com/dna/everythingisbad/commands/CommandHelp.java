@@ -31,7 +31,7 @@ public class CommandHelp extends ModCommandBase {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if(sender instanceof EntityPlayerMP){
-            CommandOutputHelper.sendBorder((EntityPlayer) sender);
+            CommandOutputHelper.sendBorder(sender,(EntityPlayer) sender);
             for(ModCommandBase command: ModCommands.COMMANDS) {
                 sender.sendMessage(
                         new TextComponentString(command.getUsage(sender)).setStyle(new Style().setColor(TextFormatting.GREEN))
@@ -44,7 +44,7 @@ public class CommandHelp extends ModCommandBase {
 
 
             }
-            CommandOutputHelper.sendBorder((EntityPlayer) sender);
+            CommandOutputHelper.sendBorder(sender,(EntityPlayer) sender);
 
         }
     }
