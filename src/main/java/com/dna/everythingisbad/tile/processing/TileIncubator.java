@@ -48,7 +48,7 @@ public class TileIncubator extends TileMachineBase {
             IBlockState blockState = this.world.getBlockState(this.pos);
             EnumFacing facing = blockState.getValue(BlockHorizontal.FACING);
             BlockPos spawnpos = this.pos.offset(facing,1);
-            entityVillager.setPosition(spawnpos.getX(),spawnpos.getY(),spawnpos.getZ());
+            entityVillager.setPosition(spawnpos.getX() + 0.5d ,spawnpos.getY(),spawnpos.getZ() + 0.5d);
 
             // if you name the Baby item in an anvil, it carries over onto the villager entity
             if (!name.equals("Baby")) {
