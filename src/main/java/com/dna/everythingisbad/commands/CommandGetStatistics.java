@@ -43,7 +43,7 @@ public class CommandGetStatistics extends ModCommandBase {
             }else{
                 EntityPlayer player = server.getPlayerList().getPlayerByUsername(args[0]);
                 if(player != null){
-                    sendStatistics(sender, (EntityPlayer) sender.getCommandSenderEntity());
+                    sendStatistics(sender, player);
                 }else{
                     throw new PlayerNotFoundException(args[0]);
                 }
