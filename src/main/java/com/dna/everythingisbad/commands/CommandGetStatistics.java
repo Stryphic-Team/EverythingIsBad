@@ -3,8 +3,14 @@ package com.dna.everythingisbad.commands;
 import com.dna.everythingisbad.commands.utils.CommandOutputHelper;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandGetStatistics extends ModCommandBase {
     public CommandGetStatistics(String name) {
@@ -32,16 +38,41 @@ public class CommandGetStatistics extends ModCommandBase {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if(sender.getCommandSenderEntity() instanceof EntityPlayer) {
-            CommandOutputHelper.sendBorder((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendPlayerReligion((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendStudentStatus((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendPlayerBalance((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendBankBalance((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendPlayerBlindness((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendPlayerCommonColdImmunity((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendPlayerTimesPooped((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendAddictionLevel((EntityPlayer) sender.getCommandSenderEntity());
-            CommandOutputHelper.sendBorder((EntityPlayer) sender.getCommandSenderEntity());
+            if(args.length == 0) {
+                sendStatistics(sender, (EntityPlayer) sender.getCommandSenderEntity());
+            }else{
+                EntityPlayer player = server.getPlayerList().getPlayerByUsername(args[0]);
+                if(player != null){
+                    sendStatistics(sender, player);
+                }else{
+                    throw new PlayerNotFoundException(args[0]);
+                }
+            }
         }
+    }
+    public void sendStatistics(ICommandSender sender, EntityPlayer player){
+        CommandOutputHelper.sendBorder(sender,player);
+        CommandOutputHelper.sendPlayerReligion(sender,player);
+        CommandOutputHelper.sendStudentStatus(sender,player);
+        CommandOutputHelper.sendPlayerBalance(sender,player);
+        CommandOutputHelper.sendBankBalance(sender,player);
+        CommandOutputHelper.sendPlayerBlindness(sender,player);
+        CommandOutputHelper.sendPlayerCommonColdImmunity(sender,player);
+        CommandOutputHelper.sendPlayerTimesPooped(sender,player);
+        CommandOutputHelper.sendAddictionLevel(sender,player);
+        CommandOutputHelper.sendBorder(sender,player);
+    }
+
+    @Override
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+        ArrayList<String> completions = new ArrayList<String>();
+        if(args.length == 1) {
+            for (String username : server.getPlayerList().getOnlinePlayerNames()) {
+                if (username.startsWith(args[0])){
+                    completions.add(username);
+                }
+            }
+        }
+        return completions;
     }
 }
