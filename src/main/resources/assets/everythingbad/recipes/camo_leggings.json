@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "Y G",
-    "LGL",
-    "GLY"
+    "YLG",
+    "L L",
+    "G Y"
   ],
   "key": {
     "G": [
@@ -62,6 +62,6 @@
     ]
   },
   "result": {
-    "item": "everythingbad:camo_chestplate"
+    "item": "everythingbad:camo_leggings"
   }
 }
