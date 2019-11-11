@@ -102,49 +102,48 @@
     * Machines don't reset their progress if they don't have enough energy
     * Happy trees don't spawn on super flat anymore
     * Fixed the stupid core not dropping after highness effect ends
-  * Added
+  * Additions
     * Added Adrenaline potion effect
     * Added adrenaline potion
     * Machine guis now have actual tooltips
     
 ### 0.2.0-alpha `11/1/19`
 
-  * Added
+  * Additions
     * Machines:
       * Added ATM Machine
       * Added Slot Machine
       * Added Quarry
-      * Added incubator
+      * Added Incubator
     * Generation:
       * Added Stupid™ Facility
       * Added Casinos
       * Urine Crystals now spawn the nether similar to glowstone
-    * Drugs/Potion Effects:
+      * Custom records are now obtainable from chests
+    * Food, Drugs and Health:
+      * Player now has a heart rate, which can be viewed with a Heart Rate Monitor
+      * Added Heart Attack which kills the player if their heart rate is too high
+      * Added Cigarettes and Cigars
+      * Added Stimulation potion effect (from smoking tobacco)
       * Added withdrawal symptoms(For tobacco, angel dust)
-      * Added Stimulation potion effect
+      * Added Baby Soup
+      * There is now a 2% chance that an Ultra Stupid™ Core will drop when you or a mob goes through the Highness effect
     * Economy:
       * Money is now a floating point(so you can have cents now)
       * You now have a chance of being a student(6 percent chance) when you first join and start with debt that you have to pay off($1000 to $20,000).
       * There are now tasks that you can do to obtain money(Fishing, Mob Hunting, and Mining)
     * Miscellaneous:
-      * You now get xp for raising a baby
+      * Added Hillbilly mob which spawns especially in Hills and Swamp
+      * Added Huntin' Rifle and Rifle Cartridge
+      * Player gets experience from raising a baby to childhood
       * Added a sub command system for the everythingisbad command
       * Added Random Teleport Command(RTP) for ops only
-      * Added Help command
-      * Added Heart rate monitor
-      * Custom records are now obtainable
-      * Added cigarettes
-      * Added cigars
-      * There is now a 2% chance that a ultra Stupid™ Core will drop when you or a mob goes through the highness effect
-      * Added liquifier recipe :-( 
-      * Added flashy block which spawns in the stupid™ facility reactor room and the casino
-      * Added Heart attack when your heart rate gets to high
-      * Angel dust is now less potent
-      
+      * Added /everythingisbad help command
+      * Added Flashy Block which spawns in the Stupid™ Facility reactor room and the Casino
+      * Added Angel sound effects
     * Visual Enhancements
       * Added a new look for the statistics page
       * Added new ultra stupid core texture
-      * Player now has a heart rate which can be viewed with a heart rate monitor
   * Fixes
     * Adrenaline is now only 3 minutes long by default
     * Babies aged up can now have all villager professions
@@ -152,8 +151,29 @@
     * Fixed ghost stupid cores when mobs finish the highness effect
     * Fixed the immediate destruction when you are on a server of your player file when you use angel dust
     * Removed Blood spawning on death
+    * Added liquifier recipe :-( 
+    * Angel Dust is now less potent
+    
 ### 0.2.1-alpha `11/4/19`
    * Fixed triple interest rate return
    * Fixed client crash when withdrawing fractional amounts from the ATM
    * Giving money to a another player now notifies the player that they received the money
 
+### 0.2.3-alpha `11/10/19`
+  * Additions
+    * Added Camo Pants and Huntin' Boots
+    * Added Rifle Cartridge recipe
+    * Incubator can now age eggs up to baby chickens
+    * Hillbilly now wears different colored shirts depending on if he is a Bassist, Hunter or Banjoist
+    * Added topbal command
+    * Stats command works on other players
+    * Guns now have delay
+    * Added Stimulation potion recipe with Tobacco Leaf
+    * Added BiomeUtils and ThermalHandler
+  * Fixes 
+    * Added Liquifier recipe for Blood Block --> Blood
+    * Incubator facing east no longer suffocates babies
+    * Cooked Baby is now stackable
+    * Machine blockstates sync in multiplayer
+    * Bullets have death message "shot by" instead of "pummeled by"
+    * Machines no longer reach equilibrium and run really slowly
