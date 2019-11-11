@@ -37,8 +37,8 @@ public abstract class ItemGunBase extends ItemBase {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        if(playerIn.ticksExisted - lastTickUsed > delay) {
-            lastTickUsed = playerIn.ticksExisted;
+        if(worldIn.getTotalWorldTime() - lastTickUsed > delay && !worldIn.isRemote) {
+            lastTickUsed = worldIn.getTotalWorldTime();
             ItemStack ammoStack = getAmmo(playerIn);
             // TODO Add real gunshot sound
             if (hasAmmo(playerIn) || ignoreAmmo || playerIn.capabilities.isCreativeMode) {
