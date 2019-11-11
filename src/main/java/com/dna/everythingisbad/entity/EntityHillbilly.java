@@ -186,6 +186,11 @@ public class EntityHillbilly extends EntitySkeleton implements IRangedAttackMob 
     protected float getSoundVolume() {
         return 1f;
     }
+
+    protected SoundEvent getStepSound()
+    {
+        return SoundEvents.ENTITY_ZOMBIE_STEP;
+    }
 }
 
 class SoundFrame {

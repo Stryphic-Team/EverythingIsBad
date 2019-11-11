@@ -2,10 +2,7 @@ package com.dna.everythingisbad.init;
 
 
 import com.dna.everythingisbad.item.*;
-import com.dna.everythingisbad.item.armor.ItemCamoChestplate;
-import com.dna.everythingisbad.item.armor.ItemCowboyHat;
-import com.dna.everythingisbad.item.armor.ItemHillbillyHat;
-import com.dna.everythingisbad.item.armor.ItemSantaHat;
+import com.dna.everythingisbad.item.armor.*;
 import com.dna.everythingisbad.item.food.*;
 import com.dna.everythingisbad.item.instruments.ItemBanjo;
 import com.dna.everythingisbad.item.instruments.ItemStringBass;
@@ -98,6 +95,8 @@ public class ModItems {
     public static  final ItemCowboyHat COWBOY_HAT_ITEM = new ItemCowboyHat("cowboy_hat");
     public static  final ItemSantaHat SANTA_HAT_ITEM = new ItemSantaHat("santa_hat");
     public static final ItemCamoChestplate CAMO_CHESTPLATE_ITEM = new ItemCamoChestplate("camo_chestplate");
+    public static final ItemCamoLeggings CAMO_LEGGINGS_ITEM = new ItemCamoLeggings("camo_leggings");
+    public static final ItemHuntingBoots HUNTING_BOOTS_ITEM = new ItemHuntingBoots("hunting_boots");
     public static final ItemHillbillyHat HILLBILLY_HAT_ITEM = new ItemHillbillyHat("hillbilly_hat");
 
     @SubscribeEvent
